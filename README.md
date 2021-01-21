@@ -8,9 +8,10 @@
 
 #### steps:
 - `git clone`
-- `cd` to `body-contouring-clinic` directory
+- `cd` to `Body-Contouring-Clinic/body-contouring-clinic` directory
 - `npm install`
-- `npm start`
+- Front-end (port 3000) : `npm start` 
+- Back-end  (port 3001) : `node ./servers/server`
 
 Feel free to update any useful information on this readme!
 

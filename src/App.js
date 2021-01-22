@@ -5,6 +5,8 @@ import { LinkContainer } from 'react-router-bootstrap'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'  // temporary, we can create our css later
 import AppointmentHome from './Appointment/AppointmentHome'
+import ServiceHome from './Service/ServiceHome'
+import RequestHome from './Request/RequestHome'
 import logo from './brand-logo.png';
 
 class App extends React.Component{
@@ -39,16 +41,13 @@ class App extends React.Component{
               <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/services">Service and Prices</a>
+              <a class="nav-link" href="/Service">Service and Prices</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/Appointment">Appointment</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/Request">Request</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Profile">Profile</a>
             </li>
           </ul>
         </nav>
@@ -64,8 +63,9 @@ class App extends React.Component{
                       {`Express : ${this.state.backServer}`}
                     </p>
                 </header>} />
-            <Route exact path='/Appointment' render={() =>
-            <AppointmentHome />} />
+            <Route exact path='/Appointment' render={() => <AppointmentHome />} />
+            <Route exact path='/Service' render={() => <ServiceHome />} />
+            <Route exact path='/Request' render={() => <RequestHome />} />
           </Switch>
         </BrowserRouter>
         </div>

@@ -32,6 +32,15 @@
   color: #61dafb;
 }
 
+.Footer-basic {
+  background-color: #393F44;
+}
+
+.Footer-contact {
+  text-align: left;
+  color: #FFFFFF;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import serviceDetails from '../resources/serviceDetails.png';
 class ServiceHome extends React.Component {
 
     constructor(props) {
@@ -11,10 +11,7 @@ class ServiceHome extends React.Component {
     render() {
         return (
             <div className="App-basic">
-                <h1>This is Service Home page </h1>
-                
-                <hr /><hr />
-                <h2>Hello, user.fullName</h2>
+                <img src={serviceDetails} alt="ServiceDetails" />
             </div>
         );
     }

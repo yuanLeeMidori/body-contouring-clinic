@@ -6,7 +6,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'  // temporary, we can create our css later
 import AppointmentHome from './Appointment/AppointmentHome'
 import ServiceHome from './Service/ServiceHome'
-import RequestHome from './Request/RequestHome'
+import RequestHome from './Request/index'
 import Footer from './Footer';
 import logo from './resources/brand-logo.png';
 import underBar from './resources/underBar.png'

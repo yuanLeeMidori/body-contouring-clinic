@@ -48,6 +48,9 @@ class App extends React.Component{
             <li class="nav-item">
               <a class="nav-link" href="/Request">Request</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Customer">Customer</a>
+            </li>
           </ul>
         </nav>
         <br />

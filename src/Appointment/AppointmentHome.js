@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Card, Container, Row, Col } from 'react-bootstrap';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -10,8 +9,6 @@ class AppointmentHome extends React.Component {
     constructor(props) {
         super(props);
     }
-
-
 
     componentDidMount() {
         document.title = "Appointment Home | Body Contouring Clinic";

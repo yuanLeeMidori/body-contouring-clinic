@@ -13,21 +13,26 @@ class CreateAppointment extends React.Component {
         document.title = "Create New Appointment | Body Contouring Clinic";
     }
     render() {
+        const title = {
+            margin: '25px',
+            'margin-bottom': '35px',
+            color: '#393D47',
+        }
         return (
             <>
                 <br /><br />
-                <h2 style={{margin: '15px'}}>New Appointment</h2>
+                <h2 style={title}>New Appointment</h2>
 
                 <Container>
                     <Row>
                         <Col></Col>
-                        <Col xs={6}>
+                        <Col xs={8}>
                         <Form>
                             <Form.Group as={Row} controlId="exampleForm.ControlSelect1">
-                                <Form.Label column sm="2">
+                                <Form.Label column sm="4">
                                 Services:
                                 </Form.Label>
-                                <Col sm="10">
+                                <Col sm="8">
                                         <Form.Control as="select">
                                             <option>Active air oxygen therapy</option>
                                             <option>Green peel</option>
@@ -38,10 +43,10 @@ class CreateAppointment extends React.Component {
                             </Form.Group>
 
                             <Form.Group as={Row} controlId="exampleForm.ControlSelect1">
-                                <Form.Label column sm="2">
+                                <Form.Label column sm="4">
                                 Technician:
                                 </Form.Label>
-                                <Col sm="10">
+                                <Col sm="8">
                                         <Form.Control as="select">
                                             <option>Piper Chapman</option>
                                             <option>Alex Vause</option>
@@ -52,18 +57,18 @@ class CreateAppointment extends React.Component {
                             </Form.Group>
                                 
                             <Form.Group as={Row}>
-                                <Form.Label column sm="2">
+                                <Form.Label column sm="4">
                                     Date & Time:
-                                </Form.Label>        
-                                <Col sm="10">
+                                </Form.Label>
+                                <Col sm="8">
                                     <Form.Control />
                                 </Col>
                             </Form.Group>
                             <Form.Group as={Row} controlId="exampleForm.ControlTextarea1">
-                                <Form.Label column sm="2">
-                                    Special Request :
+                                <Form.Label column sm="4">
+                                    Special Request:
                                 </Form.Label>        
-                                <Col sm="10">
+                                <Col sm="8">
                                     <Form.Control as="textarea" rows={3} />
                                 </Col>
                             </Form.Group>
@@ -72,13 +77,11 @@ class CreateAppointment extends React.Component {
                         <Col></Col>
                     </Row>
                 </Container>
-                <Container>
-                    <Row>
+                <Container style={{'margin-top': '50px', cursor: 'pointer'}}>
+                    <Row >
                         <Col></Col>
-                        <Col md="auto">Cancel</Col>
-                        <Col xs lg="2">
-                        Save
-                        </Col>
+                        <Col md="auto"><a>Cancel</a></Col>
+                        <Col lg="2">Save</Col>
                     </Row>
                 </Container>
             </>

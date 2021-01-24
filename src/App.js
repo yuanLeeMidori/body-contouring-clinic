@@ -1,12 +1,11 @@
 import React from 'react';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, Form, FormControl, Grid, Row, Col, Button } from 'react-bootstrap'
 import { Link, Switch, Redirect, Route, BrowserRouter } from 'react-router-dom'
-import { LinkContainer } from 'react-router-bootstrap'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'  // temporary, we can create our css later
 import AppointmentHome from './Appointment/AppointmentHome'
 import Appointments from './Appointment/Appointments';
 import CreateAppointment from './Appointment/CreateAppointment';
+import Appointment from './Appointment/Appointment';
 import logo from './brand-logo.png';
 
 class App extends React.Component{
@@ -72,6 +71,8 @@ class App extends React.Component{
               <Appointments />} />
             <Route exact path='/Appointment/Create' render={() =>
               <CreateAppointment />} />
+            <Route exact path='/Appointment/Appointment' render={() =>
+              <Appointment />} />
           </Switch>
         </BrowserRouter>
         </div>

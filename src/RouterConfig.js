@@ -10,6 +10,8 @@ import RequestHome from './Request/index'
 import CreateRequest from './Request/CreateRequest';
 
 class RouterConfig extends React.Component {
+
+
     render() {
         return (
             <BrowserRouter>
@@ -19,7 +21,6 @@ class RouterConfig extends React.Component {
                       <p>
                         Body Contouring Clinic <br/>
                         React : true <br/>
-                        {`Express : ${this.state.backServer}`}
                       </p>
                   </header>} />
               <Route exact path='/Appointment' render={() => <AppointmentHome />} />

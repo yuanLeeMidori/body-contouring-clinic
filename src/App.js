@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'  // temporary, we can create our c
 import AppointmentHome from './Appointment/AppointmentHome'
 import ServiceHome from './Service/ServiceHome'
 import RequestHome from './Request/index'
+import CustomerHome from './Customer/CustomerHome'
 import Footer from './Footer';
 import logo from './resources/brand-logo.png';
 import underBar from './resources/underBar.png'
@@ -51,6 +52,9 @@ class App extends React.Component{
             <li class="nav-item">
               <a class="nav-link" href="/Request">Request</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Customer">Customer</a>
+            </li>
           </ul>
         </nav>
         <br />
@@ -69,6 +73,7 @@ class App extends React.Component{
             <Route exact path='/Appointment' render={() => <AppointmentHome />} />
             <Route exact path='/Service' render={() => <ServiceHome />} />
             <Route exact path='/Request' render={() => <RequestHome />} />
+            <Route exact path='/Customer' render={() => <CustomerHome />} />
           </Switch>
         </BrowserRouter>
         <Footer />

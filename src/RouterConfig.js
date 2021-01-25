@@ -11,6 +11,9 @@ import CreateRequest from './Request/CreateRequest';
 import CustomerHome from './Customer/CustomerHome'
 import CustomerProfile from './Customer/CustomerProfile'
 import CustomerEdit from './Customer/CustomerProfileEdit'
+import ViewRequest from './Request/ViewRequest';
+import AnswerRequest from './Request/Admin/AnswerRequest';
+import EditRequest from './Request/EditRequest';
 
 class RouterConfig extends React.Component {
 
@@ -28,8 +31,14 @@ class RouterConfig extends React.Component {
                   </header>} />
               <Route exact path='/Appointment' render={() => <AppointmentHome />} />
               <Route exact path='/Service' render={() => <ServiceHome />} />
+              {/* Request URL */}
               <Route exact path='/Request' render={() => <RequestHome />} />
               <Route exact path='/Request/Create' render={() => <CreateRequest />} />
+              <Route exact path='/Request/Detail' render={() => <ViewRequest />} />
+              <Route exact path='/Request/Answer' render={() => <AnswerRequest />} />
+              <Route exact path='/Request/Edit' render={() => <EditRequest />} />
+
+              {/* Customer URL */}
               <Route exact path='/Customer' render={() => <CustomerHome />} />
               <Route exact path='/Customer/Profile' render={() => <CustomerProfile />} />
               <Route exact path='/Customer/Edit' render={() => <CustomerEdit />} />

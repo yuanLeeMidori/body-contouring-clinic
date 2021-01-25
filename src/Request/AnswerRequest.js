@@ -3,7 +3,7 @@ import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from '../SideBar/SideBar';
 
-class ViewRequest extends React.Component {
+class AnswerRequest extends React.Component {
 
     state = {
             items : [
@@ -18,26 +18,24 @@ class ViewRequest extends React.Component {
             <div class="row">
                 <SideBar items={this.state.items}/>
                 <div class="col-md-7">
-                    <h1 className="PageTitle">Request Detail</h1>
+                    <h1 className="PageTitle">Request Answer for 01</h1>
                     <div className="contents">
                         <p>
-                            <label>Q: How can I join VIP member ship program?   2021/01/11</label><br/>
+                            <label>Q: How can I join VIP member ship program?   2021/01/11</label> <br/>
                             <div>
                                 Hello!<br/>
                                 How .... <br/>
                             </div>
                         </p>
-                        <br/>
+                        <br />
                         <p>
                             <label>A: RE: How can I join VIP member ship program?   2021/01/12</label><br/>
-                            <div>
-                                Good Morning!<br/>
-                                How .... <br/>
-                            </div>
+                            <textarea placeholder="Answer here">
+                            </textarea>
                         </p>
-                        <button type="button"><a href="/Request/Edit">EDIT</a></button>
-                        <button type="button"><a href="/Request/">BACK TO LIST</a></button>
-                        <button type="button">DELETE</button>
+                        <button type="button">SAVE</button>
+                        <button type="button">BACK TO LIST</button>
+                        <button type="button">CANCEL</button>
                     </div>
                 </div>
             </div>
@@ -45,4 +43,4 @@ class ViewRequest extends React.Component {
     }
 }
 
-export default ViewRequest;
+export default AnswerRequest;

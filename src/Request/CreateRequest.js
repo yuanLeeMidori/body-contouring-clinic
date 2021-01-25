@@ -4,10 +4,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from '../SideBar/SideBar';
 
 class CreateRequest extends React.Component {
+
+    state = {
+        items : [
+            {url:'/Request/', title: 'View All Request'},
+            {url:'/Request/Create', title: 'Create Request'},
+            {url:'/Request/', title: 'FAQ'},
+        ]
+    }
+
     render() {
         return (
             <div class="row">
-                <SideBar />
+                <SideBar items={this.state.items}/>
                 <div className="col-md-7">
                     <form action="/Request/"  method ="post" className="createRequest">
                         <label>Email:</label>

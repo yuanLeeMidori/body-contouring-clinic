@@ -6,10 +6,19 @@ import ListAllRequest from './ListAllRequest';
 import SideBar from '../SideBar/SideBar';
 
 class RequestHome extends React.Component {
+
+    state = {
+            items : [
+                {url:'/Request/', title: 'View All Request'},
+                {url:'/Request/Create', title: 'Create Request'},
+                {url:'/Request/', title: 'FAQ'},
+            ]
+    }
+    
     render() {
         return (
             <div class="row">
-                <SideBar />
+                <SideBar items={this.state.items}/>
                 <div class="col-md-7">
                     <h1 className="PageTitle">View All Request</h1>
                     <div className="contents">

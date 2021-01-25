@@ -9,6 +9,8 @@ import ServiceHome from './Service/ServiceHome'
 import RequestHome from './Request/RequestHome'
 import CreateRequest from './Request/CreateRequest';
 import CustomerHome from './Customer/CustomerHome'
+import CustomerProfile from './Customer/CustomerProfile'
+import CustomerEdit from './Customer/CustomerProfileEdit'
 
 class RouterConfig extends React.Component {
 
@@ -29,6 +31,8 @@ class RouterConfig extends React.Component {
               <Route exact path='/Request' render={() => <RequestHome />} />
               <Route exact path='/Request/Create' render={() => <CreateRequest />} />
               <Route exact path='/Customer' render={() => <CustomerHome />} />
+              <Route exact path='/Customer/Profile' render={() => <CustomerProfile />} />
+              <Route exact path='/Customer/Edit' render={() => <CustomerEdit />} />
             </Switch>
           </BrowserRouter>
         );

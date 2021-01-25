@@ -4,8 +4,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import searchIcon from '../resources/searchIcon.png';
 import ListAllRequest from './ListAllRequest';
 import SideBar from '../SideBar/SideBar';
+import PopUp from '../PopUp';
 
 class RequestHome extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+          showPopup: false
+        };
+    }
+
+    togglePopup() {
+        this.setState({
+          showPopup: !this.state.showPopup
+        });
+    }
 
     state = {
             items : [
@@ -40,8 +53,15 @@ class RequestHome extends React.Component {
                         </form>
                         <ListAllRequest />
                         <button type="button"><a href="/Request/Create">CREATE</a></button>
-                        <button type="button">DELETE</button>
+                        <button type="button" onClick={this.togglePopup.bind(this)}>DELETE</button>
                         <button type="button"><a href="/Request/Edit">EDIT</a></button>
+                        {this.state.showPopup ? 
+                            <PopUp
+                                text='Are you sure delete this request?' btn1='CANCEL' btn2='DELETE'
+                                closePopup={this.togglePopup.bind(this)}
+                            />
+                            : null
+                        }
                     </div>
                 </div>
             </div>

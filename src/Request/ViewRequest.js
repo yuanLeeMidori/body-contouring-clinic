@@ -2,8 +2,21 @@ import React from 'react';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from '../SideBar/SideBar';
+import PopUp from '../PopUp';
 
 class ViewRequest extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+          showPopup: false
+        };
+    }
+
+    togglePopup() {
+        this.setState({
+          showPopup: !this.state.showPopup
+        });
+    }
 
     state = {
             items : [
@@ -37,7 +50,14 @@ class ViewRequest extends React.Component {
                         </p>
                         <button type="button"><a href="/Request/Edit">EDIT</a></button>
                         <button type="button"><a href="/Request/">BACK TO LIST</a></button>
-                        <button type="button">DELETE</button>
+                        <button type="button" onClick={this.togglePopup.bind(this)}>DELETE</button>
+                        {this.state.showPopup ? 
+                            <PopUp
+                                text='Are you sure delete this request?' btn1='CANCEL' btn2='DELETE'
+                                closePopup={this.togglePopup.bind(this)}
+                            />
+                            : null
+                        }
                     </div>
                 </div>
             </div>

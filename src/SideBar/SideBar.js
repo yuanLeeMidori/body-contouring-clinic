@@ -2,15 +2,23 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class SideBar extends React.Component {
+    
+    constructor(props) {
+        super(props);
+        this.state = {
+          items: []
+        }
+      }
 
     render() {
+        const {items = []} = this.props;
         return (
-            <div class="col-md-2">
-                <div class="panel panel-info">
-                    <ul class ="list-group">
-                        <li class="list-group-item"><a href="/Request/">View All Request</a></li>
-                        <li class="list-group-item"><a href="/Request/Create">Create Request</a></li>
-                        <li class="list-group-item"><a>FAQ</a></li>
+            <div className="col-md-2">
+                <div className="panel panel-info">
+                    <ul className ="list-group">
+                        {items.map(item => (
+                           <li className="list-group-item"><a href={item.url}>{item.title}</a></li>  
+                        ))}
                     </ul>
                 </div>
             </div>

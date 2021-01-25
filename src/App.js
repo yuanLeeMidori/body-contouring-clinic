@@ -8,6 +8,7 @@ import logo from './resources/brand-logo.png';
 import underBar from './resources/underBar.png'
 import RouterConfig from './RouterConfig';
 
+
 class App extends React.Component{
 
   constructor(props){
@@ -50,6 +51,12 @@ class App extends React.Component{
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/Customer">Customer</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Register/Login">Sign In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Register/SignUp">Sign Up</a>
             </li>
           </ul>
         </nav>

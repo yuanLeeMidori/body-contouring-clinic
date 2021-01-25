@@ -14,6 +14,9 @@ import CustomerEdit from './Customer/CustomerProfileEdit'
 import ViewRequest from './Request/ViewRequest';
 import AnswerRequest from './Request/Admin/AnswerRequest';
 import EditRequest from './Request/EditRequest';
+import Login from './Register/login';
+import SignUp from './Register/signUp';
+
 
 class RouterConfig extends React.Component {
 
@@ -42,6 +45,12 @@ class RouterConfig extends React.Component {
               <Route exact path='/Customer' render={() => <CustomerHome />} />
               <Route exact path='/Customer/Profile' render={() => <CustomerProfile />} />
               <Route exact path='/Customer/Edit' render={() => <CustomerEdit />} />
+              
+              
+              {/* Register URL */}
+              <Route exact path='/Register/Login' render={() => <Login />} />
+              <Route exact path='/Register/SignUp' render={() => <SignUp />} />
+
             </Switch>
           </BrowserRouter>
         );

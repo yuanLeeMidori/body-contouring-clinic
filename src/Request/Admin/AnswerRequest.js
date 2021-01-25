@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import SideBar from '../SideBar/SideBar';
+import SideBar from '../../SideBar/SideBar';
 
 class AnswerRequest extends React.Component {
 

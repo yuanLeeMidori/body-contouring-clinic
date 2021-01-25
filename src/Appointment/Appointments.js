@@ -2,12 +2,20 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import SideBar from '../SideBar/SideBar';
 
 class Appointments extends React.Component {
 
     constructor(props) {
         super(props);
-    }
+        this.state = {
+            items: [
+                { url: '/Appointment', title: 'Appointment Home' },
+                { url: '/Appointment/Appointments', title: 'View All Appointments' },
+                { url: '/Appointment/Create', title: 'Create Appointment' },
+            ]
+        };
+    };
 
     componentDidMount() {
         document.title = "All Appointments | Body Contouring Clinic";
@@ -16,17 +24,19 @@ class Appointments extends React.Component {
     render() {
         const title = {
             color: '#393D47',
-            margin: '40px',
-            'margin-bottom': '80px',
+            margin: '40px 400px',
         };
         const pagination = {
             color: '#B58970',
         }
         return (
             <>
-                <div style={title}>
+                <div class="row">
+                <SideBar items={this.state.items} />
+                    <div style={title}>
                     <h2>Hello, user.fullName!</h2>
                     <h2>These are all your upcoming appointments</h2>
+                    </div>
                 </div>
                 <Container>
                     <Row>

@@ -2,11 +2,19 @@ import React from 'react';
 import '../App.css';
 import { Form, Row, Col, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import SideBar from '../SideBar/SideBar';
 
 class CreateAppointment extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            items: [
+                { url: '/Appointment', title: 'Appointment Home' },
+                { url: '/Appointment/Appointments', title: 'View All Appointments' },
+                { url: '/Appointment/Create', title: 'Create Appointment' },
+            ]
+        };
     }
 
     componentDidMount() {
@@ -14,15 +22,16 @@ class CreateAppointment extends React.Component {
     }
     render() {
         const title = {
-            margin: '25px',
-            'margin-bottom': '35px',
+            margin: '5px 600px',
             color: '#393D47',
         }
         return (
             <>
                 <br /><br />
+                <div class="row">
+                <SideBar items={this.state.items} />
                 <h2 style={title}>New Appointment</h2>
-
+                </div>
                 <Container>
                     <Row>
                         <Col></Col>

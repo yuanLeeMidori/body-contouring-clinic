@@ -39,9 +39,9 @@ class RequestHome extends React.Component {
                             <button type="submit"><img src={searchIcon} alt="Search"/></button>
                         </form>
                         <ListAllRequest />
-                        <button type="button">CREATE</button>
+                        <button type="button"><a href="/Request/Create">CREATE</a></button>
                         <button type="button">DELETE</button>
-                        <button type="button">EDIT</button>
+                        <button type="button"><a href="/Request/Edit">EDIT</a></button>
                     </div>
                 </div>
             </div>

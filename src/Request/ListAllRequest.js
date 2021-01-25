@@ -17,22 +17,22 @@ class ListAllRequest extends React.Component {
                         <th>Status</th>
                     </tr>
                     <tr>
-                        <th><input type="checkbox" /></th>
-                        <th>01</th>
-                        <th>Membership</th>
-                        <th>-</th>
-                        <th>How can I join..</th>
-                        <th>2021/01/11</th>
-                        <th>Solved</th>
+                        <td><input type="checkbox" /></td>
+                        <td>01</td>
+                        <td>Membership</td>
+                        <td>-</td>
+                        <td>How can I join..</td>
+                        <td>2021/01/11</td>
+                        <td>Solved</td>
                     </tr>
                     <tr>
-                        <th><input type="checkbox"/></th>
-                        <th>02</th>
-                        <th>Shipment</th>
-                        <th>-</th>
-                        <th>How many day...</th>
-                        <th>2020/12/27</th>
-                        <th>Progress</th>
+                        <td><input type="checkbox"/></td>
+                        <td>02</td>
+                        <td>Shipment</td>
+                        <td>-</td>
+                        <td>How many day...</td>
+                        <td>2020/12/27</td>
+                        <td>Progress</td>
                     </tr>
                 </table>
                 {/* https://www.w3schools.com/howto/howto_css_pagination.asp */}

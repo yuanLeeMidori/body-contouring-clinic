@@ -10,7 +10,7 @@ import RequestHome from './Request/RequestHome'
 import CreateRequest from './Request/CreateRequest';
 import CustomerHome from './Customer/CustomerHome'
 import ViewRequest from './Request/ViewRequest';
-import AnswerRequest from './Request/AnswerRequest';
+import AnswerRequest from './Request/Admin/AnswerRequest';
 import EditRequest from './Request/EditRequest';
 
 class RouterConfig extends React.Component {

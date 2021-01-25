@@ -1,12 +1,13 @@
 import React from 'react';
-import { Link, Switch, Redirect, Route, BrowserRouter } from 'react-router-dom'
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, Form, FormControl, Grid, Row, Col, Button } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'  // temporary, we can create our css later
-import AppointmentHome from './Appointment/AppointmentHome'
-import Appointments from './Appointment/Appointments';
-import CreateAppointment from './Appointment/CreateAppointment';
-import Appointment from './Appointment/Appointment';
-import logo from './brand-logo.png';
+import Footer from './Footer';
+import logo from './resources/brand-logo.png';
+import underBar from './resources/underBar.png'
+import RouterConfig from './RouterConfig';
+
 
 class App extends React.Component{
 
@@ -40,7 +41,7 @@ class App extends React.Component{
               <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/services">Service and Prices</a>
+              <a class="nav-link" href="/Service">Service and Prices</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/Appointment">Appointment</a>
@@ -49,33 +50,22 @@ class App extends React.Component{
               <a class="nav-link" href="/Request">Request</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Profile">Profile</a>
+              <a class="nav-link" href="/Customer">Customer</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Register/Login">Sign In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Register/SignUp">Sign Up</a>
             </li>
           </ul>
         </nav>
         <br />
-        <img src={logo} alt="logo" />
-        <BrowserRouter>
-          <Switch>
-            <Route exact path='/' render={() =>
-              <header className="App-basic">
-                  <p>
-                    Body Contouring Clinic <br/>
-                    React : true <br/>
-                    {`Express : ${this.state.backServer}`}
-                  </p>
-              </header>} />
-            <Route exact path='/Appointment' render={() =>
-              <AppointmentHome />} />
-            <Route exact path='/Appointment/Appointments' render={() =>
-              <Appointments />} />
-            <Route exact path='/Appointment/Create' render={() =>
-              <CreateAppointment />} />
-            <Route exact path='/Appointment/Appointment' render={() =>
-              <Appointment />} />
-          </Switch>
-        </BrowserRouter>
-        </div>
+        <img src={logo} alt="logo"/><br/>
+        <img src={underBar} alt="bar" />
+        <RouterConfig />
+        <Footer />
+      </div>
     );
   }
 }

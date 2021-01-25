@@ -7,25 +7,35 @@ import SideBar from '../SideBar/SideBar';
 import PopUp from '../PopUp';
 
 class RequestHome extends React.Component {
+
     constructor() {
         super();
         this.state = {
-          showPopup: false,
+          show: false,
           items : [
-            {url:'/Request/', title: 'View All Request'},
-            {url:'/Request/Create', title: 'Create Request'},
-            {url:'/Request/', title: 'FAQ'},
-        ]
+                {url:'/Request/', title: 'View All Request'},
+                {url:'/Request/Create', title: 'Create Request'},
+                {url:'/Request/', title: 'FAQ'},
+            ],
+          children: 'Request'
         };
-        this.togglePopup =this.togglePopup.bind(this);
+        this.showModal = this.showModal.bind(this);
+        this.hideModal = this.hideModal.bind(this);
+        this.deleteReq = this.deleteReq.bind(this);
+      }
+
+    showModal = () => {
+        this.setState({ show: true });
+      };
+    
+    hideModal = () => {
+        this.setState({ show: false });
+      };
+    
+    deleteReq = () => {
+        this.setState({ show: false });
     }
 
-    togglePopup() {
-        this.setState({
-          showPopup: !this.state.showPopup
-        });
-    }
-    
     render() {
         return (
             <div class="row">
@@ -52,8 +62,8 @@ class RequestHome extends React.Component {
                         <ListAllRequest />
                         <button type="button"><a href="/Request/Create">CREATE</a></button>
                         <button type="button"><a href="/Request/Edit">EDIT</a></button>
-                        <button type="button" onClick={this.togglePopup}>DELETE</button>
-                        {this.state.showPopup ?  <PopUp text='Are you sure delete this request?' btn1='CANCEL' btn2='DELETE' closePopup={this.togglePopup}/>: null}
+                        <button type="button" onClick={this.showModal}>DELETE</button>
+                        <PopUp show={this.state.show}  handleClose={this.hideModal} handleDelete={this.deleteReq} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
                     </div>
                 </div>
             </div>

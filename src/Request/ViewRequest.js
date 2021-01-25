@@ -8,22 +8,20 @@ class ViewRequest extends React.Component {
     constructor() {
         super();
         this.state = {
-          showPopup: false
+          showPopup: false,
+          items : [
+            {url:'/Request/', title: 'View All Request'},
+            {url:'/Request/Create', title: 'Create Request'},
+            {url:'/Request/', title: 'FAQ'},
+        ]
         };
+        this.togglePopup =this.togglePopup.bind(this);
     }
 
     togglePopup() {
         this.setState({
           showPopup: !this.state.showPopup
         });
-    }
-
-    state = {
-            items : [
-                {url:'/Request/', title: 'View All Request'},
-                {url:'/Request/Create', title: 'Create Request'},
-                {url:'/Request/', title: 'FAQ'},
-            ]
     }
     
     render() {
@@ -50,14 +48,8 @@ class ViewRequest extends React.Component {
                         </p>
                         <button type="button"><a href="/Request/Edit">EDIT</a></button>
                         <button type="button"><a href="/Request/">BACK TO LIST</a></button>
-                        <button type="button" onClick={this.togglePopup.bind(this)}>DELETE</button>
-                        {this.state.showPopup ? 
-                            <PopUp
-                                text='Are you sure delete this request?' btn1='CANCEL' btn2='DELETE'
-                                closePopup={this.togglePopup.bind(this)}
-                            />
-                            : null
-                        }
+                        <button type="button" onClick={this.togglePopup}>DELETE</button>
+                        {this.state.showPopup ?  <PopUp text='Are you sure delete this request?' btn1='CANCEL' btn2='DELETE' closePopup={this.togglePopup}/>: null}
                     </div>
                 </div>
             </div>

@@ -9,7 +9,7 @@ class SideBar extends React.Component {
                 <div class="panel panel-info">
                     <ul class ="list-group">
                         <li class="list-group-item"><a href="/Request/">View All Request</a></li>
-                        <li class="list-group-item"><a>Create Request</a></li>
+                        <li class="list-group-item"><a href="/Request/Create">Create Request</a></li>
                         <li class="list-group-item"><a>FAQ</a></li>
                     </ul>
                 </div>

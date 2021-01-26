@@ -14,13 +14,13 @@ class SideBar extends React.Component {
     render() {
         const {items = []} = this.props;
         return (
-            <div className="col-md-2">
-                <ListGroup variant="flush">
-                    {items.map(item => (
-                        <ListGroup.Item variant="dark" href={item.url} action>{item.title}</ListGroup.Item>
-                    ))}
-                </ListGroup>
-            </div>
+                <div className="col-md-2">
+                    <ListGroup variant="flush">
+                        {items.map(item => (
+                            <ListGroup.Item variant="dark" href={item.url} action>{item.title}</ListGroup.Item>
+                        ))}
+                    </ListGroup>
+                </div>
         );
     }
 }

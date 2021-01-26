@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from '../SideBar/SideBar';
+import Button from 'react-bootstrap/Button';
 
 class CreateRequest extends React.Component {
 
@@ -55,9 +56,10 @@ class CreateRequest extends React.Component {
                         <label>Attach File:</label>
                         <input type="file" />
                         <br/>
-                        <button type="cancel">CANCEL</button>
-                        <button>BACKTOLIST</button>
-                        <button type="submit">SAVE</button>
+
+                        <Button type="cancel" variant="light" href="/Request/" size="lg">CANCEL</Button>
+                        <Button type="cancel" variant="light" href="/Request/" size="lg">BACK TO LIST</Button>
+                        <Button type="submit" variant="light" href="/Request/" size="lg">SAVE</Button>
                     </form>
                 </div>
             </div>

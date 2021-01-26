@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from '../SideBar/SideBar';
+import Button from 'react-bootstrap/Button';
 
 class EditRequest extends React.Component {
 
@@ -56,8 +57,8 @@ class EditRequest extends React.Component {
                         <label>Attach File:</label>
                         <input type="file" />
                         <br/>
-                        <button type="cancel"><a href="/Request/">CANCEL</a></button>
-                        <button type="submit">SAVE</button>
+                        <Button type="cancel" variant="light" href="/Request/" size="lg">CANCEL</Button>
+                        <Button type="submit" variant="light" href="/Request/" size="lg">SAVE</Button>
                     </form>
                 </div>
             </div>

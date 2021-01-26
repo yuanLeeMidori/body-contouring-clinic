@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import searchIcon from '../resources/searchIcon.png';
 import ListAllRequest from './ListAllRequest';
 import SideBar from '../SideBar/SideBar';
+import Button from 'react-bootstrap/Button';
 
 class RequestHome extends React.Component {
 
@@ -39,9 +40,9 @@ class RequestHome extends React.Component {
                             <button type="submit"><img src={searchIcon} alt="Search"/></button>
                         </form>
                         <ListAllRequest />
-                        <button type="button"><a href="/Request/Create">CREATE</a></button>
-                        <button type="button">DELETE</button>
-                        <button type="button"><a href="/Request/Edit">EDIT</a></button>
+                        <Button variant="light" href="/Request/Create" size="lg">CREATE</Button>
+                        <Button variant="light" href="/Request/EDIT" size="lg">EDIT</Button>
+                        <Button variant="light" href="/Request/" size="lg">DELETE</Button>
                     </div>
                 </div>
             </div>

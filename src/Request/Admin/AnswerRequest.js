@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from '../../SideBar/SideBar';
+import Button from 'react-bootstrap/Button';
 
 class AnswerRequest extends React.Component {
 
@@ -32,9 +33,9 @@ class AnswerRequest extends React.Component {
                             <textarea placeholder="Answer here">
                             </textarea>
                         </p>
-                        <button type="button">SAVE</button>
-                        <button type="button">BACK TO LIST</button>
-                        <button type="button">CANCEL</button>
+                        <Button type="cancel" variant="light" href="/Request/" size="lg">CANCEL</Button>
+                        <Button type="cancel" variant="light" href="/Request/" size="lg">BACK TO LIST</Button>
+                        <Button type="submit" variant="light" href="/Request/" size="lg">SAVE</Button>
                     </div>
                 </div>
             </div>

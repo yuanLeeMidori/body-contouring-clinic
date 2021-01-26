@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from '../SideBar/SideBar';
+import Button from 'react-bootstrap/Button';
 
 class ViewRequest extends React.Component {
 
@@ -35,9 +36,9 @@ class ViewRequest extends React.Component {
                                 How .... <br/>
                             </div>
                         </p>
-                        <button type="button"><a href="/Request/Edit">EDIT</a></button>
-                        <button type="button"><a href="/Request/">BACK TO LIST</a></button>
-                        <button type="button">DELETE</button>
+                        <Button variant="light" href="/Request/Edit" size="lg">EDIT</Button>
+                        <Button variant="light" href="/Request/" size="lg">BACK TO LIST</Button>
+                        <Button variant="light" href="/Request/" size="lg">DELETE</Button>
                     </div>
                 </div>
             </div>

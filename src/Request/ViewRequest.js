@@ -2,17 +2,37 @@ import React from 'react';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from '../SideBar/SideBar';
+import PopUp from '../PopUp';
 
 class ViewRequest extends React.Component {
 
-    state = {
-            items : [
+    constructor() {
+        super();
+        this.state = {
+          show: false,
+          items : [
                 {url:'/Request/', title: 'View All Request'},
                 {url:'/Request/Create', title: 'Create Request'},
                 {url:'/Request/', title: 'FAQ'},
-            ]
-    }
+            ],
+        };
+        this.showModal = this.showModal.bind(this);
+        this.hideModal = this.hideModal.bind(this);
+        this.deleteReq = this.deleteReq.bind(this);
+      }
+
+    showModal = () => {
+        this.setState({ show: true });
+      };
     
+    hideModal = () => {
+        this.setState({ show: false });
+      };
+    
+    deleteReq = () => {
+        this.setState({ show: false });
+    }
+
     render() {
         return (
             <div class="row">
@@ -37,7 +57,8 @@ class ViewRequest extends React.Component {
                         </p>
                         <button type="button"><a href="/Request/Edit">EDIT</a></button>
                         <button type="button"><a href="/Request/">BACK TO LIST</a></button>
-                        <button type="button">DELETE</button>
+                        <button type="button" onClick={this.showModal}>DELETE</button>
+                        <PopUp show={this.state.show}  handleClose={this.hideModal} handleDelete={this.deleteReq} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
                     </div>
                 </div>
             </div>

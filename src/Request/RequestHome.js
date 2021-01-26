@@ -4,17 +4,38 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import searchIcon from '../resources/searchIcon.png';
 import ListAllRequest from './ListAllRequest';
 import SideBar from '../SideBar/SideBar';
+import PopUp from '../PopUp';
 
 class RequestHome extends React.Component {
 
-    state = {
-            items : [
+    constructor() {
+        super();
+        this.state = {
+          show: false,
+          items : [
                 {url:'/Request/', title: 'View All Request'},
                 {url:'/Request/Create', title: 'Create Request'},
                 {url:'/Request/', title: 'FAQ'},
-            ]
-    }
+            ],
+          children: 'Request'
+        };
+        this.showModal = this.showModal.bind(this);
+        this.hideModal = this.hideModal.bind(this);
+        this.deleteReq = this.deleteReq.bind(this);
+      }
+
+    showModal = () => {
+        this.setState({ show: true });
+      };
     
+    hideModal = () => {
+        this.setState({ show: false });
+      };
+    
+    deleteReq = () => {
+        this.setState({ show: false });
+    }
+
     render() {
         return (
             <div class="row">
@@ -40,8 +61,9 @@ class RequestHome extends React.Component {
                         </form>
                         <ListAllRequest />
                         <button type="button"><a href="/Request/Create">CREATE</a></button>
-                        <button type="button">DELETE</button>
                         <button type="button"><a href="/Request/Edit">EDIT</a></button>
+                        <button type="button" onClick={this.showModal}>DELETE</button>
+                        <PopUp show={this.state.show}  handleClose={this.hideModal} handleDelete={this.deleteReq} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
                     </div>
                 </div>
             </div>

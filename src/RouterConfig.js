@@ -47,7 +47,7 @@ class RouterConfig extends React.Component {
               <Route exact path='/Request' render={() => <RequestHome />} />
               <Route exact path='/Request/Create' render={() => <CreateRequest />} />
               <Route exact path='/Request/Detail' render={() => <ViewRequest />} />
-              <Route exact path='/Request/Answer' render={() => <AnswerRequest />} />
+              <Route exact path='/Request/Admin/Answer' render={() => <AnswerRequest />} />
               <Route exact path='/Request/Edit' render={() => <EditRequest />} />
 
               {/* Customer URL */}

@@ -17,7 +17,7 @@ class SideBar extends React.Component {
                 <div className="col-md-2">
                     <ListGroup variant="flush">
                         {items.map(item => (
-                            <ListGroup.Item variant="dark" href={item.url} action>{item.title}</ListGroup.Item>
+                            <ListGroup.Item variant="dark" style={{'background':'#E5F0F1'}} href={item.url} action>{item.title}</ListGroup.Item>
                         ))}
                     </ListGroup>
                 </div>

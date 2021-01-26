@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   background-color: #FFFFFF;
+  font-family: Calibri, sans-serif
 }
 
 .nav-back {
@@ -56,4 +57,18 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+table {
+  font-family: Calibri, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  color: #1D1F2A;
+}
+
+td, th {
+  border: 0px;
+  text-align: left !important;
+  font-size: large;
+  padding: 8px;
 }

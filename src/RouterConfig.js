@@ -16,6 +16,9 @@ import AnswerRequest from './Request/Admin/AnswerRequest';
 import EditRequest from './Request/EditRequest';
 import Login from './Register/login';
 import SignUp from './Register/signUp';
+import CreateAppointment from './Appointment/CreateAppointment';
+import Appointments from './Appointment/Appointments';
+import Appointment from './Appointment/Appointment';
 
 
 class RouterConfig extends React.Component {
@@ -31,8 +34,13 @@ class RouterConfig extends React.Component {
                         Body Contouring Clinic <br/>
                         React : true <br/>
                       </p>
-                  </header>} />
+                </header>} />
+              {/* Appointment URL */}
               <Route exact path='/Appointment' render={() => <AppointmentHome />} />
+              <Route exact path='/Appointment/Appointments' render={() => <Appointments />} />
+              <Route exact path='/Appointment/Create' render={() => <CreateAppointment />} />
+              <Route exact path='/Appointment/Appointment' render={() => <Appointment />} />
+
               <Route exact path='/Service' render={() => <ServiceHome />} />
               {/* Request URL */}
               <Route exact path='/Request' render={() => <RequestHome />} />

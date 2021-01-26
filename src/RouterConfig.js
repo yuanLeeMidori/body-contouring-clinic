@@ -19,6 +19,7 @@ import SignUp from './Register/signUp';
 import CreateAppointment from './Appointment/CreateAppointment';
 import Appointments from './Appointment/Appointments';
 import Appointment from './Appointment/Appointment';
+import PageNotFound from './PageNotFound';
 
 
 class RouterConfig extends React.Component {
@@ -58,7 +59,9 @@ class RouterConfig extends React.Component {
               {/* Register URL */}
               <Route exact path='/Register/Login' render={() => <Login />} />
               <Route exact path='/Register/SignUp' render={() => <SignUp />} />
-
+              
+              {/* Page Not Found */}
+              <Route render={() => <PageNotFound />} />
             </Switch>
           </BrowserRouter>
         );

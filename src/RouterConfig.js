@@ -3,14 +3,15 @@ import { Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, Form, FormContr
 import { Link, Switch, Redirect, Route, BrowserRouter } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css'  // temporary, we can create our css later
-import AppointmentHome from './Appointment/AppointmentHome'
-import ServiceHome from './Service/ServiceHome'
-import RequestHome from './Request/RequestHome'
+import 'bootstrap/dist/css/bootstrap.min.css';  // temporary, we can create our css later
+import AppointmentHome from './Appointment/AppointmentHome';
+import ServiceHome from './Service/ServiceHome';
+import VIPHome from './VIP/VIPHome';
+import RequestHome from './Request/RequestHome';
 import CreateRequest from './Request/CreateRequest';
 import CustomerHome from './Customer/CustomerHome'
-import CustomerProfile from './Customer/CustomerProfile'
-import CustomerEdit from './Customer/CustomerProfileEdit'
+import CustomerProfile from './Customer/CustomerProfile';
+import CustomerEdit from './Customer/CustomerProfileEdit';
 import ViewRequest from './Request/ViewRequest';
 import RequestHomeAdmin from './Request/Admin/RequestHomebyAdmin';
 import AnswerRequest from './Request/Admin/AnswerRequest';
@@ -49,6 +50,9 @@ class RouterConfig extends React.Component {
 
               {/* Service URL */}
               <Route exact path='/Service' render={() => <ServiceHome />} />
+
+              {/* VIP URL */}
+              <Route exact path='/VIP/' render={() => <VIPHome />} />
 
               {/* Request URL */}
               <Route exact path='/Request' render={() => <RequestHome />} />

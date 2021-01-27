@@ -3,22 +3,24 @@ import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from '../SideBar/SideBar';
 import { Button, Container, Row, Col, Form } from 'react-bootstrap';
+import PopUp from '../PopUp';
 
 class ViewRequest extends React.Component {
 
     constructor() {
         super();
         this.state = {
-          show: false,
-          items : [
-                {url:'/Request/', title: 'View All Request'},
-                {url:'/Request/Create', title: 'Create Request'},
-                {url:'/Request/', title: 'FAQ'},
-            ],
-        };
-        this.showModal = this.showModal.bind(this);
-        this.hideModal = this.hideModal.bind(this);
-        this.deleteReq = this.deleteReq.bind(this);
+            show: false,
+            items : [
+                  {url:'/Request/', title: 'View All Request'},
+                  {url:'/Request/Create', title: 'Create Request'},
+                  {url:'/Request/FAQ', title: 'FAQ'},
+              ],
+            children: 'Request'
+          };
+          this.showModal = this.showModal.bind(this);
+          this.hideModal = this.hideModal.bind(this);
+          this.deleteReq = this.deleteReq.bind(this);
       }
 
     showModal = () => {
@@ -68,9 +70,10 @@ class ViewRequest extends React.Component {
                                 </Form.Group>
                                 <Form.Group as={Row}>
                                     <Col sm={{ span: 10, offset: 2 }}>
-                                        <a href="/Request/" style={button}>CANCEL</a>
+                                        <a href="/Request/Edit" style={button}>EDIT</a>
                                         <a href="/Request/" style={button}>BACK TO LIST</a>  
-                                        <Button type="submit" variant="outline-*" style={button}>SAVE</Button>
+                                        <a style={button} onClick={this.showModal}>DELETE</a>  
+                                        <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.deleteReq} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
                                     </Col>
                                 </Form.Group>
                             </Form>

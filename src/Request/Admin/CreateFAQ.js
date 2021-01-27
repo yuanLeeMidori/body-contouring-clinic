@@ -1,19 +1,21 @@
 import React from 'react';
-import '../App.css';
+import '../../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import SideBar from '../SideBar/SideBar';
+import SideBar from '../../SideBar/SideBar';
 import { Form, Row, Col, Container, Button } from 'react-bootstrap';
 
-class EditRequest extends React.Component {
+class CreateFAQ extends React.Component {
 
-    state = {
-            items : [
-                {url:'/Request/', title: 'View All Request'},
-                {url:'/Request/Create', title: 'Create Request'},
-                {url:'/Request/FAQ', title: 'FAQ'},
-            ]
-    }
-    
+    constructor() {
+        super();
+        this.state = {
+          items : [
+            {url:'/Request/Admin', title: 'View All Request'},
+            {url:'/Request/Admin/FAQ', title: 'FAQ'},
+            ],
+        };
+      }
+
     render() {
         const button = {
             'font-size': 'large',
@@ -29,21 +31,9 @@ class EditRequest extends React.Component {
                 <div className="col-md-1"></div>
                 <SideBar items={this.state.items}/>
                 <div class="col-md-8" style={{'margin-left':'80px'}}>
-                    <h2 className="PageTitle">Edit Request for 01</h2><br/>
+                    <h2 className="PageTitle">Create New FAQ</h2><br/>
                     <Container>
                         <Form>
-                            <Form.Group as={Row}>
-                                <Form.Label column sm={2}>Email:</Form.Label>
-                                <Col sm={6}>
-                                    <Form.Control type="email" placeholder="example@example.com"></Form.Control>
-                                </Col>
-                            </Form.Group>
-                            <Form.Group as={Row}>
-                                <Form.Label column sm={2}>Contact #:</Form.Label>
-                                <Col sm={6}>
-                                    <Form.Control type="text" placeholder="437 988 1678"></Form.Control>
-                                </Col>
-                            </Form.Group>
                             <Form.Group as={Row}>
                                 <Form.Label column sm={2}>Category:</Form.Label>
                                 <Col sm={6}>
@@ -52,22 +42,6 @@ class EditRequest extends React.Component {
                                         <option value="">Shipment</option>
                                         <option value=""></option>  
                                     </Form.Control>
-                                </Col>
-                            </Form.Group>
-                            <Form.Group as={Row}>
-                                <Form.Label column sm={2}>Service:</Form.Label>
-                                <Col sm={6}>
-                                    <Form.Control as="select">
-                                        <option value="">abc</option>
-                                        <option value="">def</option>
-                                        <option value="">ghi</option>
-                                    </Form.Control>
-                                </Col>
-                            </Form.Group>
-                            <Form.Group as={Row}>
-                                <Form.Label column sm={2}>pASSWORD:</Form.Label>
-                                <Col sm={6}>
-                                    <Form.Control type="password" placeholder="At least 4 characters"></Form.Control>
                                 </Col>
                             </Form.Group>
                             <Form.Group as={Row}>
@@ -89,8 +63,8 @@ class EditRequest extends React.Component {
                             <br/><br/>
                             <Form.Group as={Row}>
                                 <Col sm={{ span: 10, offset: 2 }}>
-                                    <a href="/Request/" style={button}>CANCEL</a>
-                                    <a href="/Request/" style={button}>BACK TO LIST</a>
+                                    <a href="/Request/Admin/FAQ" style={button}>CANCEL</a>
+                                    <a href="/Request/Admin/FAQ" style={button}>BACK TO LIST</a>
                                     <Button type="submit" variant="outline-*" style={button}>SAVE</Button>
                                 </Col>
                             </Form.Group>
@@ -103,4 +77,4 @@ class EditRequest extends React.Component {
     }
 }
 
-export default EditRequest;
+export default CreateFAQ;

@@ -1,26 +1,25 @@
 import React from 'react';
-import '../App.css';
+import '../../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import searchIcon from '../resources/searchIcon.png';
-import ListAllRequest from './ListAllRequest';
-import SideBar from '../SideBar/SideBar';
+import searchIcon from '../../resources/searchIcon.png';
+import ListAllRequestbyAdmin from './ListAllRequestbyAdmin';
+import SideBar from '../../SideBar/SideBar';
 import { Button, Container, Row, Col, Form } from 'react-bootstrap';
-import PopUp from '../PopUp';
+import PopUp from '../../PopUp';
 
 
-class RequestHome extends React.Component {
+class RequestHomebyAdmin extends React.Component {
 
     constructor() {
         super();
         this.state = {
           show: false,
           items : [
-                {url:'/Request/', title: 'View All Request'},
-                {url:'/Request/Create', title: 'Create Request'},
-                {url:'/Request/FAQ', title: 'FAQ'},
+                {url:'/Request/Admin', title: 'View All Request'},
+                {url:'/Request/Admin/FAQ', title: 'FAQ'},
             ],
           children: 'Request',
-          auth: 'General'
+          auth: 'Admin'
         };
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -73,10 +72,9 @@ class RequestHome extends React.Component {
                             <Button type="submit" variant="outline-*" style={{'background':'none','margin-left':'5px'}}><img src={searchIcon} alt="Search"/></Button>
                         </Form>
                         <br/>
-                        <ListAllRequest />
+                        <ListAllRequestbyAdmin />
                         <Container style={button}>
-                        	<a href="/Request/Create" style={button}>CREATE</a>  
-                            <a href="/Request/Edit" style={button}>EDIT</a>
+                        	<a href="/Request/Admin/Answer" style={button}>ANSWER</a>  
                             <a style={button} onClick={this.showModal}>DELETE</a>  
                             <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.deleteReq} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
                         </Container>
@@ -87,4 +85,4 @@ class RequestHome extends React.Component {
     }
 }
 
-export default RequestHome;
+export default RequestHomebyAdmin;

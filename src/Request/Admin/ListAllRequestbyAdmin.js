@@ -1,9 +1,9 @@
 import React from 'react';
-import '../App.css';
+import '../../App.css';
 import { Link, Switch, Redirect, Route, BrowserRouter } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-class ListAllRequest extends React.Component {
+class ListAllRequestbyAdmin extends React.Component {
     
     render() {
         const pagination = {
@@ -24,7 +24,7 @@ class ListAllRequest extends React.Component {
                         </tr>
                         <tr>
                             <td><input type="checkbox" /></td>
-                            <td><Link to='/Request/Detail' style={{color: 'black'}}>01</Link></td>
+                            <td><Link to='/Request/Admin/Answer' style={{color: 'black'}}>01</Link></td>
                             <td>Membership</td>
                             <td>-</td>
                             <td>How can I join..</td>
@@ -33,7 +33,7 @@ class ListAllRequest extends React.Component {
                         </tr>
                         <tr>
                             <td><input type="checkbox"/></td>
-                            <td><Link to='/Request/Detail' style={{color: 'black'}}>02</Link></td>
+                            <td><Link to='/Request/Admin/Answer' style={{color: 'black'}}>02</Link></td>
                             <td>Shipment</td>
                             <td>-</td>
                             <td>How many day...</td>
@@ -58,4 +58,4 @@ class ListAllRequest extends React.Component {
     }
 }
 
-export default ListAllRequest;
+export default ListAllRequestbyAdmin;

@@ -7,9 +7,8 @@ class AnswerRequest extends React.Component {
 
     state = {
             items : [
-                {url:'/Request/', title: 'View All Request'},
-                {url:'/Request/Create', title: 'Create Request'},
-                {url:'/Request/', title: 'FAQ'},
+                {url:'/Request/Admin', title: 'View All Request'},
+                {url:'/Request/Admin/FAQ', title: 'FAQ'},
             ]
     }
     
@@ -49,8 +48,8 @@ class AnswerRequest extends React.Component {
                                 </Form.Group>
                                 <Form.Group as={Row}>
                                     <Col sm={{ span: 10, offset: 2 }}>
-                                        <a href="/Request/" style={button}>CANCEL</a>
-                                        <a href="/Request/" style={button}>BACK TO LIST</a>  
+                                        <a href="/Request/Admin" style={button}>CANCEL</a>
+                                        <a href="/Request/Admin" style={button}>BACK TO LIST</a>  
                                         <Button type="submit" variant="outline-*" style={button}>SAVE</Button>
                                     </Col>
                                 </Form.Group>

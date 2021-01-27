@@ -12,8 +12,13 @@ import CustomerHome from './Customer/CustomerHome'
 import CustomerProfile from './Customer/CustomerProfile'
 import CustomerEdit from './Customer/CustomerProfileEdit'
 import ViewRequest from './Request/ViewRequest';
+import RequestHomeAdmin from './Request/Admin/RequestHomebyAdmin';
 import AnswerRequest from './Request/Admin/AnswerRequest';
 import EditRequest from './Request/EditRequest';
+import ViewFAQ from './Request/FAQ/ViewAllFAQbyGeneral';
+import ViewFAQAdmin from './Request/Admin/ViewAllFAQbyAdmin';
+import CreateFAQ from './Request/Admin/CreateFAQ';
+import EditFAQ from './Request/Admin/EditFAQ';
 import Login from './Register/login';
 import SignUp from './Register/signUp';
 import CreateAppointment from './Appointment/CreateAppointment';
@@ -42,13 +47,23 @@ class RouterConfig extends React.Component {
               <Route exact path='/Appointment/Create' render={() => <CreateAppointment />} />
               <Route exact path='/Appointment/Appointment' render={() => <Appointment />} />
 
+              {/* Service URL */}
               <Route exact path='/Service' render={() => <ServiceHome />} />
+
               {/* Request URL */}
               <Route exact path='/Request' render={() => <RequestHome />} />
               <Route exact path='/Request/Create' render={() => <CreateRequest />} />
               <Route exact path='/Request/Detail' render={() => <ViewRequest />} />
-              <Route exact path='/Request/Admin/Answer' render={() => <AnswerRequest />} />
               <Route exact path='/Request/Edit' render={() => <EditRequest />} />
+              <Route exact path='/Request/FAQ' render={() => <ViewFAQ />} />
+
+              {/* Request Admin URL*/}
+              <Route exact path='/Request/Admin' render={() => <RequestHomeAdmin />} />
+              <Route exact path='/Request/Admin/Answer' render={() => <AnswerRequest />} />
+              <Route exact path='/Request/Admin/FAQ' render={() => <ViewFAQAdmin />} />
+              <Route exact path='/Request/Admin/FAQ/Create' render={() => <CreateFAQ />} />
+              <Route exact path='/Request/Admin/FAQ/Edit' render={() => <EditFAQ />} />
+              
 
               {/* Customer URL */}
               <Route exact path='/Customer' render={() => <CustomerHome />} />

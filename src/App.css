@@ -27,6 +27,7 @@
   align-items: center;
   font-size: calc(10px + 2vmin);
   color: #1D1F2A;
+  padding: 60px;
 }
 
 .App-link {
@@ -35,6 +36,12 @@
 
 .Footer-basic {
   background-color: #393F44;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 64px;
+  margin-top: 60px;
 }
 
 .Footer-contact {
@@ -72,4 +79,9 @@ td, th {
   text-align: left !important;
   font-size: large;
   padding: 8px;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
 }

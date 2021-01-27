@@ -1,4 +1,5 @@
 import React from 'react';
+import ListGroup from 'react-bootstrap/ListGroup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class SideBar extends React.Component {
@@ -13,15 +14,13 @@ class SideBar extends React.Component {
     render() {
         const {items = []} = this.props;
         return (
-            <div className="col-md-2">
-                <div className="panel panel-info">
-                    <ul className ="list-group">
+                <div className="col-md-2">
+                    <ListGroup variant="flush">
                         {items.map(item => (
-                           <li className="list-group-item"><a href={item.url}>{item.title}</a></li>  
+                            <ListGroup.Item variant="dark" style={{'background':'#E5F0F1'}} href={item.url} action>{item.title}</ListGroup.Item>
                         ))}
-                    </ul>
+                    </ListGroup>
                 </div>
-            </div>
         );
     }
 }

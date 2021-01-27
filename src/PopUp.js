@@ -17,7 +17,7 @@ class PopUp extends React.Component {
 
           <Modal.Footer>
             <Button variant="secondary" onClick={this.props.handleClose}>{this.props.btn1}</Button>
-            <Button variant="primary" onClick={this.props.handleClose}>{this.props.btn2}</Button>
+            <Button variant="primary" onClick={this.props.handleDelete}>{this.props.btn2}</Button>
           </Modal.Footer> 
         </Modal>
       );

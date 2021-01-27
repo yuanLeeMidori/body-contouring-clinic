@@ -61,8 +61,9 @@ class App extends React.Component{
           </ul>
         </nav>
         <br />
-        <img src={logo} alt="logo"/><br/>
-        <img src={underBar} alt="bar" />
+        <img src={logo} alt="logo"/><br/><br/>
+        <img src={underBar} alt="bar" /><br/><br/>
+        <br/>
         <RouterConfig />
         <Footer />
       </div>

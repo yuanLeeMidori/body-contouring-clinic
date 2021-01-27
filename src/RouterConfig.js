@@ -14,6 +14,7 @@ import CustomerEdit from './Customer/CustomerProfileEdit'
 import ViewRequest from './Request/ViewRequest';
 import AnswerRequest from './Request/Admin/AnswerRequest';
 import EditRequest from './Request/EditRequest';
+import ViewFAQ from './Request/FAQ/ViewAllFAQ';
 import Login from './Register/login';
 import SignUp from './Register/signUp';
 import CreateAppointment from './Appointment/CreateAppointment';
@@ -49,6 +50,8 @@ class RouterConfig extends React.Component {
               <Route exact path='/Request/Detail' render={() => <ViewRequest />} />
               <Route exact path='/Request/Admin/Answer' render={() => <AnswerRequest />} />
               <Route exact path='/Request/Edit' render={() => <EditRequest />} />
+              <Route exact path='/Request/FAQ' render={() => <ViewFAQ />} />
+
 
               {/* Customer URL */}
               <Route exact path='/Customer' render={() => <CustomerHome />} />

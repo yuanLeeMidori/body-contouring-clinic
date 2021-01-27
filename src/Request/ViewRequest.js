@@ -13,25 +13,10 @@ class ViewRequest extends React.Component {
           items : [
                 {url:'/Request/', title: 'View All Request'},
                 {url:'/Request/Create', title: 'Create Request'},
-                {url:'/Request/', title: 'FAQ'},
+                {url:'/Request/FAQ', title: 'FAQ'},
             ],
         };
-        this.showModal = this.showModal.bind(this);
-        this.hideModal = this.hideModal.bind(this);
-        this.deleteReq = this.deleteReq.bind(this);
       }
-
-    showModal = () => {
-        this.setState({ show: true });
-      };
-    
-    hideModal = () => {
-        this.setState({ show: false });
-      };
-    
-    deleteReq = () => {
-        this.setState({ show: false });
-    }
 
     render() {
         const button = {

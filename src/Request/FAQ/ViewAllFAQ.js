@@ -1,9 +1,8 @@
 import React from 'react';
 import '../../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import searchIcon from '../../resources/searchIcon.png';
-import SideBar from '../../SideBar/SideBar';
 import ViewFAQ from './ViewFAQ';
+import ViewFAQbyAdmin from '../Admin/ViewFAQbyAdmin';
 import { Button, Container, Row, Col, Card, Nav,Tabs, Tab, TabContent } from 'react-bootstrap';
 
 class ViewAllFAQ extends React.Component {
@@ -12,11 +11,6 @@ class ViewAllFAQ extends React.Component {
         super();
         this.state = {
           show : false,
-          items : [
-                {url:'/Request/', title: 'View All Request'},
-                {url:'/Request/Create', title: 'Create Request'},
-                {url:'/Request/FAQ', title: 'FAQ'},
-            ],
         };
         this.showFAQ = this.showFAQ.bind(this);
         this.hideFAQ = this.hideFAQ.bind(this);
@@ -33,11 +27,6 @@ class ViewAllFAQ extends React.Component {
     render() {
 
         return (
-            <div class="row">
-                <div className="col-md-1"></div> 
-                <SideBar items={this.state.items}/>
-                <div class="col-md-8" style={{'margin-left':'80px'}}>
-                    <h2 className="PageTitle">FAQ</h2><br/>
                     <div className="contents" style={{'text-align':'left','margin-right':'280px'}}>
                         <Container>
                             <Tabs
@@ -69,11 +58,10 @@ class ViewAllFAQ extends React.Component {
                                 </Tab>
                             </Tabs>
                         </Container>
-                        <ViewFAQ show={this.state.show} handleClose={this.hideFAQ} />
+                        {/* <ViewFAQ show={this.state.show} handleClose={this.hideFAQ} /> */}
+                        <ViewFAQbyAdmin show={this.state.show} handleClose={this.hideFAQ} />
                         <br/><br/>
                     </div>
-                </div>
-            </div>
         );
     }
 }

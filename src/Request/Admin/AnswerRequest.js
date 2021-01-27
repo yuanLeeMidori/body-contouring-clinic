@@ -7,9 +7,8 @@ class AnswerRequest extends React.Component {
 
     state = {
             items : [
-                {url:'/Request/', title: 'View All Request'},
-                {url:'/Request/Create', title: 'Create Request'},
-                {url:'/Request/FAQ', title: 'FAQ'},
+                {url:'/Request/Admin', title: 'View All Request'},
+                {url:'/Request/Admin/FAQ', title: 'FAQ'},
             ]
     }
     

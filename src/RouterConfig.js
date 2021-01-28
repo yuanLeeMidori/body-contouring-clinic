@@ -7,6 +7,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';  // temporary, we can create our 
 import AppointmentHome from './Appointment/AppointmentHome';
 import ServiceHome from './Service/ServiceHome';
 import VIPHome from './VIP/VIPHome';
+import VIPHomebyAdmin from './VIP/Admin/VIPHomebyAdmin';
+import VIPManage from './VIP/Admin/ManageOffer';
+import CreateOffer from './VIP/Admin/CreateOffer';
+import EditOffer from './VIP/Admin/EditOffer';
 import RequestHome from './Request/RequestHome';
 import CreateRequest from './Request/CreateRequest';
 import CustomerHome from './Customer/CustomerHome'
@@ -53,7 +57,11 @@ class RouterConfig extends React.Component {
 
               {/* VIP URL */}
               <Route exact path='/VIP/' render={() => <VIPHome />} />
-
+              <Route exact path='/VIP/Admin' render={() => <VIPHomebyAdmin />} />
+              <Route exact path='/VIP/Admin/Manage' render={() => <VIPManage />} />
+              <Route exact path='/VIP/Admin/Manage/Create' render={() => <CreateOffer />} />
+              <Route exact path='/VIP/Admin/Manage/Edit' render={() => <EditOffer />} />
+              
               {/* Request URL */}
               <Route exact path='/Request' render={() => <RequestHome />} />
               <Route exact path='/Request/Create' render={() => <CreateRequest />} />

@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import SideBar from '../SideBar/SideBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Form, Row, Col, Container, Button } from 'react-bootstrap';
 
 class CustomerProfileEdit extends React.Component {
     state = {
@@ -16,49 +17,76 @@ class CustomerProfileEdit extends React.Component {
     }
 
     render() {
+        const button = {
+            'font-size': 'large',
+            'font-weight': 'bold',
+            color: 'black',
+            margin: '40px',
+            'text-align':'center',
+            background: 'none',
+        };
         
         return (
-            <div className="App-basic" class="form-group">
-                <div class="row">
-                    <SideBar items={this.state.items}/>
-                    <div className="col-md-7">
-                        <h1>Hello, user.fullName</h1>
-                        <hr />
-
-                        <h2>Edit page</h2>
-                        <br />
-                        <form>
-                            <label>
-                                First Name: 
-                                <input type="text" name="fullName" value={"Default"}/>
-                            </label><br />
-                            <label>
-                                last Name: 
-                                <input type="text" name="fullName" value={"Default"}/>
-                            </label><br />
-                            <label>
-                                New password: 
-                                <input type="password" name="fullName" />
-                            </label><br />
-                            <label>
-                                Confirm Password: 
-                                <input type="password" name="fullName" />
-                            </label><br />
-                            <label>
-                                Email: 
-                                <input type="email" name="fullName" />
-                            </label><br />
-                            <label>
-                                Contract Number: 
-                                <input type="text" name="fullName" />
-                            </label><br />
-                            <br />
-                            <button type="submit">Submit</button>
-                        </form>
-                    </div>
-
+            <div className="row">
+                <div className="col-md-1"></div>
+                <SideBar items={this.state.items}/>
+                <div class="col-md-8" style={{'margin-left':'80px'}}>
+                    <h2 className="PageTitle">Edit Profile</h2><br/>
+                    <Container>
+                        <Form>
+                            <Form.Group as={Row}>
+                                <Form.Label column sm={2}>First Name:</Form.Label>
+                                <Col sm={6}>
+                                    <Form.Control type="email" placeholder="John"></Form.Control>
+                                </Col>
+                            </Form.Group>
+                            <Form.Group as={Row}>
+                                <Form.Label column sm={2}>Last Name:</Form.Label>
+                                <Col sm={6}>
+                                    <Form.Control type="text" placeholder="Smith"></Form.Control>
+                                </Col>
+                            </Form.Group>
+                            <Form.Group as={Row}>
+                                <Form.Label column sm={2}>Password:</Form.Label>
+                                <Col sm={6}>
+                                    <Form.Control type="password"></Form.Control>
+                                </Col>
+                            </Form.Group>
+                            <Form.Group as={Row}>
+                                <Form.Label column sm={2}>Confirm Password:</Form.Label>
+                                <Col sm={6}>
+                                    <Form.Control type="password"></Form.Control>
+                                </Col>
+                            </Form.Group>
+                            <Form.Group as={Row}>
+                                <Form.Label column sm={2}>Email Address:</Form.Label>
+                                <Col sm={6}>
+                                    <Form.Control type="email" placeholder="example@example.com"></Form.Control>
+                                </Col>
+                            </Form.Group>
+                            <Form.Group as={Row}>
+                                <Form.Label column sm={2}>Address:</Form.Label>
+                                <Col sm={6}>
+                                    <Form.Control type="text" placeholder="Finch Ave, North York, ON. 1A1 2A2"></Form.Control>
+                                </Col>
+                            </Form.Group>
+                            <Form.Group as={Row}>
+                                <Form.Label column sm={2}>Memo:</Form.Label>
+                                <Col sm={6}>
+                                    <Form.Control as="textarea" rows={3} />
+                                </Col>
+                            </Form.Group>
+                            <Form.Group as={Row}>
+                                <Col sm={{ span: 10, offset: 2 }}>
+                                    <a href="/Customer/" style={button}>CANCEL</a>
+                                    <a href="/Customer/" style={button}>Back to Home</a>
+                                    <Button type="submit" variant="outline-*" style={button}>Edit</Button>
+                                </Col>
+                            </Form.Group>
+                        </Form>
+                    </Container>
+                    <br/>
                 </div>
-                
             </div>
         )
     }

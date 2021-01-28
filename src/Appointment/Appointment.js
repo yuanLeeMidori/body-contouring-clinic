@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import styles from '../app.module.css';
 
 class Appointment extends React.Component {
 
@@ -25,7 +26,7 @@ class Appointment extends React.Component {
                     <Row>
                         <Col></Col>
                         <Col xs={7}>
-                        <table style={{margin: '60px', 'margin-left': '90px'}}>
+                        <table className={styles.appointmentTable}>
                                 <tr>
                                     <td>Customer Name: </td>
                                     <td>Jane Doe</td>

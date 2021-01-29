@@ -3,8 +3,6 @@ import '../../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from '../../SideBar/SideBar';
 import ListAllOffer from '../ListAllOffer';
-import { Button, Container, Row, Col, Form } from 'react-bootstrap';
-
 
 class VIPHomebyAdmin extends React.Component {
 
@@ -33,7 +31,7 @@ class VIPHomebyAdmin extends React.Component {
             <div className="row">
                 <div className="col-md-1"></div> 
                 <SideBar items={this.state.items}/>
-                <div class="col-md-8" style={{'margin-left':'80px'}}>
+                <div className="col-md-8" style={{'margin-left':'80px'}}>
                     <h2 className="PageTitle">Monthly Special Offers</h2><br/>
                     <div className="contents">
                         <br/>

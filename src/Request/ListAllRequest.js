@@ -1,6 +1,6 @@
 import React from 'react';
 import '../App.css';
-import { Link, Switch, Redirect, Route, BrowserRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class ListAllRequest extends React.Component {
@@ -45,7 +45,7 @@ class ListAllRequest extends React.Component {
                     <span style={pagination}>
                         <a href="#"> &laquo; </a>
                         <a href="#"> 1 </a>
-                        <a class="active" href="#"> 2 </a>
+                        <a className="active" href="#"> 2 </a>
                         <a href="#"> 3 </a>
                         <a href="#"> 4 </a>
                         <a href="#"> 5 </a>

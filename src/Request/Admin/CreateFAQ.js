@@ -30,7 +30,7 @@ class CreateFAQ extends React.Component {
             <div className="row">
                 <div className="col-md-1"></div>
                 <SideBar items={this.state.items}/>
-                <div class="col-md-8" style={{'margin-left':'80px'}}>
+                <div className="col-md-8" style={{'margin-left':'80px'}}>
                     <h2 className="PageTitle">Create New FAQ</h2><br/>
                     <Container>
                         <Form>

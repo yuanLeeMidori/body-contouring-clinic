@@ -32,6 +32,7 @@ import Appointment from './Appointment/Appointment';
 import EditAppointment from './Appointment/EditAppointment';
 import AppointmentsAdmin from './Appointment/Admin/AppointmentsAdmin';
 import AppointmentAdmin from './Appointment/Admin/AppointmentAdmin'
+import EditAppointmentAdmin from './Appointment/Admin/EditAppointmentAdmin';
 import PageNotFound from './PageNotFound';
 
 
@@ -59,6 +60,7 @@ class RouterConfig extends React.Component {
               {/* Appointment Admin URL */}
               <Route exact path='/Appointment/Admin/Appointments' render={() => <AppointmentsAdmin />} />
               <Route exact path='/Appointment/Admin/Appointment' render={() => <AppointmentAdmin />} />
+              <Route exact path='/Appointment/Admin/Edit' render={() => <EditAppointmentAdmin />} />
 
               {/* Service URL */}
               <Route exact path='/Service' render={() => <ServiceHome />} />

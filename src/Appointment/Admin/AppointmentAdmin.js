@@ -79,7 +79,7 @@ class AppointmentAdmin extends React.Component {
                             <Col>
                                 <Button variant="outline-info">Leave Message</Button>{' '}
                                 <Button variant="outline-danger">Delete</Button>{' '}
-                                <Button variant="outline-info" href="/Appointment/Edit">Edit</Button></Col>
+                                <Button variant="outline-info" href="/Appointment/Admin/Edit">Edit</Button></Col>
                         </Row>
                     </Container>
                 </div>

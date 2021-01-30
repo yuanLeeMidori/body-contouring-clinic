@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from '../../SideBar/SideBar';
 import ViewAllFAQ from '../FAQ/ViewAllFAQ';
 import PopUp from '../../PopUp';
-import { Button, Container, Row, Col, Card, Nav,Tabs, Tab, TabContent } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
 class ViewAllFAQbyAdmin extends React.Component {
 
@@ -45,10 +45,10 @@ class ViewAllFAQbyAdmin extends React.Component {
     };
 
         return (
-            <div class="row">
+            <div className="row">
                 <div className="col-md-1"></div> 
                 <SideBar items={this.state.items}/>
-                <div class="col-md-8" style={{'margin-left':'80px'}}>
+                <div className="col-md-8" style={{'margin-left':'80px'}}>
                     <h2 className="PageTitle">FAQ</h2><br/>
                     <ViewAllFAQ />
                     <Container style={button}>

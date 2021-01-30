@@ -1,6 +1,4 @@
 import React from 'react';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, Form, FormControl, Grid, Row, Col, Button } from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'  // temporary, we can create our css later
 import Footer from './Footer';
@@ -27,36 +25,36 @@ class App extends React.Component{
   render(){
     return(
       <div className="App">
-        <nav class="nav-back navbar navbar-expand-lg navbar-light">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link">BodyContouringClinic@gmail.com</a>
+        <nav className="nav-back navbar navbar-expand-lg navbar-light">
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item active">
+              <a className="nav-link">BodyContouringClinic@gmail.com</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link">(416) 966 - 0006</a>
+            <li className="nav-item">
+              <a className="nav-link">(416) 966 - 0006</a>
             </li>
           </ul>
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/">Home</a>
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <a className="nav-link" href="/">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Service">Service and Prices</a>
+            <li className="nav-item">
+              <a className="nav-link" href="/Service">Service and Prices</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Appointment">Appointment</a>
+            <li className="nav-item">
+              <a className="nav-link" href="/Appointment">Appointment</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Request">Request</a>
+            <li className="nav-item">
+              <a className="nav-link" href="/Request">Request</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Customer">Customer</a>
+            <li className="nav-item">
+              <a className="nav-link" href="/Customer">Customer</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Register/Login">Sign In</a>
+            <li className="nav-item">
+              <a className="nav-link" href="/Register/Login">Sign In</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Register/SignUp">Sign Up</a>
+            <li className="nav-item">
+              <a className="nav-link" href="/Register/SignUp">Sign Up</a>
             </li>
           </ul>
         </nav>

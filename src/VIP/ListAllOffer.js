@@ -2,7 +2,7 @@ import React from 'react';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import offer from '../resources/offer_1.png';
-import { Button, Container, Row, Col, Card, Image, CardGroup, CardColumns } from 'react-bootstrap';
+import { Button, Card, CardColumns } from 'react-bootstrap';
 
 
 class ListAllOffer extends React.Component {

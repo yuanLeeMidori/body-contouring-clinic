@@ -2,7 +2,7 @@ import React from 'react';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from '../SideBar/SideBar';
-import { Button, Container, Row, Col, Form } from 'react-bootstrap';
+import { Container, Row, Col, Form } from 'react-bootstrap';
 import PopUp from '../PopUp';
 
 class ViewRequest extends React.Component {
@@ -52,10 +52,10 @@ class ViewRequest extends React.Component {
         };
 
         return (
-            <div class="row">
+            <div className="row">
                 <div className="col-md-1"></div> 
                 <SideBar items={this.state.items}/>
-                <div class="col-md-8" style={{'margin-left':'80px'}}>
+                <div className="col-md-8" style={{'margin-left':'80px'}}>
                     <h2 className="PageTitle">Request Detail</h2><br/>
                     <div className="contents" style={{'text-align':'left','margin-right':'250px'}}>
                         <Container>

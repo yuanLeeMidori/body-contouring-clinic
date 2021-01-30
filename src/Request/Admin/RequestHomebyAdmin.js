@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import searchIcon from '../../resources/searchIcon.png';
 import ListAllRequestbyAdmin from './ListAllRequestbyAdmin';
 import SideBar from '../../SideBar/SideBar';
-import { Button, Container, Row, Col, Form } from 'react-bootstrap';
+import { Button, Container, Form } from 'react-bootstrap';
 import PopUp from '../../PopUp';
 
 
@@ -52,7 +52,7 @@ class RequestHomebyAdmin extends React.Component {
             <div className="row">
                 <div className="col-md-1"></div> 
                 <SideBar items={this.state.items}/>
-                <div class="col-md-8" style={{'margin-left':'80px'}}>
+                <div className="col-md-8" style={{'margin-left':'80px'}}>
                     <h2 className="PageTitle">View All Request</h2><br/>
                     <div className="contents">
                         <Form inline>

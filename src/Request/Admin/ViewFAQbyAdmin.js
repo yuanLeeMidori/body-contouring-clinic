@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Modal, Container, Row } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 
 class ViewFAQbyAdmin extends React.Component {
 

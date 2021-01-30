@@ -1,9 +1,7 @@
 import React from 'react';
 import '../../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import searchIcon from '../../resources/searchIcon.png';
-import SideBar from '../../SideBar/SideBar';
-import { Button, Modal, Container, Row } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 
 class ViewFAQ extends React.Component {
 

@@ -1,9 +1,10 @@
 import React from "react";
 import "../App.css";
-import { Form, Row, Col, Container } from "react-bootstrap";
+import { Form, Row, Col, Container, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SideBar from "../SideBar/SideBar";
 import styles from "../app.module.css";
+import SavedAppointment from './SavedAppointment';
 
 class CreateAppointment extends React.Component {
   constructor(props) {
@@ -14,9 +15,19 @@ class CreateAppointment extends React.Component {
         { url: "/Appointment/Appointments", title: "View All Appointments" },
         { url: "/Appointment/Create", title: "Create Appointment" },
       ],
-    };
-  }
+      saveModal: false,
+  };
+  this.showSave = this.showSave.bind(this);
+  this.hideSave = this.hideSave.bind(this);
+}
 
+showSave = () => {
+  this.setState({ saveModal: true });
+};
+
+hideSave = () => {
+  this.setState({ saveModal: false });
+};
   componentDidMount() {
     document.title = "Create New Appointment | Body Contouring Clinic";
   }
@@ -43,7 +54,7 @@ class CreateAppointment extends React.Component {
                       <Form.Label column sm="4">
                         Services:
                       </Form.Label>
-                      <Col sm="8">
+                      <Col sm="6">
                         <Form.Control as="select">
                           <option>Active air oxygen therapy</option>
                           <option>Green peel</option>
@@ -57,7 +68,7 @@ class CreateAppointment extends React.Component {
                       <Form.Label column sm="4">
                         Technician:
                       </Form.Label>
-                      <Col sm="8">
+                      <Col sm="6">
                         <Form.Control as="select">
                           <option>Piper Chapman</option>
                           <option>Alex Vause</option>
@@ -69,16 +80,21 @@ class CreateAppointment extends React.Component {
 
                     <Form.Group as={Row}>
                       <Form.Label column sm="4">
-                        Date & Time:
+                        Date:
                       </Form.Label>
-                      <Col sm="8">
-                        <Form.Control />
+                      <Col sm="4">
+                        <Form.Control type="date" />
                       </Col>
                     </Form.Group>
-                    <Form.Group
-                      as={Row}
-                      controlId="exampleForm.ControlTextarea1"
-                    >
+                    <Form.Group as={Row}>
+                      <Form.Label column sm="4">
+                        Time:
+                      </Form.Label>
+                      <Col sm="4">
+                        <Form.Control type="time" />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group as={Row}>
                       <Form.Label column sm="4">
                         Special Request:
                       </Form.Label>
@@ -90,12 +106,11 @@ class CreateAppointment extends React.Component {
                 </Col>
                 <Col></Col>
               </Row>
-            </Container>
-            <Container style={{ "margin-top": "50px", cursor: "pointer" }}>
               <Row>
                 <Col></Col>
-                <Col md="auto"><a href="/Appointment">Cancel</a></Col>
-                <Col lg="2"><a href="/Appointment/Appointment">Save</a></Col>
+                <Col md="auto"><Button variant="outline-secondary" href="/Appointment">Cancel</Button></Col>
+                <Button onClick={this.showSave} variant="outline-info">Save</Button>
+                <SavedAppointment show={this.state.saveModal} handelClose={this.hideSave} />
               </Row>
             </Container>
           </div>

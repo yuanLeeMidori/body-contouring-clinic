@@ -1,9 +1,10 @@
 import React from 'react';
 import '../../App.css';
-import { Form, Row, Col, Container, Button } from 'react-bootstrap';
+import { Form, Row, Col, Container, Button, Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from '../../SideBar/SideBar';
 import styles from '../../app.module.css';
+import SavedAppointmentAdmin from './SavedAppointmentAdmin';
 
 class EditAppointmentAdmin extends React.Component {
 
@@ -13,13 +14,25 @@ class EditAppointmentAdmin extends React.Component {
             items: [
                 { url: '/Appointment', title: 'Appointment Home' },
                 { url: '/Appointment/Admin/Appointments', title: 'View All Appointments' },
-            ]
+            ],
+            saveModal: false,
         };
+        this.showSave = this.showSave.bind(this);
+        this.hideSave = this.hideSave.bind(this);
     }
+
+    showSave = () => {
+        this.setState({ saveModal: true });
+    };
+
+    hideSave = () => {
+        this.setState({ saveModal: false });
+    };
 
     componentDidMount() {
         document.title = "Edit New Appointment | Body Contouring Clinic";
     }
+
     render() {
         return (
             <>
@@ -95,20 +108,23 @@ class EditAppointmentAdmin extends React.Component {
                                     <Col sm="8">
                                         <Form.Control as="textarea" rows={3} placeholder="Vanilla essential oil" />
                                     </Col>
-                                </Form.Group>
+                                    </Form.Group>
                             </Form>
                             </Col>
                             <Col></Col>
                         </Row>
-                    </Container>
-                    <Container style={{'margin-top': '50px', cursor: 'pointer'}}>
                         <Row >
                             <Col></Col>
-                            <Col md="auto"><a href="/Appointment/Admin/Appointment">Cancel</a></Col>
-                            <Col lg="2"><a href="/Appointment/Admin/Appointment">Save</a></Col>
-                        </Row>
+                            <Col md="auto"><Button variant="outline-secondary" href="/Appointment/Admin/Appointment">Cancel</Button></Col>
+                            <Button action onClick={this.showSave} variant="outline-info">Save</Button>
+                            <SavedAppointmentAdmin show={this.state.saveModal} handelClose={this.hideSave} />
+
+                        </Row>    
                     </Container>
-                        </div>
+                    <Container style={{'margin-top': '50px', cursor: 'pointer'}}>
+
+                    </Container>
+                    </div>
                 </div>
  
             </>

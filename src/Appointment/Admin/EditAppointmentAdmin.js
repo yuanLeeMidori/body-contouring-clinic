@@ -14,6 +14,7 @@ class EditAppointmentAdmin extends React.Component {
             items: [
                 { url: '/Appointment', title: 'Appointment Home' },
                 { url: '/Appointment/Admin/Appointments', title: 'View All Appointments' },
+                { url: '/Appointment/Admin/Create', title: 'New Appointment' },
             ],
             saveModal: false,
         };

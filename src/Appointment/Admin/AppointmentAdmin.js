@@ -4,6 +4,7 @@ import '../../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../../app.module.css';
 import SideBar from '../../SideBar/SideBar';
+import PopUp from '../../PopUp';
 
 class AppointmentAdmin extends React.Component {
 
@@ -12,9 +13,27 @@ class AppointmentAdmin extends React.Component {
         this.state = {
             items: [
                 { url: '/Appointment', title: 'Appointment Home' },
-                { url: '/Appointment/Appointments', title: 'View All Appointments' },
-            ]
-        };
+                { url: '/Appointment/Admin/Appointments', title: 'View All Appointments' },
+                { url: '/Appointment/Admin/Create', title: 'New Appointment' },
+            ],
+            show: false,
+            children: 'appointment',
+        }
+        this.showModal = this.showModal.bind(this);
+        this.hideModal = this.hideModal.bind(this);
+        this.deleteAppointment = this.deleteAppointment.bind(this);
+      }
+
+    showModal = () => {
+        this.setState({ show: true });
+      };
+    
+    hideModal = () => {
+        this.setState({ show: false });
+      };
+    
+    deleteAppointment = () => {
+        this.setState({ show: false });
     }
 
     componentDidMount() {
@@ -78,8 +97,9 @@ class AppointmentAdmin extends React.Component {
                             <Col></Col>
                             <Col>
                                 <Button variant="outline-info">Leave Message</Button>{' '}
-                                <Button variant="outline-danger">Delete</Button>{' '}
+                                <Button variant="outline-danger" onClick={this.showModal}>Delete</Button>{' '}
                                 <Button variant="outline-info" href="/Appointment/Admin/Edit">Edit</Button></Col>
+                                <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.hideModal} text={this.state.children} btn1='Cancel' btn2='Delete' />
                         </Row>
                     </Container>
                 </div>

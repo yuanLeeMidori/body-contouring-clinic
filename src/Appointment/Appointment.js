@@ -1,9 +1,10 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../app.module.css';
 import SideBar from '../SideBar/SideBar';
+import PopUp from '../PopUp';
 
 class Appointment extends React.Component {
 
@@ -14,9 +15,26 @@ class Appointment extends React.Component {
                 { url: '/Appointment', title: 'Appointment Home' },
                 { url: '/Appointment/Appointments', title: 'View All Appointments' },
                 { url: '/Appointment/Create', title: 'Create Appointment' },
-            ]
+            ],
+            show: false,
+            children: 'appointment',
         };
+        this.showModal = this.showModal.bind(this);
+        this.hideModal = this.hideModal.bind(this);
+        this.deleteAppointment = this.deleteAppointment.bind(this);
     }
+
+    showModal = () => {
+        this.setState({ show: true });
+    };
+    
+    hideModal = () => {
+        this.setState({ show: false });
+    };
+    
+    deleteAppointment = () => {
+        this.setState({ show: false });
+    };
 
     componentDidMount() {
         document.title = "Create New Appointment | Body Contouring Clinic";
@@ -76,7 +94,11 @@ class Appointment extends React.Component {
                         </Row>
                         <Row>
                             <Col></Col>
-                            <Col><a style={button}>Delete </a><a style={button} href="/Appointment/Edit"> Edit</a></Col>
+                            <Col>
+                                <Button variant="outline-info">View Message</Button>{' '}
+                                <Button variant="outline-danger" onClick={this.showModal}>Delete</Button>{' '}
+                                <Button variant="outline-info" href="/Appointment/Edit">Edit</Button></Col>
+                                <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.hideModal} text={this.state.children} btn1='Cancel' btn2='Delete' />        
                         </Row>
                     </Container>
                 </div>

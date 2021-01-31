@@ -270,7 +270,7 @@ import { Form, Row, Col, Container, Button } from 'react-bootstrap';
               </Container>
 
               <span style={{'marginLeft': '180px'}}>Already registered?  
-                <a href="./login">  sign in</a> 
+                <a href="./Login">  sign in</a> 
                 </span>
               <div class="pagination">
                   <a class="page-link" href="./TermsAndConditions">❮ Previous</a>

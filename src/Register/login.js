@@ -84,10 +84,10 @@ constructor(props) {
                          
                     </Form>
                     </Container>
-                    <div class ="custom-control custom-checkbox" style={{'marginRight' : '230px'}}>
+                    <div class ="custom-control custom-checkbox" style={{'marginRight' : '100px'}}>
                             <input type="checkbox" className="custom-control-input" id="check1" />
                             <label className="custom-control-label" for="check1">Remember me</label>
-                            <span style={{'marginLeft': '50px'}}> No account?<a href="./TermsAndConditions"> Sign up </a></span>
+                            <span style={{'marginLeft': '90px'}}> No account?<a href="./TermsAndConditions"> Sign up </a></span>
                         </div>
                     
                         <div class="col-md-4" style={{'marginLeft' : '270px'}}><br/>

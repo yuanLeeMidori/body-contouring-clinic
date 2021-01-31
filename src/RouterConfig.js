@@ -24,7 +24,7 @@ import ViewFAQ from './Request/FAQ/ViewAllFAQbyGeneral';
 import ViewFAQAdmin from './Request/Admin/ViewAllFAQbyAdmin';
 import CreateFAQ from './Request/Admin/CreateFAQ';
 import EditFAQ from './Request/Admin/EditFAQ';
-import Login from './Register/login';
+import Login from './Register/Login';
 import SignUp from './Register/SignUp';
 import CreateAppointment from './Appointment/CreateAppointment';
 import Appointments from './Appointment/Appointments';

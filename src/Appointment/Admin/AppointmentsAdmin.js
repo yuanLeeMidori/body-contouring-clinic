@@ -13,7 +13,7 @@ class AppointmentsAdmin extends React.Component {
       items: [
         { url: "/Appointment", title: "Appointment Home" },
         { url: "/Appointment/Admin/Appointment", title: "View All Appointments" },
-        { url: "/Appointment/Admin/Create", title: "New Appointment" },
+        { url: "/Appointment/Admin/Create", title: "Create Appointment" },
       ],
     };
   }

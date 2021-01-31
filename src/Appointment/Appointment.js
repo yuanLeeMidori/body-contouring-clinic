@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../app.module.css';
 import SideBar from '../SideBar/SideBar';
 import PopUp from '../PopUp';
+import ViewAppointmentMessage from './ViewAppointmentMessage';
 
 class Appointment extends React.Component {
 
@@ -18,10 +19,15 @@ class Appointment extends React.Component {
             ],
             show: false,
             children: 'appointment',
+            msgModal: false,
+            id: '04',
+            message: "Dear Customer, Please don't wear silver earrings in this program.",
         };
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
         this.deleteAppointment = this.deleteAppointment.bind(this);
+        this.showMessage = this.showMessage.bind(this);
+        this.hideModal = this.hideModal.bind(this);
     }
 
     showModal = () => {
@@ -34,6 +40,10 @@ class Appointment extends React.Component {
     
     deleteAppointment = () => {
         this.setState({ show: false });
+    };
+
+    showMessage = () => {
+        this.setState({ msgModal: true });
     };
 
     componentDidMount() {
@@ -95,7 +105,8 @@ class Appointment extends React.Component {
                         <Row>
                             <Col></Col>
                             <Col>
-                                <Button variant="outline-info">View Message</Button>{' '}
+                                <Button onClick={this.showMessage} variant="outline-info">View Message</Button>{' '}
+                                <ViewAppointmentMessage show={this.state.msgModal} text={this.state.message} appointmentId={this.state.id} />
                                 <Button variant="outline-danger" onClick={this.showModal}>Delete</Button>{' '}
                                 <Button variant="outline-info" href="/Appointment/Edit">Edit</Button></Col>
                                 <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.hideModal} text={this.state.children} btn1='Cancel' btn2='Delete' />        

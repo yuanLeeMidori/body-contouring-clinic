@@ -14,9 +14,10 @@ class EditAppointmentAdmin extends React.Component {
             items: [
                 { url: '/Appointment', title: 'Appointment Home' },
                 { url: '/Appointment/Admin/Appointments', title: 'View All Appointments' },
-                { url: '/Appointment/Admin/Create', title: 'New Appointment' },
+                { url: '/Appointment/Admin/Create', title: 'Create Appointment' },
             ],
             saveModal: false,
+            children: 'Appointment saved!'
         };
         this.showSave = this.showSave.bind(this);
         this.hideSave = this.hideSave.bind(this);
@@ -109,7 +110,7 @@ class EditAppointmentAdmin extends React.Component {
                                     <Col sm="8">
                                         <Form.Control as="textarea" rows={3} placeholder="Vanilla essential oil" />
                                     </Col>
-                                    </Form.Group>
+                                </Form.Group>
                             </Form>
                             </Col>
                             <Col></Col>
@@ -118,7 +119,7 @@ class EditAppointmentAdmin extends React.Component {
                             <Col></Col>
                             <Col md="auto"><Button variant="outline-secondary" href="/Appointment/Admin/Appointment">Cancel</Button></Col>
                             <Button action onClick={this.showSave} variant="outline-info">Save</Button>
-                            <SavedAppointmentAdmin show={this.state.saveModal} handelClose={this.hideSave} />
+                                <SavedAppointmentAdmin show={this.state.saveModal} handelClose={this.hideSave} text={this.state.children}/>
 
                         </Row>    
                     </Container>

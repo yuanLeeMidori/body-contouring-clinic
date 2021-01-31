@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import '../../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../../app.module.css';
@@ -26,15 +26,15 @@ class AppointmentAdmin extends React.Component {
 
     showModal = () => {
         this.setState({ show: true });
-      };
+    };
     
     hideModal = () => {
         this.setState({ show: false });
-      };
+    };
     
     deleteAppointment = () => {
         this.setState({ show: false });
-    }
+    };
 
     componentDidMount() {
         document.title = "Create New Appointment | Body Contouring Clinic";
@@ -90,13 +90,15 @@ class AppointmentAdmin extends React.Component {
                                         <td>Eucalyptus essential oil</td>    
                                     </tr>
                                 </table>
+                                    
                             </Col>
                             <Col></Col>
                         </Row>
                         <Row>
                             <Col></Col>
-                            <Col>
-                                <Button variant="outline-info">Leave Message</Button>{' '}
+                                <Col>
+                                    
+                                <Button variant="outline-info" href="/Appointment/Admin/Message">Leave Message</Button>{' '}
                                 <Button variant="outline-danger" onClick={this.showModal}>Delete</Button>{' '}
                                 <Button variant="outline-info" href="/Appointment/Admin/Edit">Edit</Button></Col>
                                 <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.hideModal} text={this.state.children} btn1='Cancel' btn2='Delete' />

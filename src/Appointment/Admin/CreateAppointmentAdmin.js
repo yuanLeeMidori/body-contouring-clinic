@@ -19,6 +19,7 @@ class CreateAppointmentAdmin extends React.Component {
         { url: "/Appointment/Admin/Create", title: "Create Appointment" },
       ],
       saveModal: false,
+      children: 'Appointment saved!',
     };
     this.showSave = this.showSave.bind(this);
     this.hideSave = this.hideSave.bind(this);
@@ -141,6 +142,7 @@ class CreateAppointmentAdmin extends React.Component {
                 <SavedAppointmentAdmin
                   show={this.state.saveModal}
                   handelClose={this.hideSave}
+                  text={this.state.children}
                 />
               </Row>
             </Container>

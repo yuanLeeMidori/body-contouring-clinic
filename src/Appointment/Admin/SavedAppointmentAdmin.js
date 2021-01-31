@@ -9,7 +9,7 @@ class SavedAppointmentAdmin extends React.Component {
         return (
             <Modal show={this.props.show} centered>
             <Modal.Header>
-             <Modal.Title>Appointment Saved!</Modal.Title>
+             <Modal.Title>{this.props.text}</Modal.Title>
            </Modal.Header>
  
            <Modal.Footer>

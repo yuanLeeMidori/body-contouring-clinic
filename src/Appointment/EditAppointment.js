@@ -17,6 +17,7 @@ class EditAppointment extends React.Component {
                 { url: '/Appointment/Create', title: 'Create Appointment' },
             ],
             saveModal: false,
+            children: 'Appointment saved!',
         };
         this.showSave = this.showSave.bind(this);
         this.hideSave = this.hideSave.bind(this);
@@ -31,7 +32,7 @@ class EditAppointment extends React.Component {
     };
 
     componentDidMount() {
-        document.title = "Edit New Appointment | Body Contouring Clinic";
+        document.title = "Edit Appointment | Body Contouring Clinic";
     }
     render() {
         return (
@@ -99,7 +100,7 @@ class EditAppointment extends React.Component {
                                 <Col></Col>
                                 <Col md="auto"><Button variant="outline-secondary" href="/Appointment/Appointment">Cancel</Button></Col>
                                 <Button variant="outline-info" onClick={this.showSave}>Save</Button>
-                                <SavedAppointment show={this.state.saveModal} handelClose={this.hideSave} />
+                                <SavedAppointment show={this.state.saveModal} handelClose={this.hideSave} text={this.state.children} />
                             </Row>
                     </Container>
                     </div>

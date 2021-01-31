@@ -84,22 +84,24 @@ constructor(props) {
                          
                     </Form>
                     </Container>
-                    <div class ="custom-control custom-checkbox" style={{'marginRight' : '100px'}}>
+
+                <div class style={{marginRight:"40px"}}>
+                    <div class ="custom-control custom-checkbox" style={{'marginRight' : '110px'}}>
                             <input type="checkbox" className="custom-control-input" id="check1" />
                             <label className="custom-control-label" for="check1">Remember me</label>
-                            <span style={{'marginLeft': '90px'}}> No account?<a href="./TermsAndConditions"> Sign up </a></span>
+                            <span style={{'marginLeft': '45px'}}> No account?<a href="./TermsAndConditions"> Sign up </a></span>
                         </div>
+                 </div>
                     
-                        <div class="col-md-4" style={{'marginLeft' : '270px'}}><br/>
+                        <div class="col-md-4" style={{'marginLeft' : '260px'}}><br/>
                     <button class="col-md-4" type="submit" className="btn btn-dark btn-block">Sign in</button>
                     <p className="Forgot_idpw">
                         Forgot your <a href="./Forgot_Id_Pw">user id</a>
                          / <a href="./Forgot_Id_Pw">password</a>?
-                         </p> 
-
+                         </p>
                 </div>
+
                     </div>
-            
         </div>
         );
     }

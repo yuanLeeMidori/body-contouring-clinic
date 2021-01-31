@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Row, Col, Container, Button } from 'react-bootstrap';
-import { Textbox } from 'react-inputs-validation';
-import 'react-inputs-validation/lib/react-inputs-validation.min.css';
 
 class Forgot_Id_Pw extends Component {
     componentDidMount(){

@@ -1,34 +1,28 @@
 import React from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
-import '../App.css';
+import { Container, Row, Col, Button, Form } from 'react-bootstrap';
+import '../../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import styles from '../app.module.css';
-import SideBar from '../SideBar/SideBar';
-import PopUp from '../PopUp';
-import ViewAppointmentMessage from './ViewAppointmentMessage';
+import styles from '../../app.module.css';
+import SideBar from '../../SideBar/SideBar';
+import PopUp from '../../PopUp';
 
-class Appointment extends React.Component {
+class AppointmentAdmin extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             items: [
                 { url: '/Appointment', title: 'Appointment Home' },
-                { url: '/Appointment/Appointments', title: 'View All Appointments' },
-                { url: '/Appointment/Create', title: 'Create Appointment' },
+                { url: '/Appointment/Admin/Appointments', title: 'View All Appointments' },
+                { url: '/Appointment/Admin/Create', title: 'New Appointment' },
             ],
             show: false,
             children: 'appointment',
-            msgModal: false,
-            id: '04',
-            message: "Dear Customer, Please don't wear silver earrings in this program.",
-        };
+        }
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
         this.deleteAppointment = this.deleteAppointment.bind(this);
-        this.showMessage = this.showMessage.bind(this);
-        this.hideModal = this.hideModal.bind(this);
-    }
+      }
 
     showModal = () => {
         this.setState({ show: true });
@@ -40,10 +34,6 @@ class Appointment extends React.Component {
     
     deleteAppointment = () => {
         this.setState({ show: false });
-    };
-
-    showMessage = () => {
-        this.setState({ msgModal: true });
     };
 
     componentDidMount() {
@@ -73,7 +63,7 @@ class Appointment extends React.Component {
                             <table className={styles.appointmentTable}>
                                     <tr>
                                         <td>Customer Name: </td>
-                                        <td>Jane Doe</td>
+                                        <td>Brook Soso</td>
                                     </tr>
                                     <tr>
                                         <td>Date:</td>
@@ -97,19 +87,21 @@ class Appointment extends React.Component {
                                     </tr>
                                     <tr>
                                         <td>Special Request:</td>
+                                        <td>Eucalyptus essential oil</td>    
                                     </tr>
                                 </table>
+                                    
                             </Col>
                             <Col></Col>
                         </Row>
                         <Row>
                             <Col></Col>
-                            <Col>
-                                <Button onClick={this.showMessage} variant="outline-info">View Message</Button>{' '}
-                                <ViewAppointmentMessage show={this.state.msgModal} text={this.state.message} appointmentId={this.state.id} />
+                                <Col>
+                                    
+                                <Button variant="outline-info" href="/Appointment/Admin/Message">Leave Message</Button>{' '}
                                 <Button variant="outline-danger" onClick={this.showModal}>Delete</Button>{' '}
-                                <Button variant="outline-info" href="/Appointment/Edit">Edit</Button></Col>
-                                <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.hideModal} text={this.state.children} btn1='Cancel' btn2='Delete' />        
+                                <Button variant="outline-info" href="/Appointment/Admin/Edit">Edit</Button></Col>
+                                <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.hideModal} text={this.state.children} btn1='Cancel' btn2='Delete' />
                         </Row>
                     </Container>
                 </div>
@@ -119,4 +111,4 @@ class Appointment extends React.Component {
     }
 }
 
-export default Appointment;
+export default AppointmentAdmin;

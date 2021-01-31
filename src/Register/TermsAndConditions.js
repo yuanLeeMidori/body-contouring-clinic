@@ -28,10 +28,9 @@ class TermsAndConditions  extends Component {
                 (Wa-wa-way-do, wub-wid-bid-dum-way-do, wa-wa-way-do) Will we ever know? (Bay-budabud-dum-bam) I want to (Mama-dum-day-do) I want to, I want to know! (Abay-ba-da bum-bum bay-do)
               </p>
             </Scrollbars>
-          
+
             <br></br>
-            <br></br>
-           <form>
+           <form style={{marginRight:"380px"}}>
               <div class="form-group">
                 <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required />
@@ -40,12 +39,13 @@ class TermsAndConditions  extends Component {
                   </div>
                 </div>
            </form>
-          
 
-            
-            <div class="pagination"style={{'marginright': '500px'}}>
+            <div style={{marginLeft:"10px"}}>
+            <div class="pagination"style={{'marginright': '130px'}}>
               <a class="page-link" href="./Login">❮ Previous</a>
+              <a style={{marginLeft:"600px"}}></a>
               <a class="page-link" href="./SignUp">Next ❯</a>
+            </div>
             </div>
           
           <br></br>

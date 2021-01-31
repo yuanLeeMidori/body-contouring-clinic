@@ -272,9 +272,13 @@ import { Form, Row, Col, Container, Button } from 'react-bootstrap';
               <span style={{'marginLeft': '180px'}}>Already registered?  
                 <a href="./Login">  sign in</a> 
                 </span>
-              <div class="pagination">
-                  <a class="page-link" href="./TermsAndConditions">❮ Previous</a>
-                  <a class="page-link" href="./CheckConfirmEmail">Next ❯</a>
+                <br></br><br></br>
+                <div style={{marginLeft:"10px"}}>
+                  <div class="pagination"style={{'marginright': '130px'}}>
+                    <a class="page-link" href="./Login">❮ Previous</a>
+                    <a style={{marginLeft:"720px"}}></a>
+                    <a class="page-link" href="./SignUp">Next ❯</a>
+                  </div>
                 </div>
                 
                 <br/><br/>

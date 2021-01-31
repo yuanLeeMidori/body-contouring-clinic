@@ -29,6 +29,12 @@ import SignUp from './Register/SignUp';
 import CreateAppointment from './Appointment/CreateAppointment';
 import Appointments from './Appointment/Appointments';
 import Appointment from './Appointment/Appointment';
+import EditAppointment from './Appointment/EditAppointment';
+import AppointmentsAdmin from './Appointment/Admin/AppointmentsAdmin';
+import AppointmentAdmin from './Appointment/Admin/AppointmentAdmin'
+import EditAppointmentAdmin from './Appointment/Admin/EditAppointmentAdmin';
+import CreateAppointmentAdmin from './Appointment/Admin/CreateAppointmentAdmin';
+import LeaveMessageToAppointment from './Appointment/Admin/LeaveMessageToAppointment';
 import PageNotFound from './PageNotFound';
 import TermsAndConditions from './Register/TermsAndConditions';
 import SignupSuccess from './Register/SignupSuccess';
@@ -56,6 +62,14 @@ class RouterConfig extends React.Component {
               <Route exact path='/Appointment/Appointments' render={() => <Appointments />} />
               <Route exact path='/Appointment/Create' render={() => <CreateAppointment />} />
               <Route exact path='/Appointment/Appointment' render={() => <Appointment />} />
+              <Route exact path='/Appointment/Edit' render={() => <EditAppointment />} />
+              
+              {/* Appointment Admin URL */}
+              <Route exact path='/Appointment/Admin/Appointments' render={() => <AppointmentsAdmin />} />
+              <Route exact path='/Appointment/Admin/Appointment' render={() => <AppointmentAdmin />} />
+              <Route exact path='/Appointment/Admin/Edit' render={() => <EditAppointmentAdmin />} />
+              <Route exact path='/Appointment/Admin/Create' render={() => <CreateAppointmentAdmin />} />
+              <Route exact path='/Appointment/Admin/Message' render={() => <LeaveMessageToAppointment />} />
 
               {/* Service URL */}
               <Route exact path='/Service' render={() => <ServiceHome />} />

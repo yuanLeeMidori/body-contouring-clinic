@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Row, Col, Container, Button } from 'react-bootstrap';
-import imgName from './images/mailbox_black.png';
+import imgName from '../resources/mailbox_black.png';
 
 class CheckConfirmEmail extends Component {
 

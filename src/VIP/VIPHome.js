@@ -17,14 +17,6 @@ class VIPHome extends React.Component {
       }
     
     render() {
-        const button = {
-            'font-size': 'large',
-            'font-weight': 'bold',
-            color: 'black',
-            'margin-right': '0px',
-            'margin-left' :'30px',
-            'text-align': 'right',
-        };
 
         return (
             <div className="row">

@@ -2,8 +2,7 @@ import React from 'react';
 import '../../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from '../../SideBar/SideBar';
-import { Link } from 'react-router-dom'
-import { Container } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import PopUp from '../../PopUp';
 
 class ManageOffer extends React.Component {
@@ -20,37 +19,30 @@ class ManageOffer extends React.Component {
         };
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
-        this.deleteReq = this.deleteReq.bind(this);
+        this.deleteOffer = this.deleteOffer.bind(this);
       }
 
     showModal = () => {
         this.setState({ show: true });
     };
-    
+
     hideModal = () => {
         this.setState({ show: false });
     };
-    
-    deleteReq = () => {
+
+    deleteOffer = () => {
         this.setState({ show: false });
     }
-    
+
     render() {
-        const button = {
-            'font-size': 'large',
-            color: 'black',
-            'margin-right': '0px',
-            'margin-left' :'30px',
-            'text-align': 'right',
-        };
 
         const pagination = {
-            color: '#B58970',
-        };
+            color: "#B58970",
+          };
 
         return (
             <div className="row">
-                <div className="col-md-1"></div> 
+                <div className="col-md-1"></div>
                 <SideBar items={this.state.items}/>
                 <div className="col-md-8" style={{'margin-left':'80px'}}>
                     <h2 className="PageTitle">Monthly Special Offers</h2><br/>
@@ -70,18 +62,18 @@ class ManageOffer extends React.Component {
                                 <td>01</td>
                                 <td>Offer 1</td>
                                 <td>Some quick example text to build on the ca...</td>
-                                <td><Link to='/VIP/Admin/Manage/Edit' style={{color: 'black'}}>EDIT</Link></td>
-                                <td><a style={button} onClick={this.showModal}>DELETE</a></td>
-                                <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.deleteReq} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
+                                <td><Button variant="outline-secondary" href='/VIP/Admin/Manage/Edit'>EDIT</Button></td>
+                                <td><Button variant="outline-danger" onClick={this.showModal}>DELETE</Button></td>
+                                <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.deleteOffer} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
                             </tr>
                             <tr>
                                 <td><input type="checkbox"/></td>
                                 <td>02</td>
                                 <td>Offer 2</td>
                                 <td>Some quick example text to build on the ca...</td>
-                                <td><Link to='/VIP/Admin/Manage/Edit' style={{color: 'black'}}>EDIT</Link></td>
-                                <td><a style={button} onClick={this.showModal}>DELETE</a></td>
-                                <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.deleteReq} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
+                                <td><Button variant="outline-secondary" href='/VIP/Admin/Manage/Edit'>EDIT</Button></td>
+                                <td><Button variant="outline-danger" onClick={this.showModal}>DELETE</Button></td>
+                                <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.deleteOffer} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
                             </tr>
                         </table>
                         <br/>
@@ -93,12 +85,13 @@ class ManageOffer extends React.Component {
                             <a href="#"> 4 </a>
                             <a href="#"> 5 </a>
                             <a href="#"> 6 </a>
-                            <a href="#"> &raquo; </a>   
+                            <a href="#"> &raquo; </a>
                         </span>
-                        <Container style={button}>
-                        	<a href="/VIP/Admin/Manage/Create" style={button}>CREATE</a>  
-                        </Container>
-                        <br/><br/><br/>
+                        <Row >
+                            <Col xs={10}></Col>
+                            <Col xs={1}><Button variant="outline-info" href="/VIP/Admin/Manage/Create">CREATE</Button></Col>
+                        </Row>
+                        <br/><br/><br/><br/>
                     </div>
                 </div>
             </div>

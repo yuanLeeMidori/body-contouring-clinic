@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import searchIcon from '../resources/searchIcon.png';
 import ListAllRequest from './ListAllRequest';
 import SideBar from '../SideBar/SideBar';
-import { Button, Container, Form } from 'react-bootstrap';
+import { Button, Container, Form, Row, Col } from 'react-bootstrap';
 import PopUp from '../PopUp';
 
 
@@ -40,15 +40,6 @@ class RequestHome extends React.Component {
     }
 
     render() {
-        const button = {
-            'font-size': 'large',
-            'font-weight': 'bold',
-            color: 'black',
-            'margin-right': '0px',
-            'margin-left' :'30px',
-            'text-align': 'right',
-        };
-
         return (
             <div className="row">
                 <div className="col-md-1"></div> 
@@ -74,11 +65,14 @@ class RequestHome extends React.Component {
                         </Form>
                         <br/>
                         <ListAllRequest />
-                        <Container style={button}>
-                        	<a href="/Request/Create" style={button}>CREATE</a>  
-                            <a href="/Request/Edit" style={button}>EDIT</a>
-                            <a style={button} onClick={this.showModal}>DELETE</a>  
-                            <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.deleteReq} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
+                        <Container>
+                            <Row >
+                                <Col xs={9}></Col>
+                                <Col xs={1}><Button variant="outline-info" href="/Request/Create">CREATE</Button></Col>
+                                <Col xs={1}><Button variant="outline-secondary" href='/Request/Edit'>EDIT</Button></Col>
+                                <Col xs={1}><Button variant="outline-danger" onClick={this.showModal}>DELETE</Button></Col>
+                                <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.deleteReq} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
+                            </Row>
                         </Container>
                     </div>
                 </div>

@@ -13,15 +13,6 @@ class AnswerRequest extends React.Component {
     }
     
     render() {
-        const button = {
-            'font-size': 'large',
-            'font-weight': 'bold',
-            color: 'black',
-            margin: '40px',
-            'text-align':'center',
-            background: 'none',
-        };
-
         const reqTitle = {
             'font-size': 'large',
             'font-size': 'large',
@@ -46,13 +37,13 @@ class AnswerRequest extends React.Component {
                                     <Form.Label style={reqTitle}>A: RE: How can I join VIP member ship program?   2021/01/12</Form.Label>
                                     <Form.Control as="textarea" rows={3} />
                                 </Form.Group>
-                                <Form.Group as={Row}>
-                                    <Col sm={{ span: 10, offset: 2 }}>
-                                        <a href="/Request/Admin" style={button}>CANCEL</a>
-                                        <a href="/Request/Admin" style={button}>BACK TO LIST</a>  
-                                        <Button type="submit" variant="outline-*" style={button}>SAVE</Button>
-                                    </Col>
-                                </Form.Group>
+                                <Container>
+                                    <Row >
+                                        <Col xs={10}></Col>
+                                        <Col xs={1}><Button variant="outline-secondary" href="/Request/Admin/">CANCEL</Button></Col>
+                                        <Col xs={1}><Button type="submit" variant="outline-info" >SAVE</Button></Col>
+                                    </Row>
+                                </Container>
                             </Form>
                         </Container>
                         <br/>

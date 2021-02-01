@@ -19,7 +19,7 @@ class ViewFAQbyAdmin extends React.Component {
                 indicated during checkout!</p>
            </Modal.Body>
            <Modal.Footer>
-                <Button variant="primary" href="/Request/Admin/FAQ/Edit">Edit</Button>
+                <Button variant="outline-secondary" href="/Request/Admin/FAQ/Edit">Edit</Button>
            </Modal.Footer>
          </Modal>
         );

@@ -2,7 +2,7 @@ import React from 'react';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from '../SideBar/SideBar';
-import { Container, Row, Col, Form } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import PopUp from '../PopUp';
 
 class ViewRequest extends React.Component {
@@ -36,13 +36,6 @@ class ViewRequest extends React.Component {
     }
 
     render() {
-        const button = {
-            'font-size': 'large',
-            'font-weight': 'bold',
-            color: 'black',
-            margin: '40px',
-            'text-align':'center'
-        };
 
         const reqTitle = {
             'font-size': 'large',
@@ -68,14 +61,14 @@ class ViewRequest extends React.Component {
                                     <Form.Label style={reqTitle}>A: RE: How can I join VIP member ship program?   2021/01/12</Form.Label>
                                     <Form.Control type="text" placeholder='Good Morning!' readOnly></Form.Control>
                                 </Form.Group>
-                                <Form.Group as={Row}>
-                                    <Col sm={{ span: 10, offset: 2 }}>
-                                        <a href="/Request/Edit" style={button}>EDIT</a>
-                                        <a href="/Request/" style={button}>BACK TO LIST</a>  
-                                        <a style={button} onClick={this.showModal}>DELETE</a>  
+                                <Container>
+                                    <Row >
+                                        <Col xs={10}></Col>
+                                        <Col xs={1}><Button variant="outline-secondary" href='/Request/Edit'>EDIT</Button></Col>
+                                        <Col xs={1}><Button variant="outline-danger" onClick={this.showModal}>DELETE</Button></Col>
                                         <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.deleteReq} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
-                                    </Col>
-                                </Form.Group>
+                                    </Row>
+                                </Container>
                             </Form>
                         </Container>
                         <br/>

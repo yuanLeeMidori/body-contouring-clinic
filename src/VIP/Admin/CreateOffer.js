@@ -18,14 +18,6 @@ class CreateOffer extends React.Component {
       }
 
     render() {
-        const button = {
-            'font-size': 'large',
-            'font-weight': 'bold',
-            color: 'black',
-            margin: '40px',
-            'text-align':'center',
-            background: 'none',
-        };
 
         return (
             <div className="row">
@@ -53,11 +45,10 @@ class CreateOffer extends React.Component {
                             </Form.Group>
                             <br/><br/>
                             <Form.Group as={Row}>
-                                <Col sm={{ span: 10, offset: 2 }}>
-                                    <a href="/VIP/Admin/Manage" style={button}>CANCEL</a>
-                                    <a href="/VIP/Admin/Manage" style={button}>BACK TO LIST</a>
-                                    <Button type="submit" variant="outline-*" style={button}>SAVE</Button>
-                                </Col>
+                                <Row >
+                                    <Col><Button variant="outline-secondary" href='/VIP/Admin/Manage'>CANCEL</Button></Col>
+                                    <Col md="auto"><Button variant="outline-info" href="/VIP/Admin/Manage/Create">SAVE</Button></Col>
+                                </Row>
                             </Form.Group>
                         </Form>
                     </Container>

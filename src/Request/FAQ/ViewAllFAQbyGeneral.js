@@ -16,17 +16,7 @@ class ViewAllFAQbyGeneral extends React.Component {
                 {url:'/Request/FAQ', title: 'FAQ'},
             ],
         };
-        this.showFAQ = this.showFAQ.bind(this);
-        this.hideFAQ = this.hideFAQ.bind(this);
       }
-        
-    showFAQ = () => {
-        this.setState({ show: true });
-      };
-    
-    hideFAQ = () => {
-        this.setState({ show: false });
-      };
 
     render() {
 

@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import searchIcon from '../../resources/searchIcon.png';
 import ListAllRequestbyAdmin from './ListAllRequestbyAdmin';
 import SideBar from '../../SideBar/SideBar';
-import { Button, Container, Form } from 'react-bootstrap';
+import { Button, Container, Form, Row, Col } from 'react-bootstrap';
 import PopUp from '../../PopUp';
 
 
@@ -73,10 +73,13 @@ class RequestHomebyAdmin extends React.Component {
                         </Form>
                         <br/>
                         <ListAllRequestbyAdmin />
-                        <Container style={button}>
-                        	<a href="/Request/Admin/Answer" style={button}>ANSWER</a>  
-                            <a style={button} onClick={this.showModal}>DELETE</a>  
-                            <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.deleteReq} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
+                        <Container>
+                            <Row >
+                                <Col xs={10}></Col>
+                                <Col xs={1}><Button variant="outline-info" href="/Request/Admin/Answer">ANSWER</Button></Col>
+                                <Col xs={1}><Button variant="outline-secondary" onClick={this.showModal}>DELETE</Button></Col>
+                                <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.deleteReq} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
+                            </Row>
                         </Container>
                     </div>
                 </div>

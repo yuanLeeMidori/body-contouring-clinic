@@ -19,14 +19,6 @@ class EditOffer extends React.Component {
       }
 
     render() {
-        const button = {
-            'font-size': 'large',
-            'font-weight': 'bold',
-            color: 'black',
-            margin: '40px',
-            'text-align':'center',
-            background: 'none',
-        };
 
         return (
             <div className="row">
@@ -52,14 +44,16 @@ class EditOffer extends React.Component {
                                 <Form.Label column sm={2}>Attach File:</Form.Label>
                                 <Form.File/>
                             </Form.Group>
+
+                            <Container>
+                                <Row >
+                                <Col xs={6}></Col>
+                                <Col xs={1}><Button variant="outline-secondary" href="/VIP/Admin/Manage">CANCEL</Button></Col>
+                                <Col xs={1}><Button type="submit" variant="outline-info" >EDIT</Button></Col>
+                                </Row>
+                                <br/>
+                            </Container>
                             <br/><br/>
-                            <Form.Group as={Row}>
-                                <Col sm={{ span: 10, offset: 2 }}>
-                                    <a href="/VIP/Admin/Manage" style={button}>CANCEL</a>
-                                    <a href="/VIP/Admin/Manage" style={button}>BACK TO LIST</a>
-                                    <Button type="submit" variant="outline-*" style={button}>EDIT</Button>
-                                </Col>
-                            </Form.Group>
                         </Form>
                     </Container>
                     <br/>

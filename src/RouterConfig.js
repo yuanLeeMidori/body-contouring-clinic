@@ -24,8 +24,8 @@ import ViewFAQ from './Request/FAQ/ViewAllFAQbyGeneral';
 import ViewFAQAdmin from './Request/Admin/ViewAllFAQbyAdmin';
 import CreateFAQ from './Request/Admin/CreateFAQ';
 import EditFAQ from './Request/Admin/EditFAQ';
-import Login from './Register/login';
-import SignUp from './Register/signUp';
+import Login from './Register/Login';
+import SignUp from './Register/SignUp';
 import CreateAppointment from './Appointment/CreateAppointment';
 import Appointments from './Appointment/Appointments';
 import Appointment from './Appointment/Appointment';
@@ -36,6 +36,11 @@ import EditAppointmentAdmin from './Appointment/Admin/EditAppointmentAdmin';
 import CreateAppointmentAdmin from './Appointment/Admin/CreateAppointmentAdmin';
 import LeaveMessageToAppointment from './Appointment/Admin/LeaveMessageToAppointment';
 import PageNotFound from './PageNotFound';
+import TermsAndConditions from './Register/TermsAndConditions';
+import SignupSuccess from './Register/SignupSuccess';
+import CheckConfirmEmail from './Register/CheckConfirmEmail';
+import Forgot_Id_Pw from './Register/Forgot_Id_Pw';
+
 
 
 class RouterConfig extends React.Component {
@@ -100,6 +105,10 @@ class RouterConfig extends React.Component {
               {/* Register URL */}
               <Route exact path='/Register/Login' render={() => <Login />} />
               <Route exact path='/Register/SignUp' render={() => <SignUp />} />
+              <Route exact path='/Register/TermsAndConditions' render={() => <TermsAndConditions />} />
+              <Route exact path='/Register/SignupSuccess' render={() => <SignupSuccess />} />
+              <Route exact path='/Register/CheckConfirmEmail' render={() => <CheckConfirmEmail />} />
+              <Route exact path='/Register/Forgot_Id_Pw' render={() => <Forgot_Id_Pw />} />
               
               {/* Page Not Found */}
               <Route render={() => <PageNotFound />} />

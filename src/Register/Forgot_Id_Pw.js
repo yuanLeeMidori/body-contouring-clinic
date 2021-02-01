@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Row, Col, Container, Button } from 'react-bootstrap';
+import { Form, Row, Col } from 'react-bootstrap';
 
 class Forgot_Id_Pw extends Component {
     componentDidMount(){

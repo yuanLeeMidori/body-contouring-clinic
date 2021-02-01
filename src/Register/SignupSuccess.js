@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Row, Col, Container, Button } from 'react-bootstrap';
-import imgName from './images/verified_user.png';
+import imgName from '../resources/verified_user.png';
 
 class SignupSuccess extends Component {
     render() {

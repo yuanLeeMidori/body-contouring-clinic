@@ -18,14 +18,6 @@ class ListAllOffer extends React.Component {
       }
     
     render() {
-        const button = {
-            'font-size': 'large',
-            'font-weight': 'bold',
-            color: 'black',
-            'margin-right': '0px',
-            'margin-left' :'30px',
-            'text-align': 'right',
-        };
 
         return (
             <div>
@@ -38,7 +30,7 @@ class ListAllOffer extends React.Component {
                             Some quick example text to build on the card title and make up the bulk of
                             the card's content.
                             </Card.Text>
-                            <Button variant="outline-secondary">Book</Button>
+                            <Button variant="outline-info" href="/Appointment/Create">Book</Button>
                         </Card.Body>
                     </Card>
                     <Card>
@@ -49,7 +41,7 @@ class ListAllOffer extends React.Component {
                             Some quick example text to build on the card title and make up the bulk of
                             the card's content.
                             </Card.Text>
-                            <Button variant="outline-secondary">Book</Button>
+                            <Button variant="outline-info" href="/Appointment/Create">Book</Button>
                         </Card.Body>
                     </Card>
                     <Card>
@@ -60,7 +52,7 @@ class ListAllOffer extends React.Component {
                             Some quick example text to build on the card title and make up the bulk of
                             the card's content.
                             </Card.Text>
-                            <Button variant="outline-secondary">Book</Button>
+                            <Button variant="outline-info" href="/Appointment/Create">Book</Button>
                         </Card.Body>
                     </Card>
                     <Card>
@@ -71,7 +63,7 @@ class ListAllOffer extends React.Component {
                             Some quick example text to build on the card title and make up the bulk of
                             the card's content.
                             </Card.Text>
-                            <Button variant="outline-secondary">Book</Button>
+                            <Button variant="outline-info" href="/Appointment/Create">Book</Button>
                         </Card.Body>
                     </Card>
                     <Card>
@@ -82,7 +74,7 @@ class ListAllOffer extends React.Component {
                             Some quick example text to build on the card title and make up the bulk of
                             the card's content.
                             </Card.Text>
-                            <Button variant="outline-secondary">Book</Button>
+                            <Button variant="outline-info" href="/Appointment/Create">Book</Button>
                         </Card.Body>
                     </Card>
                     <Card>
@@ -93,7 +85,7 @@ class ListAllOffer extends React.Component {
                             Some quick example text to build on the card title and make up the bulk of
                             the card's content.
                             </Card.Text>
-                            <Button variant="outline-secondary">Book</Button>
+                            <Button variant="outline-info" href="/Appointment/Create">Book</Button>
                         </Card.Body>
                     </Card>
                 </CardColumns>

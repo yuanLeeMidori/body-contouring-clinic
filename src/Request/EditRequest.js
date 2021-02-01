@@ -15,15 +15,7 @@ class EditRequest extends React.Component {
     }
     
     render() {
-        const button = {
-            'font-size': 'large',
-            'font-weight': 'bold',
-            color: 'black',
-            margin: '40px',
-            'text-align':'center',
-            background: 'none',
-        };
-
+        
         return (
             <div className="row">
                 <div className="col-md-1"></div>
@@ -87,16 +79,17 @@ class EditRequest extends React.Component {
                                 <Form.File/>
                             </Form.Group>
                             <br/><br/>
-                            <Form.Group as={Row}>
-                                <Col sm={{ span: 10, offset: 2 }}>
-                                    <a href="/Request/" style={button}>CANCEL</a>
-                                    <a href="/Request/" style={button}>BACK TO LIST</a>
-                                    <Button type="submit" variant="outline-*" style={button}>SAVE</Button>
-                                </Col>
-                            </Form.Group>
+                            <Container>
+                                <Row >
+                                    <Col xs={6}></Col>
+                                    <Col xs={1}><Button variant="outline-secondary" href="/Request/">CANCEL</Button></Col>
+                                    <Col xs={1}><Button type="submit" variant="outline-info">thi</Button></Col>
+                                </Row>
+                            </Container>
                         </Form>
+                        <br/><br/>
                     </Container>
-                    <br/>
+                    <br/><br/>
                 </div>
             </div>
         );

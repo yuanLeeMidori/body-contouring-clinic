@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from '../../SideBar/SideBar';
 import ViewAllFAQ from '../FAQ/ViewAllFAQ';
 import PopUp from '../../PopUp';
-import { Container } from 'react-bootstrap';
+import { Container, Button, Row, Col } from 'react-bootstrap';
 
 class ViewAllFAQbyAdmin extends React.Component {
 
@@ -36,14 +36,6 @@ class ViewAllFAQbyAdmin extends React.Component {
     }
 
     render() {
-      const button = {
-        'font-size': 'large',
-        'font-weight': 'bold',
-        color: 'black',
-        'margin-right': '40px',
-        'text-align': 'right',
-    };
-
         return (
             <div className="row">
                 <div className="col-md-1"></div> 
@@ -51,10 +43,13 @@ class ViewAllFAQbyAdmin extends React.Component {
                 <div className="col-md-8" style={{'margin-left':'80px'}}>
                     <h2 className="PageTitle">FAQ</h2><br/>
                     <ViewAllFAQ />
-                    <Container style={button}>
-                          	<a href="/Request/Admin/FAQ/Create" style={button}>CREATE</a>  
-                            <a style={button} onClick={this.showModal}>DELETE</a>  
-                            <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.deleteReq} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
+                    <Container>
+                      <Row >
+                        <Col xs={8}></Col>
+                        <Col xs={1}><Button variant="outline-info" href="/Request/Admin/FAQ/Create">CREATE</Button></Col>
+                        <Col xs={1}><Button variant="outline-secondary" onClick={this.showFAQ}>DELETE</Button></Col>
+                        <PopUp show={this.state.show} handleClose={this.hideFAQ} handleDelete={this.deleteFAQ} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
+                      </Row>
                     </Container>
                 </div>
                 <br/><br/>

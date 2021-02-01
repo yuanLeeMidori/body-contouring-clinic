@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Row, Col, Container, Button } from 'react-bootstrap';
 import { Scrollbars } from 'rc-scrollbars';
 
 class TermsAndConditions  extends Component {

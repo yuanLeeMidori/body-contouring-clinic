@@ -26,8 +26,10 @@ class CheckConfirmEmail extends Component {
               <a class="login" href="./SignupSuccess">Email confirmed!   ❯</a>
               </button>  
 
-              <br></br>
-              <br></br>
+              <br/><br/>
+              <br/><br/>
+              <br/><br/>
+
           </div>
         );
     }

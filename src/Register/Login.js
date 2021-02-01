@@ -100,9 +100,9 @@ constructor(props) {
                          / <a href="./Forgot_Id_Pw">password</a>?
                          </p>
                 </div>
-
+                <br/><br/> <br/><br/>
                     </div>
-                    <br/>
+                    <br/><br/>
         </div>
         );
     }

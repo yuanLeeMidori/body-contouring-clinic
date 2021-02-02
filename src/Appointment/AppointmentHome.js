@@ -22,7 +22,7 @@ class AppointmentHome extends React.Component {
         };
         return (
             <div className="App-basic">                
-                <h2 style={{margin: '40px'}}>Hello, user.fullName</h2>
+                <h2>Hello, user.fullName</h2><br/>
                 <Card className="p-3">
                     <blockquote className="blockquote mb-0 card-body" style={calendar}>
                     <p>

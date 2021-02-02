@@ -46,11 +46,13 @@ class ViewAllFAQbyAdmin extends React.Component {
                     <Container>
                       <Row >
                         <Col xs={8}></Col>
-                        <Col xs={1}><Button variant="outline-info" href="/Request/Admin/FAQ/Create">CREATE</Button></Col>
-                        <Col xs={1}><Button variant="outline-secondary" onClick={this.showFAQ}>DELETE</Button></Col>
-                        <PopUp show={this.state.show} handleClose={this.hideFAQ} handleDelete={this.deleteFAQ} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
+                        <Col xs={1}><Button variant="outline-info" href="/Request/Admin/FAQ/Create">Create</Button></Col>
+                        <Col xs={1}><Button variant="outline-secondary" onClick={this.showFAQ}>Delete</Button></Col>
+                        <PopUp show={this.state.show} handleClose={this.hideFAQ} handleDelete={this.deleteFAQ} text={this.state.children} btn1='Cancel' btn2='Delete'/>
                       </Row>
+                      <br/><br/>
                     </Container>
+                    <br/><br/>
                 </div>
                 <br/><br/>
             </div>

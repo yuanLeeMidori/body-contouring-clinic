@@ -6,6 +6,8 @@ import 'tui-calendar/dist/tui-calendar.css';
 import 'tui-date-picker/dist/tui-date-picker.css';
 import 'tui-time-picker/dist/tui-time-picker.css';
 
+import { Button } from 'react-bootstrap';
+
 class AppointmentCalendar extends React.Component {
     constructor(props) {
         super(props);
@@ -14,11 +16,18 @@ class AppointmentCalendar extends React.Component {
   
     // ---------- Instance method ---------- //
 
-    // 다음 주로 이동하는 버튼
+    // Button to move next month
     handleClickNextButton = () => {
         const calendarInstance = this.calendarRef.current.getInstance();
   
         calendarInstance.next();
+    };
+
+    // Button to move next month
+    handleClickPrevButton = () => {
+      const calendarInstance = this.calendarRef.current.getInstance();
+
+      calendarInstance.prev();
     };
 
     // 한 주 스케줄 보기    ( defaultView = month 로 수정해놓았습니다 )
@@ -47,10 +56,15 @@ class AppointmentCalendar extends React.Component {
 
     render() {
         const selectedView = 'month';     // default view
-          
+        const today = new Date(); 
+
         return (
           <>
-            <button onClick={this.weekChangeButton}>Week</button>
+
+            {/* <button onClick={this.weekChangeButton}>Week</button> */}
+            <Button variant="outline-*"onClick={this.handleClickPrevButton}> &laquo; </Button>
+            <span>This month </span>
+            <Button variant="outline-*"onClick={this.handleClickNextButton}> &raquo; </Button>
             <Calendar
                 ref={this.calendarRef}
                 onClickDayname={this.handleClickDayname}
@@ -63,7 +77,40 @@ class AppointmentCalendar extends React.Component {
                 disableClick={false}
                 isReadOnly={false}
                 schedules={[
-
+                  {
+                    id: '1',
+                    calendarId: '0',
+                    title: 'TOAST UI Calendar Study',
+                    category: 'time',
+                    dueDateClass: '',
+                    start: today.toISOString(),
+                    end: today.toISOString(),
+                    // end: getDate('hours', today, 3, '+').toISOString()
+                  },
+                  {
+                    id: '2',
+                    calendarId: '0',
+                    title: 'Practice',
+                    category: 'milestone',
+                    dueDateClass: '',
+                    start: today.toISOString(),
+                    end: today.toISOString(),
+                    // start: getDate('date', today, 1, '+').toISOString(),
+                    // end: getDate('date', today, 1, '+').toISOString(),
+                    isReadOnly: true
+                  },
+                  {
+                    id: '3',
+                    calendarId: '0',
+                    title: 'FE Workshop',
+                    category: 'allday',
+                    dueDateClass: '',
+                    start: today.toISOString(),
+                    end: today.toISOString(),
+                    // start: getDate('date', today, 2, '-').toISOString(),
+                    // end: getDate('date', today, 1, '-').toISOString(),
+                    isReadOnly: true
+                  },
                 ]}
                 scheduleView
                 taskView
@@ -86,25 +133,20 @@ class AppointmentCalendar extends React.Component {
                 theme='' // 어두운 테마 사용가능
                 timezones={[
                   {
-                    timezoneOffset: 540,
-                    displayLabel: 'GMT+09:00',
-                    tooltip: 'Seoul'
+                    timezoneName: 'America/New_York',
+                    displayLabel: 'GMT-05:00',
+                    tooltip: 'New York',
                   }
                 ]}
                 useDetailPopup
                 useCreationPopup
                 view={selectedView} // You can also set the `defaultView` option.
-                week={{
-                    daynames: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-                    showTimezoneCollapseButton: true,
-                    timezonesCollapsed: true
-                }}
                 month={{
                   daynames: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
                   //narrowWeekend: true // 토, 일은 사이즈 작게
                 }}
             />
-            <button onClick={this.handleClickNextButton}>Go next!</button>
+
           </>
         );
     }

@@ -48,8 +48,8 @@ class EditOffer extends React.Component {
                             <Container>
                                 <Row >
                                 <Col xs={6}></Col>
-                                <Col xs={1}><Button variant="outline-secondary" href="/VIP/Admin/Manage">CANCEL</Button></Col>
-                                <Col xs={1}><Button type="submit" variant="outline-info" >EDIT</Button></Col>
+                                <Col xs={1}><Button variant="outline-secondary" href="/VIP/Admin/Manage">Cancel</Button></Col>
+                                <Col xs={1}><Button type="submit" variant="outline-info" >Save</Button></Col>
                                 </Row>
                                 <br/>
                             </Container>

@@ -46,6 +46,7 @@ import TermsAndConditions from './Register/TermsAndConditions';
 import SignupSuccess from './Register/SignupSuccess';
 import CheckConfirmEmail from './Register/CheckConfirmEmail';
 import Forgot_Id_Pw from './Register/Forgot_Id_Pw';
+import servicePic from './resources/SerivcePic.png';
 import ViewStaffSchedule from './StaffSchedule/ViewStaffSchedule';
 import EditStaffSchedule from './StaffSchedule/EditStaffSchedule';
 
@@ -60,11 +61,8 @@ class RouterConfig extends React.Component {
             <Switch>
               <Route exact path='/' render={() =>
                   <header className="App-basic">
-                      <p>
-                        Body Contouring Clinic <br/>
-                        React : true <br/>
-                      </p>
-                </header>} />
+                            <img src={servicePic} alt="service" />
+                  </header>} />
               {/* Appointment URL */}
               <Route exact path='/Appointment' render={() => <AppointmentHome />} />
               <Route exact path='/Appointment/Appointments' render={() => <Appointments />} />

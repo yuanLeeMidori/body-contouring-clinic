@@ -61,6 +61,7 @@ class EditFAQ extends React.Component {
                                 </Row>
                             </Container>
                         </Form>
+                        <br/><br/>
                     </Container>
                     <br/>
                 </div>

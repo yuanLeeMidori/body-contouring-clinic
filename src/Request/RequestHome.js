@@ -73,7 +73,9 @@ class RequestHome extends React.Component {
                                 <Col xs={1}><Button variant="outline-danger" onClick={this.showModal}>DELETE</Button></Col>
                                 <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.deleteReq} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
                             </Row>
+                            <br/><br/>
                         </Container>
+                        <br/><br/>
                     </div>
                 </div>
             </div>

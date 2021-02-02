@@ -39,14 +39,6 @@ class RequestHomebyAdmin extends React.Component {
     }
 
     render() {
-        const button = {
-            'font-size': 'large',
-            'font-weight': 'bold',
-            color: 'black',
-            'margin-right': '0px',
-            'margin-left' :'30px',
-            'text-align': 'right',
-        };
 
         return (
             <div className="row">
@@ -75,13 +67,15 @@ class RequestHomebyAdmin extends React.Component {
                         <ListAllRequestbyAdmin />
                         <Container>
                             <Row >
-                                <Col xs={10}></Col>
+                                <Col xs={9}></Col>
                                 <Col xs={1}><Button variant="outline-info" href="/Request/Admin/Answer">ANSWER</Button></Col>
                                 <Col xs={1}><Button variant="outline-secondary" onClick={this.showModal}>DELETE</Button></Col>
                                 <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.deleteReq} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
                             </Row>
                         </Container>
+                        <br/><br/>
                     </div>
+                    <br/><br/>
                 </div>
             </div>
         );

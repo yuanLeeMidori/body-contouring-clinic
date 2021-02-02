@@ -50,7 +50,9 @@ class ViewAllFAQbyAdmin extends React.Component {
                         <Col xs={1}><Button variant="outline-secondary" onClick={this.showFAQ}>DELETE</Button></Col>
                         <PopUp show={this.state.show} handleClose={this.hideFAQ} handleDelete={this.deleteFAQ} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
                       </Row>
+                      <br/><br/>
                     </Container>
+                    <br/><br/>
                 </div>
                 <br/><br/>
             </div>

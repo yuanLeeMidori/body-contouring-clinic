@@ -68,9 +68,9 @@ class RequestHomebyAdmin extends React.Component {
                         <Container>
                             <Row >
                                 <Col xs={9}></Col>
-                                <Col xs={1}><Button variant="outline-info" href="/Request/Admin/Answer">ANSWER</Button></Col>
-                                <Col xs={1}><Button variant="outline-secondary" onClick={this.showModal}>DELETE</Button></Col>
-                                <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.deleteReq} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
+                                <Col xs={1}><Button variant="outline-info" href="/Request/Admin/Answer">Answer</Button></Col>
+                                <Col xs={1}><Button variant="outline-secondary" onClick={this.showModal}>Delete</Button></Col>
+                                <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.deleteReq} text={this.state.children} btn1='Cancel' btn2='Delete'/>
                             </Row>
                         </Container>
                         <br/><br/>

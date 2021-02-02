@@ -62,9 +62,9 @@ class ManageOffer extends React.Component {
                                 <td>01</td>
                                 <td>Offer 1</td>
                                 <td>Some quick example text to build on the ca...</td>
-                                <td><Button variant="outline-secondary" href='/VIP/Admin/Manage/Edit'>EDIT</Button></td>
-                                <td><Button variant="outline-danger" onClick={this.showModal}>DELETE</Button></td>
-                                <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.deleteOffer} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
+                                <td><Button variant="outline-secondary" href='/VIP/Admin/Manage/Edit'>Edit</Button></td>
+                                <td><Button variant="outline-danger" onClick={this.showModal}>Delete</Button></td>
+                                <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.deleteOffer} text={this.state.children} btn1='Cancel' btn2='Delete'/>
                             </tr>
                             <tr>
                                 <td><input type="checkbox"/></td>
@@ -73,7 +73,7 @@ class ManageOffer extends React.Component {
                                 <td>Some quick example text to build on the ca...</td>
                                 <td><Button variant="outline-secondary" href='/VIP/Admin/Manage/Edit'>EDIT</Button></td>
                                 <td><Button variant="outline-danger" onClick={this.showModal}>DELETE</Button></td>
-                                <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.deleteOffer} text={this.state.children} btn1='CANCEL' btn2='DELETE'/>
+                                <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.deleteOffer} text={this.state.children} btn1='Cancel' btn2='Delete'/>
                             </tr>
                         </table>
                         <br/>
@@ -89,7 +89,7 @@ class ManageOffer extends React.Component {
                         </span>
                         <Row >
                             <Col xs={10}></Col>
-                            <Col xs={1}><Button variant="outline-info" href="/VIP/Admin/Manage/Create">CREATE</Button></Col>
+                            <Col xs={1}><Button variant="outline-info" href="/VIP/Admin/Manage/Create">Create</Button></Col>
                         </Row>
                         <br/><br/><br/><br/>
                     </div>

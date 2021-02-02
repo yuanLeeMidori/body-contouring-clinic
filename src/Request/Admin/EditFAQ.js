@@ -56,8 +56,8 @@ class EditFAQ extends React.Component {
                             <Container>
                                 <Row >
                                     <Col xs={6}></Col>
-                                    <Col xs={1}><Button variant="outline-secondary" href="/Request/Admin/FAQ/Create">CANCEL</Button></Col>
-                                    <Col xs={1}><Button type="submit" variant="outline-info" >SAVE</Button></Col>
+                                    <Col xs={1}><Button variant="outline-secondary" href="/Request/Admin/FAQ/Create">Cancel</Button></Col>
+                                    <Col xs={1}><Button type="submit" variant="outline-info" >Save</Button></Col>
                                 </Row>
                             </Container>
                         </Form>

@@ -40,8 +40,8 @@ class AnswerRequest extends React.Component {
                                 <Container>
                                     <Row >
                                         <Col xs={10}></Col>
-                                        <Col xs={1}><Button variant="outline-secondary" href="/Request/Admin/">CANCEL</Button></Col>
-                                        <Col xs={1}><Button type="submit" variant="outline-info" >SAVE</Button></Col>
+                                        <Col xs={1}><Button variant="outline-secondary" href="/Request/Admin/">Cancel</Button></Col>
+                                        <Col xs={1}><Button type="submit" variant="outline-info" >Save</Button></Col>
                                     </Row>
                                 </Container>
                             </Form>

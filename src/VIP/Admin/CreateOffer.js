@@ -46,8 +46,8 @@ class CreateOffer extends React.Component {
                             <br/><br/>
                             <Form.Group as={Row}>
                                 <Row >
-                                    <Col><Button variant="outline-secondary" href='/VIP/Admin/Manage'>CANCEL</Button></Col>
-                                    <Col md="auto"><Button variant="outline-info" href="/VIP/Admin/Manage/Create">SAVE</Button></Col>
+                                    <Col><Button variant="outline-secondary" href='/VIP/Admin/Manage'>Cancel</Button></Col>
+                                    <Col md="auto"><Button variant="outline-info" href="/VIP/Admin/Manage/Create">Save</Button></Col>
                                 </Row>
                             </Form.Group>
                         </Form>

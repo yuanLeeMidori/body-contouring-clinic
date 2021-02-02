@@ -10,6 +10,7 @@ class CustomerProfileEdit extends React.Component {
             {url:'/Customer/', title: 'Home'},
             {url:'/Customer/Profile', title: 'Profile'},
             {url:'/Customer/Edit', title: 'Edit Profile'},
+            {url:'/Customer/Balance', title: 'Balance'},
         ]
     }
     constructor(prop){

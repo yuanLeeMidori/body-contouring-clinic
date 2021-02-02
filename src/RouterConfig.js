@@ -16,6 +16,8 @@ import CreateRequest from './Request/CreateRequest';
 import CustomerHome from './Customer/CustomerHome'
 import CustomerProfile from './Customer/CustomerProfile';
 import CustomerEdit from './Customer/CustomerProfileEdit';
+import CustomerBalance from './Customer/CustomerBalance';
+import BalanceDetail from './Customer/BalanceDetail';
 import ViewRequest from './Request/ViewRequest';
 import RequestHomeAdmin from './Request/Admin/RequestHomebyAdmin';
 import AnswerRequest from './Request/Admin/AnswerRequest';
@@ -100,6 +102,8 @@ class RouterConfig extends React.Component {
               <Route exact path='/Customer' render={() => <CustomerHome />} />
               <Route exact path='/Customer/Profile' render={() => <CustomerProfile />} />
               <Route exact path='/Customer/Edit' render={() => <CustomerEdit />} />
+              <Route exact path='/Customer/Balance' render={() => <CustomerBalance />} />
+              <Route exact path='/Customer/BalanceDetail' render={() => <BalanceDetail />} />
               
               
               {/* Register URL */}

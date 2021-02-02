@@ -11,6 +11,7 @@ class CustomerHome extends React.Component {
             {url:'/Customer/', title: 'Home'},
             {url:'/Customer/Profile', title: 'Profile'},
             {url:'/Customer/Edit', title: 'Edit Profile'},
+            {url:'/Customer/Balance', title: 'Balance'},
         ]
     }
     constructor(prop){
@@ -49,7 +50,7 @@ class CustomerHome extends React.Component {
                             <td>2021/1/1</td>
                         </tr>
                     </tbody>
-                </Table><a href="/Customer/">Go to appointment</a><hr/>
+                </Table><a href="/Appointment/">Go to appointment</a><hr/>
 
                 <h4>History of Request</h4>
                 <Table striped bordered hover>
@@ -82,7 +83,7 @@ class CustomerHome extends React.Component {
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Balance</th>
+                            <th>Price</th>
                             <th>Name</th>
                             <th>Date</th>
                         </tr>
@@ -101,7 +102,7 @@ class CustomerHome extends React.Component {
                             <td>2021-1-1</td>
                         </tr>
                     </tbody>
-                </Table><a href="/Request/">Go to balance</a><hr/>
+                </Table><a href="/Customer/Balance">Go to balance</a><hr/>
                 <br/><br/>
                 <br/>
             </div>

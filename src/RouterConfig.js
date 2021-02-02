@@ -18,6 +18,10 @@ import CustomerProfile from './Customer/CustomerProfile';
 import CustomerEdit from './Customer/CustomerProfileEdit';
 import CustomerBalance from './Customer/CustomerBalance';
 import BalanceDetail from './Customer/BalanceDetail';
+import CustomerHomeAdmin from './Customer/Admin/CustomerHomeAdmin';
+import CustomerProfileAdmin from './Customer/Admin/CustomerProfileAdmin';
+import CustomerAccountAdmin from './Customer/Admin/CustomerAccountAdmin';
+import CustomerAccountEditAdmin from './Customer/Admin/CustomerAccountEditAdmin';
 import ViewRequest from './Request/ViewRequest';
 import RequestHomeAdmin from './Request/Admin/RequestHomebyAdmin';
 import AnswerRequest from './Request/Admin/AnswerRequest';
@@ -111,6 +115,11 @@ class RouterConfig extends React.Component {
               <Route exact path='/Customer/Balance' render={() => <CustomerBalance />} />
               <Route exact path='/Customer/BalanceDetail' render={() => <BalanceDetail />} />
               
+              {/* Customer Admin URL*/}
+              <Route exact path='/Customer/Admin' render={() => <CustomerHomeAdmin />} />
+              <Route exact path='/Customer/Admin/profile' render={() => <CustomerProfileAdmin />} />
+              <Route exact path='/Customer/Admin/Account' render={() => <CustomerAccountAdmin />} />
+              <Route exact path='/Customer/Admin/Account/Edit' render={() => <CustomerAccountEditAdmin />} />
               
               {/* Register URL */}
               <Route exact path='/Register/Login' render={() => <Login />} />

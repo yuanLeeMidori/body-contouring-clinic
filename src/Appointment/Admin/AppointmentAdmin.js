@@ -18,6 +18,7 @@ class AppointmentAdmin extends React.Component {
             ],
             show: false,
             children: 'appointment',
+            deletedLink: '/Appointment/Admin/Deleted',
         }
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -101,7 +102,7 @@ class AppointmentAdmin extends React.Component {
                                 <Button variant="outline-info" href="/Appointment/Admin/Message">Leave Message</Button>{' '}
                                 <Button variant="outline-danger" onClick={this.showModal}>Delete</Button>{' '}
                                 <Button variant="outline-info" href="/Appointment/Admin/Edit">Edit</Button></Col>
-                                <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.hideModal} text={this.state.children} btn1='Cancel' btn2='Delete' />
+                                <PopUp show={this.state.show} link={this.state.deletedLink} handleClose={this.hideModal} handleDelete={this.hideModal} text={this.state.children} btn1='Cancel' btn2='Delete' />
                         </Row>
                     </Container>
                 </div>

@@ -42,6 +42,8 @@ import TermsAndConditions from './Register/TermsAndConditions';
 import SignupSuccess from './Register/SignupSuccess';
 import CheckConfirmEmail from './Register/CheckConfirmEmail';
 import Forgot_Id_Pw from './Register/Forgot_Id_Pw';
+import ViewStaffSchedule from './StaffSchedule/ViewStaffSchedule';
+import EditStaffSchedule from './StaffSchedule/EditStaffSchedule';
 
 
 
@@ -72,6 +74,10 @@ class RouterConfig extends React.Component {
               <Route exact path='/Appointment/Admin/Edit' render={() => <EditAppointmentAdmin />} />
               <Route exact path='/Appointment/Admin/Create' render={() => <CreateAppointmentAdmin />} />
               <Route exact path='/Appointment/Admin/Message' render={() => <LeaveMessageToAppointment />} />
+
+              {/* Staff Schedule URL */}
+              <Route exact path='/Staff/Schedule' render={() => <ViewStaffSchedule />} />
+              <Route exact path='/Staff/Schedule/Edit' render={() => <EditStaffSchedule />} />
 
               {/* Service URL */}
               <Route exact path='/Service' render={() => <ServiceHome />} />

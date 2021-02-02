@@ -102,7 +102,7 @@ class EditAppointment extends React.Component {
                                 <Col></Col>
                                 <Col md="auto"><Button variant="outline-secondary" href="/Appointment/Appointment">Cancel</Button></Col>
                                 <Button variant="outline-info" onClick={this.showSave}>Save</Button>
-                                <SavedPopUp show={this.state.saveModal} handelClose={this.hideSave} text={this.state.title} href={this.state.savedBackLink} button={this.state.button} />
+                                <SavedPopUp show={this.state.saveModal} text={this.state.title} href={this.state.savedBackLink} button={this.state.button} />
                             </Row>
                     </Container>
                     </div>

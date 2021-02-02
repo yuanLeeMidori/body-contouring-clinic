@@ -21,11 +21,16 @@ class CreateAppointmentAdmin extends React.Component {
       saveModal: false,
       savedBackLink: "/Appointment/Admin/Appointment",
       button: "Back To Appointment",
-      title: "Appointment Saved!"
+      title: "Appointment Saved!",
+      serviceToggle: false,
     };
     this.showSave = this.showSave.bind(this);
     this.hideSave = this.hideSave.bind(this);
   }
+
+  multipleService = () => {
+    this.setState({ serviceToggle: !this.state.serviceToggle });
+  };
 
   showSave = () => {
     this.setState({ saveModal: true });
@@ -60,11 +65,11 @@ class CreateAppointmentAdmin extends React.Component {
                       <Form.Label column sm="4">
                         Customer Name:
                       </Form.Label>
-                      <Col sm="6">
+                      <Col sm="8">
                         <Form.Control placeholder="Natalie Fig" />
                       </Col>
                     </Form.Group>
-                    <Form.Group as={Row} controlId="exampleForm.ControlSelect1">
+                    <Form.Group as={Row}>
                       <Form.Label column sm="4">
                         Services:
                       </Form.Label>
@@ -75,17 +80,36 @@ class CreateAppointmentAdmin extends React.Component {
                           <option>Skin rejuventation</option>
                           <option>laser hair removal</option>
                         </Form.Control>
-                        <Button style={{ marginLeft: "50px" }}>
+                        <Button
+                          onClick={this.multipleService}
+                          style={{ marginLeft: "50px" }}
+                        >
                           Add Services
                         </Button>
                       </Col>
                     </Form.Group>
-
+                    {this.state.serviceToggle && (
+                      <Form.Group as={Row}>
+                        <Form.Label column sm="4"></Form.Label>
+                        <Col
+                          sm="8"
+                          style={{ marginLeft: "0px" }}
+                          className="row"
+                        >
+                          <Form.Control inline as="select" className="col-md-7">
+                            <option>Active air oxygen therapy</option>
+                            <option>Green peel</option>
+                            <option>Skin rejuventation</option>
+                            <option>laser hair removal</option>
+                          </Form.Control>
+                        </Col>
+                      </Form.Group>
+                    )}
                     <Form.Group as={Row} controlId="exampleForm.ControlSelect1">
                       <Form.Label column sm="4">
                         Technician:
                       </Form.Label>
-                      <Col sm="6">
+                      <Col sm="8">
                         <Form.Control as="select">
                           <option>Piper Chapman</option>
                           <option>Alex Vause</option>

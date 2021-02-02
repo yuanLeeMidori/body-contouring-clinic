@@ -20,10 +20,15 @@ class EditAppointment extends React.Component {
             title: 'Appointment saved!',
             savedBackLink: "/Appointment/Appointment",
             button: "Back To Appointment",
+            serviceToggle: false,
         };
         this.showSave = this.showSave.bind(this);
         this.hideSave = this.hideSave.bind(this);
     }
+
+    multipleService = () => {
+        this.setState({ serviceToggle: !this.state.serviceToggle });
+    };
 
     showSave = () => {
         this.setState({ saveModal: true });
@@ -50,21 +55,36 @@ class EditAppointment extends React.Component {
                             <Col></Col>
                             <Col xs={8}>
                             <Form>
-                                <Form.Group as={Row} controlId="exampleForm.ControlSelect1">
+                                <Form.Group as={Row}>
                                     <Form.Label column sm="4">
-                                    Services:
+                                    Service(s):
                                     </Form.Label>
-                                    <Col sm="8">
-                                            <Form.Control as="select">
-                                                <option>Active air oxygen therapy</option>
-                                                <option>Green peel</option>
-                                                <option>Skin rejuventation</option>
-                                                <option>laser hair removal</option>
-                                            </Form.Control>                                        
+                                    <Col sm="8" style={{marginLeft: '0px'}} className="row">
+                                        <Form.Control inline as="select" className="col-md-7">
+                                            <option>Active air oxygen therapy</option>
+                                            <option>Green peel</option>
+                                            <option>Skin rejuventation</option>
+                                            <option>laser hair removal</option>
+                                        </Form.Control>
+                                        <Button onClick={this.multipleService} style={{marginLeft: '50px'}}>Add Services</Button>
+                                            
                                     </Col>
                                 </Form.Group>
-
-                                <Form.Group as={Row} controlId="exampleForm.ControlSelect1">
+                                {this.state.serviceToggle && (                                                                                    
+                                    <Form.Group as={Row}>
+                                    <Form.Label column sm="4"></Form.Label>
+                                        <Col sm="8" style={{marginLeft: '0px'}} className="row">
+                                                <Form.Control inline as="select" className="col-md-7">
+                                                    <option>Active air oxygen therapy</option>
+                                                    <option>Green peel</option>
+                                                    <option>Skin rejuventation</option>
+                                                    <option>laser hair removal</option>
+                                                </Form.Control>
+                                                
+                                        </Col>
+                                    </Form.Group>
+                                )}
+                                <Form.Group as={Row}>
                                     <Form.Label column sm="4">
                                     Technician:
                                     </Form.Label>
@@ -80,10 +100,26 @@ class EditAppointment extends React.Component {
                                     
                                 <Form.Group as={Row}>
                                     <Form.Label column sm="4">
-                                        Date & Time:
+                                        Date
                                     </Form.Label>
                                     <Col sm="8">
-                                        <Form.Control placeholder="03-Aug-2020  14:30" />
+                                        <Form.Control type="date" />
+                                    </Col>
+                                </Form.Group>
+                                <Form.Group as={Row}>
+                                    <Form.Label column sm="4">
+                                        Time
+                                    </Form.Label>
+                                    <Col sm="8">
+                                        <Form.Control type="time" />
+                                    </Col>
+                                </Form.Group>        
+                                <Form.Group as={Row}>
+                                    <Form.Label column sm="4">
+                                        Contact Number:
+                                    </Form.Label>
+                                    <Col sm="8">
+                                        <Form.Control placeholder="647-596-9521" />
                                     </Col>
                                 </Form.Group>
                                 <Form.Group as={Row} controlId="exampleForm.ControlTextarea1">

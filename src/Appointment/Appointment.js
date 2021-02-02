@@ -22,6 +22,7 @@ class Appointment extends React.Component {
             msgModal: false,
             id: '04',
             message: "Dear Customer, Please don't wear silver earrings in this program.",
+            deletedLink: '/Appointment/Deleted',
         };
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -109,7 +110,7 @@ class Appointment extends React.Component {
                                 <ViewAppointmentMessage show={this.state.msgModal} text={this.state.message} appointmentId={this.state.id} />
                                 <Button variant="outline-danger" onClick={this.showModal}>Delete</Button>{' '}
                                 <Button variant="outline-info" href="/Appointment/Edit">Edit</Button></Col>
-                                <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.hideModal} text={this.state.children} btn1='Cancel' btn2='Delete' />        
+                                <PopUp show={this.state.show} handleClose={this.hideModal} handleDelete={this.hideModal} text={this.state.children} link={this.state.deletedLink} btn1='Cancel' btn2='Delete' />        
                         </Row>
                     </Container>
                 </div>

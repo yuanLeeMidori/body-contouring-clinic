@@ -50,6 +50,8 @@ import openHours from './resources/openHours.png';
 import servicePic from './resources/SerivcePic.png';
 import ViewStaffSchedule from './StaffSchedule/ViewStaffSchedule';
 import EditStaffSchedule from './StaffSchedule/EditStaffSchedule';
+import AppointmentDeleted from './Appointment/AppointmentDeleted';
+import AppointmentDeletedAdmin from './Appointment/Admin/AppointmentDeletedAdmin';
 
 
 
@@ -71,13 +73,15 @@ class RouterConfig extends React.Component {
               <Route exact path='/Appointment/Create' render={() => <CreateAppointment />} />
               <Route exact path='/Appointment/Appointment' render={() => <Appointment />} />
               <Route exact path='/Appointment/Edit' render={() => <EditAppointment />} />
-              
+              <Route exact path='/Appointment/Deleted' render={() => <AppointmentDeleted />} />
+
               {/* Appointment Admin URL */}
               <Route exact path='/Appointment/Admin/Appointments' render={() => <AppointmentsAdmin />} />
               <Route exact path='/Appointment/Admin/Appointment' render={() => <AppointmentAdmin />} />
               <Route exact path='/Appointment/Admin/Edit' render={() => <EditAppointmentAdmin />} />
               <Route exact path='/Appointment/Admin/Create' render={() => <CreateAppointmentAdmin />} />
               <Route exact path='/Appointment/Admin/Message' render={() => <LeaveMessageToAppointment />} />
+              <Route exact path='/Appointment/Admin/Deleted' render={() => <AppointmentDeletedAdmin />} />
 
               {/* Staff Schedule URL */}
               <Route exact path='/Staff/Schedule' render={() => <ViewStaffSchedule />} />

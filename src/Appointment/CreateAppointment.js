@@ -4,7 +4,7 @@ import { Form, Row, Col, Container, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SideBar from "../SideBar/SideBar";
 import styles from "../app.module.css";
-import SavedPopUp from '../SavedPopUp';
+import SavedPopUp from "../SavedPopUp";
 
 class CreateAppointment extends React.Component {
   constructor(props) {
@@ -18,19 +18,23 @@ class CreateAppointment extends React.Component {
       saveModal: false,
       savedBackLink: "/Appointment/Appointment",
       button: "Back To Appointment",
-      title: "Appointment Saved!"
+      title: "Appointment Saved!",
+      serviceToggle: false,
+    };
+    this.showSave = this.showSave.bind(this);
+    this.hideSave = this.hideSave.bind(this);
+  }
+
+  multipleService = () => {
+    this.setState({ serviceToggle: !this.state.serviceToggle});
+  }
+  showSave = () => {
+    this.setState({ saveModal: true });
   };
-  this.showSave = this.showSave.bind(this);
-  this.hideSave = this.hideSave.bind(this);
-}
 
-showSave = () => {
-  this.setState({ saveModal: true });
-};
-
-hideSave = () => {
-  this.setState({ saveModal: false });
-};
+  hideSave = () => {
+    this.setState({ saveModal: false });
+  };
   componentDidMount() {
     document.title = "Create New Appointment | Body Contouring Clinic";
   }
@@ -53,25 +57,47 @@ hideSave = () => {
                 <Col></Col>
                 <Col xs={8}>
                   <Form>
-                    <Form.Group as={Row} controlId="exampleForm.ControlSelect1">
+                    <Form.Group as={Row}>
                       <Form.Label column sm="4">
-                        Services:
+                        Service(s):
                       </Form.Label>
-                      <Col sm="6">
-                        <Form.Control as="select">
+                      <Col sm="8" style={{ marginLeft: "0px" }} className="row">
+                        <Form.Control inline as="select" className="col-md-7">
                           <option>Active air oxygen therapy</option>
                           <option>Green peel</option>
                           <option>Skin rejuventation</option>
                           <option>laser hair removal</option>
                         </Form.Control>
+                        <Button
+                          onClick={this.multipleService}
+                          style={{ marginLeft: "50px" }}
+                        >
+                          Add Services
+                        </Button>
                       </Col>
                     </Form.Group>
-
-                    <Form.Group as={Row} controlId="exampleForm.ControlSelect1">
+                    {this.state.serviceToggle && (
+                      <Form.Group as={Row}>
+                        <Form.Label column sm="4"></Form.Label>
+                        <Col
+                          sm="8"
+                          style={{ marginLeft: "0px" }}
+                          className="row"
+                        >
+                          <Form.Control inline as="select" className="col-md-7">
+                            <option>Active air oxygen therapy</option>
+                            <option>Green peel</option>
+                            <option>Skin rejuventation</option>
+                            <option>laser hair removal</option>
+                          </Form.Control>
+                        </Col>
+                      </Form.Group>
+                    )}
+                    <Form.Group as={Row}>
                       <Form.Label column sm="4">
                         Technician:
                       </Form.Label>
-                      <Col sm="6">
+                      <Col sm="8">
                         <Form.Control as="select">
                           <option>Piper Chapman</option>
                           <option>Alex Vause</option>
@@ -83,18 +109,26 @@ hideSave = () => {
 
                     <Form.Group as={Row}>
                       <Form.Label column sm="4">
-                        Date:
+                        Date
                       </Form.Label>
-                      <Col sm="4">
+                      <Col sm="8">
                         <Form.Control type="date" />
                       </Col>
                     </Form.Group>
                     <Form.Group as={Row}>
                       <Form.Label column sm="4">
-                        Time:
+                        Time
                       </Form.Label>
-                      <Col sm="4">
+                      <Col sm="8">
                         <Form.Control type="time" />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group as={Row}>
+                      <Form.Label column sm="4">
+                        Contact Number:
+                      </Form.Label>
+                      <Col sm="8">
+                        <Form.Control />
                       </Col>
                     </Form.Group>
                     <Form.Group as={Row}>
@@ -111,9 +145,21 @@ hideSave = () => {
               </Row>
               <Row>
                 <Col></Col>
-                <Col md="auto"><Button variant="outline-secondary" href="/Appointment">Cancel</Button></Col>
-                <Button onClick={this.showSave} variant="outline-info">Save</Button>
-                <SavedPopUp show={this.state.saveModal} handelClose={this.hideSave} href={this.state.savedBackLink} button={this.state.button} text={this.state.title}/>
+                <Col md="auto">
+                  <Button variant="outline-secondary" href="/Appointment">
+                    Cancel
+                  </Button>
+                </Col>
+                <Button onClick={this.showSave} variant="outline-info">
+                  Save
+                </Button>
+                <SavedPopUp
+                  show={this.state.saveModal}
+                  handelClose={this.hideSave}
+                  href={this.state.savedBackLink}
+                  button={this.state.button}
+                  text={this.state.title}
+                />
               </Row>
             </Container>
           </div>

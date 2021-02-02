@@ -56,7 +56,7 @@ class EditAppointmentAdmin extends React.Component {
                             <Col></Col>
                             <Col xs={8}>
                             <Form>
-                                <Form.Group as={Row} controlId="exampleForm.ControlSelect1">
+                                <Form.Group as={Row}>
                                     <Form.Label column sm="4">
                                     Service(s):
                                     </Form.Label>
@@ -72,7 +72,7 @@ class EditAppointmentAdmin extends React.Component {
                                     </Col>
                                 </Form.Group>
                                 {this.state.serviceToggle && (                                                                                    
-                                    <Form.Group as={Row} controlId="exampleForm.ControlSelect1">
+                                    <Form.Group as={Row}>
                                     <Form.Label column sm="4"></Form.Label>
                                         <Col sm="8" style={{marginLeft: '0px'}} className="row">
                                                 <Form.Control inline as="select" className="col-md-7">

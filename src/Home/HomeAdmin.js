@@ -54,7 +54,6 @@ class HomeAdmin extends React.Component{
         <img src={underBar} alt="bar" /><br/><br/>
         <br/>
         <RouterConfig />
-        <Footer />
       </div>
     );
   }

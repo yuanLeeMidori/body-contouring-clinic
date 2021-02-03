@@ -19,9 +19,6 @@ class App extends React.Component{
         backServer:false,
         count : 0
       };
-
-      this.increaseButton = this.increaseButton.bind(this)
-      this.decreaseButton = this.decreaseButton.bind(this)
   }
 
   componentDidMount(){
@@ -30,63 +27,13 @@ class App extends React.Component{
     .then(data=>this.setState({backServer:data.backServer}));
   }
 
-  increaseButton() {
-    this.setState((preState) => {
-        return {
-          count : preState.count + 1
-          };
-       });
-  }
-  decreaseButton() {
-    this.setState((preState) => {
-        return {
-          count : preState.count - 1
-          };
-       });
-  }
-
   render(){
-    if(this.state.count <= 0){
-      return(
-        <div className="App">
-          <Home />
-          <button onClick={this.decreaseButton}>before</button>
-          <button onClick={this.increaseButton}>next</button>
-          <br/><br/><br/><br/>
-          <Footer />
-        </div>
-      );
-    } else if(this.state.count == 1) {
-      return(
-        <div className="App">
-          <HomeAdmin />
-          <button onClick={this.decreaseButton}>before</button>
-          <button onClick={this.increaseButton}>next</button>
-          <br/><br/><br/><br/>
-          <Footer />
-        </div>
-      );
-    } else if(this.state.count == 2) {
-      return(
-        <div className="App">
-          <HomeCustomer />
-          <button onClick={this.decreaseButton}>before</button>
-          <button onClick={this.increaseButton}>next</button>
-          <br/><br/><br/><br/>
-          <Footer />
-        </div>
-      );
-    } else if(this.state.count >= 3) {
-      return(
-        <div className="App">
-          <HomeVIP />
-          <button onClick={this.decreaseButton}>before</button>
-          <button onClick={this.increaseButton}>next</button>
-          <br/><br/><br/><br/>
-          <Footer />
-        </div>
-      );
-    }
+    return(
+      <div className="App">
+        <Home />
+        <Footer />
+      </div>
+    );
     
     
   }

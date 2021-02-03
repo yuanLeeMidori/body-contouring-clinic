@@ -78,10 +78,11 @@ class CustomerProfileEdit extends React.Component {
                                 </Col>
                             </Form.Group>
                             <Form.Group as={Row}>
-                                <Col sm={{ span: 10, offset: 2 }}>
-                                    <a href="/Customer/" style={button}>CANCEL</a>
-                                    <a href="/Customer/" style={button}>Back to Home</a>
-                                    <Button type="submit" variant="outline-*" style={button}>Edit</Button>
+                                <Col xs={1}></Col>
+                                <Col>
+                                    <Button variant="outline-info" href="/Customer/">Cancel</Button>&nbsp;
+                                    <Button variant="outline-info" href="/Customer/">Back To Home</Button>&nbsp;
+                                    <Button type="submit" variant="outline-info">Edit</Button>
                                 </Col>
                             </Form.Group>
                         </Form>

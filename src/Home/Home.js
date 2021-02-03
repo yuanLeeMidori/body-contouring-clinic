@@ -67,7 +67,7 @@ class Home extends React.Component{
                     <a className="nav-link" href="/Customer">Profile</a>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link" href="/">Log out</a>
+                    <a className="nav-link" href="/Register/Login">Log out</a>
                     </li>
                 </ul>
               </nav>
@@ -92,7 +92,7 @@ class Home extends React.Component{
                 </ul>
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
-                    <a className="nav-link" href="/">Home</a>
+                    <a className="nav-link" href="/Register/Login">Home</a>
                     </li>
                     <li className="nav-item">
                     <a className="nav-link" href="/Service">Service and Prices</a>
@@ -110,7 +110,7 @@ class Home extends React.Component{
                     <a className="nav-link" href="/Customer/Admin">Profile</a>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link" href="/">Log out</a>
+                    <a className="nav-link" href="/Register/Login">Log out</a>
                     </li>
                 </ul>
               </nav>
@@ -150,7 +150,7 @@ class Home extends React.Component{
                     <a className="nav-link" href="/Customer">Profile</a>
                     </li>
                     <li className="nav-item">
-                    <a className="nav-link" href="/">Log out</a>
+                    <a className="nav-link" href="/Register/Login">Log out</a>
                     </li>
                 </ul>
               </nav>

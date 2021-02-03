@@ -5,6 +5,10 @@ import Footer from './Footer';
 import logo from './resources/brand-logo.png';
 import underBar from './resources/underBar.png'
 import RouterConfig from './RouterConfig';
+import Home from './Home/Home';
+import HomeCustomer from './Home/HomeCustomer';
+import HomeVIP from './Home/HomeVIP';
+import HomeAdmin from './Home/HomeAdmin';
 
 
 class App extends React.Component{
@@ -12,8 +16,12 @@ class App extends React.Component{
   constructor(props){
       super(props);
       this.state = {
-        backServer:false
+        backServer:false,
+        count : 0
       };
+
+      this.increaseButton = this.increaseButton.bind(this)
+      this.decreaseButton = this.decreaseButton.bind(this)
   }
 
   componentDidMount(){
@@ -22,50 +30,65 @@ class App extends React.Component{
     .then(data=>this.setState({backServer:data.backServer}));
   }
 
+  increaseButton() {
+    this.setState((preState) => {
+        return {
+          count : preState.count + 1
+          };
+       });
+  }
+  decreaseButton() {
+    this.setState((preState) => {
+        return {
+          count : preState.count - 1
+          };
+       });
+  }
+
   render(){
-    return(
-      <div className="App">
-        <nav className="nav-back navbar navbar-expand-lg navbar-light">
-          <ul className="navbar-nav mr-auto">
-            <li className="nav-item active">
-              <a className="nav-link">BodyContouringClinic@gmail.com</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link">(416) 966 - 0006</a>
-            </li>
-          </ul>
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <a className="nav-link" href="/">Home</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/Service">Service and Prices</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/VIP">VIP</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/Appointment">Appointment</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/Request">Request</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/Customer">Profile</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/Register/Login">LogIn</a>
-            </li>
-          </ul>
-        </nav>
-        <br />
-        <img src={logo} alt="logo"/><br/><br/>
-        <img src={underBar} alt="bar" /><br/><br/>
-        <br/>
-        <RouterConfig />
-        <Footer />
-      </div>
-    );
+    if(this.state.count <= 0){
+      return(
+        <div className="App">
+          <Home />
+          <button onClick={this.decreaseButton}>before</button>
+          <button onClick={this.increaseButton}>next</button>
+          <br/><br/><br/><br/>
+          <Footer />
+        </div>
+      );
+    } else if(this.state.count == 1) {
+      return(
+        <div className="App">
+          <HomeAdmin />
+          <button onClick={this.decreaseButton}>before</button>
+          <button onClick={this.increaseButton}>next</button>
+          <br/><br/><br/><br/>
+          <Footer />
+        </div>
+      );
+    } else if(this.state.count == 2) {
+      return(
+        <div className="App">
+          <HomeCustomer />
+          <button onClick={this.decreaseButton}>before</button>
+          <button onClick={this.increaseButton}>next</button>
+          <br/><br/><br/><br/>
+          <Footer />
+        </div>
+      );
+    } else if(this.state.count >= 3) {
+      return(
+        <div className="App">
+          <HomeVIP />
+          <button onClick={this.decreaseButton}>before</button>
+          <button onClick={this.increaseButton}>next</button>
+          <br/><br/><br/><br/>
+          <Footer />
+        </div>
+      );
+    }
+    
+    
   }
 }
 

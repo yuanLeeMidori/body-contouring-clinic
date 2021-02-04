@@ -87,7 +87,7 @@ class CustomerProfileEdit extends React.Component {
                             </Form.Group>
                         </Form>
                     </Container>
-                    <br/>
+                    <br/><br/><br/>
                 </div>
             </div>
         )

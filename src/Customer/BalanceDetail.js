@@ -48,14 +48,6 @@ class BalanceDetail extends React.Component {
     }
     
     render() {
-        const button = {
-            'font-size': 'large',
-            'font-weight': 'bold',
-            color: 'black',
-            marginLeft: '240px',
-            'text-align':'center',
-            background: 'none',
-        }
         return (
                 <div className="row">
                 <div className="col-md-1"></div>
@@ -96,7 +88,7 @@ class BalanceDetail extends React.Component {
                             <Col></Col>
                         </Row><br/>
                         <Col sm={{ span: 10, offset: 2 }}>
-                            <Button type="submit" variant="outline-*" href="/Customer/Balance" style={button}>Back to Balance</Button>
+                            <Button type="submit" variant="outline-info" href="/Customer/Balance">Back</Button>
                         </Col>
                     </Container>
                 </div>

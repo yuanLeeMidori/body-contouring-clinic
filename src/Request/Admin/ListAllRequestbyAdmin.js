@@ -19,6 +19,8 @@ class ListAllRequestbyAdmin extends React.Component {
                             <th>Category</th>
                             <th>Service</th>
                             <th>Title</th>
+                            <th>Customer ID</th>
+                            <th>Customer Name</th>
                             <th>Date</th>
                             <th>Status</th>
                         </tr>
@@ -28,6 +30,8 @@ class ListAllRequestbyAdmin extends React.Component {
                             <td>Membership</td>
                             <td>-</td>
                             <td>How can I join..</td>
+                            <td>0123</td>
+                            <td>dmsql1678</td>
                             <td>2021/01/11</td>
                             <td>Solved</td>
                         </tr>
@@ -37,6 +41,8 @@ class ListAllRequestbyAdmin extends React.Component {
                             <td>Shipment</td>
                             <td>-</td>
                             <td>How many day...</td>
+                            <td>0132</td>
+                            <td>littleBee0715</td>
                             <td>2020/12/27</td>
                             <td>Progress</td>
                         </tr>

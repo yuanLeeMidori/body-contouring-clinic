@@ -58,8 +58,6 @@ class RequestHomebyAdmin extends React.Component {
                             <Form.Control as="select" style={{'margin-left':'30px'}}>
                                 <option value="title">Customer ID</option>
                                 <option value="content">Customer Name</option>
-                                <option value="author">Customer Tel</option>
-                                <option value="titleContent">Customer Email</option>
                                 <option value="req_Id">Request ID</option>
                             </Form.Control>
                             <Form.Control type="text" placeholder="Search.." style={{'margin-left':'30px'}}></Form.Control>

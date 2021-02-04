@@ -54,11 +54,13 @@ class RequestHome extends React.Component {
                                 <option value="90">Last 90 Days</option>
                                 <option value="120">Last 120 Days</option>
                             </Form.Control>
-                            <Form.Control type='date' style={{'margin-left':'30px'}}/>
+                            <Form.Control type='date' style={{'margin-left':'30px','margin-right':'15px'}}/>~<Form.Control type='date' style={{'margin-left':'15px'}}/>
                             <Form.Control as="select" style={{'margin-left':'30px'}}>
                                 <option value="title">Title</option>
                                 <option value="content">Category</option>
                                 <option value="author">Service</option>
+                                <option value="titleContent">Title + Contents</option>
+                                <option value="req_Id">Request ID</option>
                             </Form.Control>
                             <Form.Control type="text" placeholder="Search.." style={{'margin-left':'30px'}}></Form.Control>
                             <Button type="submit" variant="outline-*" style={{'background':'none','margin-left':'5px'}}><img src={searchIcon} alt="Search"/></Button>

@@ -1,10 +1,8 @@
 import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import '../App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../app.module.css';
 import SideBar from '../SideBar/SideBar';
-import PopUp from '../PopUp';
 
 class BalanceDetail extends React.Component {
 
@@ -17,35 +15,9 @@ class BalanceDetail extends React.Component {
                 {url:'/Customer/Edit', title: 'Edit Profile'},
                 {url:'/Customer/Balance', title: 'Balance'},
             ],
-            show: false,
-            children: 'Customer'
         };
-        this.showModal = this.showModal.bind(this);
-        this.hideModal = this.hideModal.bind(this);
-        this.deleteAppointment = this.deleteAppointment.bind(this);
-        this.showMessage = this.showMessage.bind(this);
-        this.hideModal = this.hideModal.bind(this);
     }
 
-    showModal = () => {
-        this.setState({ show: true });
-    };
-    
-    hideModal = () => {
-        this.setState({ show: false });
-    };
-    
-    deleteAppointment = () => {
-        this.setState({ show: false });
-    };
-
-    showMessage = () => {
-        this.setState({ msgModal: true });
-    };
-
-    componentDidMount() {
-        document.title = "Create New Appointment | Body Contouring Clinic";
-    }
     
     render() {
         return (

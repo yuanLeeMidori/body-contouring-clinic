@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from '../../SideBar/SideBar';
 import { Row, Col, Button } from 'react-bootstrap';
 import PopUp from '../../PopUp';

@@ -1,7 +1,6 @@
 import React from 'react';
-import { Container, Row, Col, Button, Form } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import '../../App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../../app.module.css';
 import SideBar from '../../SideBar/SideBar';
 import PopUp from '../../PopUp';
@@ -42,14 +41,6 @@ class AppointmentAdmin extends React.Component {
     }
     
     render() {
-        const title = {
-            color: '#393D47',
-            margin: '50px',
-        }
-        const button = {
-            cursor: 'pointer',
-            margin: '30px'
-        }
         return (
             <>
                 <div className="row">

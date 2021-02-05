@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Card, Container, Row, Col } from 'react-bootstrap';
 import '../App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import AppointmentCalendar from './AppointmentCalendar';
 
 

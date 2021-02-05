@@ -1,7 +1,6 @@
 import React from 'react';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'  // temporary, we can create our css later
-import Footer from '../Footer';
 import logo from '../resources/brand-logo.png';
 import underBar from '../resources/underBar.png'
 import RouterConfig from '../RouterConfig';

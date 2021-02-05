@@ -1,7 +1,6 @@
 import React from "react";
 import "../App.css";
 import { Form, Row, Col, Container, Button } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import SideBar from "../SideBar/SideBar";
 import styles from "../app.module.css";
 import SavedPopUp from "../SavedPopUp";
@@ -39,10 +38,6 @@ class CreateAppointment extends React.Component {
     document.title = "Create New Appointment | Body Contouring Clinic";
   }
   render() {
-    const title = {
-      margin: "5px 600px",
-      color: "#393D47",
-    };
     return (
       <>
         <br />

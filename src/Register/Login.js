@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import '../App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Row, Col, Container } from 'react-bootstrap';
 
 class Login extends Component {
@@ -48,7 +47,6 @@ constructor(props) {
   validate(){
       let input = this.state.input;
       let errors = {};
-      let isValid = true;
   
 
       if (!input["id"]) {

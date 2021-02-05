@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import '../App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Row, Col } from 'react-bootstrap';
 
 class Forgot_Id_Pw extends Component {

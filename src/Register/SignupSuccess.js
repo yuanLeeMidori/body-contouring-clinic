@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import '../App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import imgName from '../resources/verified_user.png';
 
 class SignupSuccess extends Component {

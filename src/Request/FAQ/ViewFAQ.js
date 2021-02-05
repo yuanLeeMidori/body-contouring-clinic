@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal } from 'react-bootstrap';
 
 class ViewFAQ extends React.Component {

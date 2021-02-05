@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import ViewFAQ from './ViewFAQ';
 import ViewFAQbyAdmin from '../Admin/ViewFAQbyAdmin';
 import { ListGroup, Container, Tabs, Tab } from 'react-bootstrap';

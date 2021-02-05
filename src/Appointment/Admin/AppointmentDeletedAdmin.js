@@ -1,7 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "../../App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import SideBar from "../../SideBar/SideBar";
 
 class AppointmentDeletedAdmin extends React.Component {

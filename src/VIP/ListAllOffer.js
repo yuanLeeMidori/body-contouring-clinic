@@ -1,6 +1,5 @@
 import React from 'react';
 import '../App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import offer from '../resources/offer_1.png';
 import { Button, Card, CardColumns } from 'react-bootstrap';
 

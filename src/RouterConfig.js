@@ -1,9 +1,6 @@
 import React from 'react';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, Form, FormControl, Grid, Row, Col, Button } from 'react-bootstrap'
-import { Link, Switch, Redirect, Route, BrowserRouter } from 'react-router-dom'
-import { LinkContainer } from 'react-router-bootstrap'
+import { Switch, Route, BrowserRouter } from 'react-router-dom'
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';  // temporary, we can create our css later
 import AppointmentHome from './Appointment/AppointmentHome';
 import ServiceHome from './Service/ServiceHome';
 import VIPHome from './VIP/VIPHome';

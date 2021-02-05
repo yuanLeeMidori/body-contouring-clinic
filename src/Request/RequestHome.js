@@ -1,6 +1,5 @@
 import React from 'react';
 import '../App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import searchIcon from '../resources/searchIcon.png';
 import ListAllRequest from './ListAllRequest';
 import SideBar from '../SideBar/SideBar';

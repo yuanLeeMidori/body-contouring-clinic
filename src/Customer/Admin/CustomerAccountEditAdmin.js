@@ -1,7 +1,6 @@
 import React from 'react';
 import '../../App.css';
 import SideBar from '../../SideBar/SideBar';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Row, Col, Container, Button } from 'react-bootstrap';
 
 class CustomerAccountEditAdmin extends React.Component {
@@ -15,15 +14,6 @@ class CustomerAccountEditAdmin extends React.Component {
     }
 
     render() {
-        const button = {
-            'font-size': 'large',
-            'font-weight': 'bold',
-            color: 'black',
-            margin: '40px',
-            'text-align':'center',
-            background: 'none',
-        };
-        
         return (
             <div className="row">
                 <div className="col-md-1"></div>

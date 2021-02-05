@@ -1,8 +1,7 @@
 import React from 'react';
 import SideBar from '../SideBar/SideBar';
 import '../App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Form, Row, Col, Container, Button, Table } from 'react-bootstrap';
+import { Form, Row, Col, Container, Table } from 'react-bootstrap';
 
 class CustomerBalance extends React.Component {
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import '../App.css';
 import { Form, Row, Col, Container, Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from '../SideBar/SideBar';
 import SavedPopUp from '../SavedPopUp';
 import styles from '../app.module.css';

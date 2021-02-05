@@ -1,7 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "../App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import searchIcon from '../resources/searchIcon.png';
 import SideBar from "../SideBar/SideBar";
 import styles from "../app.module.css";
@@ -22,10 +21,6 @@ class ViewStaffSchedule extends React.Component {
   }
 
   render() {
-    const title = {
-      color: "#393D47",
-      margin: "40px 400px",
-    };
     const pagination = {
       color: "#B58970",
     };

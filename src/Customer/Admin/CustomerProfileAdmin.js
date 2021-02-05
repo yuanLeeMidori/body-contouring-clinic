@@ -1,7 +1,6 @@
 import React from "react";
 import "../../App.css";
 import SideBar from "../../SideBar/SideBar";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 
 class CustomerProfileAdmin extends React.Component {

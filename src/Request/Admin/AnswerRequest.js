@@ -1,5 +1,4 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from '../../SideBar/SideBar';
 import { Button, Container, Row, Col,Form } from 'react-bootstrap';
 

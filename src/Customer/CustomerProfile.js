@@ -1,8 +1,7 @@
 import React from "react";
 import "../App.css";
 import SideBar from "../SideBar/SideBar";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Form, Row, Col, Button } from "react-bootstrap";
+import { Container, Form, Row, Col } from "react-bootstrap";
 
 class CustomerProfile extends React.Component {
   state = {

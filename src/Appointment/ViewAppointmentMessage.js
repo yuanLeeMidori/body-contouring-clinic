@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
 import { Button, Modal } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 class ViewAppointmentMessage extends React.Component {
 
@@ -19,6 +20,12 @@ class ViewAppointmentMessage extends React.Component {
          </Modal>
         );
     }
+}
+
+ViewAppointmentMessage.propTypes = {
+    show: PropTypes.string,
+    appointmentId: PropTypes.number,
+    text: PropTypes.string,
 }
 
 export default ViewAppointmentMessage;

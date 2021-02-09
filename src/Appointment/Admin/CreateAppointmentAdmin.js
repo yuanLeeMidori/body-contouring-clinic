@@ -1,26 +1,26 @@
-import React from "react";
-import "../../App.css";
-import { Form, Row, Col, Container, Button } from "react-bootstrap";
-import SideBar from "../../SideBar/SideBar";
-import styles from "../../app.module.css";
-import SavedPopUp from "../../SavedPopUp";
+import React from 'react';
+import '../../App.css';
+import { Form, Row, Col, Container, Button } from 'react-bootstrap';
+import SideBar from '../../SideBar/SideBar';
+import styles from '../../app.module.css';
+import SavedPopUp from '../../SavedPopUp';
 
 class CreateAppointmentAdmin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       items: [
-        { url: "/Appointment", title: "Appointment Home" },
+        { url: '/Appointment', title: 'Appointment Home' },
         {
-          url: "/Appointment/Admin/Appointments",
-          title: "View All Appointments",
+          url: '/Appointment/Admin/Appointments',
+          title: 'View All Appointments',
         },
-        { url: "/Appointment/Admin/Create", title: "Create Appointment" },
+        { url: '/Appointment/Admin/Create', title: 'Create Appointment' },
       ],
       saveModal: false,
-      savedBackLink: "/Appointment/Admin/Appointment",
-      button: "Back To Appointment",
-      title: "Appointment Saved!",
+      savedBackLink: '/Appointment/Admin/Appointment',
+      button: 'Back To Appointment',
+      title: 'Appointment Saved!',
       serviceToggle: false,
     };
     this.showSave = this.showSave.bind(this);
@@ -39,7 +39,7 @@ class CreateAppointmentAdmin extends React.Component {
     this.setState({ saveModal: false });
   };
   componentDidMount() {
-    document.title = "Create New Appointment | Body Contouring Clinic";
+    document.title = 'Create New Appointment | Body Contouring Clinic';
   }
   render() {
     return (
@@ -68,17 +68,14 @@ class CreateAppointmentAdmin extends React.Component {
                       <Form.Label column sm="4">
                         Services:
                       </Form.Label>
-                      <Col sm="8" style={{ marginLeft: "0px" }} className="row">
+                      <Col sm="8" style={{ marginLeft: '0px' }} className="row">
                         <Form.Control inline as="select" className="col-md-7">
                           <option>Active air oxygen therapy</option>
                           <option>Green peel</option>
                           <option>Skin rejuventation</option>
                           <option>laser hair removal</option>
                         </Form.Control>
-                        <Button
-                          onClick={this.multipleService}
-                          style={{ marginLeft: "50px" }}
-                        >
+                        <Button onClick={this.multipleService} style={{ marginLeft: '50px' }}>
                           Add Services
                         </Button>
                       </Col>
@@ -86,11 +83,7 @@ class CreateAppointmentAdmin extends React.Component {
                     {this.state.serviceToggle && (
                       <Form.Group as={Row}>
                         <Form.Label column sm="4"></Form.Label>
-                        <Col
-                          sm="8"
-                          style={{ marginLeft: "0px" }}
-                          className="row"
-                        >
+                        <Col sm="8" style={{ marginLeft: '0px' }} className="row">
                           <Form.Control inline as="select" className="col-md-7">
                             <option>Active air oxygen therapy</option>
                             <option>Green peel</option>

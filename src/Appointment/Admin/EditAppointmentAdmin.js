@@ -6,152 +6,160 @@ import styles from '../../app.module.css';
 import SavedPopUp from '../../SavedPopUp';
 
 class EditAppointmentAdmin extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            items: [
-                { url: '/Appointment', title: 'Appointment Home' },
-                { url: '/Appointment/Admin/Appointments', title: 'View All Appointments' },
-                { url: '/Appointment/Admin/Create', title: 'Create Appointment' },
-            ],
-            saveModal: false,
-            savedBackLink: "/Appointment/Admin/Appointment",
-            button: "Back To Appointment",
-            title: "Appointment Saved!",
-            serviceToggle: false,
-        };
-        this.showSave = this.showSave.bind(this);
-        this.hideSave = this.hideSave.bind(this);
-    }
-
-    multipleService = () => {
-        this.setState({ serviceToggle: !this.state.serviceToggle });
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: [
+        { url: '/Appointment', title: 'Appointment Home' },
+        { url: '/Appointment/Admin/Appointments', title: 'View All Appointments' },
+        { url: '/Appointment/Admin/Create', title: 'Create Appointment' },
+      ],
+      saveModal: false,
+      savedBackLink: '/Appointment/Admin/Appointment',
+      button: 'Back To Appointment',
+      title: 'Appointment Saved!',
+      serviceToggle: false,
     };
+    this.showSave = this.showSave.bind(this);
+    this.hideSave = this.hideSave.bind(this);
+  }
 
-    showSave = () => {
-        this.setState({ saveModal: true });
-    };
+  multipleService = () => {
+    this.setState({ serviceToggle: !this.state.serviceToggle });
+  };
 
-    hideSave = () => {
-        this.setState({ saveModal: false });
-    };
+  showSave = () => {
+    this.setState({ saveModal: true });
+  };
 
-    componentDidMount() {
-        document.title = "Edit New Appointment | Body Contouring Clinic";
-    }
+  hideSave = () => {
+    this.setState({ saveModal: false });
+  };
 
-    render() {
-        return (
-            <>
-                <br /><br />
-                <div className="row">
-                    <div className="col-md-1"></div>
-                    <SideBar items={this.state.items} />
-                    <div className="col-md-6">
-                    <h2 className={styles.appointmentTitle}>Edit Appointment</h2>
-                    <Container>
-                        <Row>
-                            <Col></Col>
-                            <Col xs={8}>
-                            <Form>
-                                <Form.Group as={Row}>
-                                    <Form.Label column sm="4">
-                                    Service(s):
-                                    </Form.Label>
-                                    <Col sm="8" style={{marginLeft: '0px'}} className="row">
-                                            <Form.Control inline as="select" className="col-md-7">
-                                                <option>Active air oxygen therapy</option>
-                                                <option>Green peel</option>
-                                                <option>Skin rejuventation</option>
-                                                <option>laser hair removal</option>
-                                            </Form.Control>
-                                            <Button onClick={this.multipleService} style={{marginLeft: '50px'}}>Add Services</Button>
-                                            
-                                    </Col>
-                                </Form.Group>
-                                {this.state.serviceToggle && (                                                                                    
-                                    <Form.Group as={Row}>
-                                    <Form.Label column sm="4"></Form.Label>
-                                        <Col sm="8" style={{marginLeft: '0px'}} className="row">
-                                                <Form.Control inline as="select" className="col-md-7">
-                                                    <option>Active air oxygen therapy</option>
-                                                    <option>Green peel</option>
-                                                    <option>Skin rejuventation</option>
-                                                    <option>laser hair removal</option>
-                                                </Form.Control>
-                                                
-                                        </Col>
-                                    </Form.Group>
-                                )} 
+  componentDidMount() {
+    document.title = 'Edit New Appointment | Body Contouring Clinic';
+  }
 
-                                <Form.Group as={Row} controlId="exampleForm.ControlSelect1">
-                                    <Form.Label column sm="4">
-                                    Technician:
-                                    </Form.Label>
-                                    <Col sm="8">
-                                            <Form.Control as="select">
-                                                <option>Piper Chapman</option>
-                                                <option>Alex Vause</option>
-                                                <option>Daya Diaz</option>
-                                                <option>Tasha Jefferson</option>
-                                            </Form.Control>        
-                                    </Col>
-                                </Form.Group>
-                                    
-                                <Form.Group as={Row}>
-                                    <Form.Label column sm="4">
-                                        Date
-                                    </Form.Label>
-                                    <Col sm="8">
-                                        <Form.Control type="date" />
-                                    </Col>
-                                </Form.Group>
-                                <Form.Group as={Row}>
-                                    <Form.Label column sm="4">
-                                        Time
-                                    </Form.Label>
-                                    <Col sm="8">
-                                        <Form.Control type="time" />
-                                    </Col>
-                                </Form.Group>        
-                                <Form.Group as={Row}>
-                                    <Form.Label column sm="4">
-                                        Contact Number:
-                                    </Form.Label>
-                                    <Col sm="8">
-                                        <Form.Control placeholder="647-596-9521" />
-                                    </Col>
-                                </Form.Group>
-                                <Form.Group as={Row} controlId="exampleForm.ControlTextarea1">
-                                    <Form.Label column sm="4">
-                                        Special Request:
-                                    </Form.Label>        
-                                    <Col sm="8">
-                                        <Form.Control as="textarea" rows={3} placeholder="Vanilla essential oil" />
-                                    </Col>
-                                </Form.Group>
-                            </Form>
-                            </Col>
-                            <Col></Col>
-                        </Row>
-                        <Row >
-                            <Col></Col>
-                            <Col md="auto"><Button variant="outline-secondary" href="/Appointment/Admin/Appointment">Cancel</Button></Col>
-                            <Button action onClick={this.showSave} variant="outline-info">Save</Button>
-                                <SavedPopUp show={this.state.saveModal} handelClose={this.hideSave} text={this.state.title} href={this.state.savedBackLink} button={this.state.button} />
+  render() {
+    return (
+      <>
+        <br />
+        <br />
+        <div className="row">
+          <div className="col-md-1"></div>
+          <SideBar items={this.state.items} />
+          <div className="col-md-6">
+            <h2 className={styles.appointmentTitle}>Edit Appointment</h2>
+            <Container>
+              <Row>
+                <Col></Col>
+                <Col xs={8}>
+                  <Form>
+                    <Form.Group as={Row}>
+                      <Form.Label column sm="4">
+                        Service(s):
+                      </Form.Label>
+                      <Col sm="8" style={{ marginLeft: '0px' }} className="row">
+                        <Form.Control inline as="select" className="col-md-7">
+                          <option>Active air oxygen therapy</option>
+                          <option>Green peel</option>
+                          <option>Skin rejuventation</option>
+                          <option>laser hair removal</option>
+                        </Form.Control>
+                        <Button onClick={this.multipleService} style={{ marginLeft: '50px' }}>
+                          Add Services
+                        </Button>
+                      </Col>
+                    </Form.Group>
+                    {this.state.serviceToggle && (
+                      <Form.Group as={Row}>
+                        <Form.Label column sm="4"></Form.Label>
+                        <Col sm="8" style={{ marginLeft: '0px' }} className="row">
+                          <Form.Control inline as="select" className="col-md-7">
+                            <option>Active air oxygen therapy</option>
+                            <option>Green peel</option>
+                            <option>Skin rejuventation</option>
+                            <option>laser hair removal</option>
+                          </Form.Control>
+                        </Col>
+                      </Form.Group>
+                    )}
 
-                        </Row>    
-                    </Container>
-                    <Container style={{'margin-top': '50px', cursor: 'pointer'}}>
+                    <Form.Group as={Row} controlId="exampleForm.ControlSelect1">
+                      <Form.Label column sm="4">
+                        Technician:
+                      </Form.Label>
+                      <Col sm="8">
+                        <Form.Control as="select">
+                          <option>Piper Chapman</option>
+                          <option>Alex Vause</option>
+                          <option>Daya Diaz</option>
+                          <option>Tasha Jefferson</option>
+                        </Form.Control>
+                      </Col>
+                    </Form.Group>
 
-                    </Container>
-                    </div>
-                </div>
- 
-            </>
-        )
-    }
+                    <Form.Group as={Row}>
+                      <Form.Label column sm="4">
+                        Date
+                      </Form.Label>
+                      <Col sm="8">
+                        <Form.Control type="date" />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group as={Row}>
+                      <Form.Label column sm="4">
+                        Time
+                      </Form.Label>
+                      <Col sm="8">
+                        <Form.Control type="time" />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group as={Row}>
+                      <Form.Label column sm="4">
+                        Contact Number:
+                      </Form.Label>
+                      <Col sm="8">
+                        <Form.Control placeholder="647-596-9521" />
+                      </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} controlId="exampleForm.ControlTextarea1">
+                      <Form.Label column sm="4">
+                        Special Request:
+                      </Form.Label>
+                      <Col sm="8">
+                        <Form.Control as="textarea" rows={3} placeholder="Vanilla essential oil" />
+                      </Col>
+                    </Form.Group>
+                  </Form>
+                </Col>
+                <Col></Col>
+              </Row>
+              <Row>
+                <Col></Col>
+                <Col md="auto">
+                  <Button variant="outline-secondary" href="/Appointment/Admin/Appointment">
+                    Cancel
+                  </Button>
+                </Col>
+                <Button action onClick={this.showSave} variant="outline-info">
+                  Save
+                </Button>
+                <SavedPopUp
+                  show={this.state.saveModal}
+                  handelClose={this.hideSave}
+                  text={this.state.title}
+                  href={this.state.savedBackLink}
+                  button={this.state.button}
+                />
+              </Row>
+            </Container>
+            <Container style={{ 'margin-top': '50px', cursor: 'pointer' }}></Container>
+          </div>
+        </div>
+      </>
+    );
+  }
 }
 
 export default EditAppointmentAdmin;

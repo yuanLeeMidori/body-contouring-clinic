@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, BrowserRouter } from 'react-router-dom'
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import AppointmentHome from './Appointment/AppointmentHome';
 import ServiceHome from './Service/ServiceHome';
@@ -10,7 +10,7 @@ import CreateOffer from './VIP/Admin/CreateOffer';
 import EditOffer from './VIP/Admin/EditOffer';
 import RequestHome from './Request/RequestHome';
 import CreateRequest from './Request/CreateRequest';
-import CustomerHome from './Customer/CustomerHome'
+import CustomerHome from './Customer/CustomerHome';
 import CustomerProfile from './Customer/CustomerProfile';
 import CustomerEdit from './Customer/CustomerProfileEdit';
 import CustomerBalance from './Customer/CustomerBalance';
@@ -34,7 +34,7 @@ import Appointments from './Appointment/Appointments';
 import Appointment from './Appointment/Appointment';
 import EditAppointment from './Appointment/EditAppointment';
 import AppointmentsAdmin from './Appointment/Admin/AppointmentsAdmin';
-import AppointmentAdmin from './Appointment/Admin/AppointmentAdmin'
+import AppointmentAdmin from './Appointment/Admin/AppointmentAdmin';
 import EditAppointmentAdmin from './Appointment/Admin/EditAppointmentAdmin';
 import CreateAppointmentAdmin from './Appointment/Admin/CreateAppointmentAdmin';
 import LeaveMessageToAppointment from './Appointment/Admin/LeaveMessageToAppointment';
@@ -50,92 +50,110 @@ import EditStaffSchedule from './StaffSchedule/EditStaffSchedule';
 import AppointmentDeleted from './Appointment/AppointmentDeleted';
 import AppointmentDeletedAdmin from './Appointment/Admin/AppointmentDeletedAdmin';
 
-
-
 class RouterConfig extends React.Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <header className="App-basic">
+                <img src={servicePic} alt="service" />
+                <br />
+                <img src={openHours} alt="Hours" />
+                <br />
+              </header>
+            )}
+          />
+          {/* Appointment URL */}
+          <Route exact path="/Appointment" render={() => <AppointmentHome />} />
+          <Route exact path="/Appointment/Appointments" render={() => <Appointments />} />
+          <Route exact path="/Appointment/Create" render={() => <CreateAppointment />} />
+          <Route exact path="/Appointment/Appointment" render={() => <Appointment />} />
+          <Route exact path="/Appointment/Edit" render={() => <EditAppointment />} />
+          <Route exact path="/Appointment/Deleted" render={() => <AppointmentDeleted />} />
 
+          {/* Appointment Admin URL */}
+          <Route
+            exact
+            path="/Appointment/Admin/Appointments"
+            render={() => <AppointmentsAdmin />}
+          />
+          <Route exact path="/Appointment/Admin/Appointment" render={() => <AppointmentAdmin />} />
+          <Route exact path="/Appointment/Admin/Edit" render={() => <EditAppointmentAdmin />} />
+          <Route exact path="/Appointment/Admin/Create" render={() => <CreateAppointmentAdmin />} />
+          <Route
+            exact
+            path="/Appointment/Admin/Message"
+            render={() => <LeaveMessageToAppointment />}
+          />
+          <Route
+            exact
+            path="/Appointment/Admin/Deleted"
+            render={() => <AppointmentDeletedAdmin />}
+          />
 
-    render() {
-        return (
-            <BrowserRouter>
-            <Switch>
-              <Route exact path='/' render={() =>
-                  <header className="App-basic">
-                            <img src={servicePic} alt="service" /><br/>
-                            <img src={openHours} alt="Hours" /><br/>
-                  </header>} />
-              {/* Appointment URL */}
-              <Route exact path='/Appointment' render={() => <AppointmentHome />} />
-              <Route exact path='/Appointment/Appointments' render={() => <Appointments />} />
-              <Route exact path='/Appointment/Create' render={() => <CreateAppointment />} />
-              <Route exact path='/Appointment/Appointment' render={() => <Appointment />} />
-              <Route exact path='/Appointment/Edit' render={() => <EditAppointment />} />
-              <Route exact path='/Appointment/Deleted' render={() => <AppointmentDeleted />} />
+          {/* Staff Schedule URL */}
+          <Route exact path="/Staff/Schedule" render={() => <ViewStaffSchedule />} />
+          <Route exact path="/Staff/Schedule/Edit" render={() => <EditStaffSchedule />} />
 
-              {/* Appointment Admin URL */}
-              <Route exact path='/Appointment/Admin/Appointments' render={() => <AppointmentsAdmin />} />
-              <Route exact path='/Appointment/Admin/Appointment' render={() => <AppointmentAdmin />} />
-              <Route exact path='/Appointment/Admin/Edit' render={() => <EditAppointmentAdmin />} />
-              <Route exact path='/Appointment/Admin/Create' render={() => <CreateAppointmentAdmin />} />
-              <Route exact path='/Appointment/Admin/Message' render={() => <LeaveMessageToAppointment />} />
-              <Route exact path='/Appointment/Admin/Deleted' render={() => <AppointmentDeletedAdmin />} />
+          {/* Service URL */}
+          <Route exact path="/Service" render={() => <ServiceHome />} />
 
-              {/* Staff Schedule URL */}
-              <Route exact path='/Staff/Schedule' render={() => <ViewStaffSchedule />} />
-              <Route exact path='/Staff/Schedule/Edit' render={() => <EditStaffSchedule />} />
+          {/* VIP URL */}
+          <Route exact path="/VIP/" render={() => <VIPHome />} />
+          <Route exact path="/VIP/Admin" render={() => <VIPHomebyAdmin />} />
+          <Route exact path="/VIP/Admin/Manage" render={() => <VIPManage />} />
+          <Route exact path="/VIP/Admin/Manage/Create" render={() => <CreateOffer />} />
+          <Route exact path="/VIP/Admin/Manage/Edit" render={() => <EditOffer />} />
 
-              {/* Service URL */}
-              <Route exact path='/Service' render={() => <ServiceHome />} />
+          {/* Request URL */}
+          <Route exact path="/Request" render={() => <RequestHome />} />
+          <Route exact path="/Request/Create" render={() => <CreateRequest />} />
+          <Route exact path="/Request/Detail" render={() => <ViewRequest />} />
+          <Route exact path="/Request/Edit" render={() => <EditRequest />} />
+          <Route exact path="/Request/FAQ" render={() => <ViewFAQ />} />
 
-              {/* VIP URL */}
-              <Route exact path='/VIP/' render={() => <VIPHome />} />
-              <Route exact path='/VIP/Admin' render={() => <VIPHomebyAdmin />} />
-              <Route exact path='/VIP/Admin/Manage' render={() => <VIPManage />} />
-              <Route exact path='/VIP/Admin/Manage/Create' render={() => <CreateOffer />} />
-              <Route exact path='/VIP/Admin/Manage/Edit' render={() => <EditOffer />} />
-              
-              {/* Request URL */}
-              <Route exact path='/Request' render={() => <RequestHome />} />
-              <Route exact path='/Request/Create' render={() => <CreateRequest />} />
-              <Route exact path='/Request/Detail' render={() => <ViewRequest />} />
-              <Route exact path='/Request/Edit' render={() => <EditRequest />} />
-              <Route exact path='/Request/FAQ' render={() => <ViewFAQ />} />
+          {/* Request Admin URL*/}
+          <Route exact path="/Request/Admin" render={() => <RequestHomeAdmin />} />
+          <Route exact path="/Request/Admin/Answer" render={() => <AnswerRequest />} />
+          <Route exact path="/Request/Admin/FAQ" render={() => <ViewFAQAdmin />} />
+          <Route exact path="/Request/Admin/FAQ/Create" render={() => <CreateFAQ />} />
+          <Route exact path="/Request/Admin/FAQ/Edit" render={() => <EditFAQ />} />
 
-              {/* Request Admin URL*/}
-              <Route exact path='/Request/Admin' render={() => <RequestHomeAdmin />} />
-              <Route exact path='/Request/Admin/Answer' render={() => <AnswerRequest />} />
-              <Route exact path='/Request/Admin/FAQ' render={() => <ViewFAQAdmin />} />
-              <Route exact path='/Request/Admin/FAQ/Create' render={() => <CreateFAQ />} />
-              <Route exact path='/Request/Admin/FAQ/Edit' render={() => <EditFAQ />} />
-              
+          {/* Customer URL */}
+          <Route exact path="/Customer" render={() => <CustomerHome />} />
+          <Route exact path="/Customer/Profile" render={() => <CustomerProfile />} />
+          <Route exact path="/Customer/Edit" render={() => <CustomerEdit />} />
+          <Route exact path="/Customer/Balance" render={() => <CustomerBalance />} />
+          <Route exact path="/Customer/BalanceDetail" render={() => <BalanceDetail />} />
 
-              {/* Customer URL */}
-              <Route exact path='/Customer' render={() => <CustomerHome />} />
-              <Route exact path='/Customer/Profile' render={() => <CustomerProfile />} />
-              <Route exact path='/Customer/Edit' render={() => <CustomerEdit />} />
-              <Route exact path='/Customer/Balance' render={() => <CustomerBalance />} />
-              <Route exact path='/Customer/BalanceDetail' render={() => <BalanceDetail />} />
-              
-              {/* Customer Admin URL*/}
-              <Route exact path='/Customer/Admin' render={() => <CustomerHomeAdmin />} />
-              <Route exact path='/Customer/Admin/profile' render={() => <CustomerProfileAdmin />} />
-              <Route exact path='/Customer/Admin/Account' render={() => <CustomerAccountAdmin />} />
-              <Route exact path='/Customer/Admin/Account/Edit' render={() => <CustomerAccountEditAdmin />} />
-              
-              {/* Register URL */}
-              <Route exact path='/Register/Login' render={() => <Login />} />
-              <Route exact path='/Register/SignUp' render={() => <SignUp />} />
-              <Route exact path='/Register/TermsAndConditions' render={() => <TermsAndConditions />} />
-              <Route exact path='/Register/SignupSuccess' render={() => <SignupSuccess />} />
-              <Route exact path='/Register/CheckConfirmEmail' render={() => <CheckConfirmEmail />} />
-              <Route exact path='/Register/Forgot_Id_Pw' render={() => <Forgot_Id_Pw />} />
-              
-              {/* Page Not Found */}
-              <Route render={() => <PageNotFound />} />
-            </Switch>
-          </BrowserRouter>
-        );
-    }
+          {/* Customer Admin URL*/}
+          <Route exact path="/Customer/Admin" render={() => <CustomerHomeAdmin />} />
+          <Route exact path="/Customer/Admin/profile" render={() => <CustomerProfileAdmin />} />
+          <Route exact path="/Customer/Admin/Account" render={() => <CustomerAccountAdmin />} />
+          <Route
+            exact
+            path="/Customer/Admin/Account/Edit"
+            render={() => <CustomerAccountEditAdmin />}
+          />
+
+          {/* Register URL */}
+          <Route exact path="/Register/Login" render={() => <Login />} />
+          <Route exact path="/Register/SignUp" render={() => <SignUp />} />
+          <Route exact path="/Register/TermsAndConditions" render={() => <TermsAndConditions />} />
+          <Route exact path="/Register/SignupSuccess" render={() => <SignupSuccess />} />
+          <Route exact path="/Register/CheckConfirmEmail" render={() => <CheckConfirmEmail />} />
+          <Route exact path="/Register/Forgot_Id_Pw" render={() => <Forgot_Id_Pw />} />
+
+          {/* Page Not Found */}
+          <Route render={() => <PageNotFound />} />
+        </Switch>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default RouterConfig;

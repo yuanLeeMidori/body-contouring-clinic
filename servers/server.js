@@ -7,9 +7,8 @@ const port = process.env.PORT || 3001;
 app.use(cors());
 app.use(bodyParser.json());
 
+app.use('/api', (req, res) => res.json({ backServer: 'true' }));
 
-app.use('/api',(req, res)=> res.json({backServer:'true'}));
-
-app.listen(port, ()=>{
-    console.log(`express is running on ${port}`);
+app.listen(port, () => {
+  console.log(`express is running on ${port}`);
 });

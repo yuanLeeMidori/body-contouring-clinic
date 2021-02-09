@@ -1,27 +1,27 @@
-import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import "../App.css";
-import SideBar from "../SideBar/SideBar";
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import '../App.css';
+import SideBar from '../SideBar/SideBar';
 
 class Appointments extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       items: [
-        { url: "/Appointment", title: "Appointment Home" },
-        { url: "/Appointment/Appointments", title: "View All Appointments" },
-        { url: "/Appointment/Create", title: "Create Appointment" },
+        { url: '/Appointment', title: 'Appointment Home' },
+        { url: '/Appointment/Appointments', title: 'View All Appointments' },
+        { url: '/Appointment/Create', title: 'Create Appointment' },
       ],
     };
   }
 
   componentDidMount() {
-    document.title = "All Appointments | Body Contouring Clinic";
+    document.title = 'All Appointments | Body Contouring Clinic';
   }
 
   render() {
     const pagination = {
-      color: "#B58970",
+      color: '#B58970',
     };
     return (
       <>
@@ -63,7 +63,7 @@ class Appointments extends React.Component {
                   </table>
                   <br />
                   <span style={pagination}>
-                    {"<"} 1 2 3 4 5 {">"}
+                    {'<'} 1 2 3 4 5 {'>'}
                   </span>
                 </Col>
                 <Col></Col>

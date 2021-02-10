@@ -38,7 +38,27 @@ app.get('/add-account', (req, res) => {
     .catch((err) => {
       console.log(err);
     });
-})
+});
+
+app.get('/accounts', (req, res) => {
+  Account.find()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.get('/account/:id', (req, res) => {
+  Account.findById(req.params.id)
+    .then((result) => {
+      res.send(result)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 app.use(cors());
 app.use(bodyParser.json());

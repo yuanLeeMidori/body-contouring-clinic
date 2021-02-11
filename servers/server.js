@@ -11,8 +11,8 @@ const Account = require('../models/account');
  *  please remove the connection string EVERYTIME you push the code to git
  *          EVERYTIME!!!! don't be lazy, don't expose our credential
  */
-const mongodbConnectionStr =
-  '';
+const mongodbConnectionStr = process.env.MONGODB_URI;
+
 mongoose
   .connect(mongodbConnectionStr, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() =>

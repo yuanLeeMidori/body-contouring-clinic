@@ -1,4 +1,4 @@
-const RequestCategory = require('../models/requestCategory');
+const RequestCategory = require('../../models/requestCategory');
 
 
 function addRequestCategory(){

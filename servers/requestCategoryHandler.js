@@ -18,4 +18,15 @@ function addRequestCategory(){
 
 }
 
+function getAllRequestCategories(req,res){
+  RequestCategory.find()
+  .then((result) => {
+    console.log(result);
+    return result;
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+}
 exports.addRequestCategory = addRequestCategory;
+exports.getAllRequestCategories = getAllRequestCategories;

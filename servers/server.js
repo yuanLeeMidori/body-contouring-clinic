@@ -104,6 +104,9 @@ app.get('/add-requestCategory', (req, res) => {
   serviceHandler.addRequestCategory().catch((err) => {console.log(err);});
 });
 
+app.get('/request-categories', (req, res) => {
+  serviceHandler.getAllRequestCategories(req,res).catch((err) => {console.log(err);});
+});
 
 app.use('/api', (req, res) => res.json({ backServer: 'true' }));
 

@@ -10,7 +10,8 @@ app.use(cors());
 app.use(bodyParser.json());
 db();
 
-// hard-coded add new account
+// DB API
+// Account DB 
 app.get('/add-account', (req, res) => {
   const account = new Account({
     firstName: 'Yuan',
@@ -49,8 +50,8 @@ app.get('/account/:id', (req, res) => {
 });
 
 
+// main API
 app.use('/api', (req, res) => res.json({ backServer: 'true' }));
-
 
 app.listen(port, ()=>{
   console.log("Express http server listening on: " + port);

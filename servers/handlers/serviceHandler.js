@@ -1,5 +1,6 @@
 const Service = require('../../models/service');
 
+// create new
 function addNewService(res) {
   const service = new Service({
     serviceId: 1,
@@ -19,4 +20,30 @@ function addNewService(res) {
     });
 }
 
+// view all
+function viewAllServices(res) {
+  Service.find()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+// view one
+function viewOneService(req, res) {
+  Service.findById(req.params.id)
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+// update one
+// delete one
+
 exports.addNewService = addNewService;
+exports.viewAllServices = viewAllServices;
+exports.viewOneService = viewOneService;

@@ -7,6 +7,7 @@ const db = require('./dbConnection');
 const Account = require('../models/account');
 const serviceCategoryHandler = require('./handlers/serviceCategoryHandler');
 const serviceHandler = require('./handlers/serviceHandler');
+const requestCategoryHandler = require('./handlers/requestCategoryHandler');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -68,11 +69,11 @@ app.get('/add-service', (req, res) => {
 
 // requestCategory
 app.get('/add-requestCategory', (req, res) => {
-  serviceHandler.addRequestCategory().catch((err) => {console.log(err);});
+  requestCategoryHandler.addNewRequestCategory(res);
 });
 
 app.get('/request-categories', (req, res) => {
-  serviceHandler.getAllRequestCategories(req,res).catch((err) => {console.log(err);});
+  requestCategoryHandler.viewAllRequestCategories(res);
 });
 
 app.use('/api', (req, res) => res.json({ backServer: 'true' }));

@@ -1,7 +1,7 @@
 const RequestCategory = require('../../models/requestCategory');
 
 
-function addRequestCategory(){
+function addNewRequestCategory(res){
     const requestCategory = new RequestCategory({
       RequestCategoryName : 'MemberShip'
     });
@@ -9,8 +9,7 @@ function addRequestCategory(){
     requestCategory
     .save()
     .then((result) => {
-      console.log(result);
-      return result;
+      res.send(result);
     })
     .catch((err) => {
       console.log(err);
@@ -18,15 +17,14 @@ function addRequestCategory(){
 
 }
 
-function getAllRequestCategories(req,res){
+function viewAllRequestCategories(res){
   RequestCategory.find()
   .then((result) => {
-    console.log(result);
-    return result;
+    res.send(result);
   })
   .catch((err) => {
     console.log(err);
   });
 }
-exports.addRequestCategory = addRequestCategory;
-exports.getAllRequestCategories = getAllRequestCategories;
+exports.addNewRequestCategory = addNewRequestCategory;
+exports.viewAllRequestCategories = viewAllRequestCategories;

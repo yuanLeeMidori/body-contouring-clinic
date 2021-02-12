@@ -7,12 +7,14 @@ const db = require('./dbConnection');
 const Account = require('../models/account');
 const serviceCategoryHandler = require('./handlers/serviceCategoryHandler');
 const serviceHandler = require('./handlers/serviceHandler');
+const requestCategoryHandler = require('./handlers/requestCategoryHandler');
 
 app.use(cors());
 app.use(bodyParser.json());
 db();
 
-// hard-coded add new account
+// DB API
+// account
 app.get('/add-account', (req, res) => {
   const account = new Account({
     firstName: 'Yuan',
@@ -64,6 +66,16 @@ app.get('/service-categories', (req, res) => {
 app.get('/add-service', (req, res) => {
   serviceHandler.addNewService(res);
 });
+
+// requestCategory
+app.get('/add-requestCategory', (req, res) => {
+  requestCategoryHandler.addNewRequestCategory(res);
+});
+
+app.get('/request-categories', (req, res) => {
+  requestCategoryHandler.viewAllRequestCategories(res);
+});
+
 app.use('/api', (req, res) => res.json({ backServer: 'true' }));
 
 app.listen(port, () => {

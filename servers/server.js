@@ -76,6 +76,10 @@ app.get('/request-categories', (req, res) => {
   requestCategoryHandler.viewAllRequestCategories(res);
 });
 
+app.get('/edit-requestCategory', (req, res) =>{
+  requestCategoryHandler.editRequestCategory(res);
+});
+
 app.use('/api', (req, res) => res.json({ backServer: 'true' }));
 
 app.listen(port, () => {

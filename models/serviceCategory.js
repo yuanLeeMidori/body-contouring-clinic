@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const serviceCategorySchema = new Schema(
   {
-    serviceCategoryId: {
+    _id: {
       type: Number,
       required: true,
     },

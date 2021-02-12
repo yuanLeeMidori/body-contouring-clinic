@@ -62,9 +62,21 @@ app.get('/service-categories', (req, res) => {
   serviceCategoryHandler.viewAllServiceCategory(res);
 });
 
+app.get('/service-category/:id', (req, res) => {
+  serviceCategoryHandler.viewOneServiceCategory(req, res);
+});
+
 // service
 app.get('/add-service', (req, res) => {
   serviceHandler.addNewService(res);
+});
+
+app.get('/services', (req, res) => {
+  serviceHandler.viewAllServices(res);
+});
+
+app.get('/service/:id', (req, res) => {
+  serviceHandler.viewOneService(req, res);
 });
 
 // requestCategory
@@ -76,7 +88,7 @@ app.get('/request-categories', (req, res) => {
   requestCategoryHandler.viewAllRequestCategories(res);
 });
 
-app.get('/edit-requestCategory', (req, res) =>{
+app.get('/edit-requestCategory', (req, res) => {
   requestCategoryHandler.editRequestCategory(res);
 });
 

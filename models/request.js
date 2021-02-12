@@ -34,8 +34,7 @@ const requestSchema = new Schema({
         required: true
     },
     attachedFile: {
-        type: Buffer,
-        required: true
+        type: String,
     },
 
 }, { timestamps: true });

@@ -9,6 +9,8 @@ const mongoose = require('mongoose');
 const serviceCategoryHandler = require('./handlers/serviceCategoryHandler');
 const serviceHandler = require('./handlers/serviceHandler');
 const requestCategoryHandler = require('./handlers/requestCategoryHandler');
+const pageHandler = require('./handlers/pageHandler');
+const offerHandler = require('./handlers/offerHandler');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -96,7 +98,7 @@ app.get('/service/:id/edit', (req, res) => {
 
 app.delete('/service/:id', (req, res) => {
   serviceHandler.deleteServiceById(req, res);
-})
+});
 
 // requestCategory
 app.get('/add-requestCategory', (req, res) => {
@@ -109,6 +111,48 @@ app.get('/request-categories', (req, res) => {
 
 app.get('/edit-requestCategory', (req, res) => {
   requestCategoryHandler.editRequestCategory(res);
+});
+
+// page
+app.get('/add-page', (req, res) => {
+  pageHandler.addNewPage(res);
+});
+
+app.get('/pages', (req, res) => {
+  pageHandler.viewAllPages(res);
+});
+
+app.get('/page/:id', (req, res) => {
+  pageHandler.viewOnePageById(req, res);
+});
+
+app.get('/page/:id/edit', (req, res) => {
+  pageHandler.editPageById(req, res);
+});
+
+app.delete('/page/:id', (req, res) => {
+  pageHandler.deletePageById(req, res);
+});
+
+// offer
+app.get('/add-offer', (req, res) => {
+  offerHandler.addNewOffer(res);
+});
+
+app.get('/offers', (req, res) => {
+  offerHandler.viewAllOffers(res);
+});
+
+app.get('/offer/:id', (req, res) => {
+  offerHandler.viewOneOfferById(req, res);
+});
+
+app.get('/offer/:id/edit', (req, res) => {
+  offerHandler.editOfferById(req, res);
+});
+
+app.delete('/offer/:id', (req, res) => {
+  offerHandler.deleteOfferById(req, res);
 });
 
 app.use('/api', (req, res) => res.json({ backServer: 'true' }));

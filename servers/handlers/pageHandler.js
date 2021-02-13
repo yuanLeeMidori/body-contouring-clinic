@@ -1,11 +1,12 @@
-const ServiceCategory = require('../../models/serviceCategory');
+const Page = require('../../models/page');
 
 // create new
-exports.addNewServiceCategory = function (res) {
-  const serviceCategory = new ServiceCategory({
-    CategoryName: 'Facials',
+exports.addNewPage = function (res) {
+  const page = new Page({
+    accountId: '6023445bb9a0ed640bf9b1cf',
+    isActive: true,
   });
-  serviceCategory
+  page
     .save()
     .then((result) => {
       res.send(result);
@@ -16,8 +17,8 @@ exports.addNewServiceCategory = function (res) {
 };
 
 // view all
-exports.viewAllServiceCategory = function (res) {
-  ServiceCategory.find()
+exports.viewAllPages = function (res) {
+  Page.find()
     .then((result) => {
       res.send(result);
     })
@@ -27,8 +28,8 @@ exports.viewAllServiceCategory = function (res) {
 };
 
 // view one
-exports.viewServiceCategoryById = function (req, res) {
-  ServiceCategory.findById(req.params.id)
+exports.viewOnePageById = function (req, res) {
+  Page.findById(req.params.id)
     .then((result) => {
       res.send(result);
     })
@@ -38,12 +39,12 @@ exports.viewServiceCategoryById = function (req, res) {
 };
 
 // update one
-exports.editServiceCategoryById = function (req, res) {
+exports.editPageById = function (req, res) {
   const id = { _id: req.params.id };
   const update = {
-    CategoryName: 'Radio Frequency',
+    isActive: false,
   };
-  ServiceCategory.findByIdAndUpdate(id, update)
+  Page.findByIdAndUpdate(id, update)
     .then((result) => {
       res.send(result);
     })
@@ -53,8 +54,8 @@ exports.editServiceCategoryById = function (req, res) {
 };
 
 // delete one
-exports.deleteServiceCategoryById = function (req, res) {
-  ServiceCategory.findByIdAndDelete(req.params.id)
+exports.deletePageById = function (req, res) {
+  Page.findByIdAndDelete(req.params.id)
     .then((result) => {
       res.send(result);
     })

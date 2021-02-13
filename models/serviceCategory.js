@@ -3,10 +3,10 @@ const Schema = mongoose.Schema;
 
 const serviceCategorySchema = new Schema(
   {
-    serviceCategoryId: {
-      type: Number,
-      required: true,
-    },
+    // _id: {
+    //   type: mongoose.Types.ObjectId,
+    //   required: true,
+    // },
     CategoryName: {
       type: String,
       required: true,

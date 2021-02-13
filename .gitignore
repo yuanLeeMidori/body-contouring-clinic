@@ -24,3 +24,6 @@ yarn-error.log*
 
 # ESLint
 .eslintcache
+
+# connection string
+dbConnectionStr.json

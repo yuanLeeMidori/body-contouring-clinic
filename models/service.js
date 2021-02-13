@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const serviceSchema = new Schema({
-  _id: {
-    type: Number,
-    required: true,
-  },
+  // _id: {
+  //   type: mongoose.Types.ObjectId,
+  //   required: true,
+  // },
   serviceCategory: {
     type: Schema.Types.ObjectId,
     ref: 'serviceCategories',

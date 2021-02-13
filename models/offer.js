@@ -2,27 +2,32 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const offerSchema = new Schema({
-    _id: {
-        type: Number,
-        required: true,
-    },
-    offerName: {
-        type: String,
-        required: true,
-    },
-    date: { // what is date in offer? expire date?
-        type: String,
-        required: true,
-    },
-    description: {
-        type: String,
-        required: true,
-    },
-    imageURL: {
-        type: String,
-        required: true,
-    }
-})
+  offerName: {
+    type: String,
+    required: true,
+  },
+  appliedService: {
+    type: Schema.Types.ObjectId,
+    ref: 'services',
+    required: true,
+  },
+  startDate: {
+    type: Date,
+    required: true,
+  },
+  endDate: {
+    type: Date,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  imageURL: {
+    type: String,
+    required: true,
+  },
+});
 
 const Offer = mongoose.model('offers', offerSchema);
 

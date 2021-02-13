@@ -5,6 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const db = require('./dbConnection');
 const Account = require('../models/account');
+const mongoose = require('mongoose');
 const serviceCategoryHandler = require('./handlers/serviceCategoryHandler');
 const serviceHandler = require('./handlers/serviceHandler');
 const requestCategoryHandler = require('./handlers/requestCategoryHandler');
@@ -12,6 +13,8 @@ const requestCategoryHandler = require('./handlers/requestCategoryHandler');
 app.use(cors());
 app.use(bodyParser.json());
 db();
+
+mongoose.set('useFindAndModify', false);
 
 // DB API
 // account
@@ -63,7 +66,15 @@ app.get('/service-categories', (req, res) => {
 });
 
 app.get('/service-category/:id', (req, res) => {
-  serviceCategoryHandler.viewOneServiceCategory(req, res);
+  serviceCategoryHandler.viewServiceCategoryById(req, res);
+});
+
+app.get('/service-category/:id/edit', (req, res) => {
+  serviceCategoryHandler.editServiceCategoryById(req, res);
+});
+
+app.delete('/service-category/:id', (req, res) => {
+  serviceCategoryHandler.deleteServiceCategoryById(req, res);
 });
 
 // service
@@ -76,8 +87,16 @@ app.get('/services', (req, res) => {
 });
 
 app.get('/service/:id', (req, res) => {
-  serviceHandler.viewOneService(req, res);
+  serviceHandler.viewOneServiceById(req, res);
 });
+
+app.get('/service/:id/edit', (req, res) => {
+  serviceHandler.editServiceById(req, res);
+});
+
+app.delete('/service/:id', (req, res) => {
+  serviceHandler.deleteServiceById(req, res);
+})
 
 // requestCategory
 app.get('/add-requestCategory', (req, res) => {

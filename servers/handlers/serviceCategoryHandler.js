@@ -1,9 +1,8 @@
 const ServiceCategory = require('../../models/serviceCategory');
 
 // create new
-function addNewServiceCategory(res) {
+exports.addNewServiceCategory = function (res) {
   const serviceCategory = new ServiceCategory({
-    serviceCategoryId: 1,
     CategoryName: 'Facials',
   });
   serviceCategory
@@ -14,10 +13,10 @@ function addNewServiceCategory(res) {
     .catch((err) => {
       console.log(err);
     });
-}
+};
 
 // view all
-function viewAllServiceCategory(res) {
+exports.viewAllServiceCategory = function (res) {
   ServiceCategory.find()
     .then((result) => {
       res.send(result);
@@ -25,10 +24,10 @@ function viewAllServiceCategory(res) {
     .catch((err) => {
       console.log(err);
     });
-}
+};
 
 // view one
-function viewOneServiceCategory(req, res) {
+exports.viewServiceCategoryById = function (req, res) {
   ServiceCategory.findById(req.params.id)
     .then((result) => {
       res.send(result);
@@ -36,10 +35,30 @@ function viewOneServiceCategory(req, res) {
     .catch((err) => {
       console.log(err);
     });
-}
-// update one
-// delete one
+};
 
-exports.addNewServiceCategory = addNewServiceCategory;
-exports.viewAllServiceCategory = viewAllServiceCategory;
-exports.viewOneServiceCategory = viewOneServiceCategory;
+// update one
+exports.editServiceCategoryById = function (req, res) {
+  const id = { _id: req.params.id };
+  const update = {
+    CategoryName: 'Radio Frequency',
+  };
+  ServiceCategory.findByIdAndUpdate(id, update)
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+// delete one
+exports.deleteServiceCategoryById = function (req, res) {
+  ServiceCategory.findByIdAndDelete(req.params.id)
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

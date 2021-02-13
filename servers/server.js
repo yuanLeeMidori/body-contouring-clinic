@@ -66,7 +66,6 @@ app.get('/service-categories', (req, res) => {
 });
 
 app.get('/service-category/:id', (req, res) => {
-<<<<<<< HEAD
   serviceCategoryHandler.viewServiceCategoryById(req, res);
 });
 
@@ -76,9 +75,6 @@ app.get('/service-category/:id/edit', (req, res) => {
 
 app.delete('/service-category/:id', (req, res) => {
   serviceCategoryHandler.deleteServiceCategoryById(req, res);
-=======
-  serviceCategoryHandler.viewOneServiceCategory(req, res);
->>>>>>> d34c14870e205438315e371742e6bd262d7d764c
 });
 
 // service

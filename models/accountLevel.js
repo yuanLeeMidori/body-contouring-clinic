@@ -12,10 +12,15 @@ const accountLevelSchema = new Schema(
       type: String,
       required: true,
     },
+    pages: {
+      type: Schema.Types.ObjectId,
+      ref: 'pages',
+      required: true,
+    },
   },
   { timestamps: true }
 );
 
-const AccountLevel = mongoose.model('accountLevel', accountLevelSchema);
+const AccountLevel = mongoose.model('accountLevels', accountLevelSchema);
 
 module.exports = AccountLevel;

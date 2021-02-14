@@ -13,7 +13,7 @@ const pageSchema = new Schema({
     },
     accountLevels: [{
       type: Schema.Types.ObjectId,
-      ref: 'accountLevel',
+      ref: 'accountLevels',
       required: true,
     }]
 })

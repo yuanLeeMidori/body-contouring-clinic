@@ -18,10 +18,15 @@ const AppointmentSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'workSchedule',
         required: true
-    } 
+    },
+    services: {
+      type: Schema.Types.ObjectId,
+      ref: 'services',
+      required: true
+  }  
 
 }, { timestamps: true });
 
-const Appointment = mongoose.model('appointment', AppointmentSchema);
+const Appointment = mongoose.model('appointments', AppointmentSchema);
 
 module.exports = Appointment;

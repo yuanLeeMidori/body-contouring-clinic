@@ -12,6 +12,11 @@ const accountLevelSchema = new Schema(
       type: String,
       required: true,
     },
+    pages: {
+      type: Schema.Types.ObjectId,
+      ref: 'pages',
+      required: true,
+    },
   },
   { timestamps: true }
 );

@@ -6,11 +6,10 @@ const offerSchema = new Schema({
     type: String,
     required: true,
   },
-  appliedService: {
+  services: [{
     type: Schema.Types.ObjectId,
     ref: 'services',
-    required: true,
-  },
+  }],
   startDate: {
     type: Date,
     required: true,

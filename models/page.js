@@ -10,7 +10,12 @@ const pageSchema = new Schema({
     isActive: {
         type: Boolean,
         required: true,
-    }
+    },
+    accountLevels: [{
+      type: Schema.Types.ObjectId,
+      ref: 'accountLevel',
+      required: true,
+    }]
 })
 
 const Page = mongoose.model('pages', pageSchema);

@@ -59,24 +59,36 @@ app.get('/account/:id', (req, res) => {
 });
 
 // service-category
-app.get('/add-service-category', (req, res) => {
-  serviceCategoryHandler.addNewServiceCategory(res);
+app.post('/create-service-category', (req, res) => {
+  serviceCategoryHandler.addNewServiceCategory(req.body).then((msg) => res.json(msg));
 });
 
 app.get('/service-categories', (req, res) => {
-  serviceCategoryHandler.viewAllServiceCategory(res);
+  serviceCategoryHandler
+    .viewAllServiceCategories()
+    .then((serviceCategories) => res.json(serviceCategories))
+    .catch((err) => res.json(err));
 });
 
 app.get('/service-category/:id', (req, res) => {
-  serviceCategoryHandler.viewServiceCategoryById(req, res);
+  serviceCategoryHandler
+    .viewServiceCategoryById(req.params.id)
+    .then((serviceCategory) => res.json(serviceCategory))
+    .catch((err) => res.json(err));
 });
 
-app.get('/service-category/:id/edit', (req, res) => {
-  serviceCategoryHandler.editServiceCategoryById(req, res);
+app.put('/service-category/:id', (req, res) => {
+  serviceCategoryHandler
+    .editServiceCategoryById(req.body, req.params.id)
+    .then((msg) => res.json(msg))
+    .catch((err) => res.json(err));
 });
 
 app.delete('/service-category/:id', (req, res) => {
-  serviceCategoryHandler.deleteServiceCategoryById(req, res);
+  serviceCategoryHandler
+    .deleteServiceCategoryById(req.params.id)
+    .then((serviceCategory) => res.json(serviceCategory))
+    .catch((err) => res.json(err));
 });
 
 // service

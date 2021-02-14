@@ -9,14 +9,13 @@ const WorkScheduleSchema = new Schema({
     },
     dateId: {
         type: Schema.Types.ObjectId,
-        ref: 'date',
+        ref: 'dates',
         required: true
     },
-    timeId: {
+    times: [{
         type: Schema.Types.ObjectId,
-        ref: 'time',
-        required: true
-    },
+        ref: 'times',
+    }],
     description: {
         type: String,
         required: true

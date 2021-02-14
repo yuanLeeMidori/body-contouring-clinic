@@ -16,6 +16,6 @@ const accountLevelSchema = new Schema(
   { timestamps: true }
 );
 
-const AccountLevel = mongoose.model('accountLevel', accountLevelSchema);
+const AccountLevel = mongoose.model('accountLevels', accountLevelSchema);
 
 module.exports = AccountLevel;

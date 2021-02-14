@@ -9,14 +9,13 @@ const WorkScheduleSchema = new Schema({
     },
     dateId: {
         type: Schema.Types.ObjectId,
-        ref: 'date',
+        ref: 'dates',
         required: true
     },
-    timeId: {
+    times: [{
         type: Schema.Types.ObjectId,
-        ref: 'time',
-        required: true
-    },
+        ref: 'times',
+    }],
     description: {
         type: String,
         required: true
@@ -24,6 +23,6 @@ const WorkScheduleSchema = new Schema({
 
 }, { timestamps: true });
 
-const WorkSchedule = mongoose.model('workSchedule', WorkScheduleSchema)
+const WorkSchedule = mongoose.model('workSchedules', WorkScheduleSchema)
 
 module.exports = WorkSchedule;

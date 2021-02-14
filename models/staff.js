@@ -15,7 +15,10 @@ const staffSchema = new Schema({
         type: Number,
         required: true
     },
-
+    workSchedules: [{
+      type: Schema.Types.ObjectId,
+      ref: 'workSchedules',
+  }]
 }, { timestamps: true });
 
 const Staff = mongoose.model('staffs', staffSchema);

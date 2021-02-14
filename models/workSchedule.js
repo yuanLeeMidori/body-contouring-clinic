@@ -24,6 +24,6 @@ const WorkScheduleSchema = new Schema({
 
 }, { timestamps: true });
 
-const WorkSchedule = mongoose.model('workSchedule', WorkScheduleSchema)
+const WorkSchedule = mongoose.model('workSchedules', WorkScheduleSchema)
 
 module.exports = WorkSchedule;

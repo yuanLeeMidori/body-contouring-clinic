@@ -3,14 +3,9 @@ const Schema = mongoose.Schema;
 
 const balanceSchema = new Schema(
   {
-    balanceId: {
-      type: Number,
-      require: true,
-    },
-
-    service: {
+    serviceId: {
       type: Schema.Types.ObjectId,
-      ref: 'service',
+      ref: 'services',
       required: true,
     },
 
@@ -27,6 +22,6 @@ const balanceSchema = new Schema(
   { timestamps: true }
 );
 
-const Balance = mongoose.model('balance', balanceSchema);
+const Balance = mongoose.model('balances', balanceSchema);
 
 module.exports = Balance;

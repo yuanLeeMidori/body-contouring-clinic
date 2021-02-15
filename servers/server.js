@@ -4,8 +4,11 @@ const port = process.env.PORT || 3001;
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const db = require('./dbConnection');
-const Account = require('../models/account');
 const mongoose = require('mongoose');
+const accountHandler = require('./handlers/accountHandler');
+const accountLevelHandler = require('./handlers/accountLevelHandler');
+const balanceHandler = require('./handlers/balanceHandler');
+const balanceHistoryHandler = require('./handlers/balanceHistoryHandler');
 const serviceCategoryHandler = require('./handlers/serviceCategoryHandler');
 const serviceHandler = require('./handlers/serviceHandler');
 const requestCategoryHandler = require('./handlers/requestCategoryHandler');
@@ -17,45 +20,88 @@ app.use(bodyParser.json());
 db();
 
 mongoose.set('useFindAndModify', false);
-
-// DB API
-// account
+//Account
 app.get('/add-account', (req, res) => {
-  const account = new Account({
-    firstName: 'Yuan',
-    lastName: 'Lee',
-    userID: '6647lee',
-    password: '!pass',
-    email: 'ihavesixchildren@protonmail.ch',
-  });
-  account
-    .save()
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  accountHandler.addNewAccount(res);
 });
 
 app.get('/accounts', (req, res) => {
-  Account.find()
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  accountHandler.viewAllAccount(res);
 });
 
-app.get('/account/:id', (req, res) => {
-  Account.findById(req.params.id)
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+app.get('/accounts/:id', (req, res) => {
+  accountHandler.viewOneAccountById(req, res);
+});
+
+app.get('/accounts/:id/edit', (req, res) => {
+  accountHandler.editAccountById(req, res);
+});
+
+app.get('/accounts/:id', (req, res) => {
+  accountHandler.deleteAccountById(req, res);
+});
+
+//Account Level
+app.get('/add-account-level', (req, res) => {
+  accountLevelHandler.addNewAccountLevel(res);
+});
+
+app.get('/account-level', (req, res) => {
+  accountLevelHandler.viewAllAccountLevel(res);
+});
+
+app.get('/account-level/:id', (req, res) => {
+  accountLevelHandler.viewOneAccountLevelById(req, res);
+});
+
+app.get('/account-level/:id/edit', (req, res) => {
+  accountLevelHandler.editAccountLevelById(req, res);
+});
+
+app.get('/account-level/:id', (req, res) => {
+  accountLevelHandler.deleteAccountLevelById(req, res);
+});
+
+//Balance
+app.get('/add-balance', (req, res) => {
+  balanceHandler.addNewBalance(res);
+});
+
+app.get('/balances', (req, res) => {
+  balanceHandler.viewAllBalance(res);
+});
+
+app.get('/balances/:id', (req, res) => {
+  balanceHandler.viewOneBalanceById(req, res);
+});
+
+app.get('/balances/:id/edit', (req, res) => {
+  balanceHandler.editBalanceById(req, res);
+});
+
+app.get('/balances/:id', (req, res) => {
+  balanceHandler.deleteBalanceById(req, res);
+});
+
+//Balance History
+app.get('/add-balance-history', (req, res) => {
+  balanceHistoryHandler.addNewBalanceHistory(res);
+});
+
+app.get('/balance-histories', (req, res) => {
+  balanceHistoryHandler.viewAllBalanceHistory(res);
+});
+
+app.get('/balance-history/:id', (req, res) => {
+  balanceHistoryHandler.viewAllBalanceHistory(req, res);
+});
+
+app.get('/balance-history/:id/edit', (req, res) => {
+  balanceHistoryHandler.editBalanceHistoryById(req, res);
+});
+
+app.get('/balance-history/:id', (req, res) => {
+  balanceHistoryHandler.deleteBalanceHistoryById(req, res);
 });
 
 // service-category

@@ -26,6 +26,11 @@ const accountSchema = new Schema(
     address: {
       type: String,
     },
+    accountLevelId: {
+      type: Schema.Types.accountLevelId,
+      ref: 'accountLevels',
+      required: true,
+    },
   },
   { timestamps: true }
 );

@@ -1,93 +1,75 @@
 const Customer = require('../../models/customer');
 
-// Create
-function addNewCustomer(res){
-
-  // var reqAccountId = req.query.accountId;
-  // var reqLastLoginTime = req.query.lastLoginTime;
-  // var reqBalaceId = req.query.balaceId;
-
-  // const request = new Request({
-  //  accountId: "6023445bb9a0ed640bf9b1cf",
-  //  lastLoginTime: new Date(),
-  //  balaceId: ""
-  // });
-
-  const customer = new Customer({
-    accountId: "6023445bb9a0ed640bf9b1cf",
-    lastLoginTime: new Date(),
-    balaceId: ""
-  });
-
-  customer
-  .save()
-  .then((result) => {
-    res.send(result);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-}
-
-// Update 
-function editCustomer(res){
-  Customer.updateOne(
-    {
-      _id: "6024ce2b59f47d1d401ef0b9"    
-    },
-    {
-      $set:{
-        sin: "123-567-451"
+// create new
+exports.addNewCustomer = function (data) {
+  return new Promise((resolve, reject) => {
+    let newCustomer = new Customer(data);
+    newCustomer.save((err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(`new customer (id: ${newCustomer._id}) is created.`);
       }
-    }
-  )
-  .then((result) => {
-    res.send(result);
-  })
-  .catch((err) => {
-    console.log(err);
+    });
   });
-} 
+};
 
-// Delete
-function deleteCustomer(res){
-  Customer.deleteOne(
-    {
-      _id: ""
-    }
-  )  
-  .then((result) => {
-    res.send(result);
-  })
-  .catch((err) => {
-    console.log(err);
+// view all
+exports.viewAllCustomer = function () {
+  return new Promise((resolve, reject) => {
+    Customer.find()
+      .then((customer) => {
+        resolve(customer);
+      })
+      .catch((err) => {
+        reject(err);
+      });
   });
-}
+};
 
-// Read All
-function viewAllCustomer(res){
-  Customer.find()
-  .then((result) => {
-    res.send(result);
-  })
-  .catch((err) => {
-    console.log(err);
+// view one
+exports.viewCustomerById = function (id) {
+  return new Promise((resolve, reject) => {
+    Customer.findOne({ _id: id })
+      .exec()
+      .then((customer) => {
+        resolve(customer);
+      })
+      .catch((err) => {
+        reject(err);
+      });
   });
-}
+};
 
-// Read One
-function viewCustomer(req, res){
-  Customer.findById(req.params.id)    
-  .then((result) => {
-    res.send(result);
-  })
-  .catch((err) => {
-    console.log(err);
+// update one
+exports.editCustomerById = function (data, id) {
+  return new Promise((resolve, reject) => {
+    Customer.updateOne(
+      { _id: id },
+      {
+        $set: data,
+      }
+    )
+      .exec()
+      .then(() => {
+        resolve(`customer (id: ${id}) is updated`);
+      })
+      .catch((err) => {
+        reject(err);
+      });
   });
-}
+};
 
-exports.addNewCustomer = addNewCustomer;
-exports.editCustomer = editCustomer;
-exports.deleteCustomer = deleteCustomer;
-exports.viewAllCustomer = viewAllCustomer;
-exports.viewCustomer = viewCustomer;
+// delete one
+exports.deleteCustomerById = function (id) {
+  return new Promise((resolve, reject) => {
+    Customer.deleteOne({ _id: id })
+      .exec()
+      .then(() => {
+        resolve(`customer (id: ${id}) is deleted`);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};

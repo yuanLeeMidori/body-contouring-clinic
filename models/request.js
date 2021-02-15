@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const requestSchema = new Schema({
-    accountId: {
+    customerId: {
       type: Schema.Types.ObjectId, 
-      ref: 'accounts',
+      ref: 'customers',
       required: true,
     }, 
     serviceCategoryId: {
@@ -36,7 +36,6 @@ const requestSchema = new Schema({
     attachedFile: {
         type: String,
     },
-
 }, { timestamps: true });
 
 const Request = mongoose.model('requests', requestSchema);

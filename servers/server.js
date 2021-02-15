@@ -11,9 +11,12 @@ const balanceHandler = require('./handlers/balanceHandler');
 const balanceHistoryHandler = require('./handlers/balanceHistoryHandler');
 const serviceCategoryHandler = require('./handlers/serviceCategoryHandler');
 const serviceHandler = require('./handlers/serviceHandler');
-const requestCategoryHandler = require('./handlers/requestCategoryHandler');
 const pageHandler = require('./handlers/pageHandler');
 const offerHandler = require('./handlers/offerHandler');
+const requestCategoryHandler = require('./handlers/requestCategoryHandler');
+const staffHandler = require('./handlers/staffHandler');
+const customerHandler = require('./handlers/customerHandler');
+const requestHandler = require('./handlers/requestHandler');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -170,19 +173,6 @@ app.delete('/service/:id', (req, res) => {
     .catch((err) => res.json(err));
 });
 
-// requestCategory
-app.get('/add-requestCategory', (req, res) => {
-  requestCategoryHandler.addNewRequestCategory(res);
-});
-
-app.get('/request-categories', (req, res) => {
-  requestCategoryHandler.viewAllRequestCategories(res);
-});
-
-app.get('/edit-requestCategory', (req, res) => {
-  requestCategoryHandler.editRequestCategory(res);
-});
-
 // page
 app.post('/add-page', (req, res) => {
   pageHandler.addNewPage(req.body).then((msg) => res.json(msg));
@@ -246,6 +236,138 @@ app.delete('/offer/:id', (req, res) => {
   offerHandler
     .deleteOfferById(req.params.id)
     .then((offer) => res.json(offer))
+    .catch((err) => res.json(err));
+});
+
+// staff
+app.post('/create-staff', (req, res) => {
+  staffHandler.addNewStaff(req.body).then((msg) => res.json(msg));
+});
+
+app.get('/staffs', (req, res) => {
+  staffHandler
+    .viewAllStaff()
+    .then((staffs) => res.json(staffs))
+    .catch((err) => res.json(err));
+});
+
+app.get('/staff/:id', (req, res) => {
+  staffHandler
+    .viewStaffById(req.params.id)
+    .then((staff) => res.json(staff))
+    .catch((err) => res.json(err));
+});
+
+app.put('/staff/:id', (req, res) => {
+  staffHandler
+    .editStaffById(req.body, req.params.id)
+    .then((msg) => res.json(msg))
+    .catch((err) => res.json(err));
+});
+
+app.delete('/staff/:id', (req, res) => {
+  staffHandler
+    .deleteStaffById(req.params.id)
+    .then((staff) => res.json(staff))
+    .catch((err) => res.json(err));
+});
+
+// customer
+app.post('/create-customer', (req, res) => {
+  customerHandler.addNewCustomer(req.body).then((msg) => res.json(msg));
+});
+
+app.get('/customers', (req, res) => {
+  customerHandler
+    .viewAllCustomer()
+    .then((customers) => res.json(customers))
+    .catch((err) => res.json(err));
+});
+
+app.get('/customer/:id', (req, res) => {
+  customerHandler
+    .viewCustomerById(req.params.id)
+    .then((customer) => res.json(customer))
+    .catch((err) => res.json(err));
+});
+
+app.put('/customer/:id', (req, res) => {
+  customerHandler
+    .editCustomerById(req.body, req.params.id)
+    .then((msg) => res.json(msg))
+    .catch((err) => res.json(err));
+});
+
+app.delete('/customer/:id', (req, res) => {
+  customerHandler
+    .deleteCustomerById(req.params.id)
+    .then((customer) => res.json(customer))
+    .catch((err) => res.json(err));
+});
+
+// request
+app.post('/create-request', (req, res) => {
+  requestHandler.addNewRequest(req.body).then((msg) => res.json(msg));
+});
+
+app.get('/requests', (req, res) => {
+  requestHandler
+    .viewAllRequest()
+    .then((requests) => res.json(requests))
+    .catch((err) => res.json(err));
+});
+
+app.get('/request/:id', (req, res) => {
+  requestHandler
+    .viewRequestById(req.params.id)
+    .then((request) => res.json(request))
+    .catch((err) => res.json(err));
+});
+
+app.put('/request/:id', (req, res) => {
+  requestHandler
+    .editRequestById(req.body, req.params.id)
+    .then((msg) => res.json(msg))
+    .catch((err) => res.json(err));
+});
+
+app.delete('/request/:id', (req, res) => {
+  requestHandler
+    .deleteRequestById(req.params.id)
+    .then((request) => res.json(request))
+    .catch((err) => res.json(err));
+});
+
+// request-category
+app.post('/create-request-category', (req, res) => {
+  requestCategoryHandler.addNewRequestCategory(req.body).then((msg) => res.json(msg));
+});
+
+app.get('/request-categories', (req, res) => {
+  requestCategoryHandler
+    .viewAllRequestCategories()
+    .then((requestCategory) => res.json(requestCategory))
+    .catch((err) => res.json(err));
+});
+
+app.get('/request-category/:id', (req, res) => {
+  requestCategoryHandler
+    .viewRequestCategoryById(req.params.id)
+    .then((requestCategory) => res.json(requestCategory))
+    .catch((err) => res.json(err));
+});
+
+app.put('/request-category/:id', (req, res) => {
+  requestCategoryHandler
+    .editRequestCategoryById(req.body, req.params.id)
+    .then((msg) => res.json(msg))
+    .catch((err) => res.json(err));
+});
+
+app.delete('/request-category/:id', (req, res) => {
+  requestCategoryHandler
+    .deleteRequestCategoryById(req.params.id)
+    .then((requestCategory) => res.json(requestCategory))
     .catch((err) => res.json(err));
 });
 

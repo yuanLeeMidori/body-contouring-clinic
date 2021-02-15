@@ -24,7 +24,7 @@ db();
 
 mongoose.set('useFindAndModify', false);
 //Account
-app.get('/add-account', (req, res) => {
+app.post('/add-account', (req, res) => {
   accountHandler.addNewAccount(res);
 });
 
@@ -36,16 +36,16 @@ app.get('/accounts/:id', (req, res) => {
   accountHandler.viewOneAccountById(req, res);
 });
 
-app.get('/accounts/:id/edit', (req, res) => {
+app.put('/accounts/:id/edit', (req, res) => {
   accountHandler.editAccountById(req, res);
 });
 
-app.get('/accounts/:id', (req, res) => {
+app.delete('/accounts/:id', (req, res) => {
   accountHandler.deleteAccountById(req, res);
 });
 
 //Account Level
-app.get('/add-account-level', (req, res) => {
+app.post('/add-account-level', (req, res) => {
   accountLevelHandler.addNewAccountLevel(res);
 });
 
@@ -57,16 +57,16 @@ app.get('/account-level/:id', (req, res) => {
   accountLevelHandler.viewOneAccountLevelById(req, res);
 });
 
-app.get('/account-level/:id/edit', (req, res) => {
+app.put('/account-level/:id/edit', (req, res) => {
   accountLevelHandler.editAccountLevelById(req, res);
 });
 
-app.get('/account-level/:id', (req, res) => {
+app.delete('/account-level/:id', (req, res) => {
   accountLevelHandler.deleteAccountLevelById(req, res);
 });
 
 //Balance
-app.get('/add-balance', (req, res) => {
+app.post('/add-balance', (req, res) => {
   balanceHandler.addNewBalance(res);
 });
 
@@ -78,16 +78,16 @@ app.get('/balances/:id', (req, res) => {
   balanceHandler.viewOneBalanceById(req, res);
 });
 
-app.get('/balances/:id/edit', (req, res) => {
+app.put('/balances/:id/edit', (req, res) => {
   balanceHandler.editBalanceById(req, res);
 });
 
-app.get('/balances/:id', (req, res) => {
+app.delete('/balances/:id', (req, res) => {
   balanceHandler.deleteBalanceById(req, res);
 });
 
 //Balance History
-app.get('/add-balance-history', (req, res) => {
+app.post('/add-balance-history', (req, res) => {
   balanceHistoryHandler.addNewBalanceHistory(res);
 });
 
@@ -99,11 +99,11 @@ app.get('/balance-history/:id', (req, res) => {
   balanceHistoryHandler.viewAllBalanceHistory(req, res);
 });
 
-app.get('/balance-history/:id/edit', (req, res) => {
+app.put('/balance-history/:id/edit', (req, res) => {
   balanceHistoryHandler.editBalanceHistoryById(req, res);
 });
 
-app.get('/balance-history/:id', (req, res) => {
+app.delete('/balance-history/:id', (req, res) => {
   balanceHistoryHandler.deleteBalanceHistoryById(req, res);
 });
 

@@ -14,7 +14,6 @@ const serviceSchema = new Schema(
     },
     serviceDescription: {
       type: String,
-      required: true,
     },
     isActive: {
       type: Boolean,

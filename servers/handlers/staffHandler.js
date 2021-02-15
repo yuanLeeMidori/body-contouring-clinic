@@ -1,92 +1,75 @@
 const Staff = require('../../models/staff');
 
-// Create
-function addNewStaff(res){
-
-  // var reqAccountId = req.query.accountId;
-  // var reqActive = req.query.isActive;
-  // var reqSin = req.query.sin;
-  // const staff = new Staff({
-  //  accountId : reqAccountId,
-  //  isActive : reqActive,
-  //  sin : reqSin,
-  // });
-
-  const staff = new Staff({
-    accountId : "6023445bb9a0ed640bf9b1cf",
-    isActive : true,
-    sin : '123-456-789',
-  });
-
-  staff
-  .save()
-  .then((result) => {
-    res.send(result);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-}
-
-// Update 
-function editStaff(res){
-  Staff.updateOne(
-    {
-      _id: "6024ce2b59f47d1d401ef0b9"    
-    },
-    {
-      $set:{
-        sin: "123-567-451"
+// create new
+exports.addNewStaff = function (data) {
+  return new Promise((resolve, reject) => {
+    let newStaff = new Staff(data);
+    newStaff.save((err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(`new staff (id: ${newStaff._id}) is created.`);
       }
-    }
-  )
-  .then((result) => {
-    res.send(result);
-  })
-  .catch((err) => {
-    console.log(err);
+    });
   });
-} 
+};
 
-// Delete
-function deleteStaff(res){
-  Staff.deleteOne(
-    {
-      _id: ""
-    }
-  )  
-  .then((result) => {
-    res.send(result);
-  })
-  .catch((err) => {
-    console.log(err);
+// view all
+exports.viewAllStaff = function () {
+  return new Promise((resolve, reject) => {
+    Staff.find()
+      .then((staff) => {
+        resolve(staff);
+      })
+      .catch((err) => {
+        reject(err);
+      });
   });
-}
+};
 
-// Read All
-function viewAllStaff(res){
-  Staff.find()
-  .then((result) => {
-    res.send(result);
-  })
-  .catch((err) => {
-    console.log(err);
+// view one
+exports.viewStaff = function (id) {
+  return new Promise((resolve, reject) => {
+    Staff.findOne({ _id: id })
+      .exec()
+      .then((staff) => {
+        resolve(staff);
+      })
+      .catch((err) => {
+        reject(err);
+      });
   });
-}
+};
 
-// Read One
-function viewStaff(req, res){
-  Staff.findById(req.params.id)    
-  .then((result) => {
-    res.send(result);
-  })
-  .catch((err) => {
-    console.log(err);
+// update one
+exports.editStaffById = function (data, id) {
+  return new Promise((resolve, reject) => {
+    Staff.updateOne(
+      { _id: id },
+      {
+        $set: data,
+      }
+    )
+      .exec()
+      .then(() => {
+        resolve(`Staff (id: ${id}) is updated`);
+      })
+      .catch((err) => {
+        reject(err);
+      });
   });
-}
+};
 
-exports.addNewStaff = addNewStaff;
-exports.editStaff = editStaff;
-exports.deleteStaff = deleteStaff;
-exports.viewAllStaff = viewAllStaff;
-exports.viewStaff = viewStaff;
+// delete one
+exports.deleteStaffById = function (id) {
+  return new Promise((resolve, reject) => {
+    Staff.deleteOne({ _id: id })
+      .exec()
+      .then(() => {
+        resolve(`Staff (id: ${id}) is deleted`);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};

@@ -1,86 +1,75 @@
 const RequestCategory = require('../../models/requestCategory');
 
-// Create
-function addNewRequestCategory(res){
-
-  // var reqCatName = req.query.categoryName;
-  // const requestCategory = new RequestCategory({
-  //   RequestCategoryName : reqCatName
-  // });
-
-  const requestCategory = new RequestCategory({
-    RequestCategoryName : 'MemberShip'
-  });
-
-  requestCategory
-  .save()
-  .then((result) => {
-    res.send(result);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-}
-
-// Update 
-function editRequestCategory(res){
-  RequestCategory.updateOne(
-    {
-      _id: "6024ce2b59f47d1d401ef0b9"    
-    },
-    {
-      $set:{
-        RequestCategoryName: "ShipmentTest"
+// create new
+exports.addNewRequestCategory = function (data) {
+  return new Promise((resolve, reject) => {
+    let newRequestCategory = new RequestCategory(data);
+    newRequestCategory.save((err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(`new request category (id: ${newRequestCategory._id}) is created.`);
       }
-    }
-  )
-  .then((result) => {
-    res.send(result);
-  })
-  .catch((err) => {
-    console.log(err);
+    });
   });
-} 
+};
 
-// Delete
-function deleteRequestCategory(res){
-  RequestCategory.deleteOne(
-    {
-      _id: ""
-    }
-  )  
-  .then((result) => {
-    res.send(result);
-  })
-  .catch((err) => {
-    console.log(err);
+// view all
+exports.viewAllRequestCategories = function () {
+  return new Promise((resolve, reject) => {
+    RequestCategory.find()
+      .then((requestCategories) => {
+        resolve(requestCategories);
+      })
+      .catch((err) => {
+        reject(err);
+      });
   });
-}
+};
 
-// Read All
-function viewAllRequestCategories(res){
-  RequestCategory.find()
-  .then((result) => {
-    res.send(result);
-  })
-  .catch((err) => {
-    console.log(err);
+// view one
+exports.viewRequestCategoryById = function (id) {
+  return new Promise((resolve, reject) => {
+    RequestCategory.findOne({ _id: id })
+      .exec()
+      .then((requestCategory) => {
+        resolve(requestCategory);
+      })
+      .catch((err) => {
+        reject(err);
+      });
   });
-}
+};
 
-// Read One
-function viewRequestCategory(req, res){
-  RequestCategory.findById(req.params.id)    
-  .then((result) => {
-    res.send(result);
-  })
-  .catch((err) => {
-    console.log(err);
+// update one
+exports.editRequestCategoryById = function (data, id) {
+  return new Promise((resolve, reject) => {
+    RequestCategory.updateOne(
+      { _id: id },
+      {
+        $set: data,
+      }
+    )
+      .exec()
+      .then(() => {
+        resolve(`request category (id: ${id}) is updated`);
+      })
+      .catch((err) => {
+        reject(err);
+      });
   });
-}
+};
 
-exports.addNewRequestCategory = addNewRequestCategory;
-exports.editRequestCategory = editRequestCategory;
-exports.deleteRequestCategory = deleteRequestCategory;
-exports.viewAllRequestCategories = viewAllRequestCategories;
-exports.viewRequestCategory = viewRequestCategory;
+// delete one
+exports.deleteRequestCategoryById = function (id) {
+  return new Promise((resolve, reject) => {
+    RequestCategory.deleteOne({ _id: id })
+      .exec()
+      .then(() => {
+        resolve(`request category (id: ${id}) is deleted`);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};

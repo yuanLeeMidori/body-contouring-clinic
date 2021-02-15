@@ -24,87 +24,134 @@ db();
 
 mongoose.set('useFindAndModify', false);
 //Account
-app.get('/add-account', (req, res) => {
-  accountHandler.addNewAccount(res);
+app.post('/add-account', (req, res) => {
+  accountHandler.addNewAccount(req.body).then((msg) => res.json(msg));
 });
 
 app.get('/accounts', (req, res) => {
-  accountHandler.viewAllAccount(res);
+  accountHandler
+    .viewAllAccount()
+    .then((accounts) => res.json(accounts))
+    .catch((err) => res.json(err));
 });
 
-app.get('/accounts/:id', (req, res) => {
-  accountHandler.viewOneAccountById(req, res);
+app.get('/account/:id', (req, res) => {
+  accountHandler
+    .viewOneAccountById(req.params.id)
+    .then((accounts) => res.json(accounts))
+    .catch((err) => res.json(err));
 });
 
-app.get('/accounts/:id/edit', (req, res) => {
-  accountHandler.editAccountById(req, res);
+app.put('/account/:id', (req, res) => {
+  accountHandler
+    .editAccountById(req.body, req.params.id)
+    .then((msg) => res.json(msg))
+    .catch((err) => res.json(err));
 });
 
-app.get('/accounts/:id', (req, res) => {
-  accountHandler.deleteAccountById(req, res);
+app.delete('/account/:id', (req, res) => {
+  accountHandler
+    .deleteAccountById(req.params.id)
+    .then((accounts) => res.json(accounts))
+    .catch((err) => res.json(err));
 });
 
 //Account Level
-app.get('/add-account-level', (req, res) => {
-  accountLevelHandler.addNewAccountLevel(res);
+app.post('/add-account-level', (req, res) => {
+  accountLevelHandler.addNewAccountLevel(req.body).then((msg) => res.json(msg));
 });
 
-app.get('/account-level', (req, res) => {
-  accountLevelHandler.viewAllAccountLevel(res);
+app.get('/account-levels', (req, res) => {
+  accountLevelHandler
+    .viewAllAccountLevel(req.params.id)
+    .then((accountLevel) => res.json(accountLevel))
+    .catch((err) => res.json(err));
 });
-
 app.get('/account-level/:id', (req, res) => {
-  accountLevelHandler.viewOneAccountLevelById(req, res);
+  accountLevelHandler
+    .viewOneAccountLevelById(req.params.id)
+    .then((accountLevel) => res.json(accountLevel))
+    .catch((err) => res.json(err));
 });
 
-app.get('/account-level/:id/edit', (req, res) => {
-  accountLevelHandler.editAccountLevelById(req, res);
+app.put('/account-level/:id', (req, res) => {
+  accountLevelHandler
+    .editAccountLevelById(req.body, req.params.id)
+    .then((msg) => res.json(msg))
+    .catch((err) => res.json(err));
 });
 
-app.get('/account-level/:id', (req, res) => {
-  accountLevelHandler.deleteAccountLevelById(req, res);
+app.delete('/account-level/:id', (req, res) => {
+  accountLevelHandler
+    .deleteAccountLevelById(req.params.id)
+    .then((accountLevel) => res.json(accountLevel))
+    .catch((err) => res.json(err));
 });
 
 //Balance
-app.get('/add-balance', (req, res) => {
-  balanceHandler.addNewBalance(res);
+app.post('/add-balance', (req, res) => {
+  balanceHandler.addNewBalance(req.body).then((msg) => res.json(msg));
 });
 
 app.get('/balances', (req, res) => {
-  balanceHandler.viewAllBalance(res);
+  balanceHandler
+    .viewAllBalance(req.params.id)
+    .then((balances) => res.json(balances))
+    .catch((err) => res.json(err));
 });
 
-app.get('/balances/:id', (req, res) => {
-  balanceHandler.viewOneBalanceById(req, res);
+app.get('/balance/:id', (req, res) => {
+  balanceHandler
+    .viewOneBalanceById(req.params.id)
+    .then((balances) => res.json(balances))
+    .catch((err) => res.json(err));
 });
 
-app.get('/balances/:id/edit', (req, res) => {
-  balanceHandler.editBalanceById(req, res);
+app.put('/balance/:id', (req, res) => {
+  balanceHandler
+    .editBalanceById(req.body, req.params.id)
+    .then((msg) => res.json(msg))
+    .catch((err) => res.json(err));
 });
 
-app.get('/balances/:id', (req, res) => {
-  balanceHandler.deleteBalanceById(req, res);
+app.delete('/balance/:id', (req, res) => {
+  balanceHandler
+    .deleteBalanceById(req.params.id)
+    .then((balances) => res.json(balances))
+    .catch((err) => res.json(err));
 });
 
 //Balance History
-app.get('/add-balance-history', (req, res) => {
-  balanceHistoryHandler.addNewBalanceHistory(res);
+app.post('/add-balance-history', (req, res) => {
+  balanceHistoryHandler.addNewBalanceHistory(req.body).then((msg) => res.json(msg));
 });
 
 app.get('/balance-histories', (req, res) => {
-  balanceHistoryHandler.viewAllBalanceHistory(res);
+  balanceHistoryHandler
+    .viewAllBalanceHistory(req.params.id)
+    .then((balanceHistory) => res.json(balanceHistory))
+    .catch((err) => res.json(err));
 });
 
 app.get('/balance-history/:id', (req, res) => {
-  balanceHistoryHandler.viewAllBalanceHistory(req, res);
+  balanceHistoryHandler
+    .viewOneBalanceHistoryById(req.params.id)
+    .then((balanceHistory) => res.json(balanceHistory))
+    .catch((err) => res.json(err));
 });
 
-app.get('/balance-history/:id/edit', (req, res) => {
-  balanceHistoryHandler.editBalanceHistoryById(req, res);
+app.put('/balance-history/:id', (req, res) => {
+  balanceHistoryHandler
+    .editBalanceHistoryById(req.body, req.params.id)
+    .then((msg) => res.json(msg))
+    .catch((err) => res.json(err));
 });
 
-app.get('/balance-history/:id', (req, res) => {
-  balanceHistoryHandler.deleteBalanceHistoryById(req, res);
+app.delete('/balance-history/:id', (req, res) => {
+  balanceHistoryHandler
+    .deleteBalanceHistoryById(req.params.id)
+    .then((balanceHistory) => res.json(balanceHistory))
+    .catch((err) => res.json(err));
 });
 
 // service-category

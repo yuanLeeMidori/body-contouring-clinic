@@ -27,7 +27,7 @@ const accountSchema = new Schema(
       type: String,
     },
     accountLevelId: {
-      type: Schema.Types.accountLevelId,
+      type: Schema.Types.ObjectId,
       ref: 'accountLevels',
       required: true,
     },

@@ -28,7 +28,7 @@ exports.viewAllStaff = function () {
 };
 
 // view one
-exports.viewStaff = function (id) {
+exports.viewStaffById = function (id) {
   return new Promise((resolve, reject) => {
     Staff.findOne({ _id: id })
       .exec()

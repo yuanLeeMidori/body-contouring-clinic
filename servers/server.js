@@ -138,24 +138,36 @@ app.get('/edit-requestCategory', (req, res) => {
 });
 
 // page
-app.get('/add-page', (req, res) => {
-  pageHandler.addNewPage(res);
+app.post('/add-page', (req, res) => {
+  pageHandler.addNewPage(req.body).then((msg) => res.json(msg));
 });
 
 app.get('/pages', (req, res) => {
-  pageHandler.viewAllPages(res);
+  pageHandler
+    .viewAllPages()
+    .then((pages) => res.json(pages))
+    .catch((err) => res.json(err));
 });
 
 app.get('/page/:id', (req, res) => {
-  pageHandler.viewOnePageById(req, res);
+  pageHandler
+    .viewOnePageById(req.params.id)
+    .then((page) => res.json(page))
+    .catch((err) => res.json(err));
 });
 
-app.get('/page/:id/edit', (req, res) => {
-  pageHandler.editPageById(req, res);
+app.put('/page/:id', (req, res) => {
+  pageHandler
+    .editPageById(req.body, req.params.id)
+    .then((msg) => res.json(msg))
+    .catch((err) => res.json(err));
 });
 
 app.delete('/page/:id', (req, res) => {
-  pageHandler.deletePageById(req, res);
+  pageHandler
+    .deletePageById(req.params.id)
+    .then((page) => res.json(page))
+    .catch((err) => res.json(err));
 });
 
 // offer

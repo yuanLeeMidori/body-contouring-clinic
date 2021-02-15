@@ -171,24 +171,36 @@ app.delete('/page/:id', (req, res) => {
 });
 
 // offer
-app.get('/add-offer', (req, res) => {
-  offerHandler.addNewOffer(res);
+app.post('/add-offer', (req, res) => {
+  offerHandler.addNewOffer(req.body).then((msg) => res.json(msg));
 });
 
 app.get('/offers', (req, res) => {
-  offerHandler.viewAllOffers(res);
+  offerHandler
+    .viewAllOffers()
+    .then((offers) => res.json(offers))
+    .catch((err) => res.json(err));
 });
 
 app.get('/offer/:id', (req, res) => {
-  offerHandler.viewOneOfferById(req, res);
+  offerHandler
+    .viewOneOfferById(req.params.id)
+    .then((offer) => res.json(offer))
+    .catch((err) => res.json(err));
 });
 
-app.get('/offer/:id/edit', (req, res) => {
-  offerHandler.editOfferById(req, res);
+app.put('/offer/:id', (req, res) => {
+  offerHandler
+    .editOfferById(req.body, req.params.id)
+    .then((msg) => res.json(msg))
+    .catch((err) => res.json(err));
 });
 
 app.delete('/offer/:id', (req, res) => {
-  offerHandler.deleteOfferById(req, res);
+  offerHandler
+    .deleteOfferById(req.params.id)
+    .then((offer) => res.json(offer))
+    .catch((err) => res.json(err));
 });
 
 app.use('/api', (req, res) => res.json({ backServer: 'true' }));

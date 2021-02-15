@@ -1,72 +1,75 @@
 const Service = require('../../models/service');
 
 // create new
-exports.addNewService = function (res) {
-  const service = new Service({
-    serviceCategory: '60273c650ab612462b27ddb2',
-    serviceName: 'Classic Facial',
-    serviceDescription:
-      'An introduction to facial treatments for your skin. Includes cleansing, skin analysis, exfoliation, face massage and mask, cream.',
-    isActive: true,
-  });
-  service
-    .save()
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => {
-      console.log(err);
+exports.addNewService = function (data) {
+  return new Promise((resolve, reject) => {
+    let newService = new Service(data);
+    newService.save((err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(`new service (id: ${newService._id}) is created`);
+      }
     });
+  });
 };
 
 // view all
-exports.viewAllServices = function (res) {
-  Service.find()
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+exports.viewAllServices = function () {
+  return new Promise((resolve, reject) => {
+    Service.find()
+      .then((services) => {
+        resolve(services);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
 };
 
 // view one
-exports.viewOneServiceById = function (req, res) {
-  Service.findById(req.params.id)
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+exports.viewOneServiceById = function (id) {
+  return new Promise((resolve, reject) => {
+    Service.findOne({ _id: id })
+      .exec()
+      .then((service) => {
+        resolve(service);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
 };
 
 // update one
-exports.editServiceById = function (req, res) {
-  const id = { _id: req.params.id };
-  const update = {
-    serviceCategory: '60273c650ab612462b27ddb2',
-    serviceName: 'Acne Control Facial',
-    serviceDescription:
-      'Addresses excessive oiliness and acne prone skin by reducing bacterial infection and moisturizing the skin.',
-    isActive: true,
-  };
-  Service.findByIdAndUpdate(id, update)
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+exports.editServiceById = function (data, id) {
+  return new Promise((resolve, reject) => {
+    Service.updateOne(
+      { _id: id },
+      {
+        $set: data,
+      }
+    )
+      .exec()
+      .then(() => {
+        resolve(`service (id: ${id}) is updated`);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
 };
 
 // delete one
-exports.deleteServiceById = function (req, res) {
-  Service.findByIdAndDelete(req.params.id)
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+exports.deleteServiceById = function (id) {
+  return new Promise((resolve, reject) => {
+    Service.deleteOne({ _id: id })
+      .exec()
+      .then(() => {
+        resolve(`service (id: ${id}) is deleted`);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
 };

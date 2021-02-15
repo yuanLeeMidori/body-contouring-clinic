@@ -1,72 +1,70 @@
 const Offer = require('../../models/offer');
 
 // create new
-exports.addNewOffer = function (res) {
-  const offer = new Offer({
-    offerName: '(small) Laser Hair Removal - 6 session package',
-    appliedService: '60273bca1c9437459aad2ff8',
-    startDate: '2020-01-01',
-    endDate: '2021-12-31',
-    description: 'Chin, Upper lip, Lower lip, Sideburns, Cheeks, Forehead, Areola, Ears',
-    imageURL: 'http://body-contouring-clinic/laser-first-time',
-  });
-  offer.startDate instanceof Date;
-  offer.endDate instanceof Date;
-  offer
-    .save()
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => {
-      console.log(err);
+exports.addNewOffer = function (data) {
+  return new Promise((resolve, reject) => {
+    let newOffer = new Offer(data);
+    newOffer.save((err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(`new offer (id: ${newOffer._id}) is created`);
+      }
     });
+  });
 };
 
 // view all
-exports.viewAllOffers = function (res) {
-  Offer.find()
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+exports.viewAllOffers = function () {
+  return new Promise((resolve, reject) => {
+    Offer.find()
+      .then((offers) => {
+        resolve(offers);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
 };
 
 // view one
-exports.viewOneOfferById = function (req, res) {
-  Offer.findById(req.params.id)
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+exports.viewOneOfferById = function (id) {
+  return new Promise((resolve, reject) => {
+    Offer.findOne({ _id: id })
+      .exec()
+      .then((offer) => {
+        resolve(offer);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
 };
 
 // update one
-exports.editOfferById = function (req, res) {
-  const id = { _id: req.params.id };
-  const update = {
-    offerName: '(medium) Laser Hair Removal - 6 session package',
-    endDate: '2021-08-08',
-  };
-  Offer.findByIdAndUpdate(id, update)
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+exports.editOfferById = function (data, id) {
+  return new Promise((resolve, reject) => {
+    Offer.updateOne({ _id: id }, { $set: data })
+      .exec()
+      .then(() => {
+        resolve(`offer (id: ${id}) is updated`);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
 };
 
 // delete one
-exports.deleteOfferById = function (req, res) {
-  Offer.findByIdAndDelete(req.params.id)
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+exports.deleteOfferById = function (id) {
+  return new Promise((resolve, reject) => {
+    Offer.deleteOne({ _id: id })
+      .exec()
+      .then(() => {
+        resolve(`offer (id: ${id}) is deleted`);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
 };

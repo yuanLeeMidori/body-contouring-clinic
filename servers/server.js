@@ -59,45 +59,69 @@ app.get('/account/:id', (req, res) => {
 });
 
 // service-category
-app.get('/add-service-category', (req, res) => {
-  serviceCategoryHandler.addNewServiceCategory(res);
+app.post('/create-service-category', (req, res) => {
+  serviceCategoryHandler.addNewServiceCategory(req.body).then((msg) => res.json(msg));
 });
 
 app.get('/service-categories', (req, res) => {
-  serviceCategoryHandler.viewAllServiceCategory(res);
+  serviceCategoryHandler
+    .viewAllServiceCategories()
+    .then((serviceCategories) => res.json(serviceCategories))
+    .catch((err) => res.json(err));
 });
 
 app.get('/service-category/:id', (req, res) => {
-  serviceCategoryHandler.viewServiceCategoryById(req, res);
+  serviceCategoryHandler
+    .viewServiceCategoryById(req.params.id)
+    .then((serviceCategory) => res.json(serviceCategory))
+    .catch((err) => res.json(err));
 });
 
-app.get('/service-category/:id/edit', (req, res) => {
-  serviceCategoryHandler.editServiceCategoryById(req, res);
+app.put('/service-category/:id', (req, res) => {
+  serviceCategoryHandler
+    .editServiceCategoryById(req.body, req.params.id)
+    .then((msg) => res.json(msg))
+    .catch((err) => res.json(err));
 });
 
 app.delete('/service-category/:id', (req, res) => {
-  serviceCategoryHandler.deleteServiceCategoryById(req, res);
+  serviceCategoryHandler
+    .deleteServiceCategoryById(req.params.id)
+    .then((serviceCategory) => res.json(serviceCategory))
+    .catch((err) => res.json(err));
 });
 
 // service
-app.get('/add-service', (req, res) => {
-  serviceHandler.addNewService(res);
+app.post('/add-service', (req, res) => {
+  serviceHandler.addNewService(req.body).then((msg) => res.json(msg));
 });
 
 app.get('/services', (req, res) => {
-  serviceHandler.viewAllServices(res);
+  serviceHandler
+    .viewAllServices()
+    .then((services) => res.json(services))
+    .catch((err) => res.json(err));
 });
 
 app.get('/service/:id', (req, res) => {
-  serviceHandler.viewOneServiceById(req, res);
+  serviceHandler
+    .viewOneServiceById(req.params.id)
+    .then((service) => res.json(service))
+    .catch((err) => res.json(err));
 });
 
-app.get('/service/:id/edit', (req, res) => {
-  serviceHandler.editServiceById(req, res);
+app.put('/service/:id', (req, res) => {
+  serviceHandler
+    .editServiceById(req.body, req.params.id)
+    .then((msg) => res.json(msg))
+    .catch((err) => res.json(err));
 });
 
 app.delete('/service/:id', (req, res) => {
-  serviceHandler.deleteServiceById(req, res);
+  serviceHandler
+    .deleteServiceById(req.params.id)
+    .then((service) => res.json(service))
+    .catch((err) => res.json(err));
 });
 
 // requestCategory
@@ -114,45 +138,69 @@ app.get('/edit-requestCategory', (req, res) => {
 });
 
 // page
-app.get('/add-page', (req, res) => {
-  pageHandler.addNewPage(res);
+app.post('/add-page', (req, res) => {
+  pageHandler.addNewPage(req.body).then((msg) => res.json(msg));
 });
 
 app.get('/pages', (req, res) => {
-  pageHandler.viewAllPages(res);
+  pageHandler
+    .viewAllPages()
+    .then((pages) => res.json(pages))
+    .catch((err) => res.json(err));
 });
 
 app.get('/page/:id', (req, res) => {
-  pageHandler.viewOnePageById(req, res);
+  pageHandler
+    .viewOnePageById(req.params.id)
+    .then((page) => res.json(page))
+    .catch((err) => res.json(err));
 });
 
-app.get('/page/:id/edit', (req, res) => {
-  pageHandler.editPageById(req, res);
+app.put('/page/:id', (req, res) => {
+  pageHandler
+    .editPageById(req.body, req.params.id)
+    .then((msg) => res.json(msg))
+    .catch((err) => res.json(err));
 });
 
 app.delete('/page/:id', (req, res) => {
-  pageHandler.deletePageById(req, res);
+  pageHandler
+    .deletePageById(req.params.id)
+    .then((page) => res.json(page))
+    .catch((err) => res.json(err));
 });
 
 // offer
-app.get('/add-offer', (req, res) => {
-  offerHandler.addNewOffer(res);
+app.post('/add-offer', (req, res) => {
+  offerHandler.addNewOffer(req.body).then((msg) => res.json(msg));
 });
 
 app.get('/offers', (req, res) => {
-  offerHandler.viewAllOffers(res);
+  offerHandler
+    .viewAllOffers()
+    .then((offers) => res.json(offers))
+    .catch((err) => res.json(err));
 });
 
 app.get('/offer/:id', (req, res) => {
-  offerHandler.viewOneOfferById(req, res);
+  offerHandler
+    .viewOneOfferById(req.params.id)
+    .then((offer) => res.json(offer))
+    .catch((err) => res.json(err));
 });
 
-app.get('/offer/:id/edit', (req, res) => {
-  offerHandler.editOfferById(req, res);
+app.put('/offer/:id', (req, res) => {
+  offerHandler
+    .editOfferById(req.body, req.params.id)
+    .then((msg) => res.json(msg))
+    .catch((err) => res.json(err));
 });
 
 app.delete('/offer/:id', (req, res) => {
-  offerHandler.deleteOfferById(req, res);
+  offerHandler
+    .deleteOfferById(req.params.id)
+    .then((offer) => res.json(offer))
+    .catch((err) => res.json(err));
 });
 
 app.use('/api', (req, res) => res.json({ backServer: 'true' }));

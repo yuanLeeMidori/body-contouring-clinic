@@ -36,7 +36,7 @@ app.get('/accounts/:id', (req, res) => {
   accountHandler.viewOneAccountById(req, res);
 });
 
-app.put('/accounts/:id/edit', (req, res) => {
+app.put('/accounts/:id', (req, res) => {
   accountHandler.editAccountById(req, res);
 });
 
@@ -57,7 +57,7 @@ app.get('/account-level/:id', (req, res) => {
   accountLevelHandler.viewOneAccountLevelById(req, res);
 });
 
-app.put('/account-level/:id/edit', (req, res) => {
+app.put('/account-level/:id', (req, res) => {
   accountLevelHandler.editAccountLevelById(req, res);
 });
 
@@ -78,7 +78,7 @@ app.get('/balances/:id', (req, res) => {
   balanceHandler.viewOneBalanceById(req, res);
 });
 
-app.put('/balances/:id/edit', (req, res) => {
+app.put('/balances/:id', (req, res) => {
   balanceHandler.editBalanceById(req, res);
 });
 
@@ -99,7 +99,7 @@ app.get('/balance-history/:id', (req, res) => {
   balanceHistoryHandler.viewAllBalanceHistory(req, res);
 });
 
-app.put('/balance-history/:id/edit', (req, res) => {
+app.put('/balance-history/:id', (req, res) => {
   balanceHistoryHandler.editBalanceHistoryById(req, res);
 });
 

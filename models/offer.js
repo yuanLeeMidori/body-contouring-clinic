@@ -23,7 +23,6 @@ const offerSchema = new Schema(
     },
     description: {
       type: String,
-      required: true,
     },
     imageURL: {
       type: String,

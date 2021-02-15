@@ -7,7 +7,6 @@ const accountLevelSchema = new Schema(
       type: Number,
       require: true,
     },
-
     accountLevelName: {
       type: String,
       required: true,

@@ -9,9 +9,9 @@ const AppointmentSchema = new Schema({
     specialRequest: {
         type: String,
     },
-    accountId: {
+    customerId: {
         type: Schema.Types.ObjectId,
-        ref: 'accounts',
+        ref: 'customers',
         required: true
     },
     scheduleId: {

@@ -127,19 +127,6 @@ app.delete('/service/:id', (req, res) => {
     .catch((err) => res.json(err));
 });
 
-// requestCategory
-app.get('/add-requestCategory', (req, res) => {
-  requestCategoryHandler.addNewRequestCategory(res);
-});
-
-app.get('/request-categories', (req, res) => {
-  requestCategoryHandler.viewAllRequestCategories(res);
-});
-
-app.get('/edit-requestCategory', (req, res) => {
-  requestCategoryHandler.editRequestCategory(res);
-});
-
 // page
 app.post('/add-page', (req, res) => {
   pageHandler.addNewPage(req.body).then((msg) => res.json(msg));

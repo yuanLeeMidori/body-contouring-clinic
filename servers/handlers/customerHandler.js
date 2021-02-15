@@ -28,7 +28,7 @@ exports.viewAllCustomer = function () {
 };
 
 // view one
-exports.viewCustomer = function (id) {
+exports.viewCustomerById = function (id) {
   return new Promise((resolve, reject) => {
     Customer.findOne({ _id: id })
       .exec()

@@ -28,7 +28,7 @@ exports.viewAllRequest = function () {
 };
 
 // view one
-exports.viewRequest = function (id) {
+exports.viewRequestById = function (id) {
   return new Promise((resolve, reject) => {
     Request.findOne({ _id: id })
       .exec()

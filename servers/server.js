@@ -17,6 +17,10 @@ const requestCategoryHandler = require('./handlers/requestCategoryHandler');
 const staffHandler = require('./handlers/staffHandler');
 const customerHandler = require('./handlers/customerHandler');
 const requestHandler = require('./handlers/requestHandler');
+const dateHandler = require('./handlers/dateHandler');
+const timeHandler = require('./handlers/timeHandler');
+const workScheduleHandler = require('./handlers/workScheduleHandler');
+const appointmentHandler = require('./handlers/appointmentHandler');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -370,6 +374,140 @@ app.delete('/request-category/:id', (req, res) => {
     .then((requestCategory) => res.json(requestCategory))
     .catch((err) => res.json(err));
 });
+
+// date
+app.post('/add-date', (req, res) => {
+  dateHandler.addNewDate(req.body).then((msg) => res.json(msg));
+});
+
+app.get('/dates', (req, res) => {
+  dateHandler
+    .viewAllDates()
+    .then((dates) => res.json(dates))
+    .catch((err) => res.json(err));
+});
+
+app.get('/date/:id', (req, res) => {
+  dateHandler
+    .viewDateById(req.params.id)
+    .then((date) => res.json(date))
+    .catch((err) => res.json(err));
+});
+
+app.put('/date/:id', (req, res) => {
+  dateHandler
+    .editDateById(req.body, req.params.id)
+    .then((msg) => res.json(msg))
+    .catch((err) => res.json(err));
+});
+
+app.delete('/date/:id', (req, res) => {
+  dateHandler
+    .deleteDateById(req.params.id)
+    .then((date) => res.json(date))
+    .catch((err) => res.json(err));
+});
+
+// time
+app.post('/add-time', (req, res) => {
+  timeHandler.addNewTime(req.body).then((msg) => res.json(msg));
+});
+
+app.get('/times', (req, res) => {
+  timeHandler
+    .viewAllTimes()
+    .then((times) => res.json(times))
+    .catch((err) => res.json(err));
+});
+
+app.get('/time/:id', (req, res) => {
+  timeHandler
+    .viewTimeById(req.params.id)
+    .then((time) => res.json(time))
+    .catch((err) => res.json(err));
+});
+
+app.put('/time/:id', (req, res) => {
+  timeHandler
+    .editTimeById(req.body, req.params.id)
+    .then((msg) => res.json(msg))
+    .catch((err) => res.json(err));
+});
+
+app.delete('/time/:id', (req, res) => {
+  timeHandler
+    .deleteTimeById(req.params.id)
+    .then((time) => res.json(time))
+    .catch((err) => res.json(err));
+});
+
+// workSchedule
+app.post('/add-workSchedule', (req, res) => {
+  workScheduleHandler.addNewWorkSchedule(req.body).then((msg) => res.json(msg));
+});
+
+app.get('/workSchedules', (req, res) => {
+  workScheduleHandler
+    .viewAllWorkSchedules()
+    .then((workSchedules) => res.json(workSchedules))
+    .catch((err) => res.json(err));
+});
+
+app.get('/workSchedule/:id', (req, res) => {
+  workScheduleHandler
+    .viewWorkScheduleById(req.params.id)
+    .then((workSchedule) => res.json(workSchedule))
+    .catch((err) => res.json(err));
+});
+
+app.put('/workSchedule/:id', (req, res) => {
+  workScheduleHandler
+    .editWorkScheduleById(req.body, req.params.id)
+    .then((msg) => res.json(msg))
+    .catch((err) => res.json(err));
+});
+
+app.delete('/workSchedule/:id', (req, res) => {
+  workScheduleHandler
+    .deleteWorkScheduleById(req.params.id)
+    .then((workSchedule) => res.json(workSchedule))
+    .catch((err) => res.json(err));
+});
+
+// appointment
+app.post('/add-appointment', (req, res) => {
+  appointmentHandler.addNewAppointments(req.body).then((msg) => res.json(msg));
+});
+
+app.get('/appointments', (req, res) => {
+  appointmentHandler
+    .viewAllAppointments()
+    .then((appointments) => res.json(appointments))
+    .catch((err) => res.json(err));
+});
+
+app.get('/appointment/:id', (req, res) => {
+  appointmentHandler
+    .viewAppointmentById(req.params.id)
+    .then((appointment) => res.json(appointment))
+    .catch((err) => res.json(err));
+});
+
+app.put('/appointment/:id', (req, res) => {
+  appointmentHandler
+    .editAppointmentById(req.body, req.params.id)
+    .then((msg) => res.json(msg))
+    .catch((err) => res.json(err));
+});
+
+app.delete('/appointment/:id', (req, res) => {
+  appointmentHandler
+    .deleteAppointmentById(req.params.id)
+    .then((appointment) => res.json(appointment))
+    .catch((err) => res.json(err));
+});
+
+
 
 app.use('/api', (req, res) => res.json({ backServer: 'true' }));
 

@@ -18,8 +18,8 @@ exports.addNewBalanceHistory = function (data) {
 exports.viewAllBalanceHistory = function () {
   return new Promise((resolve, reject) => {
     BalanceHistory.find()
-      .then((offers) => {
-        resolve(offers);
+      .then((data) => {
+        resolve(data);
       })
       .catch((err) => {
         reject(err);
@@ -32,8 +32,8 @@ exports.viewOneBalanceHistoryById = function (id) {
   return new Promise((resolve, reject) => {
     BalanceHistory.findOne({ _id: id })
       .exec()
-      .then((offer) => {
-        resolve(offer);
+      .then((data) => {
+        resolve(data);
       })
       .catch((err) => {
         reject(err);

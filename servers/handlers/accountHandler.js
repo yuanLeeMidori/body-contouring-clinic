@@ -18,8 +18,8 @@ exports.addNewAccount = function (data) {
 exports.viewAllAccount = function () {
   return new Promise((resolve, reject) => {
     Account.find()
-      .then((offers) => {
-        resolve(offers);
+      .then((data) => {
+        resolve(data);
       })
       .catch((err) => {
         reject(err);
@@ -32,8 +32,8 @@ exports.viewOneAccountById = function (id) {
   return new Promise((resolve, reject) => {
     Account.findOne({ _id: id })
       .exec()
-      .then((offer) => {
-        resolve(offer);
+      .then((data) => {
+        resolve(data);
       })
       .catch((err) => {
         reject(err);

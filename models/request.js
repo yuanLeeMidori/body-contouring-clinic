@@ -10,7 +10,6 @@ const requestSchema = new Schema({
     serviceCategoryId: {
       type: Schema.Types.ObjectId, 
       ref: 'serviceCategories',
-      required: true,
     }, 
     requestCategoryId: {
       type: Schema.Types.ObjectId, 

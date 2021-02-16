@@ -41,6 +41,19 @@ exports.viewRequestCategoryById = function (id) {
   });
 };
 
+// view one by input
+exports.viewRequestCategoryByInput = function (query) {
+  return new Promise((resolve, reject) => {
+    RequestCategory.find(query)
+      .then((requestCategories) => {
+        resolve(requestCategories);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
 // update one
 exports.editRequestCategoryById = function (data, id) {
   return new Promise((resolve, reject) => {

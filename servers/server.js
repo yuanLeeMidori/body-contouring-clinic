@@ -23,6 +23,7 @@ app.use(bodyParser.json());
 db();
 
 mongoose.set('useFindAndModify', false);
+
 //Account
 app.get('/add-account', (req, res) => {
   accountHandler.addNewAccount(res);
@@ -324,6 +325,13 @@ app.get('/request/:id', (req, res) => {
     .catch((err) => res.json(err));
 });
 
+app.get('/request', (req, res) => {
+  requestHandler
+    .viewRequestByInput(req.query)
+    .then((request) => res.json(request))
+    .catch((err) => res.json(err));
+});
+
 app.put('/request/:id', (req, res) => {
   requestHandler
     .editRequestById(req.body, req.params.id)
@@ -353,6 +361,13 @@ app.get('/request-categories', (req, res) => {
 app.get('/request-category/:id', (req, res) => {
   requestCategoryHandler
     .viewRequestCategoryById(req.params.id)
+    .then((requestCategory) => res.json(requestCategory))
+    .catch((err) => res.json(err));
+});
+
+app.get('/request-category', (req, res) => {
+  requestCategoryHandler
+    .viewRequestCategoryByInput(req.query)
     .then((requestCategory) => res.json(requestCategory))
     .catch((err) => res.json(err));
 });

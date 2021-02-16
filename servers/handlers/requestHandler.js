@@ -1,4 +1,5 @@
 const Request = require('../../models/request');
+const RequestCategory = require('../../models/requestCategory');
 
 // create new
 exports.addNewRequest = function (data) {
@@ -34,6 +35,19 @@ exports.viewRequestById = function (id) {
       .exec()
       .then((request) => {
         resolve(request);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+// view one by input
+exports.viewRequestByInput = function (query) {
+  return new Promise((resolve, reject) => {
+    Request.find(query)
+      .then((requests) => {
+        resolve(requests);
       })
       .catch((err) => {
         reject(err);

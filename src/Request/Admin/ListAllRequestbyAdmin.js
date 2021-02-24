@@ -1,13 +1,56 @@
 import React from 'react';
 import '../../App.css';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 class ListAllRequestbyAdmin extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      requests: [],
+      requestCategory: " ",
+    };
+  }
+
+  getRequests() {
+    return new Promise((resolve) => {
+      fetch('http://localhost:3001/requests')
+        .then((response) => response.json())
+        .then((results) => {
+          resolve(results);
+        });
+    });
+  }
+  // how to put the customer data to respective request obj
+  getCustomer(id) {
+    return new Promise((resolve) => {
+      fetch(`http://localhost:3001/customer/${id}`)
+        .then((response) => response.json())
+        .then((results) => {
+          resolve(results);
+        });
+    });
+  }
+  getRequestCategory(id) {
+    return new Promise((resolve) => {
+      fetch(`http://localhost:3001/request-category/${id}`)
+        .then((response) => response.json())
+        .then((results) => {
+          resolve(results);
+        });
+    });
+  }
+
+  componentDidMount() {
+    this.getRequests().then((data) => {
+      this.setState({
+        requests: data,
+      });
+    });
+  }
   render() {
     const pagination = {
       color: '#B58970',
     };
-
     return (
       <div className="ListAll">
         <table>
@@ -24,40 +67,27 @@ class ListAllRequestbyAdmin extends React.Component {
             <th>Date</th>
             <th>Status</th>
           </tr>
-          <tr>
+
+          {this.state.requests.map((request) => (
+          <tr key={request._id}>
             <td>
               <input type="checkbox" />
             </td>
             <td>
-              <Link to="/Request/Admin/Answer" style={{ color: 'black' }}>
-                01
-              </Link>
-            </td>
-            <td>Membership</td>
-            <td>-</td>
-            <td>How can I join..</td>
-            <td>0123</td>
-            <td>dmsql1678</td>
-            <td>2021/01/11</td>
-            <td>Solved</td>
+              {/* <Link to="/Request/Admin/Answer" style={{ color: 'black' }}> */}
+                {request._id}
+              {/* </Link> */}
+              </td>
+            <td>{request.requestCategoryId}</td>
+            <td>{request.serviceCategoryId}</td>
+            <td>{request.title}</td>
+            <td>{request.customerId}</td>
+            <td>customer name from other get</td>
+            <td>{request.date}</td>
+            <td>status not in db</td>
           </tr>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>
-              <Link to="/Request/Admin/Answer" style={{ color: 'black' }}>
-                02
-              </Link>
-            </td>
-            <td>Shipment</td>
-            <td>-</td>
-            <td>How many day...</td>
-            <td>0132</td>
-            <td>littleBee0715</td>
-            <td>2020/12/27</td>
-            <td>Progress</td>
-          </tr>
+          ))}
+
         </table>
         <br />
         <span style={pagination}>

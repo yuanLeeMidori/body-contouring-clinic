@@ -1,6 +1,7 @@
 import React from 'react';
 import SideBar from '../../SideBar/SideBar';
 import { Button, Container, Row, Col, Form } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 class AnswerRequest extends React.Component {
   state = {
@@ -8,7 +9,18 @@ class AnswerRequest extends React.Component {
       { url: '/Request/Admin', title: 'View All Request' },
       { url: '/Request/Admin/FAQ', title: 'FAQ' },
     ],
+    request: {},
   };
+
+  componentDidMount() {
+    fetch(`http://localhost:3001/request/${this.props.id}`)
+      .then(result => result.json())
+      .then((result) => {
+        this.setState({
+          request: result
+        });
+    })
+  }
 
   render() {
     const reqTitle = {
@@ -22,20 +34,20 @@ class AnswerRequest extends React.Component {
         <div className="col-md-1"></div>
         <SideBar items={this.state.items} />
         <div className="col-md-8" style={{ 'margin-left': '80px' }}>
-          <h2 className="PageTitle">Request Answer for 01</h2>
+          <h2 className="PageTitle">Request Answer for {this.state.request._id}</h2>
           <br />
           <div className="contents" style={{ 'text-align': 'left', 'margin-right': '250px' }}>
             <Container>
               <Form>
                 <Form.Group style={{ 'background-color': '#F5F9F9' }}>
                   <Form.Label style={reqTitle}>
-                    Q: How can I join VIP member ship program? 2021/01/11
+                    Q: {this.state.request.title} {' '} {this.state.request.date}
                   </Form.Label>
                   <Form.Control type="text" placeholder="Hello" readOnly></Form.Control>
                 </Form.Group>
                 <Form.Group style={{ 'background-color': '#F5F9F9' }}>
                   <Form.Label style={reqTitle}>
-                    A: RE: How can I join VIP member ship program? 2021/01/12
+                    A: RE: {this.state.request.title} {' '} {this.state.request.date}
                   </Form.Label>
                   <Form.Control as="textarea" rows={3} />
                 </Form.Group>
@@ -62,6 +74,10 @@ class AnswerRequest extends React.Component {
       </div>
     );
   }
+}
+
+AnswerRequest.propTypes = {
+  id: PropTypes.string.isRequired
 }
 
 export default AnswerRequest;

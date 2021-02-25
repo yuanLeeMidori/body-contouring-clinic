@@ -118,7 +118,14 @@ class RouterConfig extends React.Component {
 
           {/* Request Admin URL*/}
           <Route exact path="/Request/Admin" render={() => <RequestHomeAdmin />} />
-          <Route exact path="/Request/Admin/Answer" render={() => <AnswerRequest />} />
+          <Route
+            path="/Request/Admin/Answer/:id"
+            render={(props) => (
+              <AnswerRequest
+                id={props.match.params.id}
+              ></AnswerRequest>
+            )}
+          />
           <Route exact path="/Request/Admin/FAQ" render={() => <ViewFAQAdmin />} />
           <Route exact path="/Request/Admin/FAQ/Create" render={() => <CreateFAQ />} />
           <Route exact path="/Request/Admin/FAQ/Edit" render={() => <EditFAQ />} />

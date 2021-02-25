@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../App.css';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class ListAllRequestbyAdmin extends React.Component {
   constructor(props) {
@@ -74,9 +74,9 @@ class ListAllRequestbyAdmin extends React.Component {
               <input type="checkbox" />
             </td>
             <td>
-              {/* <Link to="/Request/Admin/Answer" style={{ color: 'black' }}> */}
+              <Link to={`/Request/Admin/Answer/${request._id}`} style={{ color: 'black' }}>
                 {request._id}
-              {/* </Link> */}
+              </Link>
               </td>
             <td>{request.requestCategoryId}</td>
             <td>{request.serviceCategoryId}</td>

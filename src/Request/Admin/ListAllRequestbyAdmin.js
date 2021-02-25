@@ -84,7 +84,7 @@ class ListAllRequestbyAdmin extends React.Component {
             <td>{request.customerId}</td>
             <td>customer name from other get</td>
             <td>{request.date}</td>
-            <td>status not in db</td>
+            <td>{request.status}</td>
           </tr>
           ))}
 

@@ -21,7 +21,7 @@ const dateHandler = require('./handlers/dateHandler');
 const timeHandler = require('./handlers/timeHandler');
 const workScheduleHandler = require('./handlers/workScheduleHandler');
 const appointmentHandler = require('./handlers/appointmentHandler');
-
+const faqHandler = require('./handlers/faqHandler');
 app.use(cors());
 app.use(bodyParser.json());
 db();
@@ -566,6 +566,39 @@ app.delete('/appointment/:id', (req, res) => {
   appointmentHandler
     .deleteAppointmentById(req.params.id)
     .then((appointment) => res.json(appointment))
+    .catch((err) => res.json(err));
+});
+
+// faq
+app.post('/create-faq', (req, res) => {
+  faqHandler.addNewFAQ(req.body).then((msg) => res.json(msg));
+});
+
+app.get('/faqs', (req, res) => {
+  faqHandler
+    .viewAllFAQs()
+    .then((faqs) => res.json(faqs))
+    .catch((err) => res.json(err));
+});
+
+app.get('/faq/:id', (req, res) => {
+  faqHandler
+    .viewFAQById(req.params.id)
+    .then((faq) => res.json(faq))
+    .catch((err) => res.json(err));
+});
+
+app.put('/faq/:id', (req, res) => {
+  faqHandler
+    .editFAQById(req.body, req.params.id)
+    .then((msg) => res.json(msg))
+    .catch((err) => res.json(err));
+});
+
+app.delete('/faq/:id', (req, res) => {
+  faqHandler
+    .deleteFAQById(req.params.id)
+    .then((faq) => res.json(faq))
     .catch((err) => res.json(err));
 });
 

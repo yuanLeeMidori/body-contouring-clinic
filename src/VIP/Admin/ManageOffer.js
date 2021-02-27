@@ -3,6 +3,7 @@ import '../../App.css';
 import SideBar from '../../SideBar/SideBar';
 import { Row, Col, Button } from 'react-bootstrap';
 import PopUp from '../../PopUp';
+import { Link } from 'react-router-dom';
 
 class ManageOffer extends React.Component {
   constructor() {
@@ -14,10 +15,12 @@ class ManageOffer extends React.Component {
         { url: '/VIP/Admin/Manage', title: 'Offer Manage' },
       ],
       children: 'Offer',
+      offers: [],
+      selectedOffer: {},
     };
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
-    this.deleteOffer = this.deleteOffer.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   showModal = () => {
@@ -28,10 +31,50 @@ class ManageOffer extends React.Component {
     this.setState({ show: false });
   };
 
-  deleteOffer = () => {
-    this.setState({ show: false });
+  handleDelete = () => {
+    this.deleteOffer()
+    .then(() => {
+      this.getOffers()
+      .then((data) => {
+        this.setState({
+          offers: data,
+            });
+        });
+    });
+
+    this.setState({ 
+      show: false,
+      selectedOffer: null })
   };
 
+  getOffers() {
+    return new Promise((resolve) => {
+      fetch('http://localhost:3001/offers')
+        .then((response) => response.json())
+        .then((results) => {
+          resolve(results);
+        });
+    });
+  }
+
+  deleteOffer(){
+    return new Promise((resolve) => {
+      fetch('http://localhost:3001/offer/'+ this.state.selectedOffer._id, {method: 'DELETE'})
+        .then((response) => response.json())
+        .then((results) => {
+          resolve(results);
+        });
+    });
+  }
+
+  componentDidMount() {
+    this.getOffers()
+      .then((data) => {
+        this.setState({
+          offers: data,
+        });
+    });
+  }
   render() {
     const pagination = {
       color: '#B58970',
@@ -57,58 +100,42 @@ class ManageOffer extends React.Component {
                 <td></td>
                 <td></td>
               </tr>
-              <tr>
-                <td>
-                  <input type="checkbox" />
-                </td>
-                <td>01</td>
-                <td>Offer 1</td>
-                <td>Some quick example text to build on the ca...</td>
-                <td>
-                  <Button variant="outline-secondary" href="/VIP/Admin/Manage/Edit">
-                    Edit
-                  </Button>
-                </td>
-                <td>
-                  <Button variant="outline-danger" onClick={this.showModal}>
-                    Delete
-                  </Button>
-                </td>
-                <PopUp
-                  show={this.state.show}
-                  handleClose={this.hideModal}
-                  handleDelete={this.deleteOffer}
-                  text={this.state.children}
-                  btn1="Cancel"
-                  btn2="Delete"
-                />
-              </tr>
-              <tr>
-                <td>
-                  <input type="checkbox" />
-                </td>
-                <td>02</td>
-                <td>Offer 2</td>
-                <td>Some quick example text to build on the ca...</td>
-                <td>
-                  <Button variant="outline-secondary" href="/VIP/Admin/Manage/Edit">
-                    Edit
-                  </Button>
-                </td>
-                <td>
-                  <Button variant="outline-danger" onClick={this.showModal}>
-                    Delete
-                  </Button>
-                </td>
-                <PopUp
-                  show={this.state.show}
-                  handleClose={this.hideModal}
-                  handleDelete={this.deleteOffer}
-                  text={this.state.children}
-                  btn1="Cancel"
-                  btn2="Delete"
-                />
-              </tr>
+              { this.state.offers.map((result, index) => (
+                  // eslint-disable-next-line react/jsx-key
+                  <tr key={result._id}>
+                  <td>
+                    <input type="checkbox" />
+                  </td>
+                  <td>{index}</td>
+                  <td>{result.offerName}</td>
+                  <td>{result.description}</td>
+                  <td>
+                    <Link to={`/VIP/Admin/Manage/Edit/${result._id}`}>
+                      <Button variant="outline-secondary">
+                        Edit
+                      </Button>
+                    </Link>
+                  </td>
+                  <td>
+                    <Button variant="outline-danger" onClick={()=>{
+                      this.setState({
+                        show: true,
+                        selectedOffer: result,
+                      });
+                    }}>
+                      Delete
+                    </Button>
+                  </td>
+                  <PopUp
+                    show={this.state.show}
+                    handleClose={this.hideModal}
+                    handleDelete={this.handleDelete}
+                    text={this.state.children}
+                    btn1="Cancel"
+                    btn2="Delete"
+                  />
+                </tr>
+              ))}
             </table>
             <br />
             <span style={pagination}>

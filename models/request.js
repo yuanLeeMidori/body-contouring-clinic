@@ -33,6 +33,9 @@ const requestSchema = new Schema(
       type: Date,
       required: true,
     },
+    answer: {
+      type: String,
+    },
     attachedFile: {
       type: String,
     },

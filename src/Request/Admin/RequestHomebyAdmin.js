@@ -16,12 +16,17 @@ class RequestHomebyAdmin extends React.Component {
       ],
       children: 'Request',
       auth: 'Admin',
+      value: '',
     };
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.deleteReq = this.deleteReq.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
+  handleChange(e) {
+    this.setState({ value: e.target.value });
+  }
   showModal = () => {
     this.setState({ show: true });
   };
@@ -37,6 +42,7 @@ class RequestHomebyAdmin extends React.Component {
   render() {
     return (
       <div className="row">
+        {console.log(this.state.value)}
         <div className="col-md-1"></div>
         <SideBar items={this.state.items} />
         <div className="col-md-8" style={{ 'margin-left': '80px' }}>
@@ -69,15 +75,15 @@ class RequestHomebyAdmin extends React.Component {
               >
                 <img src={searchIcon} alt="Search" />
               </Button>
-              <Form.Control as="select" style={{ 'margin-left': '30px', width: '100px' }}>
-                <option value="title">Unsolved</option>
-                <option value="content">Unread</option>
-                <option value="author">New</option>
-                <option value="titleContent">New Since Last Login</option>
+              <Form.Control as="select" value={this.state.value} onChange={this.handleChange} style={{ 'margin-left': '30px', width: '100px' }}>
+                <option value="none" default>All</option>
+                <option value="unsolved">Unsolved</option>
+                <option value="in-progress">In-Progress</option>
+                <option value="solved">Solved</option>
               </Form.Control>
             </Form>
             <br />
-            <ListAllRequestbyAdmin />
+            <ListAllRequestbyAdmin status={this.state.value} />
             <Container>
               <Row>
                 <Col xs={10}></Col>

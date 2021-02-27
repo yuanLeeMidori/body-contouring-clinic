@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../App.css';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class ListAllRequestbyAdmin extends React.Component {
   constructor(props) {
@@ -48,27 +49,31 @@ class ListAllRequestbyAdmin extends React.Component {
             <th>Date</th>
             <th>Status</th>
           </tr>
-          {this.state.requests.map((request) => (
-            <tr key={request._id}>
-              <td>
-                <input type="checkbox" />
-              </td>
-              <td>
-                <Link to={`/Request/Admin/Answer/${request._id}`} style={{ color: 'black' }}>
-                  {request._id}
-                </Link>
-              </td>
-              <td>{request.requestCategory.name}</td>
-              <td>{request.serviceCategory.name}</td>
-              <td>{request.title}</td>
-              <td>{request.customer.account.userID}</td>
-              <td>
-                {request.customer.account.firstName + ' ' + request.customer.account.lastName}
-              </td>
-              <td>{request.date}</td>
-              <td>{request.status}</td>
-            </tr>
-          ))}
+
+          {this.state.requests.map(
+            (request) =>
+              ((this.props.status.length == 0 || this.props.status == 'none') ? (request) : (this.props.status == request.status)) && (
+                <tr key={request._id}>
+                  <td>
+                    <input type="checkbox" />
+                  </td>
+                  <td>
+                    <Link to={`/Request/Admin/Answer/${request._id}`} style={{ color: 'black' }}>
+                      {request._id}
+                    </Link>
+                  </td>
+                  <td>{request.requestCategory.name}</td>
+                  <td>{request.serviceCategory.name}</td>
+                  <td>{request.title}</td>
+                  <td>{request.customer.account.userID}</td>
+                  <td>
+                    {request.customer.account.firstName + ' ' + request.customer.account.lastName}
+                  </td>
+                  <td>{request.date}</td>
+                  <td>{request.status}</td>
+                </tr>
+              )
+          )}
         </table>
         <br />
         <span style={pagination}>
@@ -90,4 +95,7 @@ class ListAllRequestbyAdmin extends React.Component {
   }
 }
 
+ListAllRequestbyAdmin.propTypes = {
+  status: PropTypes.string,
+}
 export default ListAllRequestbyAdmin;

@@ -31,6 +31,7 @@ class AnswerRequest extends React.Component {
 
     return (
       <div className="row">
+        {console.log(this.state.request)}
         <div className="col-md-1"></div>
         <SideBar items={this.state.items} />
         <div className="col-md-8" style={{ 'margin-left': '80px' }}>

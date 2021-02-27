@@ -67,7 +67,6 @@ class ListAllRequestbyAdmin extends React.Component {
             <th>Date</th>
             <th>Status</th>
           </tr>
-
           {this.state.requests.map((request) => (
           <tr key={request._id}>
             <td>
@@ -78,7 +77,7 @@ class ListAllRequestbyAdmin extends React.Component {
                 {request._id}
               </Link>
               </td>
-            <td>{request.requestCategoryId}</td>
+            <td>{request.requestCategoryId.RequestCategoryName}</td>
             <td>{request.serviceCategoryId}</td>
             <td>{request.title}</td>
             <td>{request.customerId}</td>

@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const faqSchema = new Schema(
   {
     faqCategoryName: {
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: 'faqCategories',
       required: true,
     },
     title: {

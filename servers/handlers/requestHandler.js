@@ -1,5 +1,4 @@
 const Request = require('../../models/request');
-const RequestCategory = require('../../models/requestCategory');
 
 // create new
 exports.addNewRequest = function (data) {

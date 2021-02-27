@@ -4,7 +4,6 @@ import searchIcon from '../../resources/searchIcon.png';
 import ListAllRequestbyAdmin from './ListAllRequestbyAdmin';
 import SideBar from '../../SideBar/SideBar';
 import { Button, Container, Form, Row, Col } from 'react-bootstrap';
-import PopUp from '../../PopUp';
 
 class RequestHomebyAdmin extends React.Component {
   constructor() {
@@ -82,24 +81,12 @@ class RequestHomebyAdmin extends React.Component {
             <Container>
               <Row>
                 <Col xs={10}></Col>
+                <Col xs={1}></Col>
                 <Col xs={1}>
                   <Button variant="outline-info" href="/Request/Admin/Answer">
                     Answer
                   </Button>
                 </Col>
-                <Col xs={1}>
-                  <Button variant="outline-secondary" onClick={this.showModal}>
-                    Delete
-                  </Button>
-                </Col>
-                <PopUp
-                  show={this.state.show}
-                  handleClose={this.hideModal}
-                  handleDelete={this.deleteReq}
-                  text={this.state.children}
-                  btn1="Cancel"
-                  btn2="Delete"
-                />
               </Row>
             </Container>
             <br />

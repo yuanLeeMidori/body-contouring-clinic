@@ -18,9 +18,12 @@ exports.addNewRequest = function (data) {
 exports.viewAllRequest = function () {
   return new Promise((resolve, reject) => {
     Request.find()
-      // .populate('requestCategoryId')
-      // .populate('serviceCategories')
-      // .populate('customers')
+      .populate('requestCategory')
+      .populate('serviceCategory')
+      .populate({
+        path: 'customer',
+        populate: { path: 'account' },
+      })
       .exec()
       .then((request) => {
         resolve(request);
@@ -35,9 +38,9 @@ exports.viewAllRequest = function () {
 exports.viewRequestById = function (id) {
   return new Promise((resolve, reject) => {
     Request.findOne({ _id: id })
-      .populate('requestCategoryId')
-      // .populate('serviceCategories')
-      // .populate('customers')
+      .populate('requestCategory')
+      .populate('serviceCategory')
+      .populate('customer')
       .exec()
       .then((request) => {
         resolve(request);

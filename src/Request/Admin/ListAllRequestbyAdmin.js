@@ -7,32 +7,13 @@ class ListAllRequestbyAdmin extends React.Component {
     super(props);
     this.state = {
       requests: [],
-      requestCategory: " ",
+      requestCategory: ' ',
     };
   }
 
   getRequests() {
     return new Promise((resolve) => {
       fetch('http://localhost:3001/requests')
-        .then((response) => response.json())
-        .then((results) => {
-          resolve(results);
-        });
-    });
-  }
-  // how to put the customer data to respective request obj
-  getCustomer(id) {
-    return new Promise((resolve) => {
-      fetch(`http://localhost:3001/customer/${id}`)
-        .then((response) => response.json())
-        .then((results) => {
-          resolve(results);
-        });
-    });
-  }
-  getRequestCategory(id) {
-    return new Promise((resolve) => {
-      fetch(`http://localhost:3001/request-category/${id}`)
         .then((response) => response.json())
         .then((results) => {
           resolve(results);
@@ -68,25 +49,26 @@ class ListAllRequestbyAdmin extends React.Component {
             <th>Status</th>
           </tr>
           {this.state.requests.map((request) => (
-          <tr key={request._id}>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>
-              <Link to={`/Request/Admin/Answer/${request._id}`} style={{ color: 'black' }}>
-                {request._id}
-              </Link>
+            <tr key={request._id}>
+              <td>
+                <input type="checkbox" />
               </td>
-            <td>{request.requestCategoryId.RequestCategoryName}</td>
-            <td>{request.serviceCategoryId}</td>
-            <td>{request.title}</td>
-            <td>{request.customerId}</td>
-            <td>customer name from other get</td>
-            <td>{request.date}</td>
-            <td>{request.status}</td>
-          </tr>
+              <td>
+                <Link to={`/Request/Admin/Answer/${request._id}`} style={{ color: 'black' }}>
+                  {request._id}
+                </Link>
+              </td>
+              <td>{request.requestCategory.name}</td>
+              <td>{request.serviceCategory.name}</td>
+              <td>{request.title}</td>
+              <td>{request.customer.account.userID}</td>
+              <td>
+                {request.customer.account.firstName + ' ' + request.customer.account.lastName}
+              </td>
+              <td>{request.date}</td>
+              <td>{request.status}</td>
+            </tr>
           ))}
-
         </table>
         <br />
         <span style={pagination}>

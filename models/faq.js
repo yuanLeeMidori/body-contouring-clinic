@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const faqSchema = new Schema(
   {
-    faqCategoryName: {
+    faqCategory: {
       type: Schema.Types.ObjectId,
       ref: 'faqCategories',
       required: true,

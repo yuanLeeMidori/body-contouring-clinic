@@ -16,16 +16,25 @@ class RequestHomebyAdmin extends React.Component {
       ],
       children: 'Request',
       auth: 'Admin',
-      value: '',
+      dayValue: 0,
+      statusValue: '',
     };
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.deleteReq = this.deleteReq.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleStatusChange = this.handleStatusChange.bind(this);
+    this.handleDayChange = this.handleDayChange.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({ value: e.target.value });
+  handleStatusChange(e) {
+    this.setState({
+      statusValue: e.target.value
+    });
+  }
+  handleDayChange(e) {
+    this.setState({
+      dayValue: e.target.value
+    });
   }
   showModal = () => {
     this.setState({ show: true });
@@ -42,7 +51,6 @@ class RequestHomebyAdmin extends React.Component {
   render() {
     return (
       <div className="row">
-        {console.log(this.state.value)}
         <div className="col-md-1"></div>
         <SideBar items={this.state.items} />
         <div className="col-md-8" style={{ 'margin-left': '80px' }}>
@@ -50,7 +58,13 @@ class RequestHomebyAdmin extends React.Component {
           <br />
           <div className="contents">
             <Form inline>
-              <Form.Control as="select">
+              <Form.Control
+                as="select"
+                name="days"
+                value={this.state.dayValue}
+                onChange={this.handleDayChange}
+              >
+                <option value="0">N/A</option>
                 <option value="30">Last 30 Days</option>
                 <option value="60">Last 60 Days</option>
                 <option value="90">Last 90 Days</option>
@@ -75,15 +89,23 @@ class RequestHomebyAdmin extends React.Component {
               >
                 <img src={searchIcon} alt="Search" />
               </Button>
-              <Form.Control as="select" value={this.state.value} onChange={this.handleChange} style={{ 'margin-left': '30px', width: '100px' }}>
-                <option value="none" default>All</option>
+              <Form.Control
+                as="select"
+                name="request-status"
+                value={this.state.statusValue}
+                onChange={this.handleStatusChange}
+                style={{ 'margin-left': '30px', width: '100px' }}
+              >
+                <option value="none" default>
+                  All
+                </option>
                 <option value="unsolved">Unsolved</option>
                 <option value="in-progress">In-Progress</option>
                 <option value="solved">Solved</option>
               </Form.Control>
             </Form>
             <br />
-            <ListAllRequestbyAdmin status={this.state.value} />
+            <ListAllRequestbyAdmin status={this.state.statusValue} day={this.state.dayValue} />
             <Container>
               <Row>
                 <Col xs={10}></Col>

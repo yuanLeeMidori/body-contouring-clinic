@@ -12,7 +12,7 @@ const customerSchema = new Schema(
       type: Date,
       required: true,
     },
-    balanceHistoryId: {
+    balanceHistory: {
       type: Schema.Types.ObjectId,
       ref: 'balanceHistories',
       required: true,

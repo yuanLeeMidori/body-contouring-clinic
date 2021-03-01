@@ -107,8 +107,11 @@ class RouterConfig extends React.Component {
           <Route exact path="/VIP/Admin" render={() => <VIPHomebyAdmin />} />
           <Route exact path="/VIP/Admin/Manage" render={() => <VIPManage />} />
           <Route exact path="/VIP/Admin/Manage/Create" render={() => <CreateOffer />} />
-          <Route exact path='/VIP/Admin/Manage/Edit/:id' render={(props) => <EditOffer  id={props.match.params.id}/>}/>
-
+          <Route
+            exact
+            path="/VIP/Admin/Manage/Edit/:id"
+            render={(props) => <EditOffer id={props.match.params.id} />}
+          />
 
           {/* Request URL */}
           <Route exact path="/Request" render={() => <RequestHome />} />
@@ -121,11 +124,7 @@ class RouterConfig extends React.Component {
           <Route exact path="/Request/Admin" render={() => <RequestHomeAdmin />} />
           <Route
             path="/Request/Admin/Answer/:id"
-            render={(props) => (
-              <AnswerRequest
-                id={props.match.params.id}
-              ></AnswerRequest>
-            )}
+            render={(props) => <AnswerRequest id={props.match.params.id}></AnswerRequest>}
           />
           <Route exact path="/Request/Admin/FAQ" render={() => <ViewFAQAdmin />} />
           <Route exact path="/Request/Admin/FAQ/Create" render={() => <CreateFAQ />} />
@@ -133,7 +132,11 @@ class RouterConfig extends React.Component {
 
           {/* Customer URL */}
           <Route exact path="/Customer" render={() => <CustomerHome />} />
-          <Route exact path="/Customer/Profile" render={() => <CustomerProfile />} />
+          <Route
+            exact
+            path="/Customer/:id"
+            render={(props) => <CustomerProfile id={props.match.params.id} />}
+          />
           <Route exact path="/Customer/Edit" render={() => <CustomerEdit />} />
           <Route exact path="/Customer/Balance" render={() => <CustomerBalance />} />
           <Route exact path="/Customer/BalanceDetail" render={() => <BalanceDetail />} />

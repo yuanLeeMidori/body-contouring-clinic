@@ -40,7 +40,10 @@ exports.viewRequestById = function (id) {
     Request.findOne({ _id: id })
       .populate('requestCategory')
       .populate('serviceCategory')
-      .populate('customer')
+      .populate({
+        path: 'customer',
+        populate: { path: 'account' },
+      })
       .exec()
       .then((request) => {
         resolve(request);

@@ -73,7 +73,7 @@ class ListAllRequestbyAdmin extends React.Component {
                       <input type="checkbox" />
                     </td>
                     <td>
-                      <Link to={`/Request/Admin/Answer/${request._id}`} style={{ color: 'black' }}>
+                      <Link to={`/Request/Admin/${request._id}`} style={{ color: 'black' }}>
                         {request.title}
                       </Link>
                     </td>

@@ -14,6 +14,7 @@ class ViewRequestAdmin extends React.Component {
         { url: '/Request/Admin/FAQ', title: 'FAQ' },
       ],
       request: [],
+      requestId: '',
       customer: [],
       serviceCategory: [],
       requestCategory: [],
@@ -35,6 +36,7 @@ class ViewRequestAdmin extends React.Component {
     this.getRequest(this.props.id).then((data) => {
       this.setState({
         request: data,
+        requestId: data._id,
         customer: data.customer.account,
         requestCategory: data.requestCategory,
         serviceCategory: data.serviceCategory,
@@ -116,7 +118,7 @@ class ViewRequestAdmin extends React.Component {
                 </Form.Group>
                 <Form.Group style={{ 'background-color': '#F5F9F9' }}>
                   <Form.Label style={reqTitle}>
-                    A: RE: {this.state.request.title} {this.state.request.date}
+                    Answer
                   </Form.Label>
                   <Form.Control as="textarea" rows={3} value={this.state.request.answer == '' ? '[No answer]' : this.state.request.answer} plaintext readOnly />
                 </Form.Group>
@@ -124,7 +126,7 @@ class ViewRequestAdmin extends React.Component {
                   <Row>
                     <Col xs={11}></Col>
                     <Col xs={1}>
-                      <Button type="submit" variant="outline-info">
+                      <Button type="submit" variant="outline-info" href={`/Request/Admin/Answer/${this.state.requestId}`}>
                         Answer
                       </Button>
                     </Col>

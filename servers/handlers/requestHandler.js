@@ -58,6 +58,12 @@ exports.viewRequestById = function (id) {
 exports.viewRequestByInput = function (query) {
   return new Promise((resolve, reject) => {
     Request.find(query)
+      .populate('requestCategory')
+      .populate('serviceCategory')
+      .populate({
+        path: 'customer',
+        populate: { path: 'account' },
+      })
       .then((requests) => {
         resolve(requests);
       })

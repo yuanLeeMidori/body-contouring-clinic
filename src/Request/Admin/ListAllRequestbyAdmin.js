@@ -54,7 +54,7 @@ class ListAllRequestbyAdmin extends React.Component {
             <th>Service</th>
             <th>Customer UserID</th>
             <th>Customer Name</th>
-            <th>Date</th>
+            <th>Created Date</th>
             <th>Status</th>
           </tr>
 
@@ -83,7 +83,7 @@ class ListAllRequestbyAdmin extends React.Component {
                     <td>
                       {request.customer.account.firstName + ' ' + request.customer.account.lastName}
                     </td>
-                    <td>{request.date}</td>
+                    <td>{moment(request.date).format('lll')}</td>
                     <td>{request.status}</td>
                   </tr>
                 )

@@ -3,7 +3,7 @@ import React from 'react';
 import '../App.css';
 import SideBar from '../SideBar/SideBar';
 import { Form, Container, Row, Col, Button } from 'react-bootstrap';
-// import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
 
 class CustomerProfileEdit extends React.Component {
@@ -167,16 +167,16 @@ class CustomerProfileEdit extends React.Component {
               <Form.Group as={Row}>
                 <Col xs={1}></Col>
                 <Col>
-                  <Button variant="outline-info" href="/Customer/">
-                    Cancel
-                  </Button>
+                  <Link to={`/Customer/${this.props.id}`}>
+                    <Button variant="outline-info">Cancel</Button>
+                  </Link>
                   &nbsp;
-                  <Button variant="outline-info" href="/Customer/">
-                    Back To Home
-                  </Button>
+                  <Link to={`/Customer`}>
+                    <Button variant="outline-info">Back To Home</Button>
+                  </Link>
                   &nbsp;
                   <Button type="submit" variant="outline-info">
-                    Edit
+                    Save
                   </Button>
                 </Col>
               </Form.Group>

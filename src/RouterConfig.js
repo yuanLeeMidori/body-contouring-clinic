@@ -21,6 +21,7 @@ import CustomerAccountAdmin from './Customer/Admin/CustomerAccountAdmin';
 import CustomerAccountEditAdmin from './Customer/Admin/CustomerAccountEditAdmin';
 import ViewRequest from './Request/ViewRequest';
 import RequestHomeAdmin from './Request/Admin/RequestHomebyAdmin';
+import ViewRequestAdmin from './Request/Admin/ViewRequestDetails';
 import AnswerRequest from './Request/Admin/AnswerRequest';
 import EditRequest from './Request/EditRequest';
 import ViewFAQ from './Request/FAQ/ViewAllFAQbyGeneral';
@@ -123,8 +124,14 @@ class RouterConfig extends React.Component {
           {/* Request Admin URL*/}
           <Route exact path="/Request/Admin" render={() => <RequestHomeAdmin />} />
           <Route
+            exact
+            path="/Request/Admin/:id"
+            render={(props) => <ViewRequestAdmin id={props.match.params.id} />}
+          />
+          <Route
+            exact
             path="/Request/Admin/Answer/:id"
-            render={(props) => <AnswerRequest id={props.match.params.id}></AnswerRequest>}
+            render={(props) => <AnswerRequest id={props.match.params.id} />}
           />
           <Route exact path="/Request/Admin/FAQ" render={() => <ViewFAQAdmin />} />
           <Route exact path="/Request/Admin/FAQ/Create" render={() => <CreateFAQ />} />
@@ -137,7 +144,11 @@ class RouterConfig extends React.Component {
             path="/Customer/:id"
             render={(props) => <CustomerProfile id={props.match.params.id} />}
           />
-          <Route exact path="/Customer/Edit" render={() => <CustomerEdit />} />
+          <Route
+            exact
+            path="/Customer/Edit/:id"
+            render={(props) => <CustomerEdit id={props.match.params.id} />}
+          />
           <Route exact path="/Customer/Balance" render={() => <CustomerBalance />} />
           <Route exact path="/Customer/BalanceDetail" render={() => <BalanceDetail />} />
 

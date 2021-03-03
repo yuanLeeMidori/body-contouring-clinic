@@ -11,7 +11,7 @@ class CustomerProfile extends React.Component {
       profile: {},
       items: [
         { url: '/Customer/', title: 'Home' },
-        { url: `/Customer/profile/${this.props.id}`, title: 'Profile' },
+        { url: `/Customer/${this.props.id}`, title: 'Profile' },
         { url: `/Customer/Edit/${this.props.id}`, title: 'Edit Profile' },
         { url: '/Customer/Balance', title: 'Balance' },
       ],

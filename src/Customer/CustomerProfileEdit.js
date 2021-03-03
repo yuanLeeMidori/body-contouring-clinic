@@ -14,7 +14,7 @@ class CustomerProfileEdit extends React.Component {
       completed: false,
       items: [
         { url: '/Customer/', title: 'Home' },
-        { url: `/Customer/profile/${this.props.id}`, title: 'Profile' },
+        { url: `/Customer/${this.props.id}`, title: 'Profile' },
         { url: `/Customer/Edit/${this.props.id}`, title: 'Edit Profile' },
         { url: '/Customer/Balance', title: 'Balance' },
       ],
@@ -79,7 +79,7 @@ class CustomerProfileEdit extends React.Component {
         <Redirect
           push
           to={{
-            pathname: `/Customer/Profile/${this.props.id}`,
+            pathname: `/Customer/${this.props.id}`,
           }}
         />
       );

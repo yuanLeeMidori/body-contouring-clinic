@@ -26,6 +26,7 @@ class EditRequest extends React.Component {
         contents: String,
       },
       requestCategories: [],
+      serviceCategories: [],
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -63,20 +64,39 @@ class EditRequest extends React.Component {
     }));
   }
 
-  onServiceChange(e) {
-    this.setState(() => ({
-      request: {
-        ...this.state.request,
-        serviceCategory: e.target.value,
-      },
-    }));
-  }
-
   onContentChange(e) {
+    console.log(e.target.value);
     this.setState(() => ({
       request: {
         ...this.state.request,
         contents: e.target.value,
+      },
+    }));
+  }
+
+  onRequestCategoryChange(e) {
+    this.setState(() => ({
+      requestCategory: {
+        ...this.state.requestCategory,
+        _id: e.target.value,
+      },
+      request: {
+        ...this.state.request,
+        requestCategory: e.target.value,
+      },
+    }));
+  }
+
+  onServiceCategoryChange(e) {
+    console.log('ser ' + e.target.value);
+    this.setState(() => ({
+      serviceCategory: {
+        ...this.state.serviceCategory,
+        _id: e.target.value,
+      },
+      request: {
+        ...this.state.request,
+        serviceCategory: e.target.value,
       },
     }));
   }
@@ -101,6 +121,15 @@ class EditRequest extends React.Component {
     });
   }
 
+  getServiceCategories() {
+    return new Promise((resolve) => {
+      fetch(`${process.env.REACT_APP_API_URL}/service-categories`)
+        .then((response) => response.json())
+        .then((data) => {
+          resolve(data);
+        });
+    });
+  }
   componentDidMount() {
     this.getRequest(this.props.id).then((data) => {
       this.setState({
@@ -115,6 +144,11 @@ class EditRequest extends React.Component {
         requestCategories: data,
       });
     });
+    this.getServiceCategories().then((data) => {
+      this.setState({
+        serviceCategories: data,
+      });
+    });
   }
 
   render() {
@@ -127,9 +161,6 @@ class EditRequest extends React.Component {
           }}
         />
       );
-    }
-    {
-      console.log(this.state.requestCategories);
     }
     return (
       <div className="row">
@@ -157,10 +188,16 @@ class EditRequest extends React.Component {
                   Category:
                 </Form.Label>
                 <Col sm={6}>
-                  <Form.Control as="select">
+                  <Form.Control
+                    as="select"
+                    onChange={this.onRequestCategoryChange.bind(this)}
+                    value={this.state.requestCategory._id}
+                  >
                     <option value="">--Choose--</option>
                     {this.state.requestCategories.map((reqCategory) => (
-                      <option key={reqCategory._id}>{reqCategory.name}</option>
+                      <option key={reqCategory._id} value={reqCategory._id}>
+                        {reqCategory.name}
+                      </option>
                     ))}
                   </Form.Control>
                 </Col>
@@ -170,10 +207,17 @@ class EditRequest extends React.Component {
                   Involved Service:
                 </Form.Label>
                 <Col sm={6}>
-                  <Form.Control as="select">
-                    <option value="">abc</option>
-                    <option value="">def</option>
-                    <option value="">ghi</option>
+                  <Form.Control
+                    as="select"
+                    onChange={this.onServiceCategoryChange.bind(this)}
+                    value={this.state.serviceCategory == null ? '' : this.state.serviceCategory._id}
+                  >
+                    {this.state.serviceCategories.map((ser) => (
+                      <option key={ser._id} value={ser._id}>
+                        {ser.name}
+                      </option>
+                    ))}
+                    <option value="">--Choose--</option>
                   </Form.Control>
                 </Col>
               </Form.Group>

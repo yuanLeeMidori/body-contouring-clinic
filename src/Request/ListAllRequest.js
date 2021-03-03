@@ -48,25 +48,23 @@ class ListAllRequest extends React.Component {
             <th>Last Updated Date</th>
             <th>Status</th>
           </tr>
-          {this.state.requests.map((request) =>
-          (
-          <tr key={request._id}>
-            <td>
-              <input type="checkbox" value={request._id} />
-            </td>
-            <td>
-              <Link to={`/Request/Detail/${request._id}`} style={{ color: 'black' }}>
-                {request.title}
-              </Link>
-            </td>
-            <td>{request.requestCategory.name}</td>
-              <td>{request.serviceCategory.name}</td>
+          {this.state.requests.map((request) => (
+            <tr key={request._id}>
+              <td>
+                <input type="checkbox" value={request._id} />
+              </td>
+              <td>
+                <Link to={`/Request/Detail/${request._id}`} style={{ color: 'black' }}>
+                  {request.title}
+                </Link>
+              </td>
+              <td>{request.requestCategory.name}</td>
+              <td>{request.serviceCategory == null ? '' : request.serviceCategory.name}</td>
               <td>{moment(request.date).format('ll')}</td>
               <td>{moment(request.lastRequestTime).format('lll')}</td>
-            <td>{request.status}</td>
+              <td>{request.status}</td>
             </tr>
-            ))}
-
+          ))}
         </table>
         <br />
         <span style={pagination}>

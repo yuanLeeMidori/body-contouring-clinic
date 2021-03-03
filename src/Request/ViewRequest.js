@@ -124,7 +124,7 @@ class ViewRequest extends React.Component {
                 </Form.Group>
                 <Form.Group style={{ 'background-color': '#F5F9F9' }}>
                   <Form.Label style={reqTitle}>Involved Service</Form.Label>
-                  <Form.Control type="text" readOnly value={this.state.serviceCategory.name} />
+                  <Form.Control type="text" readOnly value={this.state.serviceCategory == null ? '' : this.state.serviceCategory.name} />
                 </Form.Group>
                 <Form.Group style={{ 'background-color': '#F5F9F9' }}>
                   <Form.Label style={reqTitle}>Request Sent Date</Form.Label>

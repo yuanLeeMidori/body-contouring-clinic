@@ -19,12 +19,6 @@ class EditRequest extends React.Component {
       requestCategory: [],
       serviceCategory: [],
       completed: false,
-      requestV: {
-        title: String,
-        category: String,
-        service: String,
-        contents: String,
-      },
       requestCategories: [],
       serviceCategories: [],
     };
@@ -167,7 +161,7 @@ class EditRequest extends React.Component {
         <div className="col-md-1"></div>
         <SideBar items={this.state.items} />
         <div className="col-md-8" style={{ 'margin-left': '80px' }}>
-          <h2 className="PageTitle">Edit Request for 01</h2>
+          <h2 className="PageTitle">Edit Request</h2>
           <br />
           <Container>
             <Form onSubmit={this.handleSubmit.bind(this)} method="PUT">

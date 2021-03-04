@@ -39,7 +39,7 @@ class ViewRequest extends React.Component {
 
   handleDelete = () => {
     this.deleteRequest().then(() => {
-      this.getRequest(this.state.request._id).then((data) => {
+      this.getRequest(this.state.requestId).then((data) => {
         this.setState({
           request: data,
         });
@@ -48,6 +48,7 @@ class ViewRequest extends React.Component {
     this.setState({
       show: false,
       request: null,
+      completed:true,
     });
   };
 

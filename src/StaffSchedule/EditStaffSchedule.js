@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import '../App.css';
 import SideBar from '../SideBar/SideBar';
-import AppointmentCalendar from '../Appointment/AppointmentCalendar';
+import StaffScheduleCalendar from './StaffScheduleCalendar';
 import SavedPopUp from '../SavedPopUp';
 
 class EditStaffSchedule extends React.Component {
@@ -19,6 +19,14 @@ class EditStaffSchedule extends React.Component {
       title: 'Schedule Updated!',
       button: 'Back to schedule',
       saveModal: false,
+      tmpStaffId: '602b54964bff0f4ab039060d', // Chloe // change this after login authorization
+      staff: [],
+      workSchedules: [],
+      scheduleTime: [],
+      scheduleDate: [],
+
+      // for calendar
+      todaySchedules: {},
     };
     this.showSave = this.showSave.bind(this);
     this.hideSave = this.hideSave.bind(this);
@@ -33,11 +41,35 @@ class EditStaffSchedule extends React.Component {
     console.log('hey');
   };
 
+  getStaff(id) {
+    return new Promise((resolve) => {
+      fetch(`${process.env.REACT_APP_API_URL}/staff/${id}`)
+        .then((response) => response.json())
+        .then((data) => {
+          resolve(data);
+        });
+    });
+  }
+
   componentDidMount() {
     document.title = 'Set Your Schedule | Body Contouring Clinic';
+    this.getStaff(this.state.tmpStaffId).then((data) => {
+      this.setState({
+        staff: data,
+        workSchedules: data.workSchedules,
+        scheduleDate: data.workSchedules.times,
+      });
+    });
   }
 
   render() {
+    // today schedule
+    let today = this.state.workSchedules.map(
+      (s) => new Object({ d: s.date.date, t: s.times.map((t) => t.time) })
+    );
+    let todayT
+    console.log(today);
+    // week schedule
     return (
       <>
         <div className="row">
@@ -60,11 +92,11 @@ class EditStaffSchedule extends React.Component {
               />
               <Row>
                 <Col sm={5}>
-                  <AppointmentCalendar view={this.state.dayCalendarView} />
+                  <StaffScheduleCalendar view={this.state.dayCalendarView} />
                 </Col>
                 <Col sm={2}></Col>
                 <Col>
-                  <AppointmentCalendar view={this.state.weekCalendarView} />
+                  <StaffScheduleCalendar view={this.state.weekCalendarView} />
                 </Col>
               </Row>
             </Container>

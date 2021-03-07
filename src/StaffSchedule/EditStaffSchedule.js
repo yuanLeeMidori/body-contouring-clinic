@@ -57,18 +57,30 @@ class EditStaffSchedule extends React.Component {
       this.setState({
         staff: data,
         workSchedules: data.workSchedules,
-        scheduleDate: data.workSchedules.times,
       });
     });
   }
 
   render() {
     // today schedule
-    let today = this.state.workSchedules.map(
-      (s) => new Object({ d: s.date.date, t: s.times.map((t) => t.time) })
+    let formatted = this.state.workSchedules.map(
+      (s) =>
+        new Object({
+          d: s.date.date.split("/"),
+          year: s.date.date.split("/")[2],
+          month: s.date.date.split("/")[0],
+          day: s.date.date.split("/")[1],
+          t: s.times.map((t) => new Object({
+            timeRange: t.time,
+            startHr: t.time.substr(0, t.time.indexOf(":")),
+            startMin: t.time.split(':')[1].split('-')[0],
+            endHr: t.time.split(':')[1].split('-')[1],
+            endMin: t.time.split(':')[2]
+          }))
+        })
     );
-    let todayT
-    console.log(today);
+    console.log(formatted);
+    // make the date and time to this format (yyyy,mm-1,dd,hh,mm)
     // week schedule
     return (
       <>

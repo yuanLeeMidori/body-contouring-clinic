@@ -18,7 +18,7 @@ exports.addNewStaff = function (data) {
 exports.viewAllStaff = function () {
   return new Promise((resolve, reject) => {
     Staff.find()
-      .populate({path: 'account'})
+      .populate('account')
       .populate({
         path: 'workSchedules',
         populate: [{ path: 'date'},{ path: 'times'}]
@@ -36,6 +36,11 @@ exports.viewAllStaff = function () {
 exports.viewStaffById = function (id) {
   return new Promise((resolve, reject) => {
     Staff.findOne({ _id: id })
+      .populate('account')
+      .populate({
+        path: 'workSchedules',
+        populate: { path: 'times' },
+      })
       .exec()
       .then((staff) => {
         resolve(staff);

@@ -18,6 +18,16 @@ exports.addNewAppointments = function (data) {
 exports.viewAllAppointments = function () {
   return new Promise((resolve, reject) => {
     Appointment.find()
+      .populate({
+        path: 'customer',
+        populate: { path: 'account' },
+      })
+      .populate({
+        path: 'schedule',
+        populate: [{ path: 'date'},{ path: 'times'}]
+      })
+      .populate('service')
+      .exec()
       .then((appointments) => {
         resolve(appointments);
       })
@@ -31,6 +41,15 @@ exports.viewAllAppointments = function () {
 exports.viewAppointmentById = function (id) {
   return new Promise((resolve, reject) => {
     Appointment.findOne({ _id: id })
+      .populate({
+        path: 'customer',
+        populate: { path: 'account' },
+      })
+      .populate({
+        path: 'schedule',
+        populate: [{ path: 'date'},{ path: 'times'},{ path: 'staff', populate:{ path: 'account'}}]
+      })
+      .populate('service')
       .exec()
       .then((appointment) => {
         resolve(appointment);

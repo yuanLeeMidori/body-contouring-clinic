@@ -21,7 +21,7 @@ exports.viewAllStaff = function () {
       .populate('account')
       .populate({
         path: 'workSchedules',
-        populate: { path: 'times' },
+        populate: [{ path: 'date'},{ path: 'times'}]
       })
       .then((staff) => {
         resolve(staff);

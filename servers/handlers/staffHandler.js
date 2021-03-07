@@ -18,6 +18,8 @@ exports.addNewStaff = function (data) {
 exports.viewAllStaff = function () {
   return new Promise((resolve, reject) => {
     Staff.find()
+      .populate('account')
+      .populate('workSchedules')
       .then((staff) => {
         resolve(staff);
       })
@@ -31,6 +33,8 @@ exports.viewAllStaff = function () {
 exports.viewStaffById = function (id) {
   return new Promise((resolve, reject) => {
     Staff.findOne({ _id: id })
+      .populate('account')
+      .populate('workSchedules')
       .exec()
       .then((staff) => {
         resolve(staff);

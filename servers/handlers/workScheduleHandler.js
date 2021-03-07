@@ -18,6 +18,9 @@ exports.addNewWorkSchedule = function (data) {
 exports.viewAllWorkSchedules = function () {
   return new Promise((resolve, reject) => {
     WorkSchedule.find()
+      .populate('staff')
+      .populate('times')
+      .populate('date')
       .then((workSchedules) => {
         resolve(workSchedules);
       })
@@ -31,6 +34,9 @@ exports.viewAllWorkSchedules = function () {
 exports.viewWorkScheduleById = function (id) {
   return new Promise((resolve, reject) => {
     WorkSchedule.findOne({ _id: id })
+      .populate('staff')
+      .populate('times')
+      .populate('date')
       .exec()
       .then((workSchedule) => {
         resolve(workSchedule);

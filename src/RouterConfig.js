@@ -46,7 +46,8 @@ import CheckConfirmEmail from './Register/CheckConfirmEmail';
 import Forgot_Id_Pw from './Register/Forgot_Id_Pw';
 import openHours from './resources/openHours.png';
 import servicePic from './resources/SerivcePic.png';
-import ViewStaffSchedule from './StaffSchedule/ViewStaffSchedule';
+import ViewSchedulesList from './StaffSchedule/ViewSchedulesList';
+import CreateSchedule from './StaffSchedule/CreateSchedule';
 import EditStaffSchedule from './StaffSchedule/EditStaffSchedule';
 import AppointmentDeleted from './Appointment/AppointmentDeleted';
 import AppointmentDeletedAdmin from './Appointment/Admin/AppointmentDeletedAdmin';
@@ -77,20 +78,34 @@ class RouterConfig extends React.Component {
           <Route exact path="/Appointment/Deleted" render={() => <AppointmentDeleted />} />
 
           {/* Appointment Admin URL */}
+          <Route exact path="/Appointment/Admin/" render={() => <AppointmentsAdmin />} />
           <Route
             exact
-            path="/Appointment/Admin/"
-            render={() => <AppointmentsAdmin />}
+            path="/Appointment/Admin/Appointment/:id"
+            render={(props) => <AppointmentAdmin id={props.match.params.id} />}
           />
-          <Route exact path="/Appointment/Admin/Appointment/:id" render={(props) => <AppointmentAdmin id={props.match.params.id}/>} />
-          <Route exact path="/Appointment/Admin/Edit/:id" render={(props) => <EditAppointmentAdmin id={props.match.params.id}/>} />
+          <Route
+            exact
+            path="/Appointment/Admin/Edit/:id"
+            render={(props) => <EditAppointmentAdmin id={props.match.params.id} />}
+          />
           <Route exact path="/Appointment/Admin/Create" render={() => <CreateAppointmentAdmin />} />
-          <Route exact path="/Appointment/Admin/Message/:id" render={(props) => <LeaveMessageToAppointment id={props.match.params.id}/>}/>
-          <Route exact path="/Appointment/Admin/Deleted" render={() => <AppointmentDeletedAdmin />}/>
+          <Route
+            exact
+            path="/Appointment/Admin/Message/:id"
+            render={(props) => <LeaveMessageToAppointment id={props.match.params.id} />}
+          />
+          <Route
+            exact
+            path="/Appointment/Admin/Deleted"
+            render={() => <AppointmentDeletedAdmin />}
+          />
 
           {/* Staff Schedule URL */}
-          <Route exact path="/Staff/Schedule" render={() => <ViewStaffSchedule />} />
+          <Route exact path="/Staff/Schedule" render={() => <ViewSchedulesList />} />
+          <Route exact path="/Staff/Schedules" render={() => <ViewSchedulesList />} />
           <Route exact path="/Staff/Schedule/Edit" render={() => <EditStaffSchedule />} />
+          <Route exact path="/Staff/Schedule/Create" render={() => <CreateSchedule />} />
 
           {/* Service URL */}
           <Route exact path="/Service" render={() => <ServiceHome />} />
@@ -109,10 +124,16 @@ class RouterConfig extends React.Component {
           {/* Request URL */}
           <Route exact path="/Request" render={() => <RequestHome />} />
           <Route exact path="/Request/Create" render={() => <CreateRequest />} />
-          <Route exact path="/Request/Detail/:id"
-            render={(props) => (<ViewRequest id={props.match.params.id}></ViewRequest>)} />
-          <Route exact path="/Request/Edit/:id"
-            render={(props) => (<EditRequest id={props.match.params.id}></EditRequest>)} />
+          <Route
+            exact
+            path="/Request/Detail/:id"
+            render={(props) => <ViewRequest id={props.match.params.id}></ViewRequest>}
+          />
+          <Route
+            exact
+            path="/Request/Edit/:id"
+            render={(props) => <EditRequest id={props.match.params.id}></EditRequest>}
+          />
           <Route exact path="/Request/FAQ" render={() => <ViewFAQ />} />
 
           {/* Request Admin URL*/}

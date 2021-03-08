@@ -56,10 +56,10 @@ class StaffScheduleCalendar extends React.Component {
   render() {
     const selectedView = this.props.view; // default view
     const today = new Date();
-    const testS = new Date(2021,2,6,10,33);
-    const testE = new Date(2021,2,6,11,33);
-    const testSS = new Date(2021, 2, 6, 14, 33);
-    const testEE = new Date(2021, 2, 6, 15, 33);
+    const testS = new Date(2021,2,7,10,33);
+    const testE = new Date(2021,2,7,11,33);
+    const testSS = new Date(2021, 2, 7, 14, 33);
+    const testEE = new Date(2021, 2, 7, 15, 33);
 
     return (
       <>

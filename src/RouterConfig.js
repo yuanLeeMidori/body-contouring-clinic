@@ -76,16 +76,28 @@ class RouterConfig extends React.Component {
           <Route exact path="/Appointment/Deleted" render={() => <AppointmentDeleted />} />
 
           {/* Appointment Admin URL */}
+          <Route exact path="/Appointment/Admin/" render={() => <AppointmentsAdmin />} />
           <Route
             exact
-            path="/Appointment/Admin/"
-            render={() => <AppointmentsAdmin />}
+            path="/Appointment/Admin/Appointment/:id"
+            render={(props) => <AppointmentAdmin id={props.match.params.id} />}
           />
-          <Route exact path="/Appointment/Admin/Appointment/:id" render={(props) => <AppointmentAdmin id={props.match.params.id}/>} />
-          <Route exact path="/Appointment/Admin/Edit/:id" render={(props) => <EditAppointmentAdmin id={props.match.params.id}/>} />
+          <Route
+            exact
+            path="/Appointment/Admin/Edit/:id"
+            render={(props) => <EditAppointmentAdmin id={props.match.params.id} />}
+          />
           <Route exact path="/Appointment/Admin/Create" render={() => <CreateAppointmentAdmin />} />
-          <Route exact path="/Appointment/Admin/Message/:id" render={(props) => <LeaveMessageToAppointment id={props.match.params.id}/>}/>
-          <Route exact path="/Appointment/Admin/Deleted" render={() => <AppointmentDeletedAdmin />}/>
+          <Route
+            exact
+            path="/Appointment/Admin/Message/:id"
+            render={(props) => <LeaveMessageToAppointment id={props.match.params.id} />}
+          />
+          <Route
+            exact
+            path="/Appointment/Admin/Deleted"
+            render={() => <AppointmentDeletedAdmin />}
+          />
 
           {/* Staff Schedule URL */}
           <Route exact path="/Staff/Schedule" render={() => <ViewStaffSchedule />} />
@@ -99,8 +111,11 @@ class RouterConfig extends React.Component {
           <Route exact path="/VIP/Admin" render={() => <VIPHomebyAdmin />} />
           <Route exact path="/VIP/Admin/Manage" render={() => <VIPManage />} />
           <Route exact path="/VIP/Admin/Manage/Create" render={() => <CreateOffer />} />
-          <Route exact path='/VIP/Admin/Manage/Edit/:id' render={(props) => <EditOffer  id={props.match.params.id}/>}/>
-
+          <Route
+            exact
+            path="/VIP/Admin/Manage/Edit/:id"
+            render={(props) => <EditOffer id={props.match.params.id} />}
+          />
 
           {/* Request URL */}
           <Route exact path="/Request" render={() => <RequestHome />} />
@@ -113,22 +128,38 @@ class RouterConfig extends React.Component {
           <Route exact path="/Request/Admin" render={() => <RequestHomeAdmin />} />
           <Route
             path="/Request/Admin/Answer/:id"
-            render={(props) => (
-              <AnswerRequest
-                id={props.match.params.id}
-              ></AnswerRequest>
-            )}
+            render={(props) => <AnswerRequest id={props.match.params.id}></AnswerRequest>}
           />
           <Route exact path="/Request/FAQ/Admin" render={() => <ViewFAQAdmin />} />
           <Route exact path="/Request/FAQ/Admin/Create" render={() => <CreateFAQ />} />
-          <Route exact path="/Request/FAQ/Admin/Edit/:id" render={(props) => <EditFAQ   id={props.match.params.id}/>} />
+          <Route
+            exact
+            path="/Request/FAQ/Admin/Edit/:id"
+            render={(props) => <EditFAQ id={props.match.params.id} />}
+          />
 
           {/* Customer URL */}
           <Route exact path="/Customer" render={() => <CustomerHome />} />
-          <Route exact path="/Customer/Profile" render={() => <CustomerProfile />} />
-          <Route exact path="/Customer/Edit" render={() => <CustomerEdit />} />
-          <Route exact path="/Customer/Balance" render={() => <CustomerBalance />} />
-          <Route exact path="/Customer/BalanceDetail" render={() => <BalanceDetail />} />
+          <Route
+            exact
+            path="/Customer/:id"
+            render={() => <CustomerProfile id={localStorage.getItem('_id')} />}
+          />
+          <Route
+            exact
+            path="/Customer/Edit/:id"
+            render={() => <CustomerEdit id={localStorage.getItem('_id')} />}
+          />
+          <Route
+            exact
+            path="/Customer/Balance/:id"
+            render={() => <CustomerBalance id={localStorage.getItem('_id')} />}
+          />
+          <Route
+            exact
+            path="/Customer/BalanceDetail/:id"
+            render={() => <BalanceDetail id={localStorage.getItem('_id')} />}
+          />
 
           {/* Customer Admin URL*/}
           <Route exact path="/Customer/Admin" render={() => <CustomerHomeAdmin />} />

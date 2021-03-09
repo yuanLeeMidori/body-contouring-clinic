@@ -105,7 +105,7 @@ class CreateSchedule extends React.Component {
         <Redirect
           push
           to={{
-            pathname: '/request',
+            pathname: '/Staff/Schedules',
           }}
         />
       );

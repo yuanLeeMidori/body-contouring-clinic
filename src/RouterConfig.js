@@ -47,6 +47,7 @@ import openHours from './resources/openHours.png';
 import servicePic from './resources/SerivcePic.png';
 import ViewSchedulesList from './StaffSchedule/ViewSchedulesList';
 import CreateSchedule from './StaffSchedule/CreateSchedule';
+import ViewScheduleDetail from './StaffSchedule/ViewScheduleDetail';
 import EditStaffSchedule from './StaffSchedule/EditStaffSchedule';
 import AppointmentDeleted from './Appointment/AppointmentDeleted';
 import AppointmentDeletedAdmin from './Appointment/Admin/AppointmentDeletedAdmin';
@@ -103,7 +104,8 @@ class RouterConfig extends React.Component {
           {/* Staff Schedule URL */}
           <Route exact path="/Staff/Schedule" render={() => <ViewSchedulesList />} />
           <Route exact path="/Staff/Schedules" render={() => <ViewSchedulesList />} />
-          <Route exact path="/Staff/Schedule/Edit" render={() => <EditStaffSchedule />} />
+          <Route exact path="/Staff/Schedule/Detail/:id" render={(props) => <ViewScheduleDetail id={props.match.params.id} />} />
+          <Route exact path="/Staff/Schedule/Edit/:id" render={(props) => <EditStaffSchedule id={props.match.params.id} />} />
           <Route exact path="/Staff/Schedule/Create" render={() => <CreateSchedule />} />
 
           {/* Service URL */}

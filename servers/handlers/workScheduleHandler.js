@@ -41,7 +41,7 @@ exports.viewAllWorkSchedulesByStaff = function (query) {
   return new Promise((resolve, reject) => {
     WorkSchedule.find(query)
       .populate('date')
-      .populate('times')
+      .populate('time')
       .populate({
         path: 'staff',
         populate: { path: 'account' },

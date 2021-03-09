@@ -364,6 +364,13 @@ app.delete('/customer/:id', (req, res) => {
     .catch((err) => res.json(err));
 });
 
+app.get('/customer', (req, res) => {
+  customerHandler
+    .viewCustomerByInput(req.query)
+    .then((customer) => res.json(customer))
+    .catch((err) => res.json(err));
+});
+
 // request
 app.post('/create-request', (req, res) => {
   requestHandler.addNewRequest(req.body).then((msg) => res.json(msg));
@@ -582,6 +589,14 @@ app.delete('/appointment/:id', (req, res) => {
     .then((appointment) => res.json(appointment))
     .catch((err) => res.json(err));
 });
+
+app.get('/appointment', (req, res) => {
+  appointmentHandler
+    .viewAllAppointmentsByCustomer(req.query)
+    .then((appointment) => res.json(appointment))
+    .catch((err) => res.json(err));
+});
+
 
 // faq
 app.post('/create-faq', (req, res) => {

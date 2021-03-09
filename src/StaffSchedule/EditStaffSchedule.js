@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
 import '../App.css';
 import SideBar from '../SideBar/SideBar';
 
@@ -8,7 +9,7 @@ class EditStaffSchedule extends React.Component {
     super(props);
     this.state = {
       items: [
-        { url: '/Staff/Schedule', title: 'Schedule Calendar' },
+        { url: '/Staff/Schedules/Calendar', title: 'Schedule Calendar' },
         { url: '/Staff/Schedule/Create', title: 'Create Schedule' },
         { url: '/Staff/Schedules', title: 'View Schedule List' },
       ],
@@ -58,6 +59,10 @@ class EditStaffSchedule extends React.Component {
 
   onDateChange(e) {
     this.setState(() => ({
+      date: {
+        ...this.state.date,
+        _id: e.target.value,
+      },
       workSchedule: {
         ...this.state.workSchedule,
         date: e.target.value,
@@ -67,6 +72,10 @@ class EditStaffSchedule extends React.Component {
 
   onTimeChange(e) {
     this.setState(() => ({
+      time: {
+        ...this.state.time,
+        _id: e.target.value,
+      },
       workSchedule: {
         ...this.state.workSchedule,
         time: e.target.value,
@@ -135,6 +144,16 @@ class EditStaffSchedule extends React.Component {
   }
 
   render() {
+    if (this.state.completed) {
+      return (
+        <Redirect
+          push
+          to={{
+            pathname: '/Staff/Schedules',
+          }}
+        />
+      );
+    }
     // today schedule
     // let formatted = this.state.workSchedules.map(
     //   (s) =>
@@ -228,7 +247,7 @@ class EditStaffSchedule extends React.Component {
                       </Button>
                     </Col>
                     <Col xs={1}>
-                      <Button variant="outline-info" type="submit">
+                      <Button type="submit" variant="outline-info">
                         Save
                       </Button>
                     </Col>

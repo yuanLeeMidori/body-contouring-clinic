@@ -9,7 +9,7 @@ class CreateSchedule extends React.Component {
     super(props);
     this.state = {
       items: [
-        { url: '/Staff/Schedule', title: 'Schedule Calendar' },
+        { url: '/Staff/Schedules/Calendar', title: 'Schedule Calendar' },
         { url: '/Staff/Schedule/Create', title: 'Create Schedule' },
         { url: '/Staff/Schedules', title: 'View Schedule List' },
       ],
@@ -166,7 +166,7 @@ class CreateSchedule extends React.Component {
                 <Row>
                   <Col xs={6}></Col>
                   <Col xs={1}>
-                    <Button variant="outline-secondary" href="/Request/">
+                    <Button variant="outline-secondary" href="/Staff/Schedules">
                       Cancel
                     </Button>
                   </Col>

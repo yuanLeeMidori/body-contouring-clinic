@@ -102,8 +102,8 @@ class RouterConfig extends React.Component {
           />
 
           {/* Staff Schedule URL */}
-          <Route exact path="/Staff/Schedule" render={() => <ViewSchedulesList />} />
           <Route exact path="/Staff/Schedules" render={() => <ViewSchedulesList />} />
+          <Route exact path="/Staff/Schedules/Calendar" render={() => <ViewSchedulesList />} />
           <Route exact path="/Staff/Schedule/Detail/:id" render={(props) => <ViewScheduleDetail id={props.match.params.id} />} />
           <Route exact path="/Staff/Schedule/Edit/:id" render={(props) => <EditStaffSchedule id={props.match.params.id} />} />
           <Route exact path="/Staff/Schedule/Create" render={() => <CreateSchedule />} />

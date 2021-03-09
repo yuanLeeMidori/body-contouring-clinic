@@ -11,7 +11,7 @@ class ViewSchedulesList extends React.Component {
     this.state = {
       show: false,
       items: [
-        { url: '/Staff/Schedule', title: 'Schedule Calendar' },
+        { url: '/Staff/Schedules/Calendar', title: 'Schedule Calendar' },
         { url: '/Staff/Schedule/Create', title: 'Create Schedule' },
         { url: '/Staff/Schedules', title: 'View Schedule List' },
       ],
@@ -83,9 +83,6 @@ class ViewSchedulesList extends React.Component {
                       </Button>{' '}
                       <Button variant="outline-info" href={`/Staff/Schedule/Edit/${sch._id}`}>
                         Edit
-                      </Button>{' '}
-                      <Button variant="outline-danger">
-                        Delete
                       </Button>
                     </td>
                   </tr>

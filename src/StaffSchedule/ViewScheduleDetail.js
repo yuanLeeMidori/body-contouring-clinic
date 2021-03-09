@@ -3,6 +3,7 @@ import '../App.css';
 import SideBar from '../SideBar/SideBar';
 import { Form, Row, Col, Container, Button } from 'react-bootstrap';
 import PopUp from '../PopUp';
+import { Redirect } from 'react-router';
 
 class ViewScheduleDetail extends React.Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class ViewScheduleDetail extends React.Component {
       show: false,
     };
     this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   }
 
@@ -80,6 +82,16 @@ class ViewScheduleDetail extends React.Component {
     });
   }
   render() {
+    if (this.state.completed) {
+      return (
+        <Redirect
+          push
+          to={{
+            pathname: '/Staff/Schedules',
+          }}
+        />
+      );
+    }
     return (
       <div className="row">
         <div className="col-md-1"></div>
@@ -147,7 +159,7 @@ class ViewScheduleDetail extends React.Component {
                     </Button>
                     <PopUp
                       show={this.state.show}
-                      handelClose={this.hideModal}
+                      handleClose={this.hideModal}
                       handleDelete={this.handleDelete}
                       text={this.state.popUpText}
                       btn1="Cancel"

@@ -56,25 +56,7 @@ exports.viewAllWorkSchedulesByStaff = function (query) {
   });
 };
 
-// view all
-exports.viewAllWorkSchedulesByStaff = function (query) {
-  return new Promise((resolve, reject) => {
-    WorkSchedule.find(query)
-      .populate('date')
-      .populate('times')
-      .populate({
-        path: 'staff',
-        populate: { path: 'account' },
-      })
-      .exec()
-      .then((workSchedules) => {
-        resolve(workSchedules);
-      })
-      .catch((err) => {
-        reject(err);
-      });
-  });
-};
+
 
 // view one
 exports.viewWorkScheduleById = function (id) {

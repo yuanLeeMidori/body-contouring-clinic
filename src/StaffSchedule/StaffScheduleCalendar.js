@@ -3,6 +3,8 @@ import React from 'react';
 import Calendar from '@toast-ui/react-calendar';
 import 'tui-calendar/dist/tui-calendar.css';
 
+import moment from 'moment';
+
 // If you use the default popups, use this.
 import 'tui-date-picker/dist/tui-date-picker.css';
 import 'tui-time-picker/dist/tui-time-picker.css';
@@ -12,6 +14,10 @@ import { Button } from 'react-bootstrap';
 class StaffScheduleCalendar extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      day: new Date(),
+      isWeek: false,
+    };
     this.calendarRef = React.createRef();
   }
 
@@ -21,13 +27,18 @@ class StaffScheduleCalendar extends React.Component {
   handleClickNextButton = () => {
     const calendarInstance = this.calendarRef.current.getInstance();
 
+    if (this.props.view == 'day') {
+      this.setState({ day: moment(this.state.day).add(1, 'days') });
+    }
     calendarInstance.next();
   };
 
   // Button to move next month
   handleClickPrevButton = () => {
     const calendarInstance = this.calendarRef.current.getInstance();
-
+    if (this.props.view == 'day') {
+      this.setState({ day: moment(this.state.day).subtract(1, 'days') });
+    }
     calendarInstance.prev();
   };
 
@@ -53,14 +64,16 @@ class StaffScheduleCalendar extends React.Component {
     console.groupEnd();
   };
 
+  componentDidMount() {
+    if (this.props.view == 'week') {
+      this.setState({ isWeek: true });
+    }
+  }
+
   render() {
     const selectedView = this.props.view; // default view
-    const today = new Date();
-    const testS = new Date(2021,2,7,10,33);
-    const testE = new Date(2021,2,7,11,33);
-    const testSS = new Date(2021, 2, 7, 14, 33);
-    const testEE = new Date(2021, 2, 7, 15, 33);
-
+    // let td = new Date();
+    console.log(this.props.today);
     return (
       <>
         {/* <button onClick={this.weekChangeButton}>Week</button> */}
@@ -68,7 +81,8 @@ class StaffScheduleCalendar extends React.Component {
           {' '}
           &laquo;{' '}
         </Button>
-        <span>This month </span>
+        {!this.state.isWeek && <span>{moment(this.state.day).format('ll')}</span>}
+        {this.state.isWeek && <span>Week</span>}
         <Button variant="outline-*" onClick={this.handleClickNextButton}>
           {' '}
           &raquo;{' '}
@@ -82,42 +96,7 @@ class StaffScheduleCalendar extends React.Component {
           disableDblClick={true}
           disableClick={false}
           isReadOnly={false}
-          schedules={[
-            {
-              // id: '1',
-              // calendarId: '0',
-              title: 'TOAST UI Calendar Study',
-              category: 'time',
-              dueDateClass: '',
-              start: testS.toISOString(),
-              end: testE.toISOString(),
-              // end: getDate('hours', today, 3, '+').toISOString()
-            },
-            {
-              // id: '2',
-              // calendarId: '0',
-              title: 'Brooks - Green Peel',
-              category: 'time',
-              dueDateClass: '',
-              start: testSS.toISOString(),
-              end: testEE.toISOString(),
-              // start: getDate('date', today, 1, '+').toISOString(),
-              // end: getDate('date', today, 1, '+').toISOString(),
-              isReadOnly: true,
-            },
-            {
-              // id: '3',
-              // calendarId: '0',
-              title: 'Piper - Hair Removal',
-              category: 'time',
-              dueDateClass: '',
-              start: today.toISOString(),
-              end: today.toISOString(),
-              // start: getDate('date', today, 2, '-').toISOString(),
-              // end: getDate('date', today, 1, '-').toISOString(),
-              isReadOnly: true,
-            },
-          ]}
+          schedules={this.props.schedule}
           scheduleView
           taskView
           template={{
@@ -143,7 +122,6 @@ class StaffScheduleCalendar extends React.Component {
             },
           ]}
           useDetailPopup
-          useCreationPopup
           view={selectedView} // You can also set the `defaultView` option.
           month={{
             daynames: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],

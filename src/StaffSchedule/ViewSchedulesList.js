@@ -55,7 +55,7 @@ class ViewSchedulesList extends React.Component {
           <div className="col-md-1"></div>
           <SideBar items={this.state.items} />
           <div className="col-md-8" style={{ 'margin-left': '80px' }}>
-            <h2 className="PageTitle">View All Schedule</h2>
+            <h2 className="PageTitle">Hi, {this.state.account.firstName + ' ' + this.state.account.lastName}, these are your schedules</h2>
             <br />
             <div className="contents">
               <Form inline>

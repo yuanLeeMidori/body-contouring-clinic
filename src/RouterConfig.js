@@ -45,7 +45,10 @@ import CheckConfirmEmail from './Register/CheckConfirmEmail';
 import Forgot_Id_Pw from './Register/Forgot_Id_Pw';
 import openHours from './resources/openHours.png';
 import servicePic from './resources/SerivcePic.png';
-import ViewStaffSchedule from './StaffSchedule/ViewStaffSchedule';
+import ViewSchedulesList from './StaffSchedule/ViewSchedulesList';
+import CreateSchedule from './StaffSchedule/CreateSchedule';
+import ViewScheduleDetail from './StaffSchedule/ViewScheduleDetail';
+import ViewStaffScheduleCalendar from './StaffSchedule/ViewStaffScheduleCalendar'
 import EditStaffSchedule from './StaffSchedule/EditStaffSchedule';
 import AppointmentDeleted from './Appointment/AppointmentDeleted';
 import AppointmentDeletedAdmin from './Appointment/Admin/AppointmentDeletedAdmin';
@@ -100,8 +103,11 @@ class RouterConfig extends React.Component {
           />
 
           {/* Staff Schedule URL */}
-          <Route exact path="/Staff/Schedule" render={() => <ViewStaffSchedule />} />
-          <Route exact path="/Staff/Schedule/Edit" render={() => <EditStaffSchedule />} />
+          <Route exact path="/Staff/Schedules" render={() => <ViewSchedulesList />} />
+          <Route exact path="/Staff/Schedules/Calendar" render={() => <ViewStaffScheduleCalendar />} />
+          <Route exact path="/Staff/Schedule/Detail/:id" render={(props) => <ViewScheduleDetail id={props.match.params.id} />} />
+          <Route exact path="/Staff/Schedule/Edit/:id" render={(props) => <EditStaffSchedule id={props.match.params.id} />} />
+          <Route exact path="/Staff/Schedule/Create" render={() => <CreateSchedule />} />
 
           {/* Service URL */}
           <Route exact path="/Service" render={() => <ServiceHome />} />
@@ -120,8 +126,16 @@ class RouterConfig extends React.Component {
           {/* Request URL */}
           <Route exact path="/Request" render={() => <RequestHome />} />
           <Route exact path="/Request/Create" render={() => <CreateRequest />} />
-          <Route exact path="/Request/Detail" render={() => <ViewRequest />} />
-          <Route exact path="/Request/Edit" render={() => <EditRequest />} />
+          <Route
+            exact
+            path="/Request/Detail/:id"
+            render={(props) => <ViewRequest id={props.match.params.id}></ViewRequest>}
+          />
+          <Route
+            exact
+            path="/Request/Edit/:id"
+            render={(props) => <EditRequest id={props.match.params.id}></EditRequest>}
+          />
           <Route exact path="/Request/FAQ" render={() => <ViewFAQ />} />
 
           {/* Request Admin URL*/}

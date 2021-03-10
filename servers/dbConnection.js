@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const dbkey = require('../dbConnectionStr.json');
 
-const mongodbConnectionStr = process.env.MONGODB_URI;
-const mongodbConnectionStr = dbkey.mongodbConnectionStr;
+// const mongodbConnectionStr = process.env.MONGODB_URI;
+const mongodbConnectionStr = dbkey.connectionStr;
 
 module.exports = () => {
   function connect() {

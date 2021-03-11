@@ -18,6 +18,7 @@ class RequestHomebyAdmin extends React.Component {
       auth: 'Admin',
       dayValue: 0,
       statusValue: '',
+      startDate: '',
     };
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
@@ -28,12 +29,12 @@ class RequestHomebyAdmin extends React.Component {
 
   handleStatusChange(e) {
     this.setState({
-      statusValue: e.target.value
+      statusValue: e.target.value,
     });
   }
   handleDayChange(e) {
     this.setState({
-      dayValue: e.target.value
+      dayValue: e.target.value,
     });
   }
   showModal = () => {
@@ -48,6 +49,16 @@ class RequestHomebyAdmin extends React.Component {
     this.setState({ show: false });
   };
 
+  onStartDateChange = () => {
+    console.log(document.getElementById('startDate').value);
+    this.setState({ startDate: document.getElementById('startDate').value });
+  };
+
+  onEndDateChange = () => {
+    console.log(document.getElementById('endDate').value);
+    this.setState({ startDate: document.getElementById('endDate').value });
+  };
+
   render() {
     return (
       <div className="row">
@@ -60,6 +71,20 @@ class RequestHomebyAdmin extends React.Component {
             <Form inline>
               <Form.Control
                 as="select"
+                name="request-status"
+                value={this.state.statusValue}
+                onChange={this.handleStatusChange}
+                style={{ 'margin-right': '15px' }}
+              >
+                <option value="none" default>
+                  All
+                </option>
+                <option value="unsolved">Unsolved</option>
+                <option value="in-progress">In-Progress</option>
+                <option value="solved">Solved</option>
+              </Form.Control>
+              <Form.Control
+                as="select"
                 name="days"
                 value={this.state.dayValue}
                 onChange={this.handleDayChange}
@@ -70,8 +95,19 @@ class RequestHomebyAdmin extends React.Component {
                 <option value="90">Last 90 Days</option>
                 <option value="120">Last 120 Days</option>
               </Form.Control>
-              <Form.Control type="date" style={{ 'margin-left': '30px', 'margin-right': '15px' }} />
-              ~<Form.Control type="date" style={{ 'margin-left': '15px' }} />
+              <Form.Control
+                id="startDate"
+                onChange={this.onStartDateChange.bind(this)}
+                type="date"
+                style={{ 'margin-left': '30px', 'margin-right': '15px' }}
+              />
+              ~
+              <Form.Control
+                id="endDate"
+                onChange={this.onEndDateChange.bind(this)}
+                type="date"
+                style={{ 'margin-left': '15px' }}
+              />
               <Form.Control as="select" style={{ 'margin-left': '30px' }}>
                 <option value="title">Customer ID</option>
                 <option value="content">Customer Name</option>
@@ -89,23 +125,14 @@ class RequestHomebyAdmin extends React.Component {
               >
                 <img src={searchIcon} alt="Search" />
               </Button>
-              <Form.Control
-                as="select"
-                name="request-status"
-                value={this.state.statusValue}
-                onChange={this.handleStatusChange}
-                style={{ 'margin-left': '30px', width: '100px' }}
-              >
-                <option value="none" default>
-                  All
-                </option>
-                <option value="unsolved">Unsolved</option>
-                <option value="in-progress">In-Progress</option>
-                <option value="solved">Solved</option>
-              </Form.Control>
             </Form>
             <br />
-            <ListAllRequestbyAdmin status={this.state.statusValue} day={this.state.dayValue} />
+            <ListAllRequestbyAdmin
+              status={this.state.statusValue}
+              day={this.state.dayValue}
+              startDate={this.state.startDate}
+              endDate={this.state.endDate}
+            />
             <Container>
               <Row>
                 <Col xs={10}></Col>

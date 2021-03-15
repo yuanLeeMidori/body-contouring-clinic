@@ -6,15 +6,10 @@ const balanceHistorySchema = new Schema(
     balances: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'balance',
+        ref: 'balances',
         required: true,
       },
     ],
-
-    date: {
-      type: Date,
-      required: true,
-    },
   },
   { timestamps: true }
 );

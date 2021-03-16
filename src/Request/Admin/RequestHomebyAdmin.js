@@ -2,7 +2,7 @@ import React from 'react';
 import '../../App.css';
 import searchIcon from '../../resources/searchIcon.png';
 import SideBar from '../../SideBar/SideBar';
-import { Button, Container, Form, Row, Col } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
@@ -205,9 +205,6 @@ class RequestHomebyAdmin extends React.Component {
             <br />
             <table>
               <tr>
-                <th>
-                  <input type="checkbox" />
-                </th>
                 <th>Title</th>
                 <th>Category</th>
                 <th>Service</th>
@@ -224,10 +221,7 @@ class RequestHomebyAdmin extends React.Component {
                     : this.state.status == request.status) && (
                     <tr key={request._id}>
                       <td>
-                        <input type="checkbox" />
-                      </td>
-                      <td>
-                        <Link to={`/Request/Admin/Answer/${request._id}`} style={{ color: 'black' }}>
+                        <Link to={`/Request/Admin/Details/${request._id}`} style={{ color: 'black' }}>
                           {request.title}
                         </Link>
                       </td>
@@ -247,17 +241,6 @@ class RequestHomebyAdmin extends React.Component {
                   )
               )}
             </table>
-            <Container>
-              <Row>
-                <Col xs={10}></Col>
-                <Col xs={1}></Col>
-                <Col xs={1}>
-                  <Button variant="outline-info" href="/Request/Admin/Answer">
-                    Answer
-                  </Button>
-                </Col>
-              </Row>
-            </Container>
             <br />
             <br />
           </div>

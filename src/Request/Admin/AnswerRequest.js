@@ -69,7 +69,7 @@ class AnswerRequest extends React.Component {
         <Redirect
           push
           to={{
-            pathname: `/Request/Admin/${this.state.request._id}`,
+            pathname: `/Request/Admin/Details/${this.state.request._id}`,
           }}
         />
       );

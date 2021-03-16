@@ -21,6 +21,7 @@ import CustomerAccountAdmin from './Customer/Admin/CustomerAccountAdmin';
 import CustomerAccountEditAdmin from './Customer/Admin/CustomerAccountEditAdmin';
 import ViewRequest from './Request/ViewRequest';
 import RequestHomeAdmin from './Request/Admin/RequestHomebyAdmin';
+import ViewRequestAdmin from './Request/Admin/ViewRequestDetails';
 import AnswerRequest from './Request/Admin/AnswerRequest';
 import EditRequest from './Request/EditRequest';
 import ViewFAQ from './Request/FAQ/ViewAllFAQbyGeneral';
@@ -165,6 +166,9 @@ class RouterConfig extends React.Component {
           {/* Request Admin URL*/}
           <Route exact path="/Request/Admin" render={() => <RequestHomeAdmin />} />
           <Route
+            path="/Request/Admin/Details/:id"
+            render={(props) => <ViewRequestAdmin id={props.match.params.id}></ViewRequestAdmin>}/>
+          <Route
             path="/Request/Admin/Answer/:id"
             render={(props) => <AnswerRequest id={props.match.params.id}></AnswerRequest>}
           />
@@ -191,7 +195,7 @@ class RouterConfig extends React.Component {
           <Route
             exact
             path="/Customer/Balance/:id"
-            render={(props) => <CustomerBalance  id={props.match.params.id}/>}
+            render={(props) => <CustomerBalance id={props.match.params.id} />}
           />
           <Route
             exact

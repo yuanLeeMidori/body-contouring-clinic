@@ -10,8 +10,8 @@ class ListAllRequestbyAdmin extends React.Component {
     super(props);
     this.state = {
       loaded: true,
-      requests: [],
-      reqs: [],
+      requests: this.props.requests,
+      filterRequests: [],
       requestCategory: ' ',
     };
   }
@@ -28,21 +28,15 @@ class ListAllRequestbyAdmin extends React.Component {
   }
 
   updateRequest() {
-    if (this.props.startDate) {
-      // this.setState({ requests: null });
-
-      this.state.requests.forEach((rq) => {
-        if (moment(rq.date).isBefore(this.props.startDate)) {
-          console.log(rq.date + rq.title + ' is before ' + this.props.startDate);
-          this.setState({
-            reqs: this.state.reqs.push(rq),
-          });
-          console.log(this.state.reqs);
-        }
-
-
+    if (this.props.startDate && this.props.endDate) {
+      console.log('start ' + this.props.startDate);
+      console.log('end ' + this.props.endDate);
+      const newRequest = this.state.requests.filter((req) => {
+        console.log(req.date);
+        return moment(req.date).isBetween(this.props.startDate, this.props.endDate);
       });
-      this.setState({ requests: this.reqs });
+      console.log(newRequest);
+      this.setState({ filterRequests: newRequest });
     }
   }
 
@@ -50,6 +44,7 @@ class ListAllRequestbyAdmin extends React.Component {
     this.getRequests().then((data) => {
       this.setState({
         requests: data,
+        filterRequests: data,
       });
     });
   }

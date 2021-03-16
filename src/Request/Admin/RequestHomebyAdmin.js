@@ -108,6 +108,14 @@ class RequestHomebyAdmin extends React.Component {
             .includes(this.state.filter.toLowerCase());
         });
         this.setState({ filterRequests: newRequests });
+      } else if (this.state.searchType == 'customerName') {
+        const newRequests = this.state.requests.filter((req) => {
+          let name = req.customer.account.firstName + req.customer.account.lastName;
+          return name
+            .toLowerCase()
+            .includes(this.state.filter.toLowerCase());
+        });
+        this.setState({ filterRequests: newRequests });
       }
     }
   }
@@ -160,6 +168,7 @@ class RequestHomebyAdmin extends React.Component {
                 style={{ 'margin-left': '30px' }}
                 onChange={this.handleSearchTypeChange.bind(this)}
               >
+                <option>N/A</option>
                 <option value="customerID">Customer ID</option>
                 <option value="customerName">Customer Name</option>
                 <option value="title">Title</option>
@@ -223,7 +232,7 @@ class RequestHomebyAdmin extends React.Component {
                         </Link>
                       </td>
                       <td>{request.requestCategory.name}</td>
-                      <td>{request.serviceCategory.name}</td>
+                      <td>{!request.serviceCategory ? ' ' : request.serviceCategory.name}</td>
                       <td>{!request.customer ? ' ' : request.customer.account.userID}</td>
                       <td>
                         {!request.customer

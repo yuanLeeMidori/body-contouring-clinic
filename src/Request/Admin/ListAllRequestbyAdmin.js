@@ -3,13 +3,15 @@ import '../../App.css';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { Button } from 'react-bootstrap';
 
 class ListAllRequestbyAdmin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       loaded: true,
-      requests: [],
+      requests: this.props.requests,
+      filterRequests: [],
       requestCategory: ' ',
     };
   }
@@ -25,10 +27,24 @@ class ListAllRequestbyAdmin extends React.Component {
     });
   }
 
+  updateRequest() {
+    if (this.props.startDate && this.props.endDate) {
+      console.log('start ' + this.props.startDate);
+      console.log('end ' + this.props.endDate);
+      const newRequest = this.state.requests.filter((req) => {
+        console.log(req.date);
+        return moment(req.date).isBetween(this.props.startDate, this.props.endDate);
+      });
+      console.log(newRequest);
+      this.setState({ filterRequests: newRequest });
+    }
+  }
+
   componentDidMount() {
     this.getRequests().then((data) => {
       this.setState({
         requests: data,
+        filterRequests: data,
       });
     });
   }
@@ -36,14 +52,11 @@ class ListAllRequestbyAdmin extends React.Component {
     const pagination = {
       color: '#B58970',
     };
-    {
-      console.log(this.props.status);
-    }
-    {
-      console.log(this.state.loaded);
-    }
+
+    console.log(this.props.day);
     return (
       <div className="ListAll">
+        <Button onClick={this.updateRequest.bind(this)}>Update</Button>
         <table>
           <tr>
             <th>
@@ -58,35 +71,34 @@ class ListAllRequestbyAdmin extends React.Component {
             <th>Status</th>
           </tr>
 
-          {this.state.requests.map((request) =>
-            // (this.props.status.length == 0 ||
-            // this.props.status == 'none') ||
-            //   parseInt(this.props.day) == 0 ||
-            //   this.props.day.length == 0
-            //   ? request._id.length > 0
-            //   : this.props.status == request.status &&
-            //   moment(request.date) > moment().subtract(parseInt(this.props.day), 'days')
-            //   &&
-              (
-                  <tr key={request._id}>
-                    <td>
-                      <input type="checkbox" />
-                    </td>
-                    <td>
-                      <Link to={`/Request/Admin/${request._id}`} style={{ color: 'black' }}>
-                        {request.title}
-                      </Link>
-                    </td>
-                    <td>{request.requestCategory.name}</td>
-                    <td>{request.serviceCategory.name}</td>
-                    <td>{request.customer.account.userID}</td>
-                    <td>
-                      {request.customer.account.firstName + ' ' + request.customer.account.lastName}
-                    </td>
-                    <td>{moment(request.date).format('lll')}</td>
-                    <td>{request.status}</td>
-                  </tr>
-                )
+          {this.state.requests.map(
+            (request) =>
+              (this.props.status.length == 0 || this.props.status == 'none'
+                ? request
+                : this.props.status == request.status) && (
+                <tr key={request._id}>
+                  <td>
+                    <input type="checkbox" />
+                  </td>
+                  <td>
+                    <Link to={`/Request/Admin/${request._id}`} style={{ color: 'black' }}>
+                      {request.title}
+                    </Link>
+                  </td>
+                  <td>{request.requestCategory.name}</td>
+                  <td>{request.serviceCategory.name}</td>
+                  <td>{!request.customer ? ' ' : request.customer.account.userID}</td>
+                  <td>
+                    {!request.customer
+                      ? ' '
+                      : request.customer.account.firstName +
+                        ' ' +
+                        request.customer.account.lastName}
+                  </td>
+                  <td>{moment(request.date).format('lll')}</td>
+                  <td>{request.status}</td>
+                </tr>
+              )
           )}
         </table>
         <br />

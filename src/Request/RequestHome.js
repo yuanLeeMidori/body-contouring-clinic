@@ -4,8 +4,7 @@ import searchIcon from '../resources/searchIcon.png';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import SideBar from '../SideBar/SideBar';
-import { Button, Container, Form, Row, Col } from 'react-bootstrap';
-import PopUp from '../PopUp';
+import { Button, Form } from 'react-bootstrap';
 
 class RequestHome extends React.Component {
   constructor() {
@@ -206,10 +205,7 @@ class RequestHome extends React.Component {
             <br />
             <table>
               <tr>
-                <th>
-                  <input type="checkbox" value="selectAll" />
-                </th>
-                <th>title</th>
+                <th>Title</th>
                 <th>Category</th>
                 <th>Service</th>
                 <th>Created Date</th>
@@ -223,9 +219,6 @@ class RequestHome extends React.Component {
                   : this.state.status == request.status) && (
                 <tr key={request._id}>
                   <td>
-                    <input type="checkbox" value={request._id} />
-                  </td>
-                  <td>
                     <Link to={`/Request/Detail/${request._id}`} style={{ color: 'black' }}>
                       {request.title}
                     </Link>
@@ -238,31 +231,6 @@ class RequestHome extends React.Component {
                 </tr>
               ))}
             </table>
-            <Container>
-              <Row>
-                <Col xs={9}></Col>
-                <Col xs={1}>
-                  <Button variant="outline-info" href="/Request/Create">
-                    Create
-                  </Button>
-                </Col>
-                <Col xs={1}>
-                  <Button variant="outline-danger" onClick={this.showModal}>
-                    Delete
-                  </Button>
-                </Col>
-                <PopUp
-                  show={this.state.show}
-                  handleClose={this.hideModal}
-                  handleDelete={this.deleteReq}
-                  text={this.state.children}
-                  btn1="Cancel"
-                  btn2="Delete"
-                />
-              </Row>
-              <br />
-              <br />
-            </Container>
             <br />
             <br />
           </div>

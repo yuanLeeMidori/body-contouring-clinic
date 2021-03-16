@@ -1,7 +1,6 @@
 import React from 'react';
 import '../../App.css';
 import searchIcon from '../../resources/searchIcon.png';
-// import ListAllRequestbyAdmin from './ListAllRequestbyAdmin';
 import SideBar from '../../SideBar/SideBar';
 import { Button, Container, Form, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';

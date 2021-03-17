@@ -35,10 +35,9 @@ class Login extends Component {
     }));
   }
 
-  
-  refreshPage = () =>{
+  refreshPage = () => {
     window.location.reload();
-  }
+  };
 
   handleSubmit(event) {
     event.preventDefault();
@@ -52,7 +51,9 @@ class Login extends Component {
           this.setState({ loggedIn: true });
         }
       })
-      .then(()=>{this.refreshPage()})
+      .then(() => {
+        this.refreshPage();
+      })
       .catch((err) => {
         console.log(err);
       });

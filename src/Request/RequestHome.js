@@ -4,7 +4,7 @@ import searchIcon from '../resources/searchIcon.png';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import SideBar from '../SideBar/SideBar';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Pagination } from 'react-bootstrap';
 
 class RequestHome extends React.Component {
   constructor() {
@@ -27,10 +27,35 @@ class RequestHome extends React.Component {
       startDate: '',
       endDate: '',
       status: '',
+
+      currentPage: 1,
+      perPage: 4,
     };
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.deleteReq = this.deleteReq.bind(this);
+  }
+
+  prevPage() {
+    if (this.state.currentPage > 1) {
+      this.setState({
+        currentPage: parseInt(this.state.currentPage) - 1,
+      });
+    }
+  }
+  nextPage() {
+    if (
+      this.state.currentPage < Math.ceil(this.state.filterRequests.length / this.state.perPage)
+    ) {
+      this.setState({
+        currentPage: parseInt(this.state.currentPage) + 1,
+      });
+    }
+  }
+  handlePage(e) {
+    this.setState({
+      currentPage: Number(e.target.id),
+    });
   }
 
   showModal = () => {
@@ -109,7 +134,9 @@ class RequestHome extends React.Component {
         this.setState({ filterRequests: newRequests });
       } else if (this.state.searchType == 'service') {
         const newRequests = this.state.requests.filter((req) => {
-          return (req.serviceCategory != null) ? req.serviceCategory.name.toLowerCase().includes(this.state.filter.toLowerCase()) : null;
+          return req.serviceCategory != null
+            ? req.serviceCategory.name.toLowerCase().includes(this.state.filter.toLowerCase())
+            : null;
         });
         this.setState({ filterRequests: newRequests });
       }
@@ -128,6 +155,19 @@ class RequestHome extends React.Component {
   }
 
   render() {
+    console.log(this.state.currentPage);
+    const indexOfLast = this.state.currentPage * this.state.perPage;
+    const indexOfFirst = indexOfLast - this.state.perPage;
+    const currentItems = this.state.filterRequests.slice(indexOfFirst, indexOfLast);
+
+    const pageNums = [];
+    for (let i = 1; i <= Math.ceil(this.state.filterRequests.length / this.state.perPage); i++) {
+      pageNums.push(
+        <Pagination.Item key={i} id={i} onClick={this.handlePage.bind(this)}>
+          {i}
+        </Pagination.Item>
+      );
+    }
     return (
       <div className="row">
         <div className="col-md-1"></div>
@@ -212,27 +252,33 @@ class RequestHome extends React.Component {
                 <th>Last Updated Date</th>
                 <th>Status</th>
               </tr>
-              {this.state.filterRequests.map(
+              {currentItems.map(
                 (request) =>
-                (this.state.status.length == 0 || this.state.status == 'none'
-                  ? request
-                  : this.state.status == request.status) && (
-                <tr key={request._id}>
-                  <td>
-                    <Link to={`/Request/Detail/${request._id}`} style={{ color: 'black' }}>
-                      {request.title}
-                    </Link>
-                  </td>
-                  <td>{request.requestCategory.name}</td>
-                  <td>{request.serviceCategory == null ? '' : request.serviceCategory.name}</td>
-                  <td>{moment(request.date).format('ll')}</td>
-                  <td>{moment(request.lastRequestTime).format('lll')}</td>
-                  <td>{request.status}</td>
-                </tr>
-              ))}
+                  (this.state.status.length == 0 || this.state.status == 'none'
+                    ? request
+                    : this.state.status == request.status) && (
+                    <tr key={request._id}>
+                      <td>
+                        <Link to={`/Request/Detail/${request._id}`} style={{ color: 'black' }}>
+                          {request.title}
+                        </Link>
+                      </td>
+                      <td>{request.requestCategory.name}</td>
+                      <td>{request.serviceCategory == null ? '' : request.serviceCategory.name}</td>
+                      <td>{moment(request.date).format('ll')}</td>
+                      <td>{moment(request.lastRequestTime).format('lll')}</td>
+                      <td>{request.status}</td>
+                    </tr>
+                  )
+              )}
             </table>
             <br />
             <br />
+            <Pagination style={{ display: 'flex', justifyContent: 'center' }}>
+              <Pagination.Prev onClick={this.prevPage.bind(this)} />
+              <Pagination>{pageNums}</Pagination>
+              <Pagination.Next onClick={this.nextPage.bind(this)} />
+            </Pagination>
           </div>
         </div>
       </div>

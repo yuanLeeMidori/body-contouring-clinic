@@ -43,9 +43,13 @@ class RequestHomebyAdmin extends React.Component {
     }
   }
   nextPage() {
-    this.setState({
-      currentPage: parseInt(this.state.currentPage) + 1,
-    });
+    if (
+      this.state.currentPage < Math.ceil(this.state.filterRequests.length / this.state.perPage)
+    ) {
+      this.setState({
+        currentPage: parseInt(this.state.currentPage) + 1,
+      });
+    }
   }
   handlePage(e) {
     this.setState({

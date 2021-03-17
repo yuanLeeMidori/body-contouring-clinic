@@ -35,10 +35,9 @@ class Login extends Component {
     }));
   }
 
-  
-  refreshPage = () =>{
+  refreshPage = () => {
     window.location.reload();
-  }
+  };
 
   handleSubmit(event) {
     event.preventDefault();
@@ -52,7 +51,9 @@ class Login extends Component {
           this.setState({ loggedIn: true });
         }
       })
-      .then(()=>{this.refreshPage()})
+      .then(() => {
+        this.refreshPage();
+      })
       .catch((err) => {
         console.log(err);
       });
@@ -137,7 +138,7 @@ class Login extends Component {
     }
     return (
       <div className="row">
-        <div className="col-md-8" style={{ 'margin-left': '350px' }}>
+        <div className="col-md-8" style={{ 'margin-left': '420px' }}>
           <h2 className="PageTitle" style={{ 'margin-left': '380px' }}>
             Log In
           </h2>
@@ -186,26 +187,16 @@ class Login extends Component {
           </Container>
           <div style={{ marginRight: '40px' }}>
             <div className="custom-control custom-checkbox" style={{ marginRight: '110px' }}>
-              <input type="checkbox" className="custom-control-input" id="check1" />
-              <label className="custom-control-label" htmlFor="check1">
-                Remember me
-              </label>
-              <span style={{ marginLeft: '45px' }}>
-                {' '}
+              <span style={{ marginLeft: '145px' }}>
                 No account?<a href="./TermsAndConditions"> Sign up </a>
               </span>
             </div>
           </div>
-          {/* <div className="col-md-4" style={{ marginLeft: '260px' }}>
-            <br />
-            <button className="col-md-4 btn btn-outline-info btn-block" type="submit">
-              Sign in
-            </button>
-            <p className="Forgot_idpw">
-              Forgot your <a href="./Forgot_Id_Pw">user id </a>/{' '}
-              <a href="./Forgot_Id_Pw">password</a>?
+          <div className="col-md-4" style={{ marginLeft: '290px' }}>
+            <p className="forgot-password text-right">
+              <a href="./ForgotID">Forgot ID?</a>
             </p>
-          </div> */}
+          </div>
           <br />
           <br /> <br />
           <br />

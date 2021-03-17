@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../App.css';
 import { Form, Row, Col, Container, Button } from 'react-bootstrap';
 import { Redirect } from 'react-router';
+// import { Link } from 'react-router-dom'
 import axios from 'axios';
 
 class Login extends Component {
@@ -33,6 +34,12 @@ class Login extends Component {
       },
     }));
   }
+
+  
+  refreshPage = () =>{
+    window.location.reload();
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     axios
@@ -45,6 +52,7 @@ class Login extends Component {
           this.setState({ loggedIn: true });
         }
       })
+      .then(()=>{this.refreshPage()})
       .catch((err) => {
         console.log(err);
       });
@@ -123,6 +131,7 @@ class Login extends Component {
           to={{
             pathname: '/',
           }}
+          refresh="true"
         />
       );
     }

@@ -2,7 +2,7 @@ import React from 'react';
 import '../../App.css';
 import searchIcon from '../../resources/searchIcon.png';
 import SideBar from '../../SideBar/SideBar';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Pagination } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
@@ -24,12 +24,33 @@ class RequestHomebyAdmin extends React.Component {
       requests: [],
       filterRequests: [],
       searchType: [],
+
+      currentPage: 1,
+      perPage: 8,
     };
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.deleteReq = this.deleteReq.bind(this);
     this.handleStatusChange = this.handleStatusChange.bind(this);
     this.handleDayChange = this.handleDayChange.bind(this);
+  }
+
+  prevPage() {
+    if (this.state.currentPage > 1) {
+      this.setState({
+        currentPage: parseInt(this.state.currentPage) - 1,
+      });
+    }
+  }
+  nextPage() {
+    this.setState({
+      currentPage: parseInt(this.state.currentPage) + 1,
+    });
+  }
+  handlePage(e) {
+    this.setState({
+      currentPage: Number(e.target.id),
+    });
   }
 
   handleStatusChange(e) {
@@ -111,9 +132,7 @@ class RequestHomebyAdmin extends React.Component {
       } else if (this.state.searchType == 'customerName') {
         const newRequests = this.state.requests.filter((req) => {
           let name = req.customer.account.firstName + req.customer.account.lastName;
-          return name
-            .toLowerCase()
-            .includes(this.state.filter.toLowerCase());
+          return name.toLowerCase().includes(this.state.filter.toLowerCase());
         });
         this.setState({ filterRequests: newRequests });
       }
@@ -129,6 +148,18 @@ class RequestHomebyAdmin extends React.Component {
     });
   }
   render() {
+    const indexOfLast = this.state.currentPage * this.state.perPage;
+    const indexOfFirst = indexOfLast - this.state.perPage;
+    const currentItems = this.state.filterRequests.slice(indexOfFirst, indexOfLast);
+
+    const pageNums = [];
+    for (let i = 1; i <= Math.ceil(this.state.filterRequests.length / this.state.perPage); i++) {
+      pageNums.push(
+        <Pagination.Item key={i} id={i} onClick={this.handlePage.bind(this)}>
+          {i}
+        </Pagination.Item>
+      );
+    }
     return (
       <div className="row">
         <div className="col-md-1"></div>
@@ -214,14 +245,17 @@ class RequestHomebyAdmin extends React.Component {
                 <th>Status</th>
               </tr>
 
-              {this.state.filterRequests.map(
-                (request) =>
+              {currentItems.map(
+                (request, index) =>
                   (this.state.status.length == 0 || this.state.status == 'none'
                     ? request
                     : this.state.status == request.status) && (
-                    <tr key={request._id}>
+                    <tr key={index}>
                       <td>
-                        <Link to={`/Request/Admin/Details/${request._id}`} style={{ color: 'black' }}>
+                        <Link
+                          to={`/Request/Admin/Details/${request._id}`}
+                          style={{ color: 'black' }}
+                        >
                           {request.title}
                         </Link>
                       </td>
@@ -243,6 +277,11 @@ class RequestHomebyAdmin extends React.Component {
             </table>
             <br />
             <br />
+            <Pagination style={{ display: 'flex', justifyContent: 'center' }}>
+              <Pagination.Prev onClick={this.prevPage.bind(this)} />
+              <Pagination>{pageNums}</Pagination>
+              <Pagination.Next onClick={this.nextPage.bind(this)} />
+            </Pagination>
           </div>
           <br />
           <br />

@@ -19,7 +19,12 @@ class ViewAllFAQbyAdmin extends React.Component {
       ],
       children: 'FAQ',
       faqs: [],
-      faqCategory: [],
+      faqCategory: [
+        {name: 'After Care'},
+        {name: 'Appointment'},
+        {name: 'Register'},
+        {name: 'Others'},
+      ],
       selectedFAQ: {},
       completed: false,
     };
@@ -27,6 +32,8 @@ class ViewAllFAQbyAdmin extends React.Component {
      this.hideFAQ = this.hideFAQ.bind(this); 
      this.handleDelete = this.handleDelete.bind(this);
   }
+
+
 
   showFAQ = () => {
     this.setState({ show: true });
@@ -43,8 +50,11 @@ class ViewAllFAQbyAdmin extends React.Component {
       .then((data) => {
         this.setState({
           faq: data,
-            });
         });
+      });     
+    })
+    .then(() => {
+      this.refreshPage();
     });
 
     this.setState({ 
@@ -53,6 +63,11 @@ class ViewAllFAQbyAdmin extends React.Component {
       completed: true,
      })
   };
+
+  refreshPage = () => {
+    window.location.reload();
+  }
+
 
   getFAQs() {
     return new Promise((resolve) => {
@@ -104,8 +119,9 @@ class ViewAllFAQbyAdmin extends React.Component {
           <h2 className="PageTitle">FAQ</h2>
           <br />
           <Container>
-            { this.state.faqs.map( (result) => (
-              <Tabs id={result._id} activeKey={this.state.key} onSelect={(key) => this.setState({ key })}>   
+              <Tabs id={this.state.faqs._id} activeKey={this.state.key} onSelect={(key) => this.setState({ key })}>   
+              
+              { this.state.faqs.map( (result) => (
                 <Tab eventKey={result.faqCategory._id} title={result.faqCategory.name} style={{ color: '#393F44', 'margin-top': '10px' }}>
                   <Accordion>
                     <Card>
@@ -132,9 +148,10 @@ class ViewAllFAQbyAdmin extends React.Component {
                     </Accordion>
 
                   </Tab>
+                              ))}
               </Tabs>  
 
-            ))}
+
           </Container>
 
           <Container>

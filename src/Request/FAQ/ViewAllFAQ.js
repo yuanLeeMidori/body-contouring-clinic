@@ -10,19 +10,10 @@ class ViewAllFAQ extends React.Component {
     this.state = {
       show: false,
       faqs: [],
-      faqCategory: ' ',
+      faqCategory: [],
     };
-/*     this.showFAQ = this.showFAQ.bind(this);
-    this.hideFAQ = this.hideFAQ.bind(this); */
   }
 
-/*   showFAQ = () => {
-    this.setState({ show: true });
-  };
-
-  hideFAQ = () => {
-    this.setState({ show: false });
-  }; */
   getFAQs() {
     return new Promise((resolve) => {
       fetch('http://localhost:3001/faqs')
@@ -55,13 +46,13 @@ class ViewAllFAQ extends React.Component {
     return (
       <div className="contents" style={{ 'text-align': 'left', 'margin-right': '280px' }}>
         <Container>
-        { this.state.faqs.map( (result) => (
           <Tabs
-            id={result._id}
+            id={this.state.faqs._id}
             activeKey={this.state.key}
             onSelect={(key) => this.setState({ key })}
           >
-            <Tab
+            { this.state.faqs.map( (result) => (
+            <Tab 
               eventKey={result.faqCategory._id}
               title={result.faqCategory.name}
               style={{ color: '#393F44', 'margin-top': '10px' }}
@@ -76,13 +67,14 @@ class ViewAllFAQ extends React.Component {
                      </Accordion.Collapse>
                 </Card>
               </Accordion>
+                          
             </Tab> 
+          ))}
           </Tabs>
-        ))}
+
                       <br/><br/><br/><br/><br/>
         </Container>
         <ViewFAQ show={this.state.show} 
-        //handleClose={this.hideFAQ} 
         />
         <br />
         <br />

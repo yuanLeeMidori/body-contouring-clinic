@@ -20,6 +20,7 @@ class CustomerBalance extends React.Component {
       profile:{},
       services: [],
     };
+    
   }
   getCustomerProfile(id) {
     return new Promise((resolve) => {
@@ -50,7 +51,8 @@ class CustomerBalance extends React.Component {
       this.setState({
         profile: data,
       });
-      this.getBalance(this.state.profile.balanceHistory).then((data) =>{
+      console.log(this.state.profile.balanceHistory);
+      this.getBalance(this.state.profile.balanceHistory._id).then((data) =>{
         this.setState({
           balance: data.balances,
           services: data.balances.services,
@@ -83,9 +85,11 @@ class CustomerBalance extends React.Component {
                   Current Balance:
                 </Form.Label>
                 <Col sm={2}>
-                  <Form.Label column md={0}>
-                    ${this.state.balance.balanceAccount}
+                {this.state.balance.map((result) => (
+                  <Form.Label column md={0} key={result._id}>
+                    ${result.balanceAccount}
                   </Form.Label>
+                ))}
                 </Col>
                 <Col sm={2}>
                   <Form.Label column md={3}>
@@ -94,7 +98,7 @@ class CustomerBalance extends React.Component {
                 </Col>
                 <Col sm={2}>
                   <Form.Label column md={0}>
-                    VIP
+                    
                   </Form.Label>
                 </Col>
               </Form.Group>
@@ -120,7 +124,7 @@ class CustomerBalance extends React.Component {
                       <td>{result.services[0].name}</td>
                       <td>${result.services[0].price}</td>
                       <td>
-                        <a href="/Customer/BalanceDetail">details</a>
+                        <a href={`/Customer/BalanceDetail/${result._id}`}>details</a>
                       </td>
                     </tr>
                    ))}

@@ -139,6 +139,11 @@ class Home extends React.Component {
                 </a>
               </li>
               <li className="nav-item">
+              <a className="nav-link" href="/Staff/Schedules/Calendar">
+                Schedule
+              </a>
+            </li>
+              <li className="nav-item">
                 <a className="nav-link" href="/" onClick={() => localStorage.clear()}>
                   Log out
                 </a>

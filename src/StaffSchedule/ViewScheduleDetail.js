@@ -10,7 +10,7 @@ class ViewScheduleDetail extends React.Component {
     super(props);
     this.state = {
       items: [
-        { url: '/Staff/Schedule', title: 'Schedule Calendar' },
+        { url: '/Staff/Schedules/Calendar', title: 'Schedule Calendar' },
         { url: '/Staff/Schedule/Create', title: 'Create Schedule' },
         { url: '/Staff/Schedules', title: 'View Schedule List' },
       ],

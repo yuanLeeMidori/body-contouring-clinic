@@ -3,6 +3,7 @@ import SideBar from '../SideBar/SideBar';
 import '../App.css';
 import { Table } from 'react-bootstrap';
 import moment from 'moment';
+import {Link} from 'react-router-dom';
 
 class CustomerHome extends React.Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class CustomerHome extends React.Component {
       items: [
         { url: '/Customer', title: 'Home' },
         { url: `/Customer/Profile`, title: 'Profile' },
-        { url: `/Customer/Balance/${this.props.id}}`, title: 'Balance' },
+        { url: `/Customer/Balance/${localStorage.getItem('_id')}`, title: 'Balance' },
       ],
       _id: localStorage.getItem('_id'),
       customer: {},
@@ -147,13 +148,13 @@ class CustomerHome extends React.Component {
                 <tr>
                   <td>{index + 1}</td>
                   <td>${balance.balanceAccount}</td>
-                  <td>Add the deposit</td>
+                  <td>{balance.info}</td>
                   <td>{moment(balance.date).format('ll')}</td>
                 </tr>
               ))}
             </tbody>
           </Table>
-          <a href="/Customer/Balance">Go to balance</a>
+          <Link to={`/Customer/Balance/${this.state._id}`}>Go to balance</Link>
           <hr />
           <br />
           <br />

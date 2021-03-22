@@ -1,12 +1,11 @@
-/* eslint react/prop-types: 0 */
 import React from 'react';
-import '../../App.css';
 import SideBar from '../../SideBar/SideBar';
+import '../../App.css';
 import searchIcon from '../../resources/searchIcon.png';
 import { Form, Button, Table, Pagination } from 'react-bootstrap';
-import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 
-class StaffActiveAdmin extends React.Component {
+class CustomerBalanceAdmin extends React.Component {
   constructor(prop) {
     super(prop);
     this.state = {
@@ -21,9 +20,7 @@ class StaffActiveAdmin extends React.Component {
       seachCustomer: '',
       currentPage: 1,
       perPage: 8,
-      completed: false,
     };
-    this.requestActiveStaff = this.requestActiveStaff.bind(this);
   }
 
   prevPage() {
@@ -52,17 +49,6 @@ class StaffActiveAdmin extends React.Component {
     this.setState({
       seachCustomer: e.target.value,
     });
-  }
-
-  requestActiveStaff(id){
-      fetch(`${process.env.REACT_APP_API_URL}/active-staff/${id}`)
-        .then((response) => response.json())
-        .then((results) => {
-          console.log(results);
-          this.setState({
-            completed: true,
-          })
-        });
   }
 
   handleSearchCustomer(){
@@ -94,21 +80,12 @@ class StaffActiveAdmin extends React.Component {
     });
   }
 
-  verifyCustomerLevel(data){
-    const verifiedCustomer = data.filter((req)=>{
-      return !(req.accountLevelId != null &&  req.accountLevelId._id == "603719d1ec07da8afc6ff378")
-
-    })
-
-    this.setState({
-        profile: verifiedCustomer,
-        filterData: verifiedCustomer,
-    });
-  }
-
   componentDidMount() {
     this.getAllCustomer().then((data) => {
-      this.verifyCustomerLevel(data);
+      this.setState({
+        profile: data,
+        filterData: data,
+      });
     });
 
     this.getCustomerProfile(this.state._id).then((data) => {
@@ -119,13 +96,6 @@ class StaffActiveAdmin extends React.Component {
   }
 
   render() {
-    if(this.state.completed)
-    {
-      return <Redirect push to={{
-        pathname: `/Staff/Admin`
-      }}/>
-    }
-
     const indexOfLast = this.state.currentPage * this.state.perPage;
     const indexOfFirst = indexOfLast - this.state.perPage;
     const currentItems = this.state.filterData.slice(indexOfFirst, indexOfLast);
@@ -149,10 +119,9 @@ class StaffActiveAdmin extends React.Component {
           <hr />
           <div className="contents">
             <Form inline>
-              <h4 className="PageTitle">Account List</h4>
               <Form.Control
                 type="text"
-                placeholder="Search account"
+                placeholder="Search customer"
                 style={{ 'margin-left': '800px' }}
                 value={this.state.seachCustomer}
                 onChange={this.handleSearchCustomerChange.bind(this)}
@@ -165,30 +134,31 @@ class StaffActiveAdmin extends React.Component {
                 <img src={searchIcon} alt="Search" />
               </Button>
             </Form>
-            <br />
           </div>
+          <h4 className="PageTitle">Customer Balance List</h4>
+          <br />
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>Account ID</th>
-                <th>Account Name</th>
-                <th>Account Email</th>
-                <th>Account Status</th>
-                <th>Action</th>
+                <th>Customer ID</th>
+                <th>Customer Name</th>
+                <th>Customer Balance</th>
+                <th>Detail</th>
               </tr>
             </thead>
 
               <tbody>
               {currentItems.map((result, index) => (
                 <tr key={index}>
-                  <td>{result.userID}</td>
+                  <td>
+                    {result.userID}
+                  </td>
                   <td>
                     {result.firstName} {result.lastName}
                   </td>
-                  <td>{result.email}</td>
-                  <td>{result.accountLevelId == null ? "" :  result.accountLevelId.name}</td>
+                  <td>{result.balanceHistory == null? "": result.balanceHistory.currentBalance}</td>
                   <td>
-                    <Button variant="outline-info" onClick={()=>{this.requestActiveStaff(result._id)}}>Active</Button>
+                    <Link to={`/Customer/Admin/Balance/${result.balanceHistory._id}`}>Detail</Link>
                   </td>
                 </tr>
                 ))}
@@ -207,4 +177,4 @@ class StaffActiveAdmin extends React.Component {
   }
 }
 
-export default StaffActiveAdmin;
+export default CustomerBalanceAdmin;

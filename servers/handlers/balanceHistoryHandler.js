@@ -1,4 +1,5 @@
 const BalanceHistory = require('../../models/balanceHistory');
+const Balance = require('../../models/balance');
 
 //Create
 exports.addNewBalanceHistory = function (data) {
@@ -77,4 +78,58 @@ exports.deleteBalanceHistoryById = function (id) {
         reject(err);
       });
   });
+};
+
+//Update
+exports.addBalanceInHistoryById = function (data, id) {
+  return new Promise((resolve, reject) => {
+    var calculate = 0;
+    console.log("Back Start");
+    console.log(data);
+    // var newBalance = data.balance;
+    let addBalance = new Balance(data);
+
+    addBalance.save().then(()=>{
+
+      BalanceHistory.findOne({_id: id})
+      .exec()
+      .then((data)=>{
+          calculate = data.currentBalance + addBalance.balanceAccount;
+          BalanceHistory.updateOne({ _id: id }, { $push: {balances: addBalance._id}, currentBalance: calculate })
+          .exec()
+          .then(() => {
+            resolve(`Balance is updated in (id: ${id}) history`);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      })
+      });
+    });
+};
+
+//Update
+exports.substractBalanceInHistoryById = function (data, id) {
+  return new Promise((resolve, reject) => {
+    var calculate = 0;
+    // var newBalance = data.balance;
+    let addBalance = new Balance(data);
+
+    addBalance.save().then(()=>{
+
+      BalanceHistory.findOne({_id: id})
+      .exec()
+      .then((data)=>{
+          calculate = data.currentBalance - addBalance.balanceAccount;
+          BalanceHistory.updateOne({ _id: id }, { $push: {balances: addBalance._id}, currentBalance: calculate })
+          .exec()
+          .then(() => {
+            resolve(`Balance is updated in (id: ${id}) history`);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      })
+      });
+    });
 };

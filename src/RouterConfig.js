@@ -17,8 +17,8 @@ import CustomerBalance from './Customer/CustomerBalance';
 import BalanceDetail from './Customer/BalanceDetail';
 import CustomerHomeAdmin from './Customer/Admin/CustomerHomeAdmin';
 import CustomerProfileAdmin from './Customer/Admin/CustomerProfileAdmin';
-import CustomerAccountAdmin from './Customer/Admin/CustomerAccountAdmin';
-import CustomerAccountEditAdmin from './Customer/Admin/CustomerAccountEditAdmin';
+import CustomerBalanceAdmin from './Customer/Admin/CustomerBalanceAdmin';
+import CustomerBalanceDetailAdmin from './Customer/Admin/CustomerBalanceDetailAdmin';
 import StaffHomeAdmin from './Customer/Admin/StaffHomeAdmin';
 import StaffActiveAdmin from './Customer/Admin/StaffActiveAdmin';
 import ViewRequest from './Request/ViewRequest';
@@ -218,13 +218,13 @@ class RouterConfig extends React.Component {
           />
           <Route
             exact
-            path="/Customer/Admin/Account/:id"
-            render={(props) => <CustomerAccountAdmin id={props.match.params.id} />}
+            path="/Customer/Admin/Balance"
+            render={() => <CustomerBalanceAdmin />}
           />
           <Route
             exact
-            path="/Customer/Admin/Account/Edit"
-            render={() => <CustomerAccountEditAdmin />}
+            path="/Customer/Admin/Balance/:id"
+            render={(props) => <CustomerBalanceDetailAdmin id={props.match.params.id}/>}
           />
 
           {/* Staff Admin URL */}

@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import SideBar from '../SideBar/SideBar';
 import { Button, Container, Form, Row, Col } from 'react-bootstrap';
+import moment from 'moment';
 
 class ViewSchedulesList extends React.Component {
   constructor() {
@@ -80,7 +81,7 @@ class ViewSchedulesList extends React.Component {
 
                 {this.state.workSchedules.map((sch) => (
                   <tr key={sch._id}>
-                    <td>{sch.date.date}</td>
+                    <td>{moment(sch.date.date).format('ll')}</td>
                     <td>{sch.time.time}</td>
                     <td>
                       <Button variant="outline-secondary" href={`/Staff/Schedule/Detail/${sch._id}`}>

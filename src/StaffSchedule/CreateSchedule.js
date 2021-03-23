@@ -3,6 +3,7 @@ import '../App.css';
 import SideBar from '../SideBar/SideBar';
 import { Form, Row, Col, Container, Button } from 'react-bootstrap';
 import { Redirect } from 'react-router';
+import moment from 'moment';
 
 class CreateSchedule extends React.Component {
   constructor(props) {
@@ -137,7 +138,7 @@ class CreateSchedule extends React.Component {
                     <option value="">--Choose--</option>
                     {this.state.dates.map((date) => (
                       <option key={date._id} value={date._id}>
-                        {date.date}
+                        {moment(date.date).format('ll')}
                       </option>
                     ))}
                   </Form.Control>

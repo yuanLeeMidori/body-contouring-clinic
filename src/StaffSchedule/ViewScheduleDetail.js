@@ -4,6 +4,7 @@ import SideBar from '../SideBar/SideBar';
 import { Form, Row, Col, Container, Button } from 'react-bootstrap';
 import PopUp from '../PopUp';
 import { Redirect } from 'react-router';
+import moment from 'moment';
 
 class ViewScheduleDetail extends React.Component {
   constructor(props) {
@@ -106,7 +107,7 @@ class ViewScheduleDetail extends React.Component {
                   Date:
                 </Form.Label>
                 <Col sm={6}>
-                  <Form.Control type="text" readOnly value={this.state.date.date} />
+                  <Form.Control type="text" readOnly value={moment(this.state.date.date).format('ll')} />
                 </Col>
               </Form.Group>
               <Form.Group as={Row}>

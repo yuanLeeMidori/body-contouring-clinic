@@ -3,6 +3,7 @@ import React from 'react';
 import '../../App.css';
 import { Form, Row, Col, Container, Button } from 'react-bootstrap';
 import { Redirect } from 'react-router';
+import moment from 'moment';
 
 class CreateAppointmentAdmin extends React.Component {
   constructor(props) {
@@ -85,7 +86,7 @@ class CreateAppointmentAdmin extends React.Component {
   onTechnicianChange(event){
     console.log(event.target.value);
     fetch(`${process.env.REACT_APP_API_URL}/staffWorkSchedules?staff=${event.target.value}`)
-    .then(response => response.json())  
+    .then(response => response.json())
     .then((data)=>{
       console.log(data);
       this.setState({
@@ -99,7 +100,7 @@ class CreateAppointmentAdmin extends React.Component {
     // var searchDate = pureDate[1] + "/" + pureDate[2] +"/" + pureDate[0];
     console.log(event.target.value);
     fetch(`${process.env.REACT_APP_API_URL}/workSchedule?date=${event.target.value}`)
-    .then(response => response.json())  
+    .then(response => response.json())
     .then((data)=>{
       console.log(data);
       this.setState({
@@ -122,7 +123,7 @@ class CreateAppointmentAdmin extends React.Component {
         ...this.state.appointment,
         schedule: finalWorkSchedule,
       }
-  }); 
+  });
   }
 
   onScheduleChange(event){
@@ -145,7 +146,7 @@ class CreateAppointmentAdmin extends React.Component {
 
   getTechnicians(){
     fetch(`${process.env.REACT_APP_API_URL}/staffs`)
-    .then(response => response.json())  
+    .then(response => response.json())
     .then((data)=>{
       this.setState({
         technicians: data
@@ -158,7 +159,7 @@ class CreateAppointmentAdmin extends React.Component {
     document.title = 'Create New Appointment | Body Contouring Clinic';
 
     fetch(`${process.env.REACT_APP_API_URL}/services`)
-    .then(response => response.json())  
+    .then(response => response.json())
     .then((data)=>{
       this.setState({
         services: data
@@ -166,7 +167,7 @@ class CreateAppointmentAdmin extends React.Component {
     });
 
     fetch(`${process.env.REACT_APP_API_URL}/customers`)
-    .then(response => response.json())  
+    .then(response => response.json())
     .then((data)=>{
       this.setState({
         customers: data,
@@ -240,7 +241,7 @@ class CreateAppointmentAdmin extends React.Component {
                           <option value="">-- select Date --</option>
                           {this.state.filterData.map((result)=>(
                             // eslint-disable-next-line react/jsx-key
-                              <option value={result.date.date}>{result.date.date}</option>
+                              <option value={result.date.date}>{moment(result.date.date).format('ll')}</option>
                           ))}
                           </Form.Control>
                       </Col>

@@ -3,6 +3,7 @@ import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import '../App.css';
 import SideBar from '../SideBar/SideBar';
+import moment from 'moment';
 
 class EditStaffSchedule extends React.Component {
   constructor(props) {
@@ -199,7 +200,7 @@ class EditStaffSchedule extends React.Component {
                       <option value="">--Choose--</option>
                       {this.state.dates.map((date) => (
                         <option key={date._id} value={date._id}>
-                          {date.date}
+                          {moment(date.date).format('ll')}
                         </option>
                       ))}
                     </Form.Control>

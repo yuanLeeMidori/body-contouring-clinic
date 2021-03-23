@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import { Form, Row, Col, Container, Button } from 'react-bootstrap';
 import { Redirect } from 'react-router';
+import moment from 'moment';
 
 class CreateAppointment extends React.Component {
   constructor(props) {
@@ -20,13 +21,13 @@ class CreateAppointment extends React.Component {
         specialRequest: String,
         service: String,
         schedule: String,
-        confirmation: "false",
+        confirmation: 'false',
       },
       services: [],
       customer: {},
       filterData: [],
-      technicians:[],
-      dateData:[],
+      technicians: [],
+      dateData: [],
     };
     this.showSave = this.showSave.bind(this);
     this.hideSave = this.hideSave.bind(this);
@@ -42,236 +43,258 @@ class CreateAppointment extends React.Component {
 
   handlSubmit(event) {
     event.preventDefault();
-    fetch(`${process.env.REACT_APP_API_URL}/create-appointment`,{
-      method: "POST",
+    fetch(`${process.env.REACT_APP_API_URL}/create-appointment`, {
+      method: 'POST',
       body: JSON.stringify(this.state.appointment),
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },})
-    .then((response) => (response.json()))
-    .then(()=> this.setState({completed: true}))
-    .catch((err) => (console.log(err)));
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then(() => this.setState({ completed: true }))
+      .catch((err) => console.log(err));
   }
 
-  onServiceChange(event){
+  onServiceChange(event) {
     this.setState(() => ({
-      appointment:{
+      appointment: {
         ...this.state.appointment,
         customer: this.state.customer._id,
         service: event.target.value,
-      }
+      },
     }));
   }
 
-  onContactNumChange(event){
+  onContactNumChange(event) {
     this.setState(() => ({
-      appointment:{
+      appointment: {
         ...this.state.appointment,
         contactNumber: event.target.value,
-      }
+      },
     }));
   }
 
-  onSpecialRequestChange(event){
+  onSpecialRequestChange(event) {
     this.setState(() => ({
-      appointment:{
+      appointment: {
         ...this.state.appointment,
         specialRequest: event.target.value,
-      }
+      },
     }));
   }
 
-  onTechnicianChange(event){
+  onTechnicianChange(event) {
     console.log(event.target.value);
     fetch(`${process.env.REACT_APP_API_URL}/staffWorkSchedules?staff=${event.target.value}`)
-    .then(response => response.json())  
-    .then((data)=>{
-      console.log(data);
-      this.setState({
-        filterData: data
-      })
-    });
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        this.setState({
+          filterData: data,
+        });
+      });
   }
 
-  onDateChange(event){
+  onDateChange(event) {
     // var pureDate = (event.target.value).split("-");
     // var searchDate = pureDate[1] + "/" + pureDate[2] +"/" + pureDate[0];
     console.log(event.target.value);
     fetch(`${process.env.REACT_APP_API_URL}/workSchedule?date=${event.target.value}`)
-    .then(response => response.json())  
-    .then((data)=>{
-      console.log(data);
-      this.setState({
-        dateData: data
-      })
-    });
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        this.setState({
+          dateData: data,
+        });
+      });
   }
 
-  onTimeChange(event){
+  onTimeChange(event) {
     var finalWorkSchedule = {};
-    this.state.dateData.forEach(function(data){
-
-        if(data.time._id == event.target.value)
-        {
-          finalWorkSchedule = data;
-        }
-    })
+    this.state.dateData.forEach(function (data) {
+      if (data.time._id == event.target.value) {
+        finalWorkSchedule = data;
+      }
+    });
     this.setState({
-      appointment:{
+      appointment: {
         ...this.state.appointment,
         schedule: finalWorkSchedule,
-      }
-  }); 
+      },
+    });
   }
 
-  onScheduleChange(event){
-    console.log("id: "+event.target.value);
+  onScheduleChange(event) {
+    console.log('id: ' + event.target.value);
     this.setState({
-      appointment:{
+      appointment: {
         ...this.state.appointment,
         schedule: event.target.value,
-      }
+      },
     });
   }
 
-  getService(){
+  getService() {
     fetch(`${process.env.REACT_APP_API_URL}/services`)
-    .then(response => response.json())  
-    .then((data)=>{
-      this.setState({
-        services: data
-      })
-    });
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          services: data,
+        });
+      });
   }
 
-  getTechnicians(){
+  getTechnicians() {
     fetch(`${process.env.REACT_APP_API_URL}/staffs`)
-    .then(response => response.json())  
-    .then((data)=>{
-      this.setState({
-        technicians: data
-      })
-      console.log(this.state.technicians);
-    });
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          technicians: data,
+        });
+        console.log(this.state.technicians);
+      });
   }
 
   componentDidMount() {
     document.title = 'Create New Appointment | Body Contouring Clinic';
 
     fetch(`${process.env.REACT_APP_API_URL}/customer?account=${this.state._id}`)
-    .then(response => response.json())
-    .then((data) => {
-      this.setState({
-        customer: data,
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          customer: data,
+        });
+        this.getService();
+        this.getTechnicians();
       });
-      this.getService();
-      this.getTechnicians();
-    });
-
   }
 
   render() {
-    if(this.state.completed)
-    {
-      return <Redirect push to={{
-        pathname: `/Appointment/Appointments`
-      }}/>
+    if (this.state.completed) {
+      return (
+        <Redirect
+          push
+          to={{
+            pathname: `/Appointment/Appointments`,
+          }}
+        />
+      );
     }
     return (
-            <Container>
+      <Container>
+        <Row>
+          <Col></Col>
+          <Col xs={8}>
+            <Form onSubmit={this.handlSubmit.bind(this)}>
+              <Form.Group as={Row}>
+                <Form.Label column sm="4">
+                  Service(s):
+                </Form.Label>
+                <Col sm="8">
+                  <Form.Control inline as="select" onChange={this.onServiceChange.bind(this)}>
+                    <option>-- select service --</option>
+                    {this.state.services.map((result) => (
+                      // eslint-disable-next-line react/jsx-key
+                      <option key={result._id} value={result._id}>
+                        {result.name}
+                      </option>
+                    ))}
+                  </Form.Control>
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row}>
+                <Form.Label column sm="4">
+                  Technician:
+                </Form.Label>
+                <Col sm="8">
+                  <Form.Control as="select" onChange={this.onTechnicianChange.bind(this)}>
+                    <option value="">-- select technician --</option>
+                    {this.state.technicians.map((result) => (
+                      // eslint-disable-next-line react/jsx-key
+                      <option value={result._id}>
+                        {result.account.firstName} {result.account.lastName}
+                      </option>
+                    ))}
+                  </Form.Control>
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row}>
+                <Form.Label column sm="4">
+                  Date
+                </Form.Label>
+                <Col sm="8">
+                  <Form.Control inline as="select" onChange={this.onDateChange.bind(this)}>
+                    <option value="">-- select Date --</option>
+                    {this.state.filterData.map((result) => (
+                      // eslint-disable-next-line react/jsx-key
+                      <option value={result.date.date}>
+                        {moment(
+                          result.date.date.split('/')[2] +
+                            result.date.date.split('/')[0] +
+                            result.date.date.split('/')[1]
+                        ).format('ll')}
+                      </option>
+                    ))}
+                  </Form.Control>
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row}>
+                <Form.Label column sm="4">
+                  Time
+                </Form.Label>
+                <Col sm="8">
+                  <Form.Control inline as="select" onChange={this.onTimeChange.bind(this)}>
+                    <option value="">-- select time --</option>
+                    {this.state.dateData.map((result) => (
+                      // eslint-disable-next-line react/jsx-key
+                      <option value={result.time._id}>{result.time.time}</option>
+                    ))}
+                  </Form.Control>
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row}>
+                <Form.Label column sm="4">
+                  Contact Number:
+                </Form.Label>
+                <Col sm="8">
+                  <Form.Control
+                    placeholder="647-596-9521"
+                    value={this.state.appointment.contactNumber}
+                    onChange={this.onContactNumChange.bind(this)}
+                  />
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row}>
+                <Form.Label column sm="4">
+                  Special Request:
+                </Form.Label>
+                <Col sm="8">
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    placeholder="Vanilla essential oil"
+                    value={this.state.appointment.specialRequest}
+                    onChange={this.onSpecialRequestChange.bind(this)}
+                  />
+                </Col>
+              </Form.Group>
               <Row>
                 <Col></Col>
-                <Col xs={8}>
-                  <Form onSubmit={this.handlSubmit.bind(this)}>
-                    <Form.Group as={Row}>
-                      <Form.Label column sm="4">
-                        Service(s):
-                      </Form.Label>
-                      <Col sm="8">
-                        <Form.Control inline as="select" onChange={this.onServiceChange.bind(this)}>
-                        <option>-- select service --</option>
-                        {this.state.services.map((result)=>(
-                            // eslint-disable-next-line react/jsx-key
-                            <option key={result._id} value={result._id}>{result.name}</option>
-                          ))}
-                        </Form.Control>
-                      </Col>
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                      <Form.Label column sm="4">
-                        Technician:
-                      </Form.Label>
-                      <Col sm="8">
-                      <Form.Control as="select" onChange={this.onTechnicianChange.bind(this)}>
-                          <option value="">-- select technician --</option>
-                          {this.state.technicians.map((result)=>(
-                            // eslint-disable-next-line react/jsx-key
-                            <option value={result._id}>{result.account.firstName} {result.account.lastName}</option>
-                          ))}
-                        </Form.Control>
-                      </Col>
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                      <Form.Label column sm="4">
-                        Date
-                      </Form.Label>
-                      <Col sm="8">
-                        <Form.Control inline as="select" onChange={this.onDateChange.bind(this)}>
-                          <option value="">-- select Date --</option>
-                          {this.state.filterData.map((result)=>(
-                            // eslint-disable-next-line react/jsx-key
-                              <option value={result.date.date}>{result.date.date}</option>
-                          ))}
-                          </Form.Control>
-                      </Col>
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                      <Form.Label column sm="4">
-                        Time
-                      </Form.Label>
-                      <Col sm="8">
-                        <Form.Control inline as="select" onChange={this.onTimeChange.bind(this)}>
-                          <option value="">-- select time --</option>
-                          {this.state.dateData.map((result)=>(
-                            // eslint-disable-next-line react/jsx-key
-                              <option value={result.time._id}>{result.time.time}</option>
-                          ))}
-                          </Form.Control>
-                      </Col>
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                      <Form.Label column sm="4">
-                        Contact Number:
-                      </Form.Label>
-                      <Col sm="8">
-                        <Form.Control placeholder="647-596-9521" value={this.state.appointment.contactNumber} onChange={this.onContactNumChange.bind(this)}/>
-                      </Col>
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                      <Form.Label column sm="4">
-                        Special Request:
-                      </Form.Label>
-                      <Col sm="8">
-                        <Form.Control as="textarea" rows={3} placeholder="Vanilla essential oil" value={this.state.appointment.specialRequest} onChange={this.onSpecialRequestChange.bind(this)}/>
-                      </Col>
-                    </Form.Group>
-                    <Row>
-                      <Col></Col>
-                      <Col md="auto">
-                        <Button variant="outline-secondary" href="/Appointment/">
-                          Cancel
-                        </Button>
-                      </Col>
-                      <Button action type="submit" variant="outline-info">
-                        Save
-                      </Button>
-                    </Row>
-                  </Form>
+                <Col md="auto">
+                  <Button variant="outline-secondary" href="/Appointment/">
+                    Cancel
+                  </Button>
                 </Col>
-                <Col></Col>
+                <Button action type="submit" variant="outline-info">
+                  Save
+                </Button>
               </Row>
-            </Container>
+            </Form>
+          </Col>
+          <Col></Col>
+        </Row>
+      </Container>
     );
   }
 }

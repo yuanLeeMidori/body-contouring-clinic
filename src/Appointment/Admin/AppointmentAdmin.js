@@ -7,6 +7,7 @@ import PopUp from '../../PopUp';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 class AppointmentAdmin extends React.Component {
   constructor(props) {
@@ -25,6 +26,9 @@ class AppointmentAdmin extends React.Component {
       schedule: [],
       time: [],
       date: [],
+      year: '',
+      month: '',
+      day: '',
       service: [],
       staff: [],
       completed: false,
@@ -73,7 +77,7 @@ class AppointmentAdmin extends React.Component {
       .catch((err) => (console.log(err)));
   };
 
-  onConfirmChange(event){ 
+  onConfirmChange(event){
     console.log("event : " + event);
 
     console.log("Current : "+ this.state.appointment.confirmation);
@@ -133,6 +137,9 @@ class AppointmentAdmin extends React.Component {
         schedule: data.schedule,
         time: data.schedule.time,
         date: data.schedule.date,
+        year: data.schedule.date.date.split('/')[2],
+        month: data.schedule.date.date.split('/')[0],
+        day: data.schedule.date.date.split('/')[1],
         staff: data.schedule.staff.account,
         service: data.service,
       });
@@ -164,7 +171,7 @@ class AppointmentAdmin extends React.Component {
                     </tr>
                     <tr>
                       <td>Date:</td>
-                      <td>{this.state.date.date}</td>
+                      <td>{moment(this.state.year+this.state.month+this.state.day).format('ll')}</td>
                     </tr>
                     <tr>
                       <td>Time:</td>

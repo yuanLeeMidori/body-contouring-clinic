@@ -6,6 +6,7 @@ import styles from '../../app.module.css';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 class LeaveMessageToAppointment extends React.Component {
   constructor(props) {
@@ -93,7 +94,7 @@ class LeaveMessageToAppointment extends React.Component {
       });
   });
   }
-  
+
   render() {
     const staffFullName = this.state.staff.firstName + " " + this.state.staff.lastName;
     if(this.state.completed)
@@ -137,7 +138,7 @@ class LeaveMessageToAppointment extends React.Component {
                         Date
                       </Form.Label>
                       <Col sm="8">
-                        <Form.Control disabled placeholder="2021-Apr-30" value={this.state.date.date}/>
+                        <Form.Control disabled placeholder="2021-Apr-30" value={moment(this.state.date.date).format('ll')}/>
                       </Col>
                     </Form.Group>
                     <Form.Group as={Row}>

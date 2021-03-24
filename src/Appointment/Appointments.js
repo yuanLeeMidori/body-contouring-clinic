@@ -3,7 +3,7 @@ import { Button, Pagination } from 'react-bootstrap';
 import '../App.css';
 import SideBar from '../SideBar/SideBar';
 import { Link } from 'react-router-dom';
-
+import moment from 'moment';
 class Appointments extends React.Component {
   constructor(props) {
     super(props);
@@ -30,9 +30,7 @@ class Appointments extends React.Component {
     }
   }
   nextPage() {
-    if (
-      this.state.currentPage < Math.ceil(this.state.appointments.length / this.state.perPage)
-    ) {
+    if (this.state.currentPage < Math.ceil(this.state.appointments.length / this.state.perPage)) {
       this.setState({
         currentPage: parseInt(this.state.currentPage) + 1,
       });
@@ -44,29 +42,28 @@ class Appointments extends React.Component {
     });
   }
 
-
-  getAppointment(custId){
+  getAppointment(custId) {
     fetch(`${process.env.REACT_APP_API_URL}/appointment?customer=${custId}`)
-    .then(response => response.json())
-    .then((data) => {
-      this.setState({
-        appointments: data
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          appointments: data,
+        });
       });
-    });
   }
 
   componentDidMount() {
     document.title = 'All Appointments | Body Contouring Clinic';
 
     fetch(`${process.env.REACT_APP_API_URL}/customer?account=${this.state._id}`)
-    .then(response => response.json())
-    .then((data) => {
-      this.setState({
-        customer: data,
-        account: data.account,
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          customer: data,
+          account: data.account,
+        });
+        this.getAppointment(this.state.customer._id);
       });
-      this.getAppointment(this.state.customer._id);
-    });
   }
 
   render() {
@@ -89,39 +86,48 @@ class Appointments extends React.Component {
           <div className="col-md-1"></div>
           <SideBar items={this.state.items} />
           <div className="col-md-8" style={{ 'margin-left': '80px' }}>
-            <h2 className="PageTitle">Hello, {this.state.account.firstName} {this.state.account.lastName},
-            <br/>These are all your upcoming appointments</h2>
+            <h2 className="PageTitle">
+              Hello, {this.state.account.firstName} {this.state.account.lastName},
+              <br />
+              These are all your upcoming appointments
+            </h2>
             <div className="contents">
-                  <table>
-                    <tr>
-                      <th>Date</th>
-                      <th>Time</th>
-                      <th>Service</th>
-                      <th>Price</th>
-                    </tr>
-                    {currentItems.map((appointment, index)=>(
-                      // eslint-disable-next-line react/jsx-key
-                      <tr key={index}>
-                        <td>{appointment.schedule == null ? '' : appointment.schedule.date.date}</td>
-                        <td>{appointment.schedule == null ? '' : appointment.schedule.time.time}</td>
-                        <td>{appointment.service.name}</td>
-                        <td>${appointment.service.price}</td>
-                        <td>
-                          <Link to={`/Appointment/Appointment/${appointment._id}`}>
-                            <Button variant="outline-secondary">
-                              details
-                            </Button>
-                          </Link>
-                        </td>
-                      </tr>
-                    ))}
-                  </table>
-                  <br />
-                  <Pagination style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Pagination.Prev onClick={this.prevPage.bind(this)} />
-                    <Pagination>{pageNums}</Pagination>
-                    <Pagination.Next onClick={this.nextPage.bind(this)} />
-                  </Pagination>
+              <table>
+                <tr>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Service</th>
+                  <th>Price</th>
+                </tr>
+                {currentItems.map((appointment, index) => (
+                  // eslint-disable-next-line react/jsx-key
+                  <tr key={index}>
+                    <td>
+                      {appointment.schedule == null
+                        ? ''
+                        : moment(
+                            appointment.schedule.date.date.split('/')[2] +
+                              appointment.schedule.date.date.split('/')[0] +
+                              appointment.schedule.date.date.split('/')[1]
+                          ).format('ll')}
+                    </td>
+                    <td>{appointment.schedule == null ? '' : appointment.schedule.time.time}</td>
+                    <td>{appointment.service.name}</td>
+                    <td>${appointment.service.price}</td>
+                    <td>
+                      <Link to={`/Appointment/Appointment/${appointment._id}`}>
+                        <Button variant="outline-secondary">details</Button>
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </table>
+              <br />
+              <Pagination style={{ display: 'flex', justifyContent: 'center' }}>
+                <Pagination.Prev onClick={this.prevPage.bind(this)} />
+                <Pagination>{pageNums}</Pagination>
+                <Pagination.Next onClick={this.nextPage.bind(this)} />
+              </Pagination>
             </div>
           </div>
         </div>
@@ -129,6 +135,5 @@ class Appointments extends React.Component {
     );
   }
 }
-
 
 export default Appointments;

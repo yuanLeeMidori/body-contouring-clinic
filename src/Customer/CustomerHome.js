@@ -99,7 +99,7 @@ class CustomerHome extends React.Component {
                   <td>{index + 1}</td>
                   <td>{appointment.service.name}</td>
                   <td>{appointment.schedule.staff.account.firstName} {appointment.schedule.staff.account.lastName}</td>
-                  <td>{appointment.schedule == null ? '' : appointment.schedule.date.date}</td>
+                  <td>{appointment.schedule == null ? '' : moment(appointment.schedule.date.date).format('ll')}</td>
                 </tr>
               ))}
             </tbody>

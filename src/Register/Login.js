@@ -41,22 +41,24 @@ class Login extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios
-      .post(`${process.env.REACT_APP_API_URL}/login`, this.state.account)
-      .then((res) => {
-        localStorage.setItem('token', res.data.token);
-        localStorage.setItem('_id', res.data._id); //temporary login method
-        localStorage.setItem('isLogin', res.data.loginSuccess);
-        if (res.data.loginSuccess) {
-          this.setState({ loggedIn: true });
-        }
-      })
-      .then(() => {
-        this.refreshPage();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (this.state.account.userID.length > 5 && this.state.account.password.length > 3) {
+      axios
+        .post(`${process.env.REACT_APP_API_URL}/login`, this.state.account)
+        .then((res) => {
+          localStorage.setItem('token', res.data.token);
+          localStorage.setItem('_id', res.data._id); //temporary login method
+          localStorage.setItem('isLogin', res.data.loginSuccess);
+          if (res.data.loginSuccess) {
+            this.setState({ loggedIn: true });
+          }
+        })
+        .then(() => {
+          this.refreshPage();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
     // this.localstorage.setItem('token',res.data.user);
     // var token = this.localstorage.getItem('token')

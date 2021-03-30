@@ -226,16 +226,15 @@ class CreateAppointment extends React.Component {
                 <Col sm="8">
                   <Form.Control inline as="select" onChange={this.onDateChange.bind(this)}>
                     <option value="">-- select Date --</option>
-                    {this.state.filterData.map((result) => (
-                      // eslint-disable-next-line react/jsx-key
-                      <option value={result.date.date}>
-                        {moment(
-                          result.date.date.split('/')[2] +
-                            result.date.date.split('/')[0] +
-                            result.date.date.split('/')[1]
-                        ).format('ll')}
-                      </option>
-                    ))}
+                    {this.state.filterData.map(
+                      (result) =>
+                        // eslint-disable-next-line react/jsx-key
+                        moment(result.date.date).isAfter() && (
+                          <option value={result.date.date}>
+                            {moment(result.date.date).format('ll')}
+                          </option>
+                        )
+                    )}
                   </Form.Control>
                 </Col>
               </Form.Group>

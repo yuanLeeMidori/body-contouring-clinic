@@ -21,6 +21,7 @@ class ViewScheduleDetail extends React.Component {
       date: [],
       time: [],
       show: false,
+      beforeToday: false,
     };
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
@@ -80,6 +81,11 @@ class ViewScheduleDetail extends React.Component {
         date: data.date,
         time: data.time,
       });
+      if (moment(data.date.date).isBefore()) {
+        this.setState({
+          beforeToday: true,
+        });
+      }
     });
   }
   render() {
@@ -107,7 +113,11 @@ class ViewScheduleDetail extends React.Component {
                   Date:
                 </Form.Label>
                 <Col sm={6}>
-                  <Form.Control type="text" readOnly value={moment(this.state.date.date).format('ll')} />
+                  <Form.Control
+                    type="text"
+                    readOnly
+                    value={moment(this.state.date.date).format('ll')}
+                  />
                 </Col>
               </Form.Group>
               <Form.Group as={Row}>
@@ -140,12 +150,14 @@ class ViewScheduleDetail extends React.Component {
                 <Row>
                   <Col xs={6}></Col>
                   <Col xs={1}>
-                    <Button
-                      variant="outline-info"
-                      href={`/Staff/Schedule/Edit/${this.state.workScheduleId}`}
-                    >
-                      Edit
-                    </Button>
+                    {!this.state.beforeToday && (
+                      <Button
+                        variant="outline-info"
+                        href={`/Staff/Schedule/Edit/${this.state.workScheduleId}`}
+                      >
+                        Edit
+                      </Button>
+                    )}
                   </Col>
                   <Col xs={1}>
                     <Button

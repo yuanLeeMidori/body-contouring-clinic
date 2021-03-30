@@ -100,7 +100,9 @@ class CreateSchedule extends React.Component {
       });
     this.getDates().then((data) => {
       this.setState({
-        dates: data,
+        dates: data.filter((d) => {
+          return moment(d.date).isAfter();
+        }),
       });
     });
     this.getTimes().then((data) => {

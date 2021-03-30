@@ -148,9 +148,9 @@ class ViewSchedulesList extends React.Component {
                       >
                         Details
                       </Button>{' '}
-                      <Button variant="outline-info" href={`/Staff/Schedule/Edit/${sch._id}`}>
+                      {/* <Button variant="outline-info" href={`/Staff/Schedule/Edit/${sch._id}`}>
                         Edit
-                      </Button>
+                      </Button> */}
                     </td>
                   </tr>
                 ))}

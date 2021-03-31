@@ -25,8 +25,11 @@ class CreateAppointmentAdmin extends React.Component {
       services: [],
       customers: [],
       filterData: [],
+      dates: [],
       technicians: [],
       dateData: [],
+      uniqueDates: [],
+      dateId: [],
     };
     this.showSave = this.showSave.bind(this);
     this.hideSave = this.hideSave.bind(this);
@@ -83,15 +86,21 @@ class CreateAppointmentAdmin extends React.Component {
       },
     }));
   }
-
+  unique = (value, index, self) => {
+    return self.indexOf(value) === index;
+  };
   onTechnicianChange(event) {
-    console.log(event.target.value);
     fetch(`${process.env.REACT_APP_API_URL}/staffWorkSchedules?staff=${event.target.value}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        const unique = (value, index, self) => {
+          return self.indexOf(value) === index;
+        };
+        console.log(data.map((d) => d.date.date).filter(unique));
         this.setState({
           filterData: data,
+          dates: data.map((d) => d.date.date).filter(unique),
+          // uniqueDates: data.date.date.filter(unique),
         });
       });
   }
@@ -99,11 +108,19 @@ class CreateAppointmentAdmin extends React.Component {
   onDateChange(event) {
     // var pureDate = (event.target.value).split("-");
     // var searchDate = pureDate[1] + "/" + pureDate[2] +"/" + pureDate[0];
+    var dId;
     console.log(event.target.value);
-    fetch(`${process.env.REACT_APP_API_URL}/workSchedule?date=${event.target.value}`)
+    fetch(`${process.env.REACT_APP_API_URL}/date?date=${event.target.value}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        dId = data
+        // this.setState({
+        //   dateId: data,
+        // });
+      });
+    fetch(`${process.env.REACT_APP_API_URL}/workSchedule?date=${dId}`)
+      .then((response) => response.json())
+      .then((data) => {
         this.setState({
           dateData: data,
         });
@@ -246,14 +263,15 @@ class CreateAppointmentAdmin extends React.Component {
                 <Col sm="8">
                   <Form.Control inline as="select" onChange={this.onDateChange.bind(this)}>
                     <option value="">-- select Date --</option>
-                    {this.state.filterData.map(
-                      (result) =>
+                    {this.state.dates.map(
+                      (result) => (
                         // eslint-disable-next-line react/jsx-key
-                        moment(result.date.date).isAfter() && (
-                          <option value={result.date.date}>
-                            {moment(result.date.date).format('ll')}
-                          </option>
-                        )
+                        // moment(result.date.date).isAfter() && (
+                        <option value={result}>
+                          {moment(result).format('ll')}
+                        </option>
+                      )
+                      // )
                     )}
                   </Form.Control>
                 </Col>

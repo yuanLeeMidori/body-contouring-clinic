@@ -210,7 +210,11 @@ class AppointmentAdmin extends React.Component {
                     </tr>
                     <tr>
                       <td>Special Request:</td>
-                      <td>{this.state.appointment.specialRequest}</td>
+                      <td>{this.state.appointment.specialRequest ? this.state.appointment.specialRequest : "No special request"}</td>
+                    </tr>
+                    <tr>
+                      <td>Message:</td>
+                      <td>{this.state.appointment.message ? this.state.appointment.message : "No message"}</td>
                     </tr>
                   </table>
                 </Col>
@@ -220,7 +224,7 @@ class AppointmentAdmin extends React.Component {
               <Row>
                 <Col></Col>
                 <Col>
-                  <Button variant="outline-success" action type="submit" style={{'margin-right': '5px' }}>Confirm</Button>
+                  <Button variant="outline-success" action type="submit" style={{'margin-right': '5px' }}>Confirm Status</Button>
                   <Link to={`/Appointment/Admin/Message/${this.props.id}`}>
                       <Button variant="outline-secondary">
                         Leave Message

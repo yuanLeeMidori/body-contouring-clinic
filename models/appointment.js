@@ -1,34 +1,39 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const AppointmentSchema = new Schema({
+const AppointmentSchema = new Schema(
+  {
     contactNumber: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     specialRequest: {
-        type: String,
+      type: String,
     },
     customer: {
-        type: Schema.Types.ObjectId,
-        ref: 'customers',
-        required: true
+      type: Schema.Types.ObjectId,
+      ref: 'customers',
+      required: true,
     },
     schedule: {
-        type: Schema.Types.ObjectId,
-        ref: 'workSchedules',
-        required: true
+      type: Schema.Types.ObjectId,
+      ref: 'workSchedules',
+      required: true,
     },
     service: {
       type: Schema.Types.ObjectId,
       ref: 'services',
-      required: true
+      required: true,
     },
     confirmation: {
       type: String,
-    }  
-
-}, { timestamps: true });
+    },
+    message: {
+      type: String,
+    },
+  },
+  { timestamps: true }
+);
 
 const Appointment = mongoose.model('appointments', AppointmentSchema);
 

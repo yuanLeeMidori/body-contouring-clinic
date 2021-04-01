@@ -17,6 +17,8 @@ class CustomerProfileAdmin extends React.Component {
       ],
       accountLevels: [],
       balanceHistory: [],
+      _id: localStorage.getItem('_id'),
+      authName: {},
     };
   }
 
@@ -77,6 +79,11 @@ class CustomerProfileAdmin extends React.Component {
   }
 
   componentDidMount() {
+    this.getCustomerProfile(this.state._id).then((data)=>{
+      this.setState({
+        authName: data.accountLevelId,
+      });
+    });
     this.getCustomerProfile(this.props.id).then((data) => {
       this.setState({
         account: data,
@@ -100,6 +107,13 @@ class CustomerProfileAdmin extends React.Component {
   }
 
   render() {
+    if(this.state.authName == null || this.state.authName._id == '60371ad3fda1af6510e75e3a' || this.state.authName._id == '60371ae9fda1af6510e75e3b')
+    {
+      return (
+        <Redirect push to={{pathname: '/', }}  refresh="true"/>
+      );
+    }
+
     if(this.state.completed)
     {
       return <Redirect push to={{
@@ -169,26 +183,6 @@ class CustomerProfileAdmin extends React.Component {
                   </Form.Control>
                 </Col>
               </Form.Group>
-              {/* <Row>
-              <Col>
-                <Button variant="outline-info" href="/Appointment/Appointments">
-                  View Appointment
-                </Button>
-                &nbsp;
-                <Button variant="outline-info" href="/Request/">
-                  <Link to={`/Request/${this.state.balanceHistory._id}`} >
-                    View Request
-                  </Link>
-                </Button>
-                &nbsp;
-                <Button variant="outline-info" >
-                  <Link to={`/Customer/Admin/Balance/${this.state.balanceHistory._id}`} >
-                    View Balance
-                  </Link>
-                </Button>
-                &nbsp;
-              </Col>
-            </Row> */}
               <Button type="submit" variant="outline-info">
                   Edit
               </Button>

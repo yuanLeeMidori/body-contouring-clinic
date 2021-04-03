@@ -31,7 +31,7 @@ class CustomerProfileEdit extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    
+
     fetch(`${process.env.REACT_APP_API_URL}/account/${this.state._id}`, {
       method: 'PUT',
       body: JSON.stringify(this.state.editProfile),
@@ -221,8 +221,8 @@ class CustomerProfileEdit extends React.Component {
                   First Name:
                 </Form.Label>
                 <Col sm={6}>
-                  <Form.Control type="text" value={this.state.profile.firstName} onChange={this.onFirstNameChange.bind(this)} isInvalid={this.state.fNameStatus}/>
-                  <Form.Control.Feedback type='invalid' > 
+                  <Form.Control type="text" as="textarea" value={this.state.profile.firstName} onChange={this.onFirstNameChange.bind(this)} isInvalid={this.state.fNameStatus}/>
+                  <Form.Control.Feedback type='invalid' >
                     First Name is required
                   </Form.Control.Feedback>
                 </Col>
@@ -233,7 +233,7 @@ class CustomerProfileEdit extends React.Component {
                 </Form.Label>
                 <Col sm={6}>
                   <Form.Control type="text" value={this.state.profile.lastName} onChange={this.onLastNameChange.bind(this)} isInvalid={this.state.lNameStatus}/>
-                  <Form.Control.Feedback type='invalid' > 
+                  <Form.Control.Feedback type='invalid' >
                     Last Name is required
                   </Form.Control.Feedback>
                 </Col>
@@ -252,7 +252,7 @@ class CustomerProfileEdit extends React.Component {
                 </Form.Label>
                 <Col sm={6}>
                   <Form.Control type="password" onChange={this.onConfirmPasswordChange.bind(this)} isInvalid={this.state.pwdConfirmed}/>
-                  <Form.Control.Feedback type='invalid' > 
+                  <Form.Control.Feedback type='invalid' >
                     PASSWORD NOT MATCHED
                   </Form.Control.Feedback>
                 </Col>
@@ -263,7 +263,7 @@ class CustomerProfileEdit extends React.Component {
                 </Form.Label>
                 <Col sm={6}>
                   <Form.Control type="email" value={this.state.profile.email} onChange={this.onEmailChange.bind(this)} isInvalid={this.state.emailStatus}/>
-                  <Form.Control.Feedback type='invalid' > 
+                  <Form.Control.Feedback type='invalid' >
                     Email is required
                   </Form.Control.Feedback>
                 </Col>
@@ -274,7 +274,7 @@ class CustomerProfileEdit extends React.Component {
                 </Form.Label>
                 <Col sm={6}>
                   <Form.Control type="text" value={this.state.profile.address} onChange={this.onAddressChange.bind(this)} isInvalid={this.state.adStatus}/>
-                  <Form.Control.Feedback type='invalid' > 
+                  <Form.Control.Feedback type='invalid' >
                     Address is required
                   </Form.Control.Feedback>
                 </Col>

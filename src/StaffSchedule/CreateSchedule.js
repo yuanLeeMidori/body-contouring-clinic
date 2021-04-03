@@ -24,12 +24,34 @@ class CreateSchedule extends React.Component {
       dates: [],
       times: [],
       completed: false,
+      dateIsSelected: false,
+      timeIsSelected: false,
+      errors: [],
+      form: [],
+      date: '',
+      time:'',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  findErrors() {
+    const errList = {};
+    if (!this.state.date || this.state.date === '') {
+      errList.date = 'date is required';
+      this.setState(() => ({ dateIsSelected: false }));
+    }
+    return errList;
+  }
+
   handleSubmit(e) {
+    console.log(this.state.dateIsSelected);
     e.preventDefault();
+    const errList = this.findErrors();
+    if (Object.keys(errList).length > 0) {
+      this.setState(() => ({
+        errors: errList,
+      }));
+    }
     fetch(`${process.env.REACT_APP_API_URL}/create-workSchedule`, {
       method: 'POST',
       body: JSON.stringify(this.state.workSchedule),
@@ -44,22 +66,53 @@ class CreateSchedule extends React.Component {
   }
 
   onDateChange(e) {
-    this.setState(() => ({
-      workSchedule: {
-        ...this.state.workSchedule,
+    console.log(e.target.value);
+    if (e.target.value.length < 6) {
+      console.log('hey');
+      this.setState(() => ({
+        workSchedule: {
+          ...this.state.workSchedule,
+          date: e.target.value,
+        },
+        dateIsSelected: false,
         date: e.target.value,
-      },
-    }));
+      }));
+    } else {
+      console.log('valid');
+      this.setState(() => ({
+        workSchedule: {
+          ...this.state.workSchedule,
+          date: e.target.value,
+        },
+        dateIsSelected: true,
+        date: e.target.value,
+      }));
+    }
+    console.log(this.state.date);
   }
 
   onTimeChange(e) {
-    this.setState(() => ({
-      workSchedule: {
-        ...this.state.workSchedule,
-        staff: this.state.staff._id,
+    if (e.target.value.length < 6) {
+      this.setState(() => ({
+        workSchedule: {
+          ...this.state.workSchedule,
+          staff: this.state.staff._id,
+          time: e.target.value,
+        },
+        timeIsSelected: false,
         time: e.target.value,
-      },
-    }));
+      }));
+    } else {
+      this.setState(() => ({
+        workSchedule: {
+          ...this.state.workSchedule,
+          staff: this.state.staff._id,
+          time: e.target.value,
+        },
+        timeIsSelected: true,
+        time: e.target.value
+      }));
+    }
   }
 
   onDescriptionChange(e) {
@@ -130,13 +183,17 @@ class CreateSchedule extends React.Component {
           <h2 className="PageTitle">Create New Schedule</h2>
           <br />
           <Container>
-            <Form onSubmit={this.handleSubmit.bind(this)} method="POST">
+            <Form noValidate onSubmit={this.handleSubmit.bind(this)} method="POST">
               <Form.Group as={Row}>
                 <Form.Label column sm={2}>
                   Date:
                 </Form.Label>
                 <Col sm={6}>
-                  <Form.Control as="select" onChange={this.onDateChange.bind(this)}>
+                  <Form.Control
+                    as="select"
+                    onChange={this.onDateChange.bind(this)}
+                    isInvalid={!this.state.dateIsSelected}
+                  >
                     <option value="">--Choose--</option>
                     {this.state.dates.map((date) => (
                       <option key={date._id} value={date._id}>
@@ -144,6 +201,9 @@ class CreateSchedule extends React.Component {
                       </option>
                     ))}
                   </Form.Control>
+                  <Form.Control.Feedback type="invalid">
+                    Date is required
+                  </Form.Control.Feedback>
                 </Col>
               </Form.Group>
               <Form.Group as={Row}>
@@ -151,7 +211,7 @@ class CreateSchedule extends React.Component {
                   Time:
                 </Form.Label>
                 <Col sm={6}>
-                  <Form.Control as="select" onChange={this.onTimeChange.bind(this)}>
+                  <Form.Control as="select" onChange={this.onTimeChange.bind(this)} isInvalid={!this.state.timeIsSelected}>
                     <option value="">--Choose--</option>
                     {this.state.times.map((time) => (
                       <option key={time._id} value={time._id}>
@@ -159,6 +219,9 @@ class CreateSchedule extends React.Component {
                       </option>
                     ))}
                   </Form.Control>
+                  <Form.Control.Feedback type="invalid">
+                    Time is
+                  </Form.Control.Feedback>
                 </Col>
               </Form.Group>
               <Form.Group as={Row}>

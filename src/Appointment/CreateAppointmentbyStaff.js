@@ -29,6 +29,9 @@ class CreateAppointment extends React.Component {
       technicians: [],
       dateData: [],
       uniqueDates: [],
+      schedule: {
+        booked: 'true',
+      },
     };
     this.showSave = this.showSave.bind(this);
     this.hideSave = this.hideSave.bind(this);
@@ -54,6 +57,16 @@ class CreateAppointment extends React.Component {
     })
       .then((response) => response.json())
       .then(() => this.setState({ completed: true }))
+      .catch((err) => console.log(err));
+    fetch(`${process.env.REACT_APP_API_URL}/workSchedule/${this.state.appointment.schedule._id}`, {
+      method: 'PUT',
+      body: JSON.stringify(this.state.schedule),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
       .catch((err) => console.log(err));
   }
 
@@ -92,6 +105,7 @@ class CreateAppointment extends React.Component {
         this.setState({
           filterData: data,
           uniqueDates: data
+            .filter((d) => d.booked != true)
             .map((d) => d.date)
             .map(({ _id, date }) => ({ _id, date }))
             .filter((obj, pos, arr) => {
@@ -106,7 +120,7 @@ class CreateAppointment extends React.Component {
       .then((response) => response.json())
       .then((data) => {
         this.setState({
-          dateData: data,
+          dateData: data.filter((s) => s.booked != true),
         });
       });
   }
@@ -116,6 +130,7 @@ class CreateAppointment extends React.Component {
     this.state.dateData.forEach(function (data) {
       if (data.time._id == event.target.value) {
         finalWorkSchedule = data;
+        console.log(data._id);
       }
     });
     this.setState({
@@ -124,6 +139,7 @@ class CreateAppointment extends React.Component {
         schedule: finalWorkSchedule,
       },
     });
+    // console.log(this.state)
   }
 
   onScheduleChange(event) {
@@ -170,6 +186,7 @@ class CreateAppointment extends React.Component {
   }
 
   render() {
+    console.log(this.state.uniqueDates);
     if (this.state.completed) {
       return (
         <Redirect
@@ -229,9 +246,7 @@ class CreateAppointment extends React.Component {
                       (result) =>
                         // eslint-disable-next-line react/jsx-key
                         moment(result.date).isAfter() && (
-                          <option value={result.date}>
-                            {moment(result.date).format('ll')}
-                          </option>
+                          <option value={result.date}>{moment(result.date).format('ll')}</option>
                         )
                     )}
                   </Form.Control>

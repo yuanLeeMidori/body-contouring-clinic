@@ -86,24 +86,10 @@ class CreateAppointmentAdmin extends React.Component {
       },
     }));
   }
-  unique = (value, index, self) => {
-    return self.indexOf(value) === index;
-  };
   onTechnicianChange(event) {
     fetch(`${process.env.REACT_APP_API_URL}/staffWorkSchedules?staff=${event.target.value}`)
       .then((response) => response.json())
       .then((data) => {
-        // const unique = (value, index, self) => {
-        //   return self.indexOf(value) === index;
-        // };
-        console.log(
-          data
-            .map((d) => d.date)
-            .map(({ _id, date }) => ({ _id, date }))
-            .filter((obj, pos, arr) => {
-              return arr.map((mapObj) => mapObj._id).indexOf(obj._id) === pos;
-            })
-        );
         this.setState({
           filterData: data,
           dates: data
@@ -112,14 +98,11 @@ class CreateAppointmentAdmin extends React.Component {
             .filter((obj, pos, arr) => {
               return arr.map((mapObj) => mapObj._id).indexOf(obj._id) === pos;
             }),
-          // uniqueDates: data.date.date.filter(unique),
         });
       });
   }
 
   onDateChange(event) {
-    // var pureDate = (event.target.value).split("-");
-    // var searchDate = pureDate[1] + "/" + pureDate[2] +"/" + pureDate[0];
     console.log(event.target.value);
     fetch(`${process.env.REACT_APP_API_URL}/workSchedule?date=${event.target.value}`)
       .then((response) => response.json())
@@ -269,10 +252,10 @@ class CreateAppointmentAdmin extends React.Component {
                     {this.state.dates.map(
                       (result) => (
                         // eslint-disable-next-line react/jsx-key
-                        // moment(result.date.date).isAfter() && (
-                        <option value={result}>{moment(result.date).format('ll')}</option>
+                        moment(result.date).isAfter() && (
+                        <option value={result.date}>{moment(result.date).format('ll')}</option>
                       )
-                      // )
+                      )
                     )}
                   </Form.Control>
                 </Col>

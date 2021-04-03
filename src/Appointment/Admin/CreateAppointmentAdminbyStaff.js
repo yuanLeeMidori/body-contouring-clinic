@@ -25,18 +25,15 @@ class CreateAppointmentAdmin extends React.Component {
       services: [],
       customers: [],
       filterData: [],
-      dates: [],
+      uniqueDates: [],
       technicians: [],
       dateData: [],
-      uniqueDates: [],
-      dateId: [],
     };
     this.showSave = this.showSave.bind(this);
     this.hideSave = this.hideSave.bind(this);
   }
 
   handlSubmit(event) {
-    console.log(this.state.appointment);
     event.preventDefault();
     fetch(`${process.env.REACT_APP_API_URL}/create-appointment`, {
       method: 'POST',
@@ -92,7 +89,7 @@ class CreateAppointmentAdmin extends React.Component {
       .then((data) => {
         this.setState({
           filterData: data,
-          dates: data
+          uniqueDates: data
             .map((d) => d.date)
             .map(({ _id, date }) => ({ _id, date }))
             .filter((obj, pos, arr) => {
@@ -103,7 +100,6 @@ class CreateAppointmentAdmin extends React.Component {
   }
 
   onDateChange(event) {
-    console.log(event.target.value);
     fetch(`${process.env.REACT_APP_API_URL}/workSchedule?date=${event.target.value}`)
       .then((response) => response.json())
       .then((data) => {
@@ -129,7 +125,6 @@ class CreateAppointmentAdmin extends React.Component {
   }
 
   onScheduleChange(event) {
-    console.log('id: ' + event.target.value);
     this.setState({
       appointment: {
         ...this.state.appointment,
@@ -153,7 +148,6 @@ class CreateAppointmentAdmin extends React.Component {
         this.setState({
           technicians: data,
         });
-        console.log(this.state.technicians);
       });
   }
 
@@ -249,7 +243,7 @@ class CreateAppointmentAdmin extends React.Component {
                 <Col sm="8">
                   <Form.Control inline as="select" onChange={this.onDateChange.bind(this)}>
                     <option value="">-- select Date --</option>
-                    {this.state.dates.map(
+                    {this.state.uniqueDates.map(
                       (result) => (
                         // eslint-disable-next-line react/jsx-key
                         moment(result.date).isAfter() && (

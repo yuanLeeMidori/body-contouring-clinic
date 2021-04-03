@@ -86,11 +86,9 @@ class CreateAppointment extends React.Component {
   }
 
   onTechnicianChange(event) {
-    console.log(event.target.value);
     fetch(`${process.env.REACT_APP_API_URL}/staffWorkSchedules?staff=${event.target.value}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         this.setState({
           filterData: data,
           uniqueDates: data
@@ -104,13 +102,9 @@ class CreateAppointment extends React.Component {
   }
 
   onDateChange(event) {
-    // var pureDate = (event.target.value).split("-");
-    // var searchDate = pureDate[1] + "/" + pureDate[2] +"/" + pureDate[0];
-    console.log(event.target.value);
     fetch(`${process.env.REACT_APP_API_URL}/workSchedule?date=${event.target.value}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         this.setState({
           dateData: data,
         });
@@ -133,7 +127,6 @@ class CreateAppointment extends React.Component {
   }
 
   onScheduleChange(event) {
-    console.log('id: ' + event.target.value);
     this.setState({
       appointment: {
         ...this.state.appointment,
@@ -159,7 +152,6 @@ class CreateAppointment extends React.Component {
         this.setState({
           technicians: data,
         });
-        console.log(this.state.technicians);
       });
   }
 

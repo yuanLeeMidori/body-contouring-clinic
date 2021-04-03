@@ -24,12 +24,12 @@ class CreateSchedule extends React.Component {
       dates: [],
       times: [],
       completed: false,
-      dateIsSelected: false,
-      timeIsSelected: false,
+      dateIsSelected: true,
+      timeIsSelected: true,
       errors: [],
       form: [],
       date: '',
-      time:'',
+      time: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -37,8 +37,12 @@ class CreateSchedule extends React.Component {
   findErrors() {
     const errList = {};
     if (!this.state.date || this.state.date === '') {
-      errList.date = 'date is required';
+      errList.date = 'Date is required';
       this.setState(() => ({ dateIsSelected: false }));
+    }
+    if (!this.state.time || this.state.time === '') {
+      errList.time = 'Time is required';
+      this.setState(() => ({ timeIsSelected: false }));
     }
     return errList;
   }
@@ -110,7 +114,7 @@ class CreateSchedule extends React.Component {
           time: e.target.value,
         },
         timeIsSelected: true,
-        time: e.target.value
+        time: e.target.value,
       }));
     }
   }
@@ -201,9 +205,7 @@ class CreateSchedule extends React.Component {
                       </option>
                     ))}
                   </Form.Control>
-                  <Form.Control.Feedback type="invalid">
-                    Date is required
-                  </Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">{this.state.errors.date}</Form.Control.Feedback>
                 </Col>
               </Form.Group>
               <Form.Group as={Row}>
@@ -211,7 +213,11 @@ class CreateSchedule extends React.Component {
                   Time:
                 </Form.Label>
                 <Col sm={6}>
-                  <Form.Control as="select" onChange={this.onTimeChange.bind(this)} isInvalid={!this.state.timeIsSelected}>
+                  <Form.Control
+                    as="select"
+                    onChange={this.onTimeChange.bind(this)}
+                    isInvalid={!this.state.timeIsSelected}
+                  >
                     <option value="">--Choose--</option>
                     {this.state.times.map((time) => (
                       <option key={time._id} value={time._id}>
@@ -219,9 +225,7 @@ class CreateSchedule extends React.Component {
                       </option>
                     ))}
                   </Form.Control>
-                  <Form.Control.Feedback type="invalid">
-                    Time is
-                  </Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid">{this.state.errors.time}</Form.Control.Feedback>
                 </Col>
               </Form.Group>
               <Form.Group as={Row}>

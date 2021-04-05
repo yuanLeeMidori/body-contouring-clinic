@@ -35,6 +35,16 @@ class CustomerProfileAdmin extends React.Component {
     }));
   }
 
+  onNotesChange(event) {
+    console.log(event.target.value);
+    this.setState({
+      account: {
+        ...this.state.account,
+        notes: event.target.value,
+      },
+    });
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     fetch(`${process.env.REACT_APP_API_URL}/account/${this.props.id}`, {
@@ -106,7 +116,7 @@ class CustomerProfileAdmin extends React.Component {
   }
 
   render() {
-    // console.log(this.state.)
+    console.log(this.state.account.notes);
     if (
       this.state.authName == null ||
       this.state.authName._id == '60371ad3fda1af6510e75e3a' ||
@@ -199,10 +209,14 @@ class CustomerProfileAdmin extends React.Component {
               </Form.Group>
               <Form.Group>
                 <Form.Label>Notes:</Form.Label>
-                <Form.Label>{this.state.account.notes ? this.state.account.notes : ''}</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  value={this.state.account.notes == null ? '' : this.state.account.notes}
+                  onChange={this.onNotesChange.bind(this)}
+                ></Form.Control>
               </Form.Group>
               <Button type="submit" variant="outline-info">
-                Edit
+                Confirm Changes
               </Button>
             </Form>
           </Container>

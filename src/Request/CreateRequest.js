@@ -33,6 +33,7 @@ class CreateRequest extends React.Component {
       file: null,
       imageSuccess : false,
       authName: {},
+      fileFormat: false,
       titleNull: false,
       requestCategoryNull: false,
       contentsNull: false,
@@ -40,6 +41,7 @@ class CreateRequest extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.imageShow = this.imageShow.bind(this);
     this.imageHide = this.imageHide.bind(this);
+    this.fileCheck = this.fileCheck.bind(this);
   }
 
   imageShow = () => {
@@ -51,6 +53,12 @@ class CreateRequest extends React.Component {
   imageHide = () => {
     this.setState({
       imageSuccess : false
+    })
+  }
+  
+  fileCheck = () =>{
+    this.setState({
+      fileFormat: false
     })
   }
 
@@ -74,12 +82,26 @@ class CreateRequest extends React.Component {
   }
 
   onFormSubmit(event){
-    this.setState({
-      file: event.target.files[0],
-    });
+    var fileValue = event.target.files[0].name;
+    console.log("File name: "+ fileValue);
+    var extension = fileValue.split('.').pop();
+    console.log("File extension: "+ extension);
+
+    if(extension == 'jpg' || extension == 'png' || extension == 'gif' || extension == 'pdf' || extension == 'txt')
+    {
+      this.setState({
+        file: event.target.files[0],
+      });
+    }
+    else{
+      this.setState({
+        fileFormat: true,
+      })
+    }
   }
 
   fileUpload(){
+    if(!this.state.fileFormat){
     const url = process.env.REACT_APP_IMAGE_URL + "/upload";
     const formData = new FormData();
     formData.append('file', this.state.file)
@@ -103,7 +125,19 @@ class CreateRequest extends React.Component {
       this.setState({
         imageSuccess: true
       })
+    })
+    .catch(()=>{
+      this.setState({
+        imageSuccess: false,
+        fileFormat: true,
+      })
     });
+  }
+  else{
+    this.setState({
+      fileFormat: true,
+    })
+  }
   }
 
   onTitleChange(e) {
@@ -286,17 +320,25 @@ class CreateRequest extends React.Component {
                   Attach File:
                 </Form.Label>
                 <Form.File type="file" onChange={this.onFormSubmit.bind(this)}/>
+                  <Modal show={this.state.fileFormat} onHide={this.fileCheck}>
+                    <Modal.Header closeButton>
+                      <Modal.Title>Image Upload Result</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      <p>Only .jpg .png .gif .pdf .txt file type is allowed</p>
+                    </Modal.Body>
+                  </Modal>
                 <Button variant="outline-secondary" onClick={this.fileUpload.bind(this)}>
                       Upload
                 </Button>
-                <Modal show={this.state.imageSuccess} onHide={this.imageHide}>
+                  <Modal show={this.state.imageSuccess} onHide={this.imageHide}>
                     <Modal.Header closeButton>
                       <Modal.Title>Image Upload Result</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                       <p>Image Upload Success</p>
                     </Modal.Body>
-                </Modal>
+                  </Modal>
               </Form.Group>
               <br />
               <Container>

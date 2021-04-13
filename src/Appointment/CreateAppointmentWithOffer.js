@@ -4,6 +4,9 @@ import { Form, Row, Col, Container, Button } from 'react-bootstrap';
 import SideBar from '../SideBar/SideBar';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
+import DayPicker from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
+import moment from 'moment';
 
 class CreateAppointmentWithOffer extends React.Component {
   constructor(props) {
@@ -23,19 +26,28 @@ class CreateAppointmentWithOffer extends React.Component {
       _id: localStorage.getItem('_id'),
       appointment: {
         customer: String,
-        contactNumber: String,
+        contactNumber: '',
         specialRequest: String,
-        service: String,
-        schedule: String,
-        confirmation: "false",
+        service: '',
+        schedule: '',
+        confirmation: 'false',
       },
       offer: [],
       customer: {},
       filterData: [],
       technician:[],
+      timeNull: false,
+      dateNull: false,
+      technicianNull: false,
+      contactNumNull: false,
+      selectedDay: null,
+      availableDays: [],
+      confirmDay: null,
+      tempTime: ''
     };
     this.showSave = this.showSave.bind(this);
     this.hideSave = this.hideSave.bind(this);
+    this.getAvailableDays = this.getAvailableDays.bind(this);
   }
 
   showSave = () => {
@@ -48,6 +60,12 @@ class CreateAppointmentWithOffer extends React.Component {
 
   handlSubmit(event) {
     event.preventDefault();
+
+    this.state.appointment.schedule == ''? this.setState({technicianNull: true}):this.setState({technicianNull: false}); 
+    this.state.filterData == ''? this.setState({dateNull: true}):this.setState({dateNull: false}); 
+    this.state.tempTime == '' ? this.setState({timeNull: true}):this.setState({timeNull: false}); 
+    this.state.appointment.contactNumber == ''? this.setState({contactNumNull: true}):this.setState({contactNumNull: false});
+
     fetch(`${process.env.REACT_APP_API_URL}/create-appointment`,{
       method: "POST",
       body: JSON.stringify(this.state.appointment),
@@ -65,7 +83,8 @@ class CreateAppointmentWithOffer extends React.Component {
       appointment:{
         ...this.state.appointment,
         contactNumber: event.target.value,
-      }
+      },
+      contactNumNull: false
     }));
   }
 
@@ -78,16 +97,20 @@ class CreateAppointmentWithOffer extends React.Component {
     }));
   }
 
-  onDateChange(event){
-    var pureDate = (event.target.value).split("-");
-    var searchDate = pureDate[1] + "/" + pureDate[2] +"/" + pureDate[0];
-    console.log(searchDate);
-    fetch(`${process.env.REACT_APP_API_URL}/workSchedule?date=${searchDate}`)
+  onDateChange(day, {selected}){
+    this.setState({
+      selectedDay: selected ? undefined : day,
+      confirmDay: day,
+    });
+
+    fetch(`${process.env.REACT_APP_API_URL}/workSchedule?date=${moment(day).format("MM/DD/YYYY")}`)
     .then(response => response.json())  
     .then((data)=>{
       console.log(data);
       this.setState({
         filterData: data,
+        dateNull: false,
+        timeNull: true,
       })
     });
   }
@@ -103,6 +126,8 @@ class CreateAppointmentWithOffer extends React.Component {
     })
     this.setState({
       technician: technicianData,
+      timeNull: false,
+      tempTime: event.target.value,
   }); 
   }
 
@@ -114,7 +139,10 @@ class CreateAppointmentWithOffer extends React.Component {
         customer: this.state.customer._id,
         service: this.state.offer.services[0]._id,
         schedule: event.target.value,
-      }
+        isOffer: true,
+        offerPrice: this.state.offer.price,
+      },
+      technicianNull: false,
     });
   }
 
@@ -128,6 +156,26 @@ class CreateAppointmentWithOffer extends React.Component {
     });
     console.log(this.state.offer);
   }
+  
+  getAvailableDays(){
+    fetch(`${process.env.REACT_APP_API_URL}/workSchedules`)
+    .then(response => response.json())
+    .then((data) => {
+      var allDays = [];
+      data.map((schedule)=>{
+        if(schedule.booked == false && moment(schedule.date.date).isAfter(new Date()))
+        {
+            allDays = allDays.concat(moment(schedule.date.date, "MM/DD/YYYY").toDate());
+        }
+      });
+ 
+      console.log(allDays);
+      this.setState({
+        availableDays: allDays,
+      });
+    });
+  }
+  
   componentDidMount() {
     document.title = 'Create New Offer Appointment | Body Contouring Clinic';
 
@@ -138,6 +186,7 @@ class CreateAppointmentWithOffer extends React.Component {
         customer: data,
       });
       this.getOffer();
+      this.getAvailableDays();
     });
 
   }
@@ -179,7 +228,12 @@ class CreateAppointmentWithOffer extends React.Component {
                         Date
                       </Form.Label>
                       <Col sm="8">
-                        <Form.Control type="date" onChange={this.onDateChange.bind(this)}/>
+                        <Form.Control as="input" value={this.state.confirmDay != null ? this.state.confirmDay.toLocaleDateString() : 'Please select a day'} />
+                        <DayPicker 
+                            showOutsideDays 
+                            selectedDays={this.state.availableDays} 
+                            disabledDays={[{before: new Date()}]} 
+                            onDayClick={this.onDateChange.bind(this)} />
                       </Col>
                     </Form.Group>
                     <Form.Group as={Row}>
@@ -187,13 +241,14 @@ class CreateAppointmentWithOffer extends React.Component {
                         Time
                       </Form.Label>
                       <Col sm="8">
-                        <Form.Control inline as="select" onChange={this.onTimeChange.bind(this)}>
+                        <Form.Control inline as="select" onChange={this.onTimeChange.bind(this)} isInvalid={this.state.timeNull}>
                           <option value="">-- select time --</option>
                           {this.state.filterData.map((result)=>(
                             // eslint-disable-next-line react/jsx-key
                               <option value={result.time._id}>{result.time.time}</option>
                           ))}
                           </Form.Control>
+                          <Form.Control.Feedback type="invalid">Time is required</Form.Control.Feedback>
                       </Col>
                     </Form.Group>
                     <Form.Group as={Row}>
@@ -201,13 +256,14 @@ class CreateAppointmentWithOffer extends React.Component {
                         Technician:
                       </Form.Label>
                       <Col sm="8">
-                      <Form.Control as="select" onChange={this.onScheduleChange.bind(this)}>
+                      <Form.Control as="select" onChange={this.onScheduleChange.bind(this)} isInvalid={this.state.technicianNull}>
                           <option value="">-- select technician --</option>
                           {this.state.technician.map((result)=>(
                             // eslint-disable-next-line react/jsx-key
                             <option value={result._id}>{result.staff.account.firstName} {result.staff.account.lastName}</option>
                           ))}
                         </Form.Control>
+                        <Form.Control.Feedback type="invalid">Technician is required</Form.Control.Feedback>
                       </Col>
                     </Form.Group>
                     <Form.Group as={Row}>
@@ -215,7 +271,8 @@ class CreateAppointmentWithOffer extends React.Component {
                         Contact Number:
                       </Form.Label>
                       <Col sm="8">
-                        <Form.Control placeholder="647-596-9521" value={this.state.appointment.contactNumber} onChange={this.onContactNumChange.bind(this)}/>
+                        <Form.Control placeholder="647-596-9521" value={this.state.appointment.contactNumber} onChange={this.onContactNumChange.bind(this)} isInvalid={this.state.contactNumNull}/>
+                        <Form.Control.Feedback type="invalid">Contact Number is required</Form.Control.Feedback>
                       </Col>
                     </Form.Group>
                     <Form.Group as={Row}>

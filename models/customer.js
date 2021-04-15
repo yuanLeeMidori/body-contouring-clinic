@@ -12,11 +12,6 @@ const customerSchema = new Schema(
       type: Date,
       required: true,
     },
-    balanceHistory: {
-      type: Schema.Types.ObjectId,
-      ref: 'balanceHistories',
-      required: true,
-    },
   },
   { timestamps: true }
 );

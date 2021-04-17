@@ -319,15 +319,26 @@ class SignUp extends Component {
                 </Col>
               </Form.Group>
               <Form.Group as={Row} style={{ justifyContent: 'center' }}>
+                <span>
+                  Already registered?
+                  <a href="./Login"> sign in</a>
+                </span>
+              </Form.Group>
+
+              <Form.Group as={Row} style={{ justifyContent: 'center' }}>
                 <Row>
                   <Col>
-                    <Button variant="outline-secondary" href="/Register/Login">
-                      Cancel
+                    <Button
+                      className="page-link btn btn-outline-info"
+                      style={{ marginRight: '300px' }}
+                      href="./TermsAndConditions"
+                    >
+                      ❮ Previous
                     </Button>
                   </Col>
                   <Col md="auto">
-                    <Button variant="outline-info" type="submit">
-                      Save
+                    <Button className="page-link btn btn-outline-info" type="submit">
+                      Next ❯
                     </Button>
                   </Col>
                 </Row>
@@ -335,19 +346,6 @@ class SignUp extends Component {
             </Form>
           </Container>
 
-          <span>
-            Already registered?
-            <a href="./Login"> sign in</a>
-          </span>
-          <br></br>
-          <br></br>
-          <div style={{ marginRight: '450px' }}>
-            <div className="pagination" style={{ justifyContent: 'space-evenly' }}>
-              <a className="page-link btn btn-outline-info" href="./TermsAndConditions">
-                ❮ Previous
-              </a>
-            </div>
-          </div>
           {showError && errorObject.signup && (
             <Alert variant={'danger'}>{errorObject.signup}</Alert>
           )}
